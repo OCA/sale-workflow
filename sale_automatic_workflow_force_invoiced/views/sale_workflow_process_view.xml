@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
+ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="sale_workflow_process_force_invoice_view_form" model="ir.ui.view">
+        <field name="name">sale.workflow.process.force.invoice.view.form</field>
+        <field name="model">sale.workflow.process</field>
+        <field
+            name="inherit_id"
+            ref="sale_automatic_workflow.sale_workflow_process_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//div[hasclass('row')][.//field[@name='send_order_confirmation_mail']]"
+                position="after"
+            >
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="force_invoice" class="col-lg-7 o_light_label" />
+                        <field name="force_invoice" nolabel="1" />
+                    </div>
+                    <div class="col-sm-8">
+                        <label
+                            for="force_invoice_order_filter_id"
+                            required="force_invoice"
+                            invisible="not force_invoice"
+                        />
+                        <div required="force_invoice" invisible="not force_invoice">
+                            <field
+                                name="force_invoice_order_filter_domain"
+                                widget="domain"
+                                invisible="not force_invoice"
+                                options="{'model': 'sale.order'}"
+                            />
+                            <div class="oe_edit_only oe_inline">
+                                Set selection based on a search filter:
+                                <field
+                                name="force_invoice_order_filter_id"
+                                required="force_invoice"
+                                domain="[('model_id', '=', 'sale.order')]"
+                                class="oe_inline"
+                                context="{'default_model_id': 'sale.order', 'default_active': False, 'active_test': False}"
+                                can_create="true"
+                                can_write="true"
+                            />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <record id="sale_workflow_process_force_invoice_view_tree" model="ir.ui.view">
+        <field name="name">sale.workflow.process.force.invoice.view.tree</field>
+        <field name="model">sale.workflow.process</field>
+        <field
+            name="inherit_id"
+            ref="sale_automatic_workflow.sale_workflow_process_view_tree"
+        />
+        <field name="arch" type="xml">
+            <field name="validate_order" position="after">
+                <field name="force_invoice" />
+            </field>
+        </field>
+    </record>
+</odoo>
