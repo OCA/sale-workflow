@@ -12,6 +12,13 @@
             <field name="product_uom_qty" position="attributes">
                 <attribute name="widget">numeric_step</attribute>
             </field>
+            <!-- A line opened from a catalog card is the line of that card:
+                 its product and the values taken from the card go together. -->
+            <field name="product_id" position="attributes">
+                <attribute
+                    name="readonly"
+                >(id and not product_updatable) or context.get('catalog_line_params')</attribute>
+            </field>
         </field>
     </record>
     <record id="action_open_editable_sale_order_line" model="ir.actions.act_window">

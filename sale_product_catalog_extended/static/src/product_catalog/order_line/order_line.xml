@@ -33,6 +33,17 @@
                 </button>
             </div>
         </xpath>
+        <!-- Clicking the card already adds the product, so the Add button opens
+             the new line in a form instead, to complete it before it is
+             created. -->
+        <xpath
+            expr="//div[hasclass('o_product_catalog_buttons')]/button[@t-on-click.stop='() => this.env.addProduct()']"
+            position="attributes"
+        >
+            <attribute
+                name="t-on-click.stop"
+            >() => this.displayEdit() ? this.env.addNewOrderLine() : this.env.addProduct()</attribute>
+        </xpath>
         <!-- Make the Remove button wrapper and button full-width to match -->
         <xpath expr="//div[hasclass('o_tooltip_div_remove')]" position="attributes">
             <attribute name="class">o_tooltip_div_remove w-100</attribute>
