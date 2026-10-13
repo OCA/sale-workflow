@@ -6,7 +6,7 @@
 
 {
     "name": "Sale Triple Discount",
-    "version": "14.0.3.0.1",
+    "version": "14.0.3.0.2",
     "category": "Sales",
     "author": "ADHOC SA, Agile Business Group, Tecnativa, "
     "Odoo Community Association (OCA)",
