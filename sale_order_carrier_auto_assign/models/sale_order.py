@@ -45,9 +45,11 @@ class SaleOrder(models.Model):
 
         Only an effective change of the shipping partner counts:
         rewriting the same partner must not drop the chosen carrier.
+        Like on creation, this is driven by `carrier_on_create`:
+        `carrier_auto_assign` only acts on confirmation.
         """
         return (
-            self.company_id.carrier_auto_assign
+            self.company_id.carrier_on_create
             and self.state in ("draft", "sent")
             and not vals.get("carrier_id")
             and self.partner_shipping_id != shipping_before

@@ -175,7 +175,6 @@ class TestSaleOrderCarrierAutoAssignOnCreate(TestSaleOrderCarrierAutoAssignCommo
         self.assertFalse(sale_order.carrier_id)
 
     def test_sale_order_add_delivery_carrier_on_partner_change(self):
-        self.settings.carrier_auto_assign = True
         # enable to change delivery address
         self.env.user.groups_id += self.env.ref(
             "account.group_delivery_invoice_address"
@@ -193,7 +192,6 @@ class TestSaleOrderCarrierAutoAssignOnCreate(TestSaleOrderCarrierAutoAssignCommo
         self.assertEqual(so.carrier_id, self.delivery_local_delivery)
 
     def test_rewrite_same_partner_keeps_carrier(self):
-        self.settings.carrier_auto_assign = True
         carrier = self.delivery_local_delivery2.copy()
         so = self._create_sale_order()
         so.set_delivery_line(carrier, 0.0)
@@ -265,6 +263,13 @@ class TestSaleOrderCarrierAutoAssignOnConfirm(TestSaleOrderCarrierAutoAssignComm
         self.sale_order.action_confirm()
         self.assertEqual(self.sale_order.state, "sale")
         self.assertFalse(self.sale_order.carrier_id)
+
+    def test_address_change_keeps_carrier_on_quotation(self):
+        """Only on confirmation is enabled: quotations are left alone."""
+        carrier = self.delivery_local_delivery2.copy()
+        self.sale_order.set_delivery_line(carrier, 0.0)
+        self.sale_order.partner_shipping_id = self.partner_delivery
+        self.assertEqual(self.sale_order.carrier_id, carrier)
 
     def test_onchange_no_order_line(self):
         """Ensure no error occurs when changing partner on an empty sale order."""
