@@ -192,6 +192,17 @@ class TestSaleOrderCarrierAutoAssignOnCreate(TestSaleOrderCarrierAutoAssignCommo
             so_form.partner_shipping_id = self.partner
         self.assertEqual(so.carrier_id, self.delivery_local_delivery)
 
+    def test_rewrite_same_partner_keeps_carrier(self):
+        self.settings.carrier_auto_assign = True
+        carrier = self.delivery_local_delivery2.copy()
+        so = self._create_sale_order()
+        so.set_delivery_line(carrier, 0.0)
+        # Rewriting the same values is not a change of address
+        so.write({"partner_id": so.partner_id.id})
+        self.assertEqual(so.carrier_id, carrier)
+        so.write({"partner_shipping_id": so.partner_shipping_id.id})
+        self.assertEqual(so.carrier_id, carrier)
+
 
 class TestSaleOrderCarrierAutoAssignOnConfirm(TestSaleOrderCarrierAutoAssignCommon):
     @classmethod

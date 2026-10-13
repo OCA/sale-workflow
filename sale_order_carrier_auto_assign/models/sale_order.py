@@ -29,20 +29,28 @@ class SaleOrder(models.Model):
         return recs
 
     def write(self, vals):
+        shipping_before = {}
+        if "partner_id" in vals or "partner_shipping_id" in vals:
+            shipping_before = {rec.id: rec.partner_shipping_id for rec in self}
         res = super().write(vals)
         for rec in self:
-            if rec._is_auto_set_carrier_on_write(vals):
+            if rec.id in shipping_before and rec._is_auto_set_carrier_on_write(
+                vals, shipping_before[rec.id]
+            ):
                 rec._set_delivery_carrier(preserve_order_carrier=False)
         return res
 
-    def _is_auto_set_carrier_on_write(self, vals):
+    def _is_auto_set_carrier_on_write(self, vals, shipping_before):
+        """Tell if the carrier must be reassigned after a write.
+
+        Only an effective change of the shipping partner counts:
+        rewriting the same partner must not drop the chosen carrier.
+        """
         return (
             self.company_id.carrier_auto_assign
             and self.state in ("draft", "sent")
-            and bool(
-                not vals.get("carrier_id")
-                and (vals.get("partner_id") or vals.get("partner_shipping_id"))
-            )
+            and not vals.get("carrier_id")
+            and self.partner_shipping_id != shipping_before
         )
 
     def _is_auto_set_carrier_on_confirm(self):
