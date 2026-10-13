@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Tecnativa - Carlos Dauden
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='catalog_setting_container']" position="inside">
+                <setting
+                    id="sale_product_catalog_defaults"
+                    string="Order catalog options"
+                    help="Options preselected when the product catalog of a sale order is opened"
+                >
+                    <div class="content-group">
+                        <div class="row mt8">
+                            <label
+                                for="default_catalog_origin_data"
+                                string="Origin"
+                                class="col-lg-4 o_light_label"
+                            />
+                            <field
+                                name="default_catalog_origin_data"
+                                placeholder="Products"
+                            />
+                        </div>
+                        <div class="row">
+                            <label
+                                for="default_catalog_last_sales"
+                                string="Last sales"
+                                class="col-lg-4 o_light_label"
+                            />
+                            <field
+                                name="default_catalog_last_sales"
+                                placeholder="All"
+                            />
+                        </div>
+                        <div class="row">
+                            <label
+                                for="default_catalog_price_mode"
+                                string="Price"
+                                class="col-lg-4 o_light_label"
+                            />
+                            <field
+                                name="default_catalog_price_mode"
+                                placeholder="Pricelist"
+                            />
+                        </div>
+                        <div class="row">
+                            <label
+                                for="default_catalog_history_partner"
+                                string="History"
+                                class="col-lg-4 o_light_label"
+                            />
+                            <div class="col d-flex align-items-center">
+                                <field
+                                    name="default_catalog_history_partner"
+                                    placeholder="Customer"
+                                />
+                                <field
+                                    name="catalog_show_history_partner"
+                                    class="w-auto ms-2"
+                                />
+                                <label
+                                    for="catalog_show_history_partner"
+                                    string="Show"
+                                    class="o_light_label ms-1"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </setting>
+                <setting
+                    id="sale_product_catalog_last_sales"
+                    string="Order catalog last sales"
+                    help="Sale history used by the last sales option and the last sale price"
+                >
+                    <div class="content-group">
+                        <div class="row mt8">
+                            <label
+                                for="catalog_last_order_days"
+                                string="Days"
+                                class="col-lg-4 o_light_label"
+                            />
+                            <field name="catalog_last_order_days" />
+                        </div>
+                        <div class="row">
+                            <label
+                                for="catalog_last_order_limit"
+                                string="Product limit"
+                                class="col-lg-4 o_light_label"
+                            />
+                            <field name="catalog_last_order_limit" />
+                        </div>
+                    </div>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
