@@ -1,0 +1,59 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_rounding
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-30 15:43+0000\n"
+"PO-Revision-Date: 2026-06-30 15:43+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: sale_order_rounding
+#: model:ir.model.fields,field_description:sale_order_rounding.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_order_rounding.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: sale_order_rounding
+#: model:ir.model.fields,field_description:sale_order_rounding.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_order_rounding.field_sale_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_rounding
+#: model:ir.model.fields,field_description:sale_order_rounding.field_sale_order_line__is_rounding_line
+msgid "Is Rounding Line"
+msgstr "Es línea de redondeo"
+
+#. module: sale_order_rounding
+#: model:product.template,name:sale_order_rounding.product_product_rounding_product_template
+#: model_terms:ir.ui.view,arch_db:sale_order_rounding.sale_order_view_form_inherit_rounding
+msgid "Round Up"
+msgstr "Redondear"
+
+#. module: sale_order_rounding
+#: model:ir.model,name:sale_order_rounding.model_sale_order
+msgid "Sales Order"
+msgstr "Orden de venta"
+
+#. module: sale_order_rounding
+#: model:ir.model,name:sale_order_rounding.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de la orden de venta"
+
+#. module: sale_order_rounding
+#: model:ir.model.fields,help:sale_order_rounding.field_sale_order_line__is_rounding_line
+msgid ""
+"Technical field used to identify the sale order line applied for rounding up"
+" totals."
+msgstr ""
+"Campo técnico utilizado para identificar la línea del pedido de venta aplicada"
+" para el redondeo hacia arriba de los totales."
