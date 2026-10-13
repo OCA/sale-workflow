@@ -1,6 +1,8 @@
 # Copyright 2020 Camptocamp SA
 # Copyright 2024 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
+from unittest import mock
+
 from odoo.fields import Command
 from odoo.tests import Form
 
@@ -200,6 +202,27 @@ class TestSaleOrderCarrierAutoAssignOnCreate(TestSaleOrderCarrierAutoAssignCommo
         self.assertEqual(so.carrier_id, carrier)
         so.write({"partner_shipping_id": so.partner_shipping_id.id})
         self.assertEqual(so.carrier_id, carrier)
+
+    def test_write_lines_and_address_rate_once(self):
+        """Lines and address written together: compute the carrier once."""
+        sale_order = self.env["sale.order"].create({"partner_id": self.partner.id})
+        carrier_model = type(self.env["delivery.carrier"])
+        with mock.patch.object(
+            carrier_model,
+            "rate_shipment",
+            autospec=True,
+            side_effect=carrier_model.rate_shipment,
+        ) as rate_shipment:
+            sale_order.write(
+                {
+                    "partner_shipping_id": self.partner_delivery.id,
+                    "order_line": [
+                        Command.create({"product_id": self.product_storable.id})
+                    ],
+                }
+            )
+        self.assertEqual(rate_shipment.call_count, 1)
+        self.assertEqual(sale_order.carrier_id, self.delivery_local_delivery2)
 
 
 class TestSaleOrderCarrierAutoAssignOnConfirm(TestSaleOrderCarrierAutoAssignCommon):

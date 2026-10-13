@@ -24,20 +24,39 @@ class SaleOrder(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        recs = super().create(vals_list)
+        # Set the carrier once, when the order and all its lines exist
+        ctx_carrier_on_create = self.env.context.get("carrier_on_create")
+        recs = super(SaleOrder, self.with_context(carrier_on_create=True)).create(
+            vals_list
+        )
+        recs = recs.with_context(carrier_on_create=ctx_carrier_on_create)
         recs._auto_set_carrier_on_create()
         return recs
 
     def write(self, vals):
+        if self.env.context.get("carrier_on_create"):
+            return super().write(vals)
         shipping_before = {}
         if "partner_id" in vals or "partner_shipping_id" in vals:
             shipping_before = {rec.id: rec.partner_shipping_id for rec in self}
-        res = super().write(vals)
+        # Lines added or changed while writing can make the carrier applicable
+        products_before = {
+            rec.id: rec.order_line.product_id for rec in self if not rec.carrier_id
+        }
+        # Set the carrier once, when everything is written
+        res = super(SaleOrder, self.with_context(carrier_on_create=True)).write(vals)
         for rec in self:
             if rec.id in shipping_before and rec._is_auto_set_carrier_on_write(
                 vals, shipping_before[rec.id]
             ):
-                rec._set_delivery_carrier(preserve_order_carrier=False)
+                rec.with_context(carrier_on_create=True)._set_delivery_carrier(
+                    preserve_order_carrier=False
+                )
+            elif (
+                rec.id in products_before
+                and rec.order_line.product_id != products_before[rec.id]
+            ):
+                rec._auto_set_carrier_on_create()
         return res
 
     def _is_auto_set_carrier_on_write(self, vals, shipping_before):

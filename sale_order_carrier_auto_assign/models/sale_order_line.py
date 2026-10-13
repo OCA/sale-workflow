@@ -9,13 +9,21 @@ class SaleOrderLine(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        order_lines = super().create(vals_list)
+        # When product lines are added, set the carrier
+        # once all lines are created (other modules can add lines in cascade)
+        ctx_carrier_on_create = self.env.context.get("carrier_on_create")
+        order_lines = super(
+            SaleOrderLine, self.with_context(carrier_on_create=True)
+        ).create(vals_list)
+        order_lines = order_lines.with_context(carrier_on_create=ctx_carrier_on_create)
         order_lines.order_id._auto_set_carrier_on_create()
         return order_lines
 
     def write(self, vals):
         # When product is changed, set the carrier
-        res = super().write(vals)
+        res = super(SaleOrderLine, self.with_context(carrier_on_create=True)).write(
+            vals
+        )
         if vals.get("product_id"):
             # compute of is_all_service doesn't list order_line.product_id in its
             # depends, so invalidate recordset
