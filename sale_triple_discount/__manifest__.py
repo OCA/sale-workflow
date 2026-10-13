@@ -6,7 +6,7 @@
 
 {
     "name": "Sale Triple Discount",
-    "version": "14.0.2.0.1",
+    "version": "14.0.3.0.1",
     "category": "Sales",
     "author": "ADHOC SA, Agile Business Group, Tecnativa, "
     "Odoo Community Association (OCA)",
@@ -16,4 +16,5 @@
     "depends": ["sale_management", "account_invoice_triple_discount"],
     "data": ["views/sale_order_report.xml", "views/sale_order_view.xml"],
     "installable": True,
+    "post_init_hook": "post_init_hook",
 }
