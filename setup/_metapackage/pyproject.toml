@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-sale-workflow"
-version = "19.0.20261012.1"
+version = "19.0.20261013.0"
 dependencies = [
     "odoo-addon-partner_contact_sale_info_propagation==19.0.*",
     "odoo-addon-partner_sale_pivot==19.0.*",
@@ -53,6 +53,7 @@ dependencies = [
     "odoo-addon-sale_order_line_note==19.0.*",
     "odoo-addon-sale_order_line_price_history==19.0.*",
     "odoo-addon-sale_order_line_price_source==19.0.*",
+    "odoo-addon-sale_order_line_route_visible==19.0.*",
     "odoo-addon-sale_order_line_section==19.0.*",
     "odoo-addon-sale_order_line_sequence==19.0.*",
     "odoo-addon-sale_order_line_tag==19.0.*",
