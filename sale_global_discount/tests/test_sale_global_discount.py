@@ -274,3 +274,19 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
         self.assertAlmostEqual(
             self.get_taxes_widget_total_tax(self.sale), self.sale.amount_tax
         )
+
+    def test_09_group_lines_by_tax_combination(self):
+        """Lines with different tax combinations must be grouped separately
+        when computing the global discount taxes, keeping the totals
+        consistent with the core-computed taxes widget."""
+        self.sale.order_line[0].tax_ids = self.tax_1
+        self.sale.order_line[1].tax_ids = self.tax_2
+        self.sale.global_discount_ids = self.global_discount_1
+        self.sale._compute_tax_totals()
+        self.assertAlmostEqual(
+            self.sale.amount_total,
+            self.sale.amount_untaxed + self.sale.amount_tax,
+        )
+        self.assertAlmostEqual(
+            self.get_taxes_widget_total_tax(self.sale), self.sale.amount_tax
+        )
