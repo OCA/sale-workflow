@@ -25,6 +25,22 @@ class SaleOrderLine(models.Model):
         """
         return 8, self.order_id.id
 
+    def _get_qty_procurement(self, previous_product_uom_qty=False):
+        """Override to respect previous_product_uom_qty for lines already
+        processed by _action_launch_stock_rule.
+
+        Without this, modules like sale_mrp override _get_qty_procurement for
+        kit products and ignore previous_product_uom_qty, returning 0 for
+        nested kit components. This causes super()._action_launch_stock_rule
+        to run procurement a second time, doubling all stock moves.
+        """
+        self.ensure_one()
+        if previous_product_uom_qty and self.id in previous_product_uom_qty:
+            return previous_product_uom_qty[self.id]
+        return super()._get_qty_procurement(
+            previous_product_uom_qty=previous_product_uom_qty
+        )
+
     def _action_launch_stock_rule(self, previous_product_uom_qty=False):
         """
         Launch procurement group run method.
@@ -75,6 +91,8 @@ class SaleOrderLine(models.Model):
                 if updated_vals:
                     group_id.write(updated_vals)
             line.procurement_group_id = group_id
+            # Also keep the sale order synched
+            line.order_id.procurement_group_id = group_id
 
             values = line._prepare_procurement_values(group_id=group_id)
             product_qty = line.product_uom_qty - qty
@@ -99,6 +117,7 @@ class SaleOrderLine(models.Model):
             # We store the procured quantity in the UoM of the line to avoid
             # duplicated procurements, specially for dropshipping and kits.
             previous_product_uom_qty[line.id] = line.product_uom_qty
+
         if procurements:
             self.env["procurement.group"].run(procurements)
         return super(
