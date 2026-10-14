@@ -101,6 +101,13 @@ msgid "ID"
 msgstr "Identifiant"
 
 #. module: sale_sourced_by_line_product_rule
+#: model:ir.model.fields,help:sale_sourced_by_line_product_rule.field_sale_order_line__warehouse_id
+msgid ""
+"If a source warehouse is selected, it will be used to define the route. "
+"Otherwise, it will get the warehouse of the sale order"
+msgstr ""
+
+#. module: sale_sourced_by_line_product_rule
 #: model:ir.model.fields,field_description:sale_sourced_by_line_product_rule.field_sale_line_product_rule____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
@@ -134,8 +141,16 @@ msgid "Product Variant"
 msgstr "Variante de produit"
 
 #. module: sale_sourced_by_line_product_rule
+#: model:ir.model.fields,field_description:sale_sourced_by_line_product_rule.field_product_product__warehouse_rule_ids
+#: model:ir.model.fields,field_description:sale_sourced_by_line_product_rule.field_product_template__warehouse_rule_ids
+#, fuzzy
+msgid "Product Warehouse Rules"
+msgstr "Règles d'Entrepôts"
+
+#. module: sale_sourced_by_line_product_rule
 #: model:ir.model,name:sale_sourced_by_line_product_rule.model_sale_line_product_rule
-msgid "Sale Warehouse Rule"
+#, fuzzy
+msgid "Sale Line Product Rule"
 msgstr "Règle d'Entrepôt pour vente"
 
 #. module: sale_sourced_by_line_product_rule
@@ -163,6 +178,12 @@ msgid "Show Warehouse Column on Sale Order Lines"
 msgstr "Afficher la colonne Entrepôt sur les lignes de bon de commande"
 
 #. module: sale_sourced_by_line_product_rule
+#: model:ir.model.fields,field_description:sale_sourced_by_line_product_rule.field_sale_order_line__warehouse_id
+#, fuzzy
+msgid "Source Warehouse"
+msgstr "Entrepôt"
+
+#. module: sale_sourced_by_line_product_rule
 #: model:ir.model.fields.selection,name:sale_sourced_by_line_product_rule.selection__sale_line_product_rule__applied_on__2_template
 #, fuzzy
 msgid "Template"
@@ -188,7 +209,6 @@ msgid "The delivery will be sent from multiple warehouses: %(warehouses)s"
 msgstr "La livraison va se faire depuis plusieurs entrepôts: %(warehouses)s"
 
 #. module: sale_sourced_by_line_product_rule
-#: model:ir.model.fields,field_description:sale_sourced_by_line_product_rule.field_sale_order_line__warehouse_id
 #: model:ir.model.fields,field_description:sale_sourced_by_line_product_rule.field_sale_line_product_rule__warehouse_id
 msgid "Warehouse"
 msgstr "Entrepôt"
@@ -204,8 +224,6 @@ msgid "Warehouse Rule Need Change"
 msgstr "La règle d'entrepôts doit changer"
 
 #. module: sale_sourced_by_line_product_rule
-#: model:ir.model.fields,field_description:sale_sourced_by_line_product_rule.field_product_product__warehouse_rule_ids
-#: model:ir.model.fields,field_description:sale_sourced_by_line_product_rule.field_product_template__warehouse_rule_ids
 #: model_terms:ir.ui.view,arch_db:sale_sourced_by_line_product_rule.product_template_form_view
 msgid "Warehouse Rules"
 msgstr "Règles d'Entrepôts"
