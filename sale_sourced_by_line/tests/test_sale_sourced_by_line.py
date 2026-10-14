@@ -99,6 +99,90 @@ class TestSaleSourcedByLine(BaseCommon):
             f"1 delivery order expected. Got {len(so.picking_ids)} instead",
         )
 
+    def test_multiple_source_warehouses_info(self):
+        so = self.sale_order_model.create(
+            {
+                "partner_id": self.customer.id,
+            }
+        )
+        line1 = self.sale_order_line_model.create(
+            {
+                "product_id": self.product_1.id,
+                "product_uom_qty": 8,
+                "warehouse_id": self.warehouse1.id,
+                "order_id": so.id,
+            }
+        )
+        self.assertFalse(so.multiple_source_warehouses)
+
+        self.sale_order_line_model.create(
+            {
+                "product_id": self.product_2.id,
+                "product_uom_qty": 8,
+                "warehouse_id": self.warehouse0.id,
+                "order_id": so.id,
+            }
+        )
+        warehouses = ", ".join(sorted([self.warehouse0.name, self.warehouse1.name]))
+        self.assertIn(warehouses, so.multiple_source_warehouses)
+        # a single source warehouse again hides the message
+        line1.warehouse_id = self.warehouse0
+        self.assertFalse(so.multiple_source_warehouses)
+
+    def test_warehouse_change_on_confirm(self):
+        # all lines from the same warehouse, different from the order one:
+        # it becomes the warehouse of the order
+        so = self.sale_order_model.create(
+            {
+                "partner_id": self.customer.id,
+                "warehouse_id": self.warehouse0.id,
+            }
+        )
+        self.sale_order_line_model.create(
+            {
+                "product_id": self.product_1.id,
+                "product_uom_qty": 8,
+                "warehouse_id": self.warehouse1.id,
+                "order_id": so.id,
+            }
+        )
+        line2 = self.sale_order_line_model.create(
+            {
+                "product_id": self.product_2.id,
+                "product_uom_qty": 8,
+                "warehouse_id": self.warehouse1.id,
+                "order_id": so.id,
+            }
+        )
+        so.action_confirm()
+        self.assertEqual(so.warehouse_id, self.warehouse1)
+        self.assertEqual(line2.warehouse_id, self.warehouse1)
+        # several source warehouses: the order's warehouse is left untouched
+        so2 = self.sale_order_model.create(
+            {
+                "partner_id": self.customer.id,
+                "warehouse_id": self.warehouse0.id,
+            }
+        )
+        self.sale_order_line_model.create(
+            {
+                "product_id": self.product_1.id,
+                "product_uom_qty": 8,
+                "warehouse_id": self.warehouse1.id,
+                "order_id": so2.id,
+            }
+        )
+        self.sale_order_line_model.create(
+            {
+                "product_id": self.product_2.id,
+                "product_uom_qty": 8,
+                "warehouse_id": self.warehouse0.id,
+                "order_id": so2.id,
+            }
+        )
+        so2.action_confirm()
+        self.assertEqual(so2.warehouse_id, self.warehouse0)
+
     def test_sale_order_source(self):
         so = self.sale_order_model.create(
             {

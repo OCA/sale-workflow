@@ -11,12 +11,34 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     warehouse_id = fields.Many2one(
-        "stock.warehouse",
         string="Default Warehouse",
-        readonly=True,
         help="If no source warehouse is selected on line, "
-        "this warehouse is used as default. ",
+        "this warehouse is used as default.",
     )
+
+    multiple_source_warehouses = fields.Html(
+        compute="_compute_multiple_source_warehouses"
+    )
+
+    @api.depends("order_line.warehouse_id")
+    def _compute_multiple_source_warehouses(self):
+        for order in self:
+            warehouses = order.order_line.warehouse_id
+            order.multiple_source_warehouses = (
+                self.env._(
+                    "The delivery is sent from multiple warehouses: %(warehouses)s",
+                    warehouses=", ".join(warehouses.mapped("name")),
+                )
+                if len(warehouses) > 1
+                else False
+            )
+
+    def action_confirm(self):
+        for order in self:
+            warehouses = order.order_line.warehouse_id
+            if len(warehouses) == 1 and warehouses != order.warehouse_id:
+                order.warehouse_id = warehouses
+        return super().action_confirm()
 
 
 class SaleOrderLine(models.Model):
@@ -38,19 +60,6 @@ class SaleOrderLine(models.Model):
             if self.warehouse_id:
                 vals["name"] += "/" + self.warehouse_id.name
         return vals
-
-    def _prepare_procurement_values(self, group_id=False):
-        """Prepare specific key for moves or other components
-        that will be created from a stock rule
-        comming from a sale order line. This method could be
-        override in order to add other custom key that could
-        be used in move/po creation.
-        """
-        values = super()._prepare_procurement_values(group_id)
-        self.ensure_one()
-        if self.warehouse_id:
-            values["warehouse_id"] = self.warehouse_id
-        return values
 
     def _get_procurement_group_key(self):
         """Return a key with priority to be used to regroup lines in multiple
