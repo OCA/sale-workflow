@@ -58,10 +58,15 @@ class SaleOrder(models.Model):
 
     @api.depends("invoice_plan_ids.invoiced")
     def _compute_invoice_plan_pending(self):
-        for order in self:
-            order.invoice_plan_pending = len(
-                order.invoice_plan_ids.filtered(lambda x: not x.invoiced)
+        pending = dict(
+            self.env["sale.invoice.plan"]._read_group(
+                [("sale_id", "in", self.ids), ("invoiced", "=", False)],
+                ["sale_id"],
+                ["__count"],
             )
+        )
+        for order in self:
+            order.invoice_plan_pending = pending.get(order, 0)
 
     @api.constrains("invoice_plan_ids")
     def _check_invoice_plan_total_percent(self):
