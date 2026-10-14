@@ -156,3 +156,17 @@ class TestSaleOrderLinePriceHistory(SavepointCase):
         history_line.action_set_price()
         self.assertEqual(self.sale_order_line_3.price_unit, 10)
         self.assertEqual(self.sale_order_line_3.discount, 5)
+
+    def test_duplicated_order_partner(self):
+        # Duplicating an order and changing its customer must keep the line
+        # customer (and therefore the wizard default) in sync with the new
+        # order. Otherwise, the price history is searched for the wrong
+        # customer on the duplicated order.
+        new_partner = self.env["res.partner"].create({"name": "New customer"})
+        duplicated = self.sale_order_1.copy()
+        duplicated.partner_id = new_partner
+        duplicated.invalidate_cache()
+        line = duplicated.order_line
+        self.assertEqual(line.order_id.partner_id, new_partner)
+        wizard = self.launch_wizard(active_id=line.id)
+        self.assertEqual(wizard.partner_id, new_partner)
