@@ -23,10 +23,10 @@ rebel_module_groups:
 - sale_fixed_discount
 - sale_triple_discount
 - sale_order_general_discount_triple
+- sale_order_line_price_unit_digits
 repo_description: sale-workflow
 repo_name: sale-workflow
 repo_slug: sale-workflow
 repo_website: https://github.com/OCA/sale-workflow
 use_pyproject_toml: true
 use_ruff: true
-
