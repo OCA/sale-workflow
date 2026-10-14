@@ -128,6 +128,8 @@ addon | version | maintainers | summary
 [sale_packaging_default](sale_packaging_default/) | 16.0.2.2.1 | <a href='https://github.com/yajo'><img src='https://github.com/yajo.png' width='32' height='32' style='border-radius:50%;' alt='yajo'/></a> | Simplify using products default packaging for sales
 [sale_partner_incoterm](sale_partner_incoterm/) | 16.0.1.0.0 |  | Set the customer preferred incoterm on each sales order
 [sale_partner_pricelist](sale_partner_pricelist/) | 16.0.1.0.0 |  | Sale Partner Pricelist
+[sale_partner_sale_contact](sale_partner_sale_contact/) | 16.0.1.0.0 | <a href='https://github.com/maisim'><img src='https://github.com/maisim.png' width='32' height='32' style='border-radius:50%;' alt='maisim'/></a> | Add sale contact person field to quotations, orders, and invoices
+[sale_partner_sale_contact_on_project](sale_partner_sale_contact_on_project/) | 16.0.1.0.0 | <a href='https://github.com/maisim'><img src='https://github.com/maisim.png' width='32' height='32' style='border-radius:50%;' alt='maisim'/></a> | Propagate sale contact from sale orders to projects
 [sale_partner_selectable_option](sale_partner_selectable_option/) | 16.0.1.1.0 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Sale Partner Selectable Option
 [sale_payment_sheet](sale_payment_sheet/) | 16.0.1.1.3 | <a href='https://github.com/sergio-teruel'><img src='https://github.com/sergio-teruel.png' width='32' height='32' style='border-radius:50%;' alt='sergio-teruel'/></a> | Allow to create invoice payments to commercial users without accounting permissions
 [sale_planner_calendar](sale_planner_calendar/) | 16.0.3.1.0 |  | Sale planner calendar
