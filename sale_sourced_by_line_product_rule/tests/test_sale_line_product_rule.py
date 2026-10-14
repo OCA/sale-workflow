@@ -77,7 +77,7 @@ class TestSaleLineProductRule(TransactionCase):
         )
         self.assertEqual(order_line_product_11.move_ids.warehouse_id, self.warehouse1)
         self.assertEqual(order_line_product_10.move_ids.warehouse_id, self.warehouse0)
-        self.assertTrue(sale.warehouse_rule_info)
+        self.assertTrue(sale.multiple_source_warehouses)
         self.assertFalse(sale.warehouse_rule_need_change)
 
     def test_sale_line_warehouse_from_product_rule(self):
@@ -92,7 +92,7 @@ class TestSaleLineProductRule(TransactionCase):
         )
         self.assertEqual(order_line_product_11.move_ids.warehouse_id, self.warehouse1)
         self.assertEqual(order_line_product_11b.move_ids.warehouse_id, self.warehouse0)
-        self.assertTrue(sale.warehouse_rule_info)
+        self.assertTrue(sale.multiple_source_warehouses)
         self.assertFalse(sale.warehouse_rule_need_change)
 
     def test_sale_line_warehouse_from_attribute_values_rule(self):
@@ -123,7 +123,7 @@ class TestSaleLineProductRule(TransactionCase):
         )
         self.assertEqual(order_line_product_11.move_ids.warehouse_id, self.warehouse0)
         self.assertEqual(order_line_product_11b.move_ids.warehouse_id, self.warehouse1)
-        self.assertTrue(sale.warehouse_rule_info)
+        self.assertTrue(sale.multiple_source_warehouses)
         self.assertFalse(sale.warehouse_rule_need_change)
 
     def test_warehouse_rule_need_change(self):
@@ -138,7 +138,7 @@ class TestSaleLineProductRule(TransactionCase):
     def test_warehouse_rule_need_change_with_some_no_rule_lines(self):
         product_new = self.env.ref("product.product_product_12")
         sale = self._create_sale_order(self.partner, product_new + self.product_11)
-        self.assertTrue(sale.warehouse_rule_info)
+        self.assertTrue(sale.multiple_source_warehouses)
         self.assertFalse(sale.warehouse_rule_need_change)
 
     def test_check_product_rule_uniqueness_variant(self):

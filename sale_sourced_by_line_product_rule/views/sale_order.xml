@@ -10,20 +10,11 @@
         <field name="arch" type="xml">
             <sheet position="before">
                 <div
-                    class="alert alert-danger alert-dismissable"
+                    class="alert alert-danger mb-0"
                     role="alert"
-                    style="margin-bottom:0px;"
                     invisible="not warehouse_rule_need_change"
                 >
                     <field name="warehouse_rule_need_change" />
-                </div>
-                <div
-                    class="alert alert-info alert-dismissable"
-                    role="alert"
-                    style="margin-bottom:0px;"
-                    invisible="not warehouse_rule_info"
-                >
-                    <field name="warehouse_rule_info" />
                 </div>
             </sheet>
 
@@ -31,8 +22,6 @@
                 expr="//field[@name='order_line']/list/field[@name='warehouse_id']"
                 position="attributes"
             >
-                <attribute name="invisible">0</attribute>
-                <attribute name="readonly">parent.state != 'draft'</attribute>
                 <attribute
                     name="column_invisible"
                 >not parent.show_sale_line_warehouse_column</attribute>
