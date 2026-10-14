@@ -40,16 +40,10 @@ msgstr ""
 
 #. module: sale_partner_sale_contact
 #: model:ir.model.fields,help:sale_partner_sale_contact.field_sale_contact_mixin__sale_contact_partner_id
+#: model:ir.model.fields,help:sale_partner_sale_contact.field_sale_order__sale_contact_partner_id
 msgid ""
 "Contact person for this record. Only child contacts of the partner can be "
 "selected."
-msgstr ""
-
-#. module: sale_partner_sale_contact
-#: model:ir.model.fields,help:sale_partner_sale_contact.field_sale_order__sale_contact_partner_id
-msgid ""
-"Contact person for this sale order. Only child contacts of the customer can "
-"be selected."
 msgstr ""
 
 #. module: sale_partner_sale_contact
@@ -74,24 +68,6 @@ msgstr ""
 #. module: sale_partner_sale_contact
 #: model:ir.model,name:sale_partner_sale_contact.model_account_move
 msgid "Journal Entry"
-msgstr ""
-
-#. module: sale_partner_sale_contact
-#: model:ir.model.fields,field_description:sale_partner_sale_contact.field_res_config_settings__module_project_partner_id_company_only
-#: model_terms:ir.ui.view,arch_db:sale_partner_sale_contact.res_config_settings_view_form
-msgid "Restrict customer selection to company only in projects"
-msgstr ""
-
-#. module: sale_partner_sale_contact
-#: model:ir.model.fields,field_description:sale_partner_sale_contact.field_res_config_settings__module_sale_partner_id_company_only
-#: model_terms:ir.ui.view,arch_db:sale_partner_sale_contact.res_config_settings_view_form
-msgid "Restrict customer selection to company only in quotation and order"
-msgstr ""
-
-#. module: sale_partner_sale_contact
-#: model:ir.model.fields,field_description:sale_partner_sale_contact.field_res_config_settings__module_account_invoice_partner_id_company_only
-#: model_terms:ir.ui.view,arch_db:sale_partner_sale_contact.res_config_settings_view_form
-msgid "Restrict customer selection to company only on invoice"
 msgstr ""
 
 #. module: sale_partner_sale_contact
