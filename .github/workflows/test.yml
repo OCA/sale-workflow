@@ -47,10 +47,17 @@ jobs:
             name: test with OCB
             makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.10-odoo18.0:latest
-            exclude: "sale_packaging_default,sale_order_product_recommendation_packaging_default,sale_order_line_final_price"
+            include: "sale_order_line_price_unit_digits"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.10-ocb18.0:latest
-            exclude: "sale_packaging_default,sale_order_product_recommendation_packaging_default,sale_order_line_final_price"
+            include: "sale_order_line_price_unit_digits"
+            name: test with OCB
+            makepot: "true"
+          - container: ghcr.io/oca/oca-ci/py3.10-odoo18.0:latest
+            exclude: "sale_packaging_default,sale_order_product_recommendation_packaging_default,sale_order_line_final_price,sale_order_line_price_unit_digits"
+            name: test with Odoo
+          - container: ghcr.io/oca/oca-ci/py3.10-ocb18.0:latest
+            exclude: "sale_packaging_default,sale_order_product_recommendation_packaging_default,sale_order_line_final_price,sale_order_line_price_unit_digits"
             name: test with OCB
             makepot: "true"
     services:
