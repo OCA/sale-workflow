@@ -1,0 +1,6 @@
+- Patrick Wilson \<<patrickraymondwilson@gmail.com>\>
+- Trobz (<https://www.trobz.com>)
+  - Tuan Nguyen \<<tuanna@trobz.com>\>
+- Studio73 (<https://www.studio73.es>)
+  - Eugenio Micó \<<eugenio@studio73.es>\>
+- Sudhir Arya\<<sudhir@erpharbor.com>\>
