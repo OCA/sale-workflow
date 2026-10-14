@@ -16,8 +16,8 @@ msgstr ""
 #. module: sale_partner_sale_contact_on_project
 #: model:ir.model.fields,help:sale_partner_sale_contact_on_project.field_project_project__sale_contact_partner_id
 msgid ""
-"Contact person for this project from the sale order. Only child contacts of "
-"the customer can be selected."
+"Contact person for this record. Only child contacts of the partner can be "
+"selected."
 msgstr ""
 
 #. module: sale_partner_sale_contact_on_project
