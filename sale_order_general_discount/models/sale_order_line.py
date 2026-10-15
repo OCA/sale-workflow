@@ -24,6 +24,7 @@ class SaleOrderLine(models.Model):
                 continue
             if line.order_id.general_discount or line.order_id._origin.general_discount:
                 line.discount = line.order_id.general_discount
-            else:
+            elif not line.pricelist_item_id._show_discount():
+                # Keep the discount computed from the pricelist in super()
                 line.discount = 0
         return res

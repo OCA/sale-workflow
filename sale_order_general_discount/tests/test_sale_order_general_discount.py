@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from lxml import etree
 
+from odoo import Command
 from odoo.tests import TransactionCase
 
 
@@ -175,6 +176,50 @@ class TestSaleOrderLineInput(TransactionCase):
         self.assertEqual(self.order.order_line[0].discount, 10)
         self.order.general_discount = 0
         self.assertEqual(self.order.order_line[0].discount, 0)
+
+    def test_compute_discount_keep_pricelist_discount(self):
+        """Without a general discount, the discount given by the pricelist is
+        kept on the line, and restored when the general discount is removed.
+        """
+        self.env.user.groups_id += self.env.ref("sale.group_discount_per_so_line")
+        partner = self.env["res.partner"].create([{"name": "No discount"}])
+        product = self.env["product.product"].create(
+            [{"name": "Pricelist product", "type": "service", "list_price": 100.0}]
+        )
+        pricelist = self.env["product.pricelist"].create(
+            [
+                {
+                    "name": "Percentage pricelist",
+                    "item_ids": [
+                        Command.create(
+                            {
+                                "applied_on": "0_product_variant",
+                                "product_id": product.id,
+                                "compute_price": "percentage",
+                                "percent_price": 20.0,
+                            }
+                        )
+                    ],
+                }
+            ]
+        )
+        order = self.env["sale.order"].create(
+            [
+                {
+                    "partner_id": partner.id,
+                    "pricelist_id": pricelist.id,
+                    "order_line": [Command.create({"product_id": product.id})],
+                }
+            ]
+        )
+        line = order.order_line
+        self.assertFalse(order.general_discount)
+        self.assertEqual(line.price_unit, 100.0)
+        self.assertEqual(line.discount, 20.0)
+        order.general_discount = 10
+        self.assertEqual(line.discount, 10.0)
+        order.general_discount = 0
+        self.assertEqual(line.discount, 20.0)
 
     def test_product_template(self):
         self.assertFalse(self.product.product_tmpl_id.bypass_general_discount)
