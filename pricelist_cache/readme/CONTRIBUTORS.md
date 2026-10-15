@@ -8,5 +8,7 @@
 
 - Sébastien Alix \<sebastien.alix@camptocamp.com\>
 
-- [Trobz](https://trobz.com):  
+- [Trobz](https://trobz.com):
   - Hai Lang \<hailn@trobz.com\>
+- [CIT-Services](cit-services.eu)
+  - Prayag \<<prayag.k@cit-services.eu>\>

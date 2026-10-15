@@ -161,9 +161,9 @@ class PricelistCache(models.Model):
         if specified.
         """
         if not product_ids:
-            product_ids = self.env["product.product"].search([]).ids
+            product_ids = self.env["product.product"].search([]).ids  # pylint: disable=no-search-all
         if not pricelist_ids:
-            pricelists = self.env["product.pricelist"].search([])
+            pricelists = self.env["product.pricelist"].search([])  # pylint: disable=no-search-all
         else:
             # Search instead of browse, since pricelists could have been unlinked
             # between the time where records have been created / modified
@@ -221,7 +221,7 @@ class PricelistCache(models.Model):
             ALTER SEQUENCE product_pricelist_cache_id_seq RESTART WITH 1;
         """
         self.env.cr.execute(sequence_query)
-        self.env["product.pricelist"].search([]).is_pricelist_cache_computed = False
+        self.env["product.pricelist"].search([]).is_pricelist_cache_computed = False  # pylint: disable=no-search-all
 
     def cron_reset_pricelist_cache(self):
         """Recreates the whole price list cache."""

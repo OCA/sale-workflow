@@ -189,7 +189,7 @@ class Pricelist(models.Model):
 
     def button_open_pricelist_cache_tree(self):
         cache_model = self.env["product.pricelist.cache"]
-        products = self.env["product.product"].search([])
+        products = self.env["product.product"].search([])  # pylint: disable=no-search-all
         prices = cache_model.get_cached_prices_for_pricelist(self, products)
         domain = [("id", "in", prices.ids)]
         return cache_model._get_tree_view(domain)

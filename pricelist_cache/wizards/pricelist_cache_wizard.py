@@ -33,7 +33,7 @@ class PricelistCacheWizard(models.TransientModel):
         if product:
             products = product
         else:
-            products = self.env["product.product"].search([])
+            products = self.env["product.product"].search([])  # pylint: disable=no-search-all
         if partner and not partner.property_product_pricelist == pricelist:
             partner = False
         cache_model = self.env["product.pricelist.cache"]

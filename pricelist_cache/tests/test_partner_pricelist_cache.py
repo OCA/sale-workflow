@@ -12,7 +12,12 @@ from .common import LIST_PRICES_MAPPING, TestPricelistCacheCommon
 class TestPricelistCache(TestPricelistCacheCommon):
     def test_partner_pricelists(self):
         partner = self.partner
-        for pricelist_xmlid, expected_result in LIST_PRICES_MAPPING.items():
+        for pricelist_xmlid, expected_prices in LIST_PRICES_MAPPING.items():
+            expected_result = [
+                {"id": self.env.ref(prod_xmlid).id, "price": price}
+                for prod_xmlid, price in expected_prices.items()
+            ]
+            expected_result.sort(key=lambda r: r["id"])
             partner.property_product_pricelist = self.env.ref(pricelist_xmlid)
             price_list = partner._pricelist_cache_get_prices()
             # for test purposes, only test products referenced in demo data

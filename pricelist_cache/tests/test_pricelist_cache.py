@@ -281,12 +281,13 @@ class TestPricelistCache(TestPricelistCacheCommon):
     def test_pricelist_methods(self):
         # test _get_root_pricelist_ids
         pricelist_model = self.env["product.pricelist"]
-        expected_root_pricelist_ids = self.list0.ids
-        # This pricelist is created when stock module is installed. No other
-        # way is found yet to identify it.
-        pl = pricelist_model.search([("name", "=", "Default USD pricelist")])
-        if pl:
-            expected_root_pricelist_ids.append(pl.id)
+        expected_root_pricelist_ids = list(self.list0.ids)
+        # These pricelists are created when stock module or companies are installed.
+        # No other way is found yet to identify them.
+        pls = pricelist_model.search(
+            [("name", "in", ["Default", "Default USD pricelist"])]
+        )
+        expected_root_pricelist_ids.extend(pls.ids)
         expected_root_pricelist_ids.sort()
         root_pricelist_ids = pricelist_model._get_root_pricelist_ids()
         root_pricelist_ids.sort()
