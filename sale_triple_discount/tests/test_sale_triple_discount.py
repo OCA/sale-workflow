@@ -48,6 +48,24 @@ class TestSaleOrder(common.TransactionCase):
             }
         )
         cls.so_line2.price_unit = 60
+        cls.pricelist = cls.env["product.pricelist"].create(
+            {
+                "discount_policy": "without_discount",
+                "name": "pricelist123",
+                "item_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "compute_price": "percentage",
+                            "percent_price": 20,
+                            "applied_on": "0_product_variant",
+                            "product_id": cls.so_line1.product_id.id,
+                        },
+                    )
+                ],
+            }
+        )
 
     def test_01_sale_order_classic_discount(self):
         """Tests with single discount"""
@@ -256,3 +274,22 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.so_line2.price_subtotal, 600.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 1200.0)
         self.assertAlmostEqual(self.order.amount_tax, 180.0)
+
+    def test_07_discount1_default_value(self):
+        """Test to ensure the base odoo discount calc is properly set as discount1"""
+        self.order.pricelist_id = self.pricelist.id
+        self.so_line1.write({"price_unit": 100, "product_uom_qty": 5})
+        self.assertEqual(self.so_line1.discount1, 20.0)
+        self.assertEqual(self.so_line1.discount, 20.0)
+        self.assertEqual(self.so_line1.price_subtotal, 400.0)
+
+    def test_08_discount1_default_value_with_extra_discounts(self):
+        """Like test 07 but with discount2 and discount3 muddying the waters"""
+        self.order.pricelist_id = self.pricelist.id
+        self.so_line1.write({"price_unit": 100, "product_uom_qty": 5})
+        self.so_line1.write({"discount2": 10, "discount3": 25})
+        self.assertEqual(self.so_line1.discount1, 20.0)
+        self.assertEqual(self.so_line1.discount2, 10.0)
+        self.assertEqual(self.so_line1.discount3, 25.0)
+        self.assertEqual(self.so_line1.discount, 46.0)
+        self.assertEqual(self.so_line1.price_subtotal, 270.0)
