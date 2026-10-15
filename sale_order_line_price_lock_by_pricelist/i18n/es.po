@@ -1,0 +1,96 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_line_price_lock_by_pricelist
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-14 07:34+0000\n"
+"PO-Revision-Date: 2025-05-14 09:40+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model.fields.selection,name:sale_order_line_price_lock_by_pricelist.selection__product_pricelist__lock_product_prices_applied_on__3_global
+msgid "All products"
+msgstr "Todos los productos"
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model.fields,help:sale_order_line_price_lock_by_pricelist.field_product_pricelist__lock_product_prices_applied_on
+msgid ""
+"Avoid that salesmen change prices based on this scope. Rules applied on "
+"base pricelist take into account the items of those pricelists with the "
+"rule of the pricelist applied on the sale order"
+msgstr ""
+"Evitar que el comercial cambie precios basados en este ámbito. Se aplica el "
+"ámbito de la tarifa aplicada aunque se herede la regla de otra tarifa"
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model.fields,field_description:sale_order_line_price_lock_by_pricelist.field_product_pricelist__lock_product_prices_applied_on
+msgid "Lock price when rule is applied on"
+msgstr "Bloquear los precios cuando la tarifa se aplica sobre"
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model_terms:ir.ui.view,arch_db:sale_order_line_price_lock_by_pricelist.product_pricelist_view
+msgid "Lock prices"
+msgstr "Bloquear precios"
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model.fields,field_description:sale_order_line_price_lock_by_pricelist.field_sale_order_line__origin_pricelist_item_id
+msgid "Origin Pricelist Item"
+msgstr "Elemento de tarifa de origen"
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model.fields,field_description:sale_order_line_price_lock_by_pricelist.field_sale_order_line__price_locked
+msgid "Price Locked"
+msgstr "Precio bloqueado"
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model,name:sale_order_line_price_lock_by_pricelist.model_product_pricelist
+msgid "Pricelist"
+msgstr "Lista de precios"
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model.fields.selection,name:sale_order_line_price_lock_by_pricelist.selection__product_pricelist__lock_product_prices_applied_on__1_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model.fields.selection,name:sale_order_line_price_lock_by_pricelist.selection__product_pricelist__lock_product_prices_applied_on__2_product_category
+msgid "Product Category"
+msgstr "Categoría de producto"
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model.fields.selection,name:sale_order_line_price_lock_by_pricelist.selection__product_pricelist__lock_product_prices_applied_on__0_product_variant
+msgid "Product Variant"
+msgstr "Variante de producto"
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model,name:sale_order_line_price_lock_by_pricelist.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model.fields,help:sale_order_line_price_lock_by_pricelist.field_sale_order_line__origin_pricelist_item_id
+msgid ""
+"Technical field to get the base pricelist item that has the origin price "
+"calculation"
+msgstr ""
+"Campo técnico para recoger la regla de tarifa de base sobre la que se "
+"aplica el cálculo del precio"
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model.fields,help:sale_order_line_price_lock_by_pricelist.field_sale_order_line__price_locked
+msgid ""
+"This flag will make the price_unit and discount readonly based on the "
+"pricelist locking criterias"
+msgstr ""
+"Esta marca hará que el precio unitario y el descuento sean de solo lectura "
+"basado en los criterios de bloqueo de precios de la tarifa"
