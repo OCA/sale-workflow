@@ -14,9 +14,11 @@ class SaleProductSetWizard(models.TransientModel):
         "sale.order",
         "Sale Order",
         required=True,
-        default=lambda self: self.env.context.get("active_id")
-        if self.env.context.get("active_model") == "sale.order"
-        else None,
+        default=lambda self: (
+            self.env.context.get("active_id")
+            if self.env.context.get("active_model") == "sale.order"
+            else None
+        ),
         ondelete="cascade",
     )
     partner_id = fields.Many2one(related="order_id.partner_id", ondelete="cascade")

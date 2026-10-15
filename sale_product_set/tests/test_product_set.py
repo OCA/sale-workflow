@@ -135,7 +135,7 @@ class TestProductSet(ProductSetCommon):
         )
         # Pass via ctx
         line_ids = self.product_set_line_computer_1.ids
-        wiz = self._get_wiz(ctx=dict(product_set_add__set_line_ids=line_ids))
+        wiz = self._get_wiz(ctx={"product_set_add__set_line_ids": line_ids})
         self.assertEqual(wiz.product_set_line_ids.ids, line_ids)
         self.assertEqual([x.id for x in wiz._get_lines()], line_ids)
         # Pass at create
@@ -321,7 +321,7 @@ class TestProductSet(ProductSetCommon):
         self.product_set_3.partner_id = self.partner_2
 
         ICPSudo = self.env["ir.config_parameter"].sudo()
-        ICPSudo.set_param("sale_product_set.archive_partner_product_sets", True)
+        ICPSudo.set_bool("sale_product_set.archive_partner_product_sets", True)
 
         # partners active, product sets active
         self.assertTrue(self.product_set.active)
@@ -351,7 +351,7 @@ class TestProductSet(ProductSetCommon):
 
         # set param to False and make sure partner's active state
         # does not affect product set's active state
-        ICPSudo.set_param("sale_product_set.archive_partner_product_sets", False)
+        ICPSudo.set_bool("sale_product_set.archive_partner_product_sets", False)
 
         # partner archived, product set not archived
         self.partner_1.write({"active": False})

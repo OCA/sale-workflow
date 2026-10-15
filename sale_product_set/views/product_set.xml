@@ -3,11 +3,14 @@
     <record id="view_product_set_form" model="ir.ui.view">
         <field name="name">product.set.form</field>
         <field name="model">product.set</field>
-        <field name="type">form</field>
         <field name="inherit_id" ref="product_set.view_product_set_form" />
         <field name="arch" type="xml">
             <field name="quantity" position="after">
-                <field name="discount" groups="sale.group_discount_per_so_line" />
+                <field
+                    name="discount"
+                    groups="sale.group_discount_per_so_line"
+                    invisible="display_type"
+                />
             </field>
         </field>
     </record>
