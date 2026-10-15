@@ -4,7 +4,6 @@
 import logging
 
 from odoo import models
-from odoo.tools import str2bool
 
 _logger = logging.getLogger(__name__)
 
@@ -16,8 +15,8 @@ class ResPartner(models.Model):
         res = super().write(vals)
         ir_config_param = self.env["ir.config_parameter"].sudo()
 
-        if "active" in vals and str2bool(
-            ir_config_param.get_param("sale_product_set.archive_partner_product_sets")
+        if "active" in vals and ir_config_param.get_bool(
+            "sale_product_set.archive_partner_product_sets"
         ):
             partner_product_sets = (
                 self.env["product.set"]

@@ -3,7 +3,6 @@
     <record id="view_product_set_line_tree" model="ir.ui.view">
         <field name="name">product.set.line.list</field>
         <field name="model">product.set.line</field>
-        <field name="type">list</field>
         <field name="inherit_id" ref="product_set.view_product_set_line_tree" />
         <field name="arch" type="xml">
             <field name="quantity" position="after">
