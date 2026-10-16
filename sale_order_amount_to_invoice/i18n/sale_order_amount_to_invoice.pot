@@ -19,14 +19,23 @@ msgid "<span class=\"fw-bold small\">Amount To Invoice:</span>"
 msgstr ""
 
 #. module: sale_order_amount_to_invoice
+#: model:ir.model.fields,field_description:sale_order_amount_to_invoice.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_order_amount_to_invoice
+#: model:ir.model.fields,field_description:sale_order_amount_to_invoice.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_amount_to_invoice
 #: model:ir.model,name:sale_order_amount_to_invoice.model_sale_order
 msgid "Sales Order"
 msgstr ""
 
 #. module: sale_order_amount_to_invoice
-#: model_terms:ir.ui.view,arch_db:sale_order_amount_to_invoice.sale_order_list_upload
-#: model_terms:ir.ui.view,arch_db:sale_order_amount_to_invoice.view_order_form
-#: model_terms:ir.ui.view,arch_db:sale_order_amount_to_invoice.view_quotation_tree_with_onboarding
+#: model_terms:ir.ui.view,arch_db:sale_order_amount_to_invoice.view_order_list_invoiced_amount
+#: model_terms:ir.ui.view,arch_db:sale_order_amount_to_invoice.view_quotation_list_invoiced_amount
 msgid "To Invoice"
 msgstr ""
 
