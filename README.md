@@ -31,6 +31,7 @@ addon | version | maintainers | summary
 [product_customerinfo_elaboration](product_customerinfo_elaboration/) | 19.0.1.0.0 |  | Allows to define default elaborations and elaboration notes on product customerinfos
 [product_customerinfo_sale](product_customerinfo_sale/) | 19.0.1.0.0 |  | Loads in every sale order line the customer code defined in the product
 [product_form_sale_link](product_form_sale_link/) | 19.0.1.0.0 |  | Adds a button on product forms to access Sale Lines
+[product_price_category](product_price_category/) | 19.0.1.0.0 | <a href='https://github.com/sbejaoui'><img src='https://github.com/sbejaoui.png' width='32' height='32' style='border-radius:50%;' alt='sbejaoui'/></a> | Add Price Category field on product and allow to apply a pricelist on this field.
 [sale_advance_payment](sale_advance_payment/) | 19.0.1.0.0 |  | Allow to add advance payments on sales and then use them on invoices
 [sale_automatic_workflow](sale_automatic_workflow/) | 19.0.1.2.0 |  | Sale Automatic Workflow
 [sale_automatic_workflow_job](sale_automatic_workflow_job/) | 19.0.1.0.0 |  | Execute sale automatic workflows in queue jobs
