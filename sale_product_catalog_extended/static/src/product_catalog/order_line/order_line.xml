@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
     <t t-inherit="product.ProductCatalogOrderLine" t-inherit-mode="extension">
-        <!-- For per-line cards portal to the line-specific div; for regular cards
-             keep the product-level portal target. -->
+        <!-- Portal to the price of the own card, as several cards can show the
+             same product (one per order line or vendor). -->
         <xpath expr="//t[@t-portal]" position="attributes">
             <attribute
                 name="t-portal"
-            >env.lineId ? `#line-${env.lineId}-price` : `#product-${props.productId}-price`</attribute>
+            >env.catalogCardKey ? `[data-catalog-card="${env.catalogCardKey}"] [name="o_kanban_price"]` : `#product-${props.productId}-price`</attribute>
+        </xpath>
+        <!-- Name the quantity and buttons row for the layouts (see catalog.scss) -->
+        <xpath
+            expr="//div[hasclass('o_product_catalog_buttons')]/.."
+            position="attributes"
+        >
+            <attribute
+                name="class"
+                add="o_product_catalog_line_controls"
+                separator=" "
+            />
         </xpath>
         <!-- Wrap New line + Edit as a connected button group above Remove -->
         <xpath
@@ -26,7 +37,8 @@
                 </button>
                 <button
                     t-on-click.stop="() => this.env.openOrderLine()"
-                    class="btn btn-light border"
+                    class="btn btn-light border o_product_catalog_edit_line"
+                    title="Edit"
                 >
                     <i class="fa fa-pencil-square-o" />
                     Edit
@@ -53,6 +65,8 @@
             position="attributes"
         >
             <attribute name="class">btn btn-light border w-100</attribute>
+            <!-- Tooltip when only its icon is shown (rows layout) -->
+            <attribute name="title">Remove</attribute>
         </xpath>
     </t>
 </templates>

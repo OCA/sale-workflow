@@ -334,6 +334,19 @@ class TestSaleProductCatalogExtended(TransactionCase):
             ]
         )
 
+    def test_settings_catalog_layout(self):
+        """The catalog opens with the grid layout unless the rows layout is
+        chosen in the settings."""
+        self.assertEqual(
+            self.order._get_action_add_from_catalog_extra_context()["catalog_layout"],
+            "grid",
+        )
+        self.env["res.config.settings"].create({"catalog_layout": "rows"}).execute()
+        self.assertEqual(
+            self.order.action_add_from_catalog()["context"]["catalog_layout"],
+            "rows",
+        )
+
     def _new_line_form(self, order, product, **options):
         """The new line form the catalog card of ``product`` opens, with the
         context the catalog kanban record sends (``onClickAddNewOrderLine``)."""

@@ -16,7 +16,18 @@ patch(ProductCatalogKanbanRecord.prototype, {
             openOrderLine: this.onClickEditOrderLine.bind(this),
             addNewOrderLine: this.onClickAddNewOrderLine.bind(this),
             lineId: this.props.record.productCatalogData.lineId,
+            catalogCardKey: this.getCatalogCardKey(),
         });
+    },
+    /**
+     * Key of the card, unique also among the cards of the same product (one
+     * per order line), so that each card shows its own price (see the order
+     * line template).
+     */
+    getCatalogCardKey() {
+        const lineId = this.props.record.productCatalogData.lineId;
+        const productId = this.props.record.resId;
+        return lineId ? `${productId}-line-${lineId}` : `${productId}`;
     },
     /**
      * Open a new, not yet saved, line of the card product in a form, so it can
