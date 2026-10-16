@@ -296,14 +296,35 @@ class BlanketOrder(models.Model):
             order.write({"state": "draft", "confirmed": False})
         return True
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            company = (
+                self.env["res.company"].browse(vals["company_id"])
+                if vals.get("company_id")
+                else self.env.company
+            )
+            if company.blanket_order_seq_number_from_draft and vals.get(
+                "name", "Draft"
+            ) in ("Draft", _("Draft")):
+                vals["name"] = self._get_next_sequence_name(company)
+        return super().create(vals_list)
+
+    @api.model
+    def _get_next_sequence_name(self, company):
+        sequence_obj = self.env["ir.sequence"]
+        if company:
+            sequence_obj = sequence_obj.with_company(company.id)
+        return sequence_obj.next_by_code("sale.blanket.order")
+
     def action_confirm(self):
         self._validate()
         for order in self:
-            sequence_obj = self.env["ir.sequence"]
-            if order.company_id:
-                sequence_obj = sequence_obj.with_company(order.company_id.id)
-            name = sequence_obj.next_by_code("sale.blanket.order")
-            order.write({"confirmed": True, "name": name})
+            vals = {"confirmed": True}
+            # Keep the number assigned when the order was created in draft
+            if not order.name or order.name in ("Draft", _("Draft")):
+                vals["name"] = self._get_next_sequence_name(order.company_id)
+            order.write(vals)
         return True
 
     def _check_active_orders(self):

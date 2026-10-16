@@ -3,7 +3,7 @@
 from datetime import date, timedelta
 
 from odoo import fields
-from odoo.tests import common
+from odoo.tests import Form, common
 
 
 class TestSaleOrder(common.TransactionCase):
@@ -253,3 +253,25 @@ class TestSaleOrder(common.TransactionCase):
         self.assertFalse(so_line_1.blanket_order_line)
         self.assertEqual(so_line_2.blanket_order_line, bo_line_assigned)
         self.assertEqual(so.blanket_order_id, blanket_order)
+
+    def test_04_sale_order_analytic_account_from_blanket_order(self):
+        """A sale order filled with blanket order lines by hand gets the
+        analytic account of the blanket order"""
+        # The analytic account is only in the form view for this group
+        self.env.user.groups_id += self.env.ref("analytic.group_analytic_accounting")
+        analytic_plan = self.env["account.analytic.plan"].create({"name": "Plan"})
+        analytic_account = self.env["account.analytic.account"].create(
+            {"name": "Blanket Order Analytic", "plan_id": analytic_plan.id}
+        )
+        blanket_order = self.create_blanket_order_02()
+        blanket_order.analytic_account_id = analytic_account
+        blanket_order.sudo().action_confirm()
+
+        so_form = Form(self.sale_order_obj.with_context(from_sale_order=True))
+        so_form.partner_id = self.partner
+        with so_form.order_line.new() as line_form:
+            line_form.product_id = self.product
+            line_form.product_uom_qty = 5.0
+        self.assertEqual(so_form.blanket_order_id, blanket_order)
+        sale_order = so_form.save()
+        self.assertEqual(sale_order.analytic_account_id, analytic_account)

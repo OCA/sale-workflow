@@ -56,6 +56,13 @@ class SaleOrder(models.Model):
             blanket_order = order.order_line.mapped("blanket_order_line.order_id")
             order.blanket_order_id = blanket_order[:1]
 
+    @api.onchange("blanket_order_id")
+    def _onchange_blanket_order_id(self):
+        """Use the analytic account of the blanket order, as the sale orders
+        created from the blanket order wizard do"""
+        if self.blanket_order_id.analytic_account_id and not self.analytic_account_id:
+            self.analytic_account_id = self.blanket_order_id.analytic_account_id
+
     @api.depends("blanket_order_id")
     @api.depends_context("uid")
     def _compute_disable_adding_lines(self):

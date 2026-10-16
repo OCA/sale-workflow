@@ -493,3 +493,47 @@ class TestSaleBlanketOrders(common.TransactionCase):
         view_action = blanket_order.action_view_sale_orders()
         domain_ids = view_action["domain"][0][2]
         self.assertEqual(len(domain_ids), 3)
+
+    def _create_blanket_order_with_line(self):
+        return self.blanket_order_obj.create(
+            {
+                "partner_id": self.partner.id,
+                "validity_date": fields.Date.to_string(self.tomorrow),
+                "pricelist_id": self.sale_pricelist.id,
+                "line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "product_uom": self.product.uom_id.id,
+                            "original_uom_qty": 10.0,
+                            "price_unit": 30.0,
+                        },
+                    )
+                ],
+            }
+        )
+
+    def test_07_create_blanket_order_check_name(self):
+        """With the numbering from draft enabled, the blanket order gets its
+        number on creation and keeps it when confirmed"""
+        self.assertFalse(self.env.company.blanket_order_seq_number_from_draft)
+        self.env.company.blanket_order_seq_number_from_draft = True
+        blanket_order = self._create_blanket_order_with_line()
+        self.assertNotEqual(blanket_order.name, "Draft")
+        self.assertRegex(blanket_order.name, r"BO\d{3,}")
+        old_name = blanket_order.name
+        blanket_order.action_confirm()
+        self.assertEqual(blanket_order.name, old_name)
+
+    def test_08_confirm_again_keeps_name(self):
+        """The number is assigned on the first confirmation only"""
+        blanket_order = self._create_blanket_order_with_line()
+        self.assertEqual(blanket_order.name, "Draft")
+        blanket_order.action_confirm()
+        name = blanket_order.name
+        self.assertNotEqual(name, "Draft")
+        blanket_order.set_to_draft()
+        blanket_order.action_confirm()
+        self.assertEqual(blanket_order.name, name)
