@@ -80,6 +80,7 @@ setuptools.setup(
         'odoo14-addon-sale_order_line_description',
         'odoo14-addon-sale_order_line_description_single_attribute',
         'odoo14-addon-sale_order_line_discount_validation',
+        'odoo14-addon-sale_order_line_display_stock_per_warehouse',
         'odoo14-addon-sale_order_line_initial_quantity',
         'odoo14-addon-sale_order_line_input',
         'odoo14-addon-sale_order_line_menu',
