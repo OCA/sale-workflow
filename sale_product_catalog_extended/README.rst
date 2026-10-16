@@ -152,6 +152,18 @@ Order catalog last sales
 - **Product limit**: maximum number of products shown by the **Last
   sales** option. ``0`` shows them all.
 
+Order catalog layout
+--------------------
+
+- **Grid**: several product cards per row, as in the standard catalog.
+- **Rows**: one card per row, with the image, the product data and the
+  quantity buttons side by side. On wide screens the price and the
+  quantity on hand go to a column of their own, so the cards are lower,
+  and on extra wide screens the vendor of the supplier cards too. Every
+  card keeps the same positions in every origin. Everything other
+  modules add to the card is kept. Small screens and grouped views keep
+  the grid cards.
+
 Bug Tracker
 ===========
 

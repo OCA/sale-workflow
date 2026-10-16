@@ -94,6 +94,18 @@
                         </div>
                     </div>
                 </setting>
+                <setting
+                    id="sale_product_catalog_layout"
+                    string="Order catalog layout"
+                    help="How the product cards are laid out in the catalog of a sale order"
+                >
+                    <field
+                        name="catalog_layout"
+                        widget="radio"
+                        options="{'horizontal': true}"
+                        class="mt8"
+                    />
+                </setting>
             </xpath>
         </field>
     </record>

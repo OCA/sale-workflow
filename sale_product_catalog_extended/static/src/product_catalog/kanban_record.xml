@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
     <t t-inherit="ProductCatalogKanbanRecord" t-inherit-mode="extension">
-        <!-- Insert a unique price portal target for per-line cards so that
-             each line's price portal has its own destination div instead of
-             all lines sharing the product-level #product-{id}-price div. -->
-        <xpath expr="//t[@t-component='orderLineComponent']" position="before">
-            <div t-if="env.lineId" t-att-id="`line-${env.lineId}-price`" />
+        <!-- Identify the card, so that its price goes to the price of this card
+             (see the order line template) also when several cards show the
+             same product, sharing the product-level #product-{id}-price id. -->
+        <xpath expr="//article" position="attributes">
+            <attribute name="t-att-data-catalog-card">env.catalogCardKey</attribute>
+        </xpath>
+        <!-- Name the parts of the card, so the layouts (see catalog.scss) do
+             not depend on its structure. The order line renders several
+             sibling elements, grouped here so the rows layout can place them
+             as one column. -->
+        <xpath expr="//article/div" position="attributes">
+            <attribute name="class" add="o_product_catalog_card" separator=" " />
+        </xpath>
+        <xpath expr="//t[@t-component='orderLineComponent']" position="replace">
+            <div class="o_product_catalog_card_actions">$0</div>
         </xpath>
     </t>
     <!-- Own copy of the kanban card dropdown menu, assigned to the catalog

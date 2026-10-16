@@ -64,3 +64,11 @@ class ResConfigSettings(models.TransientModel):
         help="Maximum number of products shown by the last sales option. "
         "No limit when 0.",
     )
+    catalog_layout = fields.Selection(
+        selection=[("grid", "Grid"), ("rows", "Rows")],
+        string="Catalog layout",
+        config_parameter="sale_product_catalog_extended.catalog_layout",
+        default="grid",
+        help="Grid shows several product cards per row. Rows shows one card per "
+        "row, with the image, the product data and the quantity side by side.",
+    )
