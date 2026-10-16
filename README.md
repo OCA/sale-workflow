@@ -108,6 +108,7 @@ addon | version | maintainers | summary
 [sale_require_po_doc](sale_require_po_doc/) | 19.0.1.1.0 |  | Sale Orders Require PO or Sales Documentation
 [sale_resource_booking](sale_resource_booking/) | 19.0.1.0.0 | <a href='https://github.com/Yajo'><img src='https://github.com/Yajo.png' width='32' height='32' style='border-radius:50%;' alt='Yajo'/></a> | Link resource bookings with sales
 [sale_shipping_info_helper](sale_shipping_info_helper/) | 19.0.1.0.0 |  | Add shipping amounts on sale order
+[sale_start_end_dates](sale_start_end_dates/) | 19.0.1.0.0 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Adds start date and end date on sale order lines
 [sale_stock_delivery_address](sale_stock_delivery_address/) | 19.0.1.0.0 |  | Sale Stock Delivery Address
 [sale_stock_delivery_state](sale_stock_delivery_state/) | 19.0.1.0.0 |  | Change the way to compute the delivery state
 [sale_stock_partner_warehouse](sale_stock_partner_warehouse/) | 19.0.1.0.0 |  | Allow to choose by default a warehouse on SO based on a Partner parameter
