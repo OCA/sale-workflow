@@ -97,7 +97,7 @@ class BlanketOrderWizard(models.TransientModel):
         return {
             "analytic_distribution": line.analytic_distribution,
             "product_id": line.product_id.id,
-            "name": line.product_id.name,
+            "name": line.blanket_line_id.name or line.product_id.name,
             "product_uom": line.product_uom.id,
             "sequence": line.blanket_line_id.sequence,
             "price_unit": line.blanket_line_id.price_unit,

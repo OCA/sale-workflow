@@ -456,3 +456,62 @@ class TestSaleBlanketOrders(common.TransactionCase):
         view_action = blanket_order.action_view_sale_orders()
         domain_ids = view_action["domain"][0][2]
         self.assertEqual(len(domain_ids), 3)
+
+    def test_blanket_line_description_uses_customer_language(self):
+        self.env["res.lang"]._activate_lang("pl_PL")
+        self.partner.lang = "pl_PL"
+        self.product.with_context(lang="en_US").write(
+            {"name": "English product", "description_sale": "English description"}
+        )
+        self.product.with_context(lang="pl_PL").write(
+            {"name": "Polski produkt", "description_sale": "Polski opis"}
+        )
+
+        blanket_order = self.blanket_order_obj.create(
+            {"partner_id": self.partner.id, "pricelist_id": self.sale_pricelist.id}
+        )
+        line = self.blanket_order_line_obj.with_context(lang="en_US").new(
+            {
+                "order_id": blanket_order.id,
+                "product_id": self.product.id,
+                "original_uom_qty": 1.0,
+                "price_unit": 10.0,
+            }
+        )
+        line.onchange_product()
+
+        self.assertIn("Polski produkt", line.name)
+        self.assertIn("Polski opis", line.name)
+        self.assertNotIn("English description", line.name)
+
+    def test_sale_order_preserves_blanket_line_description(self):
+        description = "Custom blanket order line description"
+        blanket_order = self.blanket_order_obj.create(
+            {
+                "partner_id": self.partner.id,
+                "validity_date": fields.Date.to_string(self.tomorrow),
+                "payment_term_id": self.payment_term.id,
+                "pricelist_id": self.sale_pricelist.id,
+                "line_ids": [
+                    fields.Command.create(
+                        {
+                            "product_id": self.product.id,
+                            "product_uom": self.product.uom_id.id,
+                            "original_uom_qty": 10.0,
+                            "price_unit": 30.0,
+                            "name": description,
+                        }
+                    )
+                ],
+            }
+        )
+        blanket_order.sudo().action_confirm()
+
+        wizard = self.blanket_order_wiz_obj.with_context(
+            active_id=blanket_order.id, active_model="sale.blanket.order"
+        ).create({})
+        action = wizard.sudo().create_sale_order()
+        sale_order = self.so_obj.search(action["domain"])
+
+        self.assertEqual(len(sale_order), 1)
+        self.assertEqual(sale_order.order_line.name, description)
