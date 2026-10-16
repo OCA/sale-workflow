@@ -8,6 +8,11 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestCommon(BaseCommon):
+    _test_user_groups = (
+        "base.group_erp_manager",  # create/write partners and users
+        "sales_team.group_sale_manager",  # create teams and team members
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
