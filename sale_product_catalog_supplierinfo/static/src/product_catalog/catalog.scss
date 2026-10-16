@@ -1,0 +1,6 @@
+// Rows layout of sale_product_catalog_extended: the vendor block, a detail of
+// the card, gets a column of its own when it fits. The column is kept in every
+// origin, so the rest of the card does not move when the vendors are shown.
+.o_product_catalog_rows {
+    --o-product-catalog-detail-column: minmax(0, 2fr);
+}
