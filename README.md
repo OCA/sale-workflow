@@ -92,7 +92,7 @@ addon | version | maintainers | summary
 [sale_order_show_full_address](sale_order_show_full_address/) | 19.0.1.0.0 |  | Show the complete invoice and delivery addresses on sales orders
 [sale_order_split_strategy](sale_order_split_strategy/) | 19.0.1.0.0 | <a href='https://github.com/grindtildeath'><img src='https://github.com/grindtildeath.png' width='32' height='32' style='border-radius:50%;' alt='grindtildeath'/></a> | Define strategies to split sales orders
 [sale_order_tag](sale_order_tag/) | 19.0.1.0.0 | <a href='https://github.com/patrickrwilson'><img src='https://github.com/patrickrwilson.png' width='32' height='32' style='border-radius:50%;' alt='patrickrwilson'/></a> | Adds Tags to Sales Orders.
-[sale_order_type](sale_order_type/) | 19.0.1.6.0 |  | Sale Order Type
+[sale_order_type](sale_order_type/) | 19.0.1.6.1 |  | Sale Order Type
 [sale_order_warehouse_header](sale_order_warehouse_header/) | 19.0.1.0.0 |  | Moves warehouse field in sales orders form to header, so it becomes more accessible. Improvements in the search view: - Filter by warehouse. - Group by warehouse.
 [sale_partner_address_restrict](sale_partner_address_restrict/) | 19.0.1.0.0 |  | Restrict addresses domain in the sales order form taking into account the partner selected
 [sale_partner_delay](sale_partner_delay/) | 19.0.1.0.0 |  | Add customer-specific delivery lead time
