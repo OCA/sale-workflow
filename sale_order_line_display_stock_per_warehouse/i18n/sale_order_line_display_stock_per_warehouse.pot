@@ -1,0 +1,85 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_line_display_stock_per_warehouse
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_line_display_stock_per_warehouse
+#: model:ir.model,name:sale_order_line_display_stock_per_warehouse.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_order_line_display_stock_per_warehouse
+#: model:ir.model.fields,field_description:sale_order_line_display_stock_per_warehouse.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:sale_order_line_display_stock_per_warehouse.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:sale_order_line_display_stock_per_warehouse.field_stock_warehouse__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_order_line_display_stock_per_warehouse
+#: model:ir.model.fields,field_description:sale_order_line_display_stock_per_warehouse.field_stock_warehouse__display_stock_on_sol
+msgid "Display stock on Sale Order Line"
+msgstr ""
+
+#. module: sale_order_line_display_stock_per_warehouse
+#: model:ir.model.fields.selection,name:sale_order_line_display_stock_per_warehouse.selection__res_config_settings__stock_field_on_sol__virtual_available
+msgid "Forecast"
+msgstr ""
+
+#. module: sale_order_line_display_stock_per_warehouse
+#: model:ir.model.fields.selection,name:sale_order_line_display_stock_per_warehouse.selection__res_config_settings__stock_field_on_sol__free_qty
+msgid "Free To Use"
+msgstr ""
+
+#. module: sale_order_line_display_stock_per_warehouse
+#: model:ir.model.fields,field_description:sale_order_line_display_stock_per_warehouse.field_res_config_settings__id
+#: model:ir.model.fields,field_description:sale_order_line_display_stock_per_warehouse.field_sale_order_line__id
+#: model:ir.model.fields,field_description:sale_order_line_display_stock_per_warehouse.field_stock_warehouse__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_line_display_stock_per_warehouse
+#: model:ir.model.fields,field_description:sale_order_line_display_stock_per_warehouse.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:sale_order_line_display_stock_per_warehouse.field_sale_order_line____last_update
+#: model:ir.model.fields,field_description:sale_order_line_display_stock_per_warehouse.field_stock_warehouse____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_order_line_display_stock_per_warehouse
+#: model:ir.model.fields.selection,name:sale_order_line_display_stock_per_warehouse.selection__res_config_settings__stock_field_on_sol__qty_available
+msgid "On Hand"
+msgstr ""
+
+#. module: sale_order_line_display_stock_per_warehouse
+#: model:ir.model,name:sale_order_line_display_stock_per_warehouse.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_line_display_stock_per_warehouse
+#: model:ir.model.fields,field_description:sale_order_line_display_stock_per_warehouse.field_sale_order_line__stock_per_warehouse_info
+msgid "Stock / Warehouse"
+msgstr ""
+
+#. module: sale_order_line_display_stock_per_warehouse
+#: model:ir.model.fields,field_description:sale_order_line_display_stock_per_warehouse.field_res_config_settings__stock_field_on_sol
+msgid "Stock field on Sale Order Line"
+msgstr ""
+
+#. module: sale_order_line_display_stock_per_warehouse
+#: model_terms:ir.ui.view,arch_db:sale_order_line_display_stock_per_warehouse.res_config_settings_view_form
+msgid "Stock quantity field displayed per warehouse on sale order lines"
+msgstr ""
+
+#. module: sale_order_line_display_stock_per_warehouse
+#: model:ir.model,name:sale_order_line_display_stock_per_warehouse.model_stock_warehouse
+msgid "Warehouse"
+msgstr ""
