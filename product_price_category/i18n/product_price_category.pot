@@ -35,11 +35,17 @@ msgstr ""
 
 #. module: product_price_category
 #: model:ir.model.fields,field_description:product_price_category.field_product_price_category__display_name
+#: model:ir.model.fields,field_description:product_price_category.field_product_pricelist__display_name
+#: model:ir.model.fields,field_description:product_price_category.field_product_pricelist_item__display_name
+#: model:ir.model.fields,field_description:product_price_category.field_product_template__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: product_price_category
 #: model:ir.model.fields,field_description:product_price_category.field_product_price_category__id
+#: model:ir.model.fields,field_description:product_price_category.field_product_pricelist__id
+#: model:ir.model.fields,field_description:product_price_category.field_product_pricelist_item__id
+#: model:ir.model.fields,field_description:product_price_category.field_product_template__id
 msgid "ID"
 msgstr ""
 
