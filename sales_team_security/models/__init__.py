@@ -1,3 +1,3 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from . import ir_rule
+from . import crm_team_member
 from . import res_partner
