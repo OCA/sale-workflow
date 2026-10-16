@@ -10,5 +10,15 @@
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "depends": ["sale_management"],
-    "data": ["views/sale_order_line_view.xml"],
+    "data": [
+        "security/sale_order_line_view_group.xml",
+        "views/sale_order_line_view.xml",
+        "views/sale_order_view.xml",
+        "views/res_config_settings.xml",
+    ],
+    "assets": {
+        "web.assets_backend": [
+            "sale_order_line_input/static/src/**/*",
+        ],
+    },
 }
