@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="group_sale_team_manager" model="res.groups">
         <field name="name">User: Team Documents Only</field>
