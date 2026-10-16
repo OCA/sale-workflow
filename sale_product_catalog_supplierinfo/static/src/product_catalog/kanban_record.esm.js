@@ -4,6 +4,12 @@ import {ProductCatalogKanbanRecord} from "@product/product_catalog/kanban_record
 import {patch} from "@web/core/utils/patch";
 
 patch(ProductCatalogKanbanRecord.prototype, {
+    getCatalogCardKey() {
+        // One card per vendor (and supplierinfo) of the same product.
+        const {vendorId, supplierinfoId} = this.props.record.productCatalogData;
+        const key = super.getCatalogCardKey();
+        return vendorId ? `${key}-vendor-${vendorId}-${supplierinfoId || 0}` : key;
+    },
     _getUpdateQuantityAndGetPriceParams() {
         const params = super._getUpdateQuantityAndGetPriceParams();
         // For a vendor card (supplier origin) send the vendor and the exact
