@@ -54,7 +54,7 @@ msgstr "显示名称"
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__id
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_product_multi_add
 #: model:ir.actions.act_window,name:sale_product_multi_add.action_import_product_to_sale
