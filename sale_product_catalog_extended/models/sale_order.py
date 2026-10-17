@@ -278,6 +278,7 @@ class SaleOrder(models.Model):
             "catalog_last_sales",
             "catalog_price_mode",
             "catalog_history_partner",
+            "catalog_sort",
         ]
 
     def _get_action_add_from_catalog_extra_context(self):
@@ -298,6 +299,9 @@ class SaleOrder(models.Model):
             params.get_param(
                 "sale_product_catalog_extended.catalog_show_history_partner"
             )
+        )
+        context["catalog_show_sort"] = bool(
+            params.get_param("sale_product_catalog_extended.catalog_show_sort")
         )
         context["catalog_layout"] = params.get_param(
             "sale_product_catalog_extended.catalog_layout", "grid"

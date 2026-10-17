@@ -41,6 +41,7 @@
                 <field name="catalog_last_sales" string="Last sales" expand="1" />
                 <field name="catalog_price_mode" string="Price" expand="1" />
                 <field name="catalog_history_partner" string="History" expand="1" />
+                <field name="catalog_sort" string="Sort" expand="1" />
             </xpath>
         </field>
     </record>

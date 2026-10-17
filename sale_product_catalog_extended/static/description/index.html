@@ -471,12 +471,19 @@ matches the customer (commercial partner, including its child
 contacts), <strong>Delivery address</strong> the order delivery address. Check
 <strong>Show</strong> to show this section in the catalog search panel, hidden by
 default; the partner chosen here applies either way.</li>
+<li><strong>Sort</strong>: the order of the products. Empty keeps the order of the
+origin (favorites first, then by internal reference, or the most sold
+first for the last sales), <strong>Name</strong> sorts them by product name in the
+language of the user and <strong>Category</strong> by category and then by name.
+With the last sales, the most sold products are kept and then sorted.
+Check <strong>Show</strong> to show this section in the catalog search panel,
+hidden by default; the order chosen here applies either way.</li>
 </ul>
 <p>They are saved as the global default value of the catalog fields of
 <tt class="docutils literal">product.product</tt> (<tt class="docutils literal">catalog_origin_data</tt>, <tt class="docutils literal">catalog_last_sales</tt>,
-<tt class="docutils literal">catalog_price_mode</tt> and <tt class="docutils literal">catalog_history_partner</tt>), so they can
-also be set per user or company in <em>Settings &gt; Technical &gt; User-defined
-Defaults</em>, as for any other field.</p>
+<tt class="docutils literal">catalog_price_mode</tt>, <tt class="docutils literal">catalog_history_partner</tt> and
+<tt class="docutils literal">catalog_sort</tt>), so they can also be set per user or company in
+<em>Settings &gt; Technical &gt; User-defined Defaults</em>, as for any other field.</p>
 </div>
 <div class="section" id="order-catalog-last-sales">
 <h2>Order catalog last sales</h2>
