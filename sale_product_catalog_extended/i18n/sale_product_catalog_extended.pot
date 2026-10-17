@@ -64,6 +64,11 @@ msgid "Catalog Price Mode"
 msgstr ""
 
 #. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_product_product__catalog_sort
+msgid "Catalog Sort"
+msgstr ""
+
+#. module: sale_product_catalog_extended
 #: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__default_catalog_history_partner
 msgid "Catalog history partner"
 msgstr ""
@@ -84,6 +89,11 @@ msgid "Catalog last sales limit"
 msgstr ""
 
 #. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__catalog_layout
+msgid "Catalog layout"
+msgstr ""
+
+#. module: sale_product_catalog_extended
 #: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__default_catalog_origin_data
 msgid "Catalog origin"
 msgstr ""
@@ -91,6 +101,16 @@ msgstr ""
 #. module: sale_product_catalog_extended
 #: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__default_catalog_price_mode
 msgid "Catalog price"
+msgstr ""
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__default_catalog_sort
+msgid "Catalog sort"
+msgstr ""
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields.selection,name:sale_product_catalog_extended.selection__product_product__catalog_sort__category
+msgid "Category"
 msgstr ""
 
 #. module: sale_product_catalog_extended
@@ -133,6 +153,13 @@ msgid ""
 msgstr ""
 
 #. module: sale_product_catalog_extended
+#. odoo-javascript
+#: code:addons/sale_product_catalog_extended/static/src/product_catalog/search_panel.esm.js:0
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
+msgid "Default"
+msgstr ""
+
+#. module: sale_product_catalog_extended
 #: model:ir.model.fields.selection,name:sale_product_catalog_extended.selection__product_product__catalog_history_partner__delivery_address
 msgid "Delivery address"
 msgstr ""
@@ -165,9 +192,26 @@ msgid "Excluded on"
 msgstr ""
 
 #. module: sale_product_catalog_extended
+#: model:ir.model.fields.selection,name:sale_product_catalog_extended.selection__res_config_settings__catalog_layout__grid
+msgid "Grid"
+msgstr ""
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,help:sale_product_catalog_extended.field_res_config_settings__catalog_layout
+msgid ""
+"Grid shows several product cards per row. Rows shows one card per row, with "
+"the image, the product data and the quantity side by side."
+msgstr ""
+
+#. module: sale_product_catalog_extended
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.product_view_search_catalog
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
 msgid "History"
+msgstr ""
+
+#. module: sale_product_catalog_extended
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
+msgid "How the product cards are laid out in the catalog of a sale order"
 msgstr ""
 
 #. module: sale_product_catalog_extended
@@ -204,6 +248,11 @@ msgid ""
 msgstr ""
 
 #. module: sale_product_catalog_extended
+#: model:ir.model.fields.selection,name:sale_product_catalog_extended.selection__product_product__catalog_sort__name
+msgid "Name"
+msgstr ""
+
+#. module: sale_product_catalog_extended
 #. odoo-javascript
 #: code:addons/sale_product_catalog_extended/static/src/product_catalog/order_line/order_line.xml:0
 msgid "New line"
@@ -226,7 +275,19 @@ msgstr ""
 
 #. module: sale_product_catalog_extended
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
+msgid "Order catalog layout"
+msgstr ""
+
+#. module: sale_product_catalog_extended
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
 msgid "Order catalog options"
+msgstr ""
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,help:sale_product_catalog_extended.field_res_config_settings__default_catalog_sort
+msgid ""
+"Order of the products in the catalog by default. The order of the origin "
+"when empty (e.g. the most sold first for the last sales)."
 msgstr ""
 
 #. module: sale_product_catalog_extended
@@ -304,6 +365,17 @@ msgid ""
 msgstr ""
 
 #. module: sale_product_catalog_extended
+#. odoo-javascript
+#: code:addons/sale_product_catalog_extended/static/src/product_catalog/order_line/order_line.xml:0
+msgid "Remove"
+msgstr ""
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields.selection,name:sale_product_catalog_extended.selection__res_config_settings__catalog_layout__rows
+msgid "Rows"
+msgstr ""
+
+#. module: sale_product_catalog_extended
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
 msgid "Sale history used by the last sales option and the last sale price"
 msgstr ""
@@ -339,8 +411,26 @@ msgid ""
 msgstr ""
 
 #. module: sale_product_catalog_extended
+#: model:ir.model.fields,help:sale_product_catalog_extended.field_res_config_settings__catalog_show_sort
+msgid ""
+"Show the Sort section in the product catalog search panel. When hidden, the "
+"sort default still applies."
+msgstr ""
+
+#. module: sale_product_catalog_extended
 #: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__catalog_show_history_partner
 msgid "Show the catalog history partner"
+msgstr ""
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__catalog_show_sort
+msgid "Show the catalog sort"
+msgstr ""
+
+#. module: sale_product_catalog_extended
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.product_view_search_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
+msgid "Sort"
 msgstr ""
 
 #. module: sale_product_catalog_extended
