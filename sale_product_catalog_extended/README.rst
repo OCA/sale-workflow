@@ -137,12 +137,19 @@ opened:
   contacts), **Delivery address** the order delivery address. Check
   **Show** to show this section in the catalog search panel, hidden by
   default; the partner chosen here applies either way.
+- **Sort**: the order of the products. Empty keeps the order of the
+  origin (favorites first, then by internal reference, or the most sold
+  first for the last sales), **Name** sorts them by product name in the
+  language of the user and **Category** by category and then by name.
+  With the last sales, the most sold products are kept and then sorted.
+  Check **Show** to show this section in the catalog search panel,
+  hidden by default; the order chosen here applies either way.
 
 They are saved as the global default value of the catalog fields of
 ``product.product`` (``catalog_origin_data``, ``catalog_last_sales``,
-``catalog_price_mode`` and ``catalog_history_partner``), so they can
-also be set per user or company in *Settings > Technical > User-defined
-Defaults*, as for any other field.
+``catalog_price_mode``, ``catalog_history_partner`` and
+``catalog_sort``), so they can also be set per user or company in
+*Settings > Technical > User-defined Defaults*, as for any other field.
 
 Order catalog last sales
 ------------------------
