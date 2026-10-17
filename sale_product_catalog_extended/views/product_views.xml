@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+    <!-- Name the parts of the card, so the layouts (see catalog.scss) do not
+         depend on its structure. -->
+    <record id="product_view_kanban_catalog" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_view_kanban_catalog" />
+        <field name="arch" type="xml">
+            <xpath expr="//t[@t-name='card']/div" position="attributes">
+                <attribute
+                    name="class"
+                    add="o_product_catalog_card_body"
+                    separator=" "
+                />
+            </xpath>
+            <xpath
+                expr="//div[@t-attf-id='product-{{record.id.raw_value}}']"
+                position="attributes"
+            >
+                <attribute
+                    name="class"
+                    add="o_product_catalog_card_info"
+                    separator=" "
+                />
+            </xpath>
+            <xpath expr="//field[@name='image_128']" position="attributes">
+                <attribute
+                    name="class"
+                    add="o_product_catalog_card_image"
+                    separator=" "
+                />
+            </xpath>
+        </field>
+    </record>
     <record id="product_view_search_catalog" model="ir.ui.view">
         <field name="model">product.product</field>
         <field name="inherit_id" ref="product.product_view_search_catalog" />
@@ -9,6 +41,7 @@
                 <field name="catalog_last_sales" string="Last sales" expand="1" />
                 <field name="catalog_price_mode" string="Price" expand="1" />
                 <field name="catalog_history_partner" string="History" expand="1" />
+                <field name="catalog_sort" string="Sort" expand="1" />
             </xpath>
         </field>
     </record>

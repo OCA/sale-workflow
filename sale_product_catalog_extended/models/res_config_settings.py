@@ -45,6 +45,19 @@ class ResConfigSettings(models.TransientModel):
         help="Partner the sale history is matched against by default. The "
         "customer (commercial partner) when empty.",
     )
+    default_catalog_sort = fields.Selection(
+        selection=_catalog_field_selection("catalog_sort"),
+        string="Catalog sort",
+        default_model="product.product",
+        help="Order of the products in the catalog by default. The order of the "
+        "origin when empty (e.g. the most sold first for the last sales).",
+    )
+    catalog_show_sort = fields.Boolean(
+        string="Show the catalog sort",
+        config_parameter="sale_product_catalog_extended.catalog_show_sort",
+        help="Show the Sort section in the product catalog search panel. When "
+        "hidden, the sort default still applies.",
+    )
     catalog_show_history_partner = fields.Boolean(
         string="Show the catalog history partner",
         config_parameter="sale_product_catalog_extended.catalog_show_history_partner",
@@ -63,4 +76,12 @@ class ResConfigSettings(models.TransientModel):
         config_parameter="sale_product_catalog_extended.catalog_last_order_limit",
         help="Maximum number of products shown by the last sales option. "
         "No limit when 0.",
+    )
+    catalog_layout = fields.Selection(
+        selection=[("grid", "Grid"), ("rows", "Rows")],
+        string="Catalog layout",
+        config_parameter="sale_product_catalog_extended.catalog_layout",
+        default="grid",
+        help="Grid shows several product cards per row. Rows shows one card per "
+        "row, with the image, the product data and the quantity side by side.",
     )

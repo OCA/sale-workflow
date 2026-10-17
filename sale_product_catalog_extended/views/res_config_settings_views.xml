@@ -68,6 +68,25 @@
                                 />
                             </div>
                         </div>
+                        <div class="row">
+                            <label
+                                for="default_catalog_sort"
+                                string="Sort"
+                                class="col-lg-4 o_light_label"
+                            />
+                            <div class="col d-flex align-items-center">
+                                <field
+                                    name="default_catalog_sort"
+                                    placeholder="Default"
+                                />
+                                <field name="catalog_show_sort" class="w-auto ms-2" />
+                                <label
+                                    for="catalog_show_sort"
+                                    string="Show"
+                                    class="o_light_label ms-1"
+                                />
+                            </div>
+                        </div>
                     </div>
                 </setting>
                 <setting
@@ -93,6 +112,18 @@
                             <field name="catalog_last_order_limit" />
                         </div>
                     </div>
+                </setting>
+                <setting
+                    id="sale_product_catalog_layout"
+                    string="Order catalog layout"
+                    help="How the product cards are laid out in the catalog of a sale order"
+                >
+                    <field
+                        name="catalog_layout"
+                        widget="radio"
+                        options="{'horizontal': true}"
+                        class="mt8"
+                    />
                 </setting>
             </xpath>
         </field>

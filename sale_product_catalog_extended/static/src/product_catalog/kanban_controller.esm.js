@@ -15,6 +15,15 @@ patch(ProductCatalogKanbanController.prototype, {
         return this.orderResModel === "sale.order";
     },
 
+    get className() {
+        const className = super.className;
+        // The rows layout does not fit the narrow columns of a grouped view.
+        if (this.props.context.catalog_layout !== "rows" || this.model.root.isGrouped) {
+            return className;
+        }
+        return [className, "o_product_catalog_rows"].filter(Boolean).join(" ");
+    },
+
     async _defineButtonContent() {
         if (!this.isSaleOrder) {
             return super._defineButtonContent();

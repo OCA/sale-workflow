@@ -278,6 +278,7 @@ class SaleOrder(models.Model):
             "catalog_last_sales",
             "catalog_price_mode",
             "catalog_history_partner",
+            "catalog_sort",
         ]
 
     def _get_action_add_from_catalog_extra_context(self):
@@ -293,9 +294,16 @@ class SaleOrder(models.Model):
         for field_name, value in defaults.items():
             if value:
                 context[f"searchpanel_default_{field_name}"] = value
+        params = self.env["ir.config_parameter"].sudo()
         context["catalog_show_history_partner"] = bool(
-            self.env["ir.config_parameter"]
-            .sudo()
-            .get_param("sale_product_catalog_extended.catalog_show_history_partner")
+            params.get_param(
+                "sale_product_catalog_extended.catalog_show_history_partner"
+            )
+        )
+        context["catalog_show_sort"] = bool(
+            params.get_param("sale_product_catalog_extended.catalog_show_sort")
+        )
+        context["catalog_layout"] = params.get_param(
+            "sale_product_catalog_extended.catalog_layout", "grid"
         )
         return context
