@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-27 23:24+0000\n"
-"PO-Revision-Date: 2026-09-27 23:24+0000\n"
+"POT-Creation-Date: 2026-10-17 00:41+0000\n"
+"PO-Revision-Date: 2026-10-17 00:41+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -88,10 +88,4 @@ msgstr ""
 #. module: sale_product_catalog_supplierinfo
 #: model:ir.model.fields.selection,name:sale_product_catalog_supplierinfo.selection__product_product__catalog_origin_data__supplierinfo
 msgid "Suppliers"
-msgstr ""
-
-#. module: sale_product_catalog_supplierinfo
-#. odoo-javascript
-#: code:addons/sale_product_catalog_supplierinfo/static/src/product_catalog/order_line/order_line.xml:0
-msgid "Unit price:"
 msgstr ""
