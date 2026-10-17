@@ -10,6 +10,26 @@ from .common import TestSaleDeliveryBlockSetup
 
 
 class TestSaleDeliveryBlock(TestSaleDeliveryBlockSetup):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.sale_order2 = cls.env["sale.order"].create(cls._prepare_sale_order_values())
+        cls.sale_order3 = cls.env["sale.order"].create(cls._prepare_sale_order_values())
+        cls.env["sale.order.line"].create(
+            [
+                {
+                    "order_id": cls.sale_order2.id,
+                    "product_id": cls.products[0].id,
+                    "product_uom_qty": 1.0,
+                },
+                {
+                    "order_id": cls.sale_order3.id,
+                    "product_id": cls.products[0].id,
+                    "product_uom_qty": 1.0,
+                },
+            ]
+        )
+
     @users("login@test-user.com")
     def test_check_auto_done(self):
         """Check an error is raised when blocking a sale order with auto-done enabled"""
@@ -110,3 +130,28 @@ class TestSaleDeliveryBlock(TestSaleDeliveryBlockSetup):
             self.env["res.partner"]._commercial_fields(),
             "default_delivery_block must be included in _commercial_fields().",
         )
+
+    @users("login@test-user.com")
+    def test_multi_sales_stock_picking_blocking(self):
+        """Checks the picking creation workflow when SO has a block at confirmation"""
+        # Add a block
+        so = self.sale_orders[0]
+        so.write({"delivery_block_id": self.block_reasons[0].id})
+
+        so2 = self.sale_order2
+        so2.write({"delivery_block_id": self.block_reasons[0].id})
+
+        # No block
+        so3 = self.sale_order3
+
+        # Confirm all at once
+        all_sales = so + so2 + so3
+        all_sales.action_confirm()
+        self.assertFalse(so.picking_ids, "The delivery should have been blocked")
+        self.assertFalse(so2.picking_ids, "The delivery should have been blocked")
+        self.assertTrue(so3.picking_ids, "The delivery should have been made")
+        # Remove block, check if picking is created automatically
+        blocked_sales = all_sales - so3
+        blocked_sales.action_remove_delivery_block()
+        self.assertTrue(so.picking_ids, "A delivery should have been made")
+        self.assertTrue(so2.picking_ids, "A delivery should have been made")
