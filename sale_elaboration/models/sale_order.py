@@ -70,8 +70,17 @@ class SaleOrderLine(models.Model):
 
     @api.depends("elaboration_ids")
     def _compute_route_id(self):
-        for line in self:
+        # Reset routes: elaboration might be unset.
+        self.filtered(
+            lambda x: x.route_id not in x.elaboration_ids.route_ids
+        ).route_id = False
+        # Other modules might use this compute. Let's respect inheritance
+        res = None
+        if hasattr(super(), "_compute_route_id"):
+            res = super()._compute_route_id()
+        for line in self.filtered("elaboration_ids"):
             line.route_id = line.get_elaboration_stock_route()
+        return res
 
     @api.depends("elaboration_ids", "order_id.pricelist_id")
     def _compute_elaboration_price_unit(self):
