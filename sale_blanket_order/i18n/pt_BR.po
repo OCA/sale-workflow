@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-04-15 13:52+0000\n"
-"Last-Translator: Cristiano Mafra Junior <cristiano.mafracontanto@gmail.com>\n"
+"PO-Revision-Date: 2026-10-18 14:26+0000\n"
+"Last-Translator: Luis Felipe Miléo <mileo@kmee.com.br>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgid ""
 "                    "
 msgstr ""
 "\n"
-"                    VocÃª nÃ£o pode alterar o tipo de uma linha de pedido de "
+"                    Você não pode alterar o tipo de uma linha de pedido de "
 "venda.\n"
 "                    Em vez disso, exclua a linha atual e crie uma nova "
 "linha\n"
@@ -123,7 +123,7 @@ msgstr "Adicionar um produto"
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
 msgid "Add a section"
-msgstr "Adicionar uma sessão"
+msgstr "Adicionar uma seção"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
@@ -135,7 +135,7 @@ msgstr "Valor"
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid "An order can't be empty"
-msgstr "Um pedido nÃ£o pode estar vazio"
+msgstr "Um pedido não pode estar vazio"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__analytic_distribution
@@ -443,13 +443,13 @@ msgstr "Ícone para indicar uma atividade com exceção."
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_needaction
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Se marcado, novas mensagens exigem sua atenÃ§Ã£o."
+msgstr "Se marcado, novas mensagens exigem sua atenção."
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_has_error
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr "Se marcado, algumas mensagens tÃªm erro de entrega."
+msgstr "Se marcado, algumas mensagens têm erro de entrega."
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_search
@@ -579,25 +579,25 @@ msgstr "Nota"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_needaction_counter
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_needaction_counter
 msgid "Number of Actions"
-msgstr "NÃºmero de AÃ§Ãµes"
+msgstr "Número de Ações"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_has_error_counter
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_has_error_counter
 msgid "Number of errors"
-msgstr "NÃºmero de erros"
+msgstr "Número de erros"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_needaction_counter
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr "NÃºmero de mensagens que exigem aÃ§Ã£o"
+msgstr "Número de mensagens que exigem ação"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_has_error_counter
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr "NÃºmero de mensagens com erro de entrega"
+msgstr "Número de mensagens com erro de entrega"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__open
@@ -658,14 +658,14 @@ msgstr "Outras Informações"
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__partner_id
 msgid "Partner"
-msgstr "Parceiro"
+msgstr "Cliente"
 
 #. module: sale_blanket_order
 #. odoo-python
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Partner is mandatory"
-msgstr "Parceiro não obrigatório"
+msgstr "O cliente é obrigatório"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__payment_term_id
@@ -879,7 +879,7 @@ msgstr "Impostos"
 #. module: sale_blanket_order
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__display_type
 msgid "Technical field for UX purpose."
-msgstr "Campo tÃ©cnico para finalidade de UX."
+msgstr "Campo técnico para finalidade de UX."
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
@@ -958,9 +958,9 @@ msgid ""
 msgstr ""
 "Use este menu para pesquisar em seus pedidos guarda-chuva. Para cada pedido "
 "em aberto,\n"
-"                vocÃª pode acompanhar a conversa relacionada com o cliente, "
+"                você pode acompanhar a conversa relacionada com o cliente, "
 "controlar\n"
-"                os produtos entregues e controlar as faturas de fornecedor."
+"                os produtos entregues e controlar as faturas."
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
@@ -989,7 +989,7 @@ msgstr "A data de validade deve estar no futuro"
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__partner_id
 msgid "Vendor"
-msgstr "Fornecedor"
+msgstr "Cliente"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__website_message_ids
