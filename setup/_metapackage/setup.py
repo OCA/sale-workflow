@@ -140,6 +140,7 @@ setuptools.setup(
         'odoo-addon-sale_seasonality>=16.0dev,<16.1dev',
         'odoo-addon-sale_shipping_info_helper>=16.0dev,<16.1dev',
         'odoo-addon-sale_sourced_by_line>=16.0dev,<16.1dev',
+        'odoo-addon-sale_sourced_by_line_product_rule>=16.0dev,<16.1dev',
         'odoo-addon-sale_start_end_dates>=16.0dev,<16.1dev',
         'odoo-addon-sale_stock_cancel_restriction>=16.0dev,<16.1dev',
         'odoo-addon-sale_stock_delivery_state>=16.0dev,<16.1dev',
