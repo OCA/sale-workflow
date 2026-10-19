@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template id="split_from">
         <t>
@@ -8,8 +8,8 @@
                 data-oe-model="sale.order"
                 t-att-data-oe-id="from_order.id"
             >
-                <t t-esc="from_order.display_name" />
-            </a> using <t t-esc="from_order.split_strategy_id.name" /> strategy.
+                <t t-out="from_order.display_name" />
+            </a> using <t t-out="from_order.split_strategy_id.name" /> strategy.
             </div>
         </t>
     </template>
@@ -21,8 +21,8 @@
                 data-oe-model="sale.order"
                 t-att-data-oe-id="to_order.id"
             >
-                <t t-esc="to_order.display_name" />
-            </a> using <t t-esc="from_order.split_strategy_id.name" /> strategy.
+                <t t-out="to_order.display_name" />
+            </a> using <t t-out="from_order.split_strategy_id.name" /> strategy.
             </div>
         </t>
     </template>
