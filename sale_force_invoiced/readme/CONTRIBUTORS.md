@@ -1,0 +1,4 @@
+- Jordi Ballester \<<jordi.ballester@forgeflow.com>\>
+- Erwin van der Ploeg \<<erwin@odooexperts.nl>\>
+- Sudhir Arya\<<sudhir@erpharbor.com>\>
+	
