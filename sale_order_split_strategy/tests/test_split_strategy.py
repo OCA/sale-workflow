@@ -8,6 +8,8 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestSplitStrategy(BaseCommon):
+    _test_user_groups = ("base.group_user", "sales_team.group_sale_manager")
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

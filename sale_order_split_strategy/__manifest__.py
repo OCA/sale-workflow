@@ -3,7 +3,7 @@
 {
     "name": "Sale Order Split Strategy",
     "summary": "Define strategies to split sales orders",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "development_status": "Alpha",
     "category": "Sales Management",
     "website": "https://github.com/OCA/sale-workflow",
@@ -14,7 +14,7 @@
         "sale",
     ],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/mail_message_template.xml",
         "views/res_config.xml",
         "views/sale_order_split_strategy.xml",
