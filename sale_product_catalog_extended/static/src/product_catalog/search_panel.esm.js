@@ -6,27 +6,31 @@ import {patch} from "@web/core/utils/patch";
 
 patch(ProductCatalogSearchPanel.prototype, {
     get sections() {
-        // The history partner is only shown when enabled in the settings (its
-        // default applies anyway), and it only matters for the last sales and the
-        // last sale price, so hide it while neither of them is active.
-        const shown = Boolean(
-            this.env.searchModel.globalContext.catalog_show_history_partner
-        );
+        const context = this.env.searchModel.globalContext;
         const isActive = (fieldName, value) =>
             this.env.searchModel.categories.some(
                 (category) =>
                     category.fieldName === fieldName && category.activeValueId === value
             );
+        const hidden = [];
+        // The history partner is only shown when enabled in the settings (its
+        // default applies anyway), and it only matters for the last sales and the
+        // last sale price, so hide it while neither of them is active.
         if (
-            shown &&
-            (isActive("catalog_last_sales", "last_sales") ||
-                isActive("catalog_price_mode", "last_price"))
+            !context.catalog_show_history_partner ||
+            !(
+                isActive("catalog_last_sales", "last_sales") ||
+                isActive("catalog_price_mode", "last_price")
+            )
         ) {
-            return super.sections;
+            hidden.push("catalog_history_partner");
         }
-        return super.sections.filter(
-            (section) => section.fieldName !== "catalog_history_partner"
-        );
+        // The sort is only shown when enabled in the settings (its default
+        // applies anyway).
+        if (!context.catalog_show_sort) {
+            hidden.push("catalog_sort");
+        }
+        return super.sections.filter((section) => !hidden.includes(section.fieldName));
     },
     updateActiveValues() {
         super.updateActiveValues(...arguments);
@@ -48,6 +52,9 @@ patch(ProductCatalogSearchPanel.prototype, {
                 section.values.has(false)
             ) {
                 section.values.get(false).display_name = _t("Customer");
+            }
+            if (section.fieldName === "catalog_sort" && section.values.has(false)) {
+                section.values.get(false).display_name = _t("Default");
             }
         }
     },

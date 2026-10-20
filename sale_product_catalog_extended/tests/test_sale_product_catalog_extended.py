@@ -334,6 +334,101 @@ class TestSaleProductCatalogExtended(TransactionCase):
             ]
         )
 
+    def test_sort_by_name_in_the_language_of_the_user(self):
+        """The Name sort orders the products by their name translated to the
+        language of the user."""
+        self.env["res.lang"]._activate_lang("es_ES")
+        zucchini, apple = self.env["product.product"].create(
+            [
+                {"name": "Zucchini", "sale_ok": True},
+                {"name": "Apple", "sale_ok": True},
+            ]
+        )
+        zucchini.with_context(lang="es_ES").name = "Calabacín"
+        apple.with_context(lang="es_ES").name = "Manzana"
+        domain = [("id", "in", (zucchini | apple).ids), ("catalog_sort", "=", "name")]
+        products = self.env["product.product"]
+        self.assertEqual(
+            products.search_fetch(domain, ["id"]).ids, [apple.id, zucchini.id]
+        )
+        self.assertEqual(
+            products.with_context(lang="es_ES").search_fetch(domain, ["id"]).ids,
+            [zucchini.id, apple.id],
+        )
+
+    def test_sort_by_category(self):
+        """The Category sort orders the products by category, then by name."""
+        category_b, category_a = self.env["product.category"].create(
+            [{"name": "Catalog Category B"}, {"name": "Catalog Category A"}]
+        )
+        product_1, product_3, product_2 = self.env["product.product"].create(
+            [
+                {"name": "Catalog Sort 1", "categ_id": category_b.id},
+                {"name": "Catalog Sort 3", "categ_id": category_a.id},
+                {"name": "Catalog Sort 2", "categ_id": category_a.id},
+            ]
+        )
+        domain = [
+            ("id", "in", (product_1 | product_2 | product_3).ids),
+            ("catalog_sort", "=", "category"),
+        ]
+        self.assertEqual(
+            self.env["product.product"].search_fetch(domain, ["id"]).ids,
+            [product_2.id, product_3.id, product_1.id],
+        )
+
+    def test_sort_last_sales_keeps_the_most_sold(self):
+        """With the last sales, the sort orders the products the last sales
+        keep, so the limit still keeps the most sold ones."""
+        self.product_a.name = "Catalog Product Z"
+        products = self.env["product.product"].with_context(
+            product_catalog_partner_id=self.partner.id,
+            product_catalog_order_id=self.order.id,
+        )
+        last_sales = [("catalog_last_sales", "=", "last_sales")]
+        sorted_last_sales = last_sales + [("catalog_sort", "=", "name")]
+        self.assertEqual(
+            products.search_fetch(last_sales, ["id"]).ids,
+            [self.product_a.id, self.product_b.id],
+        )
+        self.assertEqual(
+            products.search_fetch(sorted_last_sales, ["id"]).ids,
+            [self.product_b.id, self.product_a.id],
+        )
+        self.env["ir.config_parameter"].sudo().set_param(
+            "sale_product_catalog_extended.catalog_last_order_limit", "1"
+        )
+        self.assertEqual(
+            products.search_fetch(sorted_last_sales, ["id"]).ids,
+            [self.product_a.id],
+        )
+
+    def test_settings_sort(self):
+        """The sort default preselects it in the search panel, whose section is
+        only shown when enabled in the settings."""
+        context = self.order._get_action_add_from_catalog_extra_context()
+        self.assertFalse(context["catalog_show_sort"])
+        self.assertNotIn("searchpanel_default_catalog_sort", context)
+        self.env["res.config.settings"].create(
+            {"default_catalog_sort": "category", "catalog_show_sort": True}
+        ).execute()
+        context = self.order._get_action_add_from_catalog_extra_context()
+        self.assertTrue(context["catalog_show_sort"])
+        self.assertEqual(context["searchpanel_default_catalog_sort"], "category")
+
+    def test_settings_catalog_layout(self):
+        """The catalog opens with the grid layout unless the rows layout is
+        chosen in the settings."""
+        self.assertEqual(
+            self.order._get_action_add_from_catalog_extra_context()["catalog_layout"],
+            "grid",
+        )
+        self.env["res.config.settings"].create({"catalog_layout": "rows"}).execute()
+        self.assertEqual(
+            self.order.action_add_from_catalog()["context"]["catalog_layout"],
+            "rows",
+        )
+
     def _new_line_form(self, order, product, **options):
         """The new line form the catalog card of ``product`` opens, with the
         context the catalog kanban record sends (``onClickAddNewOrderLine``)."""

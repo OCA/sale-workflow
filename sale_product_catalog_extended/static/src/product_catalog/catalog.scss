@@ -1,25 +1,26 @@
-// When a product has multiple order lines, each card uses a per-line price
-// portal target (#line-X-price) placed outside the card content flex container.
-// Without this override the card content's flex-grow-1 pushes the price div to
-// the bottom of the card. Removing flex-grow on the content makes the price
-// appear right below the product name/ref, matching the position in white cards.
-article.o_product_added {
-    > div.d-flex.flex-column.h-100 {
-        > .d-flex.flex-grow-1.m-2 {
-            flex-grow: 0 !important;
-            margin-bottom: 0 !important;
-            margin-right: 0 !important;
-            > div:first-child {
-                padding-bottom: 0 !important;
-            }
-        }
-        // Price portal target is outside the content wrapper; align it to match
-        // the white-card price indentation (m-2 left + p-2 left = 16px).
-        > [id^="line-"][id$="-price"] {
-            padding-left: 16px;
-            padding-right: 8px;
-        }
+// The parts of the card are named in the kanban view arch (body, info and
+// image), in the kanban record template (card and actions) and in the order
+// line template (controls).
+
+// The order line elements are grouped only for the rows layout; the grid
+// layout keeps them as direct children of the card.
+.o_product_catalog_card_actions {
+    display: contents;
+}
+
+// The details of the card (see the rows layout below), e.g. the vendor of the
+// supplier cards, follow the product data, aligned with its text, and the
+// order line stays at the bottom of the card.
+.o_product_catalog_card {
+    > .o_product_catalog_card_body {
+        flex-grow: 0 !important;
     }
+    > .o_product_catalog_card_actions > :last-child {
+        margin-top: auto !important;
+    }
+}
+.o_product_catalog_card_detail {
+    margin: 0 1rem 0.5rem;
 }
 
 // The kanban options menu (three-dots dropdown) is pinned to the top-right
@@ -27,6 +28,197 @@ article.o_product_added {
 // image, which is also right-aligned. Push the image down a bit so its
 // clickable area clears the menu button, making it easier to tap the image to
 // open the zoom dialog (specially on small screens).
-.o_kanban_record .d-flex.flex-grow-1.m-2 > .o_field_image.ms-auto {
+.o_kanban_record .o_product_catalog_card_image {
     margin-top: 1.5rem;
+}
+
+// Rows layout (catalog layout setting): one card per row, similar to the list
+// view of the online shop. It only places the named parts of the card, so
+// whatever other modules add to them is kept, and every card (product, order
+// line or vendor) has the same positions:
+// - the image, the product data (info) and the order line (actions);
+// - on wide screens, the price and the quantity on hand in a column of their
+//   own, in line with the product name and reference;
+// - the details, the elements with the o_product_catalog_card_detail class
+//   (e.g. the vendor of the supplier cards), below the product data, or in a
+//   column of their own on extra wide screens. The module adding them gives
+//   that column a width with the --o-product-catalog-detail-column variable;
+//   it is kept for all the cards, so nothing moves when the details appear.
+// Small screens already show one card per row, so they keep the grid card.
+.o_product_catalog_rows .o_kanban_renderer.o_kanban_ungrouped {
+    @include media-breakpoint-up(md) {
+        .o_kanban_record {
+            flex-basis: 100%;
+            &.o_kanban_ghost {
+                display: none;
+            }
+        }
+        // The empty rows around the product data center it vertically. The
+        // image column is kept for the products without image, so that the
+        // product names are aligned.
+        .o_product_catalog_card {
+            display: grid !important;
+            grid-template-columns: 4.5rem minmax(0, 1fr) minmax(20rem, 34%);
+            grid-template-rows: 1fr auto auto 1fr;
+            grid-template-areas:
+                "image . actions"
+                "image info actions"
+                "image detail actions"
+                "image . actions";
+            // Separator of the order line column, visible on the background of
+            // the products in the order too.
+            &::after {
+                content: "";
+                grid-area: actions;
+                border-left: $border-width solid currentColor;
+                opacity: 0.15;
+                pointer-events: none;
+            }
+        }
+        .o_product_catalog_card_body {
+            display: contents !important;
+        }
+        .o_product_catalog_card_image {
+            grid-area: image;
+            align-self: center;
+            margin: 0.5rem !important;
+        }
+        .o_product_catalog_card_info {
+            grid-area: info;
+        }
+        [name="o_kanban_price"]:empty {
+            display: none;
+        }
+        .o_product_catalog_card_actions {
+            display: contents;
+            > :not(.o_product_catalog_card_detail) {
+                grid-area: actions;
+                align-self: center;
+                // Room for the three-dots menu, pinned to the top-right corner.
+                margin: 0.5rem 2rem 0.5rem 1rem !important;
+                // The column separator already separates the order line.
+                border-top: 0 !important;
+                padding-top: 0 !important;
+            }
+        }
+        .o_product_catalog_card_detail {
+            grid-area: detail;
+            margin: 0 !important;
+            padding: 0 0.5rem 0.5rem !important;
+            border-top: 0 !important;
+        }
+        // The quantity and the buttons in a row. What other modules add to it
+        // (e.g. the secondary unit) takes the free space, truncated, and the
+        // buttons go below the quantity only when they do not fit.
+        .o_product_catalog_line_controls {
+            container-type: inline-size;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            > :not(.o_product_catalog_quantity, .o_product_catalog_buttons) {
+                flex: 1 1 0;
+                min-width: 3rem;
+                margin: 0 !important;
+            }
+            .o_product_catalog_quantity {
+                flex: 0 0 auto;
+                width: 9.5rem !important;
+            }
+            .o_product_catalog_buttons {
+                display: flex;
+                align-items: center;
+                gap: 0.25rem;
+                .btn {
+                    white-space: nowrap;
+                }
+            }
+            .btn-group-vertical {
+                flex-direction: row;
+                align-items: center;
+                gap: 0.25rem;
+                width: auto !important;
+                margin: 0 !important;
+                > .btn {
+                    margin: 0 !important;
+                    border-radius: var(--bs-btn-border-radius) !important;
+                }
+            }
+            .o_tooltip_div_remove,
+            .o_tooltip_div_remove > .btn {
+                width: auto !important;
+            }
+        }
+        // Without room for all the labels, the edit and remove buttons only
+        // show their icon (and their title as tooltip).
+        @container (max-width: 34rem) {
+            .o_product_catalog_edit_line,
+            .o_tooltip_div_remove > .btn {
+                font-size: 0;
+                > .fa {
+                    font-size: $font-size-base;
+                    // Same height as the buttons with label.
+                    line-height: $btn-line-height;
+                }
+            }
+        }
+    }
+    // Wide screens: the price and the quantity on hand go to a column of their
+    // own, so the cards are lower. The product data spans both columns, as a
+    // subgrid, so they are in line with the product name and reference.
+    @include media-breakpoint-up(xl) {
+        .o_product_catalog_card {
+            grid-template-columns:
+                4.5rem minmax(0, 3fr) minmax(11rem, 1.5fr)
+                minmax(20rem, 34%);
+            grid-template-areas:
+                "image . . actions"
+                "image info info actions"
+                "image detail detail actions"
+                "image . . actions";
+        }
+        .o_product_catalog_card_info {
+            display: grid !important;
+            grid-template-columns: subgrid;
+            grid-auto-flow: row dense;
+            align-content: start;
+            > * {
+                grid-column: 1;
+            }
+            > [name="o_kanban_price"],
+            > [name="o_kanban_qty_available"] {
+                grid-column: 2;
+                padding: 0 0.5rem;
+            }
+            > [name="o_kanban_price"] {
+                grid-row: 1;
+            }
+            // Right below the price, also when the product name takes several
+            // lines: it spans the first rows, one line down.
+            > [name="o_kanban_qty_available"] {
+                grid-row: 1 / span 2;
+                align-self: start;
+                margin-top: 1lh;
+            }
+            > [name="o_kanban_price"]:empty ~ [name="o_kanban_qty_available"] {
+                margin-top: 0;
+            }
+        }
+    }
+    // Extra wide screens: the details in a column of their own.
+    @include media-breakpoint-up(xxl) {
+        .o_product_catalog_card {
+            grid-template-columns:
+                4.5rem minmax(0, 3fr) minmax(11rem, 1.5fr)
+                var(--o-product-catalog-detail-column, 0px)
+                minmax(20rem, 34%);
+            grid-template-rows: 1fr auto 1fr;
+            grid-template-areas:
+                "image . . . actions"
+                "image info info detail actions"
+                "image . . . actions";
+        }
+        .o_product_catalog_card_detail {
+            align-self: start;
+            padding: 0.25rem 0.5rem 0.5rem !important;
+        }
+    }
 }

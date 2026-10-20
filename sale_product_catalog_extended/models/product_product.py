@@ -38,6 +38,14 @@ class ProductProduct(models.Model):
         store=False,
         search="_search_catalog_history_partner",
     )
+    # Order of the cards: the one of the origin when empty (the product order,
+    # or e.g. the most sold first for the last sales), or the one of the chosen
+    # option (see _get_catalog_sort_orders).
+    catalog_sort = fields.Selection(
+        selection=[("name", "Name"), ("category", "Category")],
+        store=False,
+        search="_search_catalog_sort",
+    )
 
     @api.model
     def _get_catalog_origin_product_ids(self, domain):
@@ -107,15 +115,47 @@ class ProductProduct(models.Model):
         return [pid for pid in product_ids if pid in matching_ids]
 
     @api.model
+    def _get_catalog_sort_orders(self):
+        """Order of each ``catalog_sort`` option. The product name is sorted in
+        the language of the user, and the category by its complete name, so the
+        products of the subcategories stay together."""
+        return {
+            "name": "name, default_code, id",
+            "category": "categ_id, name, default_code, id",
+        }
+
+    @api.model
+    def _get_catalog_sort_order(self, domain):
+        """Order of the ``catalog_sort`` option found in ``domain``, or ``None``
+        to keep the default one."""
+        for leaf in domain:
+            if (
+                isinstance(leaf, list | tuple)
+                and len(leaf) == 3
+                and leaf[0] == "catalog_sort"
+            ):
+                return self._get_catalog_sort_orders().get(leaf[2])
+        return None
+
+    @api.model
     def search_fetch(self, domain, field_names, offset=0, limit=None, order=None):
+        sort_order = self._get_catalog_sort_order(domain)
         product_ids = self._search_catalog_origin_ids(domain)
         if product_ids is not None:
+            if sort_order:
+                # Sorted once the origin products are chosen, so e.g. the last
+                # sales limit still keeps the most sold ones.
+                product_ids = list(
+                    self._search(
+                        [("id", "in", product_ids)], order=sort_order
+                    ).get_result_ids()
+                )
             # Paginate over the origin ordering, as the kanban view loads the
             # records page by page.
             end = offset + limit if limit else None
             return self.browse(product_ids[offset:end])
         return super().search_fetch(
-            domain, field_names, offset=offset, limit=limit, order=order
+            domain, field_names, offset=offset, limit=limit, order=sort_order or order
         )
 
     @api.model
@@ -182,6 +222,11 @@ class ProductProduct(models.Model):
     @api.model
     def _search_catalog_history_partner(self, operator, value):
         # Display-only field: selecting it does not filter products
+        return []
+
+    @api.model
+    def _search_catalog_sort(self, operator, value):
+        # Display-only field: resolved in search_fetch
         return []
 
     @api.model
