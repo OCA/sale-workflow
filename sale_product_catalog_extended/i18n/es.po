@@ -40,8 +40,8 @@ msgid ""
 "Cards shown by default in the product catalog of sale orders. Products when "
 "empty."
 msgstr ""
-"Tarjetas mostradas por defecto en el catálogo de productos de los pedidos de"
-" venta. Productos si está vacío."
+"Tarjetas mostradas por defecto en el catálogo de productos de los pedidos de "
+"venta. Productos si está vacío."
 
 #. module: sale_product_catalog_extended
 #: model:ir.model.fields,field_description:sale_product_catalog_extended.field_product_product__catalog_history_partner
@@ -211,8 +211,8 @@ msgid ""
 "the image, the product data and the quantity side by side."
 msgstr ""
 "Cuadrícula muestra varias tarjetas de producto por fila. Filas muestra una "
-"tarjeta por fila, con la imagen, los datos del producto y la cantidad una al"
-" lado de otra."
+"tarjeta por fila, con la imagen, los datos del producto y la cantidad una al "
+"lado de otra."
 
 #. module: sale_product_catalog_extended
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.product_view_search_catalog
@@ -342,8 +342,8 @@ msgid ""
 "Price shown by default in the product catalog. The pricelist price when "
 "empty."
 msgstr ""
-"Precio mostrado por defecto en el catálogo de productos. El precio de tarifa"
-" si está vacío."
+"Precio mostrado por defecto en el catálogo de productos. El precio de tarifa "
+"si está vacío."
 
 #. module: sale_product_catalog_extended
 #. odoo-javascript
@@ -383,11 +383,13 @@ msgstr "Productos"
 #: model_terms:ir.actions.act_window,help:sale_product_catalog_extended.sale_catalog_product_exclusion_action
 msgid ""
 "Products are excluded from the last sales of a customer from the\n"
-"                product catalog of a sale order. Delete an exclusion to offer the\n"
+"                product catalog of a sale order. Delete an exclusion to "
+"offer the\n"
 "                product again."
 msgstr ""
 "Los productos se excluyen de las últimas ventas de un cliente desde el\n"
-"                catálogo de productos de un pedido de venta. Elimine una exclusión para\n"
+"                catálogo de productos de un pedido de venta. Elimine una "
+"exclusión para\n"
 "                volver a ofrecer el producto."
 
 #. module: sale_product_catalog_extended
@@ -427,8 +429,8 @@ msgstr "Mostrar"
 #. module: sale_product_catalog_extended
 #: model:ir.model.fields,help:sale_product_catalog_extended.field_res_config_settings__default_catalog_last_sales
 msgid ""
-"Show by default only the products sold to the customer, most frequently sold"
-" first."
+"Show by default only the products sold to the customer, most frequently sold "
+"first."
 msgstr ""
 "Mostrar por defecto solo los productos vendidos al cliente, primero los "
 "vendidos con más frecuencia."
@@ -448,8 +450,8 @@ msgid ""
 "Show the Sort section in the product catalog search panel. When hidden, the "
 "sort default still applies."
 msgstr ""
-"Mostrar la sección Ordenar en el panel lateral del catálogo de productos. Si"
-" está oculta, se sigue aplicando el orden por defecto."
+"Mostrar la sección Ordenar en el panel lateral del catálogo de productos. Si "
+"está oculta, se sigue aplicando el orden por defecto."
 
 #. module: sale_product_catalog_extended
 #: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__catalog_show_history_partner
@@ -470,5 +472,4 @@ msgstr "Ordenar"
 #. module: sale_product_catalog_extended
 #: model:ir.model.constraint,message:sale_product_catalog_extended.constraint_sale_catalog_product_exclusion_partner_product_uniq
 msgid "This product is already excluded from the last sales of this partner."
-msgstr ""
-"Este producto ya está excluido de las últimas ventas de este contacto."
+msgstr "Este producto ya está excluido de las últimas ventas de este contacto."
