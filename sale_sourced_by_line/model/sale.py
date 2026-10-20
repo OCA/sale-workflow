@@ -44,6 +44,13 @@ class SaleOrder(models.Model):
             lambda line: not line.display_type and line.product_id.type == "consu"
         ).warehouse_id
 
+    def action_confirm(self):
+        for order in self:
+            warehouses = order._get_source_warehouses()
+            if len(warehouses) == 1 and warehouses != order.warehouse_id:
+                order.warehouse_id = warehouses
+        return super().action_confirm()
+
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
