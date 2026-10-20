@@ -16,6 +16,34 @@ class SaleOrder(models.Model):
         "this warehouse is used as default.",
     )
 
+    multiple_source_warehouses_message = fields.Char(
+        compute="_compute_multiple_source_warehouses_message"
+    )
+
+    @api.depends(
+        "order_line.warehouse_id",
+        "order_line.display_type",
+        "order_line.product_id.type",
+    )
+    def _compute_multiple_source_warehouses_message(self):
+        for order in self:
+            warehouses = order._get_source_warehouses()
+            order.multiple_source_warehouses_message = (
+                self.env._(
+                    "The delivery is sent from multiple warehouses: %(warehouses)s",
+                    warehouses=", ".join(sorted(warehouses.mapped("name"))),
+                )
+                if len(warehouses) > 1
+                else False
+            )
+
+    def _get_source_warehouses(self):
+        """Return the warehouses of the lines that carry goods to deliver."""
+        self.ensure_one()
+        return self.order_line.filtered(
+            lambda line: not line.display_type and line.product_id.type == "consu"
+        ).warehouse_id
+
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
