@@ -8,6 +8,16 @@
             ref="sale_stock.view_order_form_inherit_sale_stock_qty"
         />
         <field name="arch" type="xml">
+            <sheet position="before">
+                <div
+                    class="alert alert-info mb-0"
+                    role="alert"
+                    invisible="not multiple_source_warehouses_message"
+                >
+                    <field name="multiple_source_warehouses_message" nolabel="1" />
+                </div>
+            </sheet>
+
             <xpath
                 expr="//field[@name='order_line']/list/field[@name='warehouse_id']"
                 position="attributes"
