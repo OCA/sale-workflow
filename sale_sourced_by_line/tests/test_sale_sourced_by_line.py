@@ -82,6 +82,22 @@ class TestSaleSourcedByLine(BaseCommon):
             f"1 delivery order expected. Got {len(so.picking_ids)} instead",
         )
 
+    def test_warehouse_change_on_confirm(self):
+        # all lines from the same warehouse, different from the order one:
+        # it becomes the warehouse of the order
+        so = self._create_order(self.warehouse0)
+        self._create_line(so, self.product_1, self.warehouse1)
+        self._create_line(so, self.product_2, self.warehouse1)
+        so.action_confirm()
+        self.assertEqual(so.warehouse_id, self.warehouse1)
+
+        # several source warehouses: the order's warehouse is left untouched
+        so_2 = self._create_order(self.warehouse0)
+        self._create_line(so_2, self.product_1, self.warehouse1)
+        self._create_line(so_2, self.product_2, self.warehouse0)
+        so_2.action_confirm()
+        self.assertEqual(so_2.warehouse_id, self.warehouse0)
+
     def test_multiple_source_warehouses_message(self):
         so = self._create_order()
         line_1 = self._create_line(so, self.product_1, self.warehouse1)
@@ -107,3 +123,7 @@ class TestSaleSourcedByLine(BaseCommon):
         )
         self._create_line(so, self.service_product)
         self.assertFalse(so.multiple_source_warehouses_message)
+
+        # the order warehouse is switched to the only goods source on confirm
+        so.action_confirm()
+        self.assertEqual(so.warehouse_id, self.warehouse1)
