@@ -19,7 +19,9 @@
                 expr="//field[@name='order_line']/list/field[@name='warehouse_id']"
                 position="attributes"
             >
-                <attribute name="column_invisible">False</attribute>
+                <attribute
+                    name="column_invisible"
+                >not parent.show_sale_line_warehouse_column</attribute>
                 <attribute name="readonly">state not in ['draft', 'sent']</attribute>
                 <attribute name="optional">show</attribute>
             </xpath>

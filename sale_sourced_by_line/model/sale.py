@@ -16,6 +16,10 @@ class SaleOrder(models.Model):
         "this warehouse is used as default.",
     )
 
+    show_sale_line_warehouse_column = fields.Boolean(
+        related="company_id.show_sale_line_warehouse_column"
+    )
+
     multiple_source_warehouses_message = fields.Char(
         compute="_compute_multiple_source_warehouses_message"
     )
