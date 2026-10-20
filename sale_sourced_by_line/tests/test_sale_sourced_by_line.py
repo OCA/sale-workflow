@@ -18,6 +18,9 @@ class TestSaleSourcedByLine(BaseCommon):
         cls.customer = cls.env.ref("base.res_partner_2")
         cls.product_1 = cls.env.ref("product.product_product_27")
         cls.product_2 = cls.env.ref("product.product_product_24")
+        cls.service_product = cls.env["product.product"].create(
+            {"name": "Service Product", "type": "service"}
+        )
         cls.warehouse0 = cls.env.ref("stock.warehouse0")
         cls.warehouse1 = cls.stock_warehouse_model.create(
             {"name": "Test Warehouse", "code": "TWH"}
@@ -78,3 +81,29 @@ class TestSaleSourcedByLine(BaseCommon):
             1,
             f"1 delivery order expected. Got {len(so.picking_ids)} instead",
         )
+
+    def test_multiple_source_warehouses_message(self):
+        so = self._create_order()
+        line_1 = self._create_line(so, self.product_1, self.warehouse1)
+        self.assertFalse(so.multiple_source_warehouses_message)
+
+        self._create_line(so, self.product_2, self.warehouse0)
+        self.assertIn(self.warehouse0.name, so.multiple_source_warehouses_message)
+        self.assertIn(self.warehouse1.name, so.multiple_source_warehouses_message)
+
+        # a single source warehouse again hides the message
+        line_1.warehouse_id = self.warehouse0
+        self.assertFalse(so.multiple_source_warehouses_message)
+
+    def test_multiple_source_warehouses_no_goods_lines(self):
+        # section, note and service lines are not source warehouses
+        so = self._create_order(self.warehouse0)
+        self._create_line(so, self.product_1, self.warehouse1)
+        self.sale_order_line_model.create(
+            {"order_id": so.id, "display_type": "line_section", "name": "Section"}
+        )
+        self.sale_order_line_model.create(
+            {"order_id": so.id, "display_type": "line_note", "name": "Note"}
+        )
+        self._create_line(so, self.service_product)
+        self.assertFalse(so.multiple_source_warehouses_message)
