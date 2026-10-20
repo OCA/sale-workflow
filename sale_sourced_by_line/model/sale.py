@@ -37,6 +37,13 @@ class SaleOrder(models.Model):
                 else False
             )
 
+    def action_confirm(self):
+        for order in self:
+            warehouses = order._get_source_warehouses()
+            if len(warehouses) == 1 and warehouses != order.warehouse_id:
+                order.warehouse_id = warehouses
+        return super().action_confirm()
+
     def _get_source_warehouses(self):
         """Return the warehouses of the lines that carry goods to deliver."""
         self.ensure_one()
