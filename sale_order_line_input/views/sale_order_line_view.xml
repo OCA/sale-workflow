@@ -189,6 +189,9 @@
                     invisible="is_downpayment"
                     string="Total"
                 />
+                <!-- Needed by the analytic_distribution widget (amount_field) -->
+                <field name="price_subtotal" column_invisible="1" />
+                <field name="currency_id" column_invisible="1" />
             </list>
         </field>
     </record>
