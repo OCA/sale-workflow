@@ -4,3 +4,4 @@
 - Julien Coux \<<julien.coux@camptocamp.com>\>
 - Nguyen Minh Chien \<<chien@trobz.com>\>
 - Vincent Van Rossem \<<vincent.vanrossem@camptocamp.com>\>
+- Italo Lopes \<<italo.lopes@camptocamp.com>\>

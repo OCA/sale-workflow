@@ -33,6 +33,8 @@ class SaleOrder(models.Model):
         """Add the 'Default Delivery Block Reason' if set in the partner
         or in the payment term."""
         for so in self.filtered(lambda x: x.state != "sale"):
+            if so.delivery_block_id:
+                continue
             if so.partner_id.default_delivery_block:
                 so.delivery_block_id = so.partner_id.default_delivery_block
             else:
@@ -48,3 +50,12 @@ class SaleOrder(models.Model):
         order_to_unblock.write({"delivery_block_id": False})
         order_to_unblock.order_line._action_launch_stock_rule()
         return True
+
+    def _action_confirm(self):
+        blocked_orders = self.filtered(lambda sale: sale.delivery_block_id)
+        allowed_orders = self - blocked_orders
+        if blocked_orders:
+            super(
+                SaleOrder, blocked_orders.with_context(skip_procurement=True)
+            )._action_confirm()
+        return super(SaleOrder, allowed_orders)._action_confirm()
