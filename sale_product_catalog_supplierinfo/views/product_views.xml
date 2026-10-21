@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Tecnativa - Carlos Roca
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="product_view_search_catalog" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_view_search_catalog" />
+        <field name="arch" type="xml">
+            <field name="product_tmpl_id" position="after">
+                <field
+                    name="seller_ids"
+                    string="Vendor"
+                    filter_domain="[('seller_ids.partner_id.complete_name', 'ilike', self)]"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
