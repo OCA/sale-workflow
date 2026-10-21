@@ -5,11 +5,25 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
+            <sheet position="before">
+                <div
+                    class="alert alert-info mb-0"
+                    role="alert"
+                    invisible="not multiple_source_warehouses_message"
+                >
+                    <field name="multiple_source_warehouses_message" nolabel="1" />
+                </div>
+            </sheet>
+
             <xpath
-                expr="//field[@name='order_line']/list/field[@name='price_subtotal']"
-                position="after"
+                expr="//field[@name='order_line']/list/field[@name='warehouse_id']"
+                position="attributes"
             >
-                <field name="warehouse_id" readonly="state not in ['draft', 'sent']" />
+                <attribute
+                    name="column_invisible"
+                >not parent.show_sale_line_warehouse_column</attribute>
+                <attribute name="readonly">state not in ['draft', 'sent']</attribute>
+                <attribute name="optional">show</attribute>
             </xpath>
         </field>
     </record>
@@ -23,11 +37,6 @@
                 position="before"
             >
                 <field name="warehouse_id" readonly="state not in ['draft', 'sent']" />
-            </xpath>
-            <xpath expr="//field[@name='order_line']" position="attributes">
-                <attribute
-                    name="context"
-                >{'default_warehouse_id': warehouse_id}</attribute>
             </xpath>
         </field>
     </record>
