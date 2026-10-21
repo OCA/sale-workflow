@@ -94,3 +94,8 @@ msgstr "Informació del proveïdor"
 #: model:ir.model.fields.selection,name:sale_product_catalog_supplierinfo.selection__product_product__catalog_origin_data__supplierinfo
 msgid "Suppliers"
 msgstr "Proveïdors"
+
+#. module: sale_product_catalog_supplierinfo
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_supplierinfo.product_view_search_catalog
+msgid "Vendor"
+msgstr "Proveïdor"

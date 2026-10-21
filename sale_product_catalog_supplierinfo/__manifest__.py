@@ -21,6 +21,7 @@
         "product_pricelist_supplierinfo",
     ],
     "data": [
+        "views/product_views.xml",
         "views/sale_order_line_views.xml",
         "views/res_config_settings_views.xml",
     ],
