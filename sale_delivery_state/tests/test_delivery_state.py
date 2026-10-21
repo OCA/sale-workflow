@@ -3,12 +3,11 @@
 # Copyright 2018 Camptocamp
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import datetime
 from unittest import mock
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import Command
+from odoo import Command, fields
 from odoo.tests.common import TransactionCase
 
 
@@ -97,9 +96,9 @@ class TestDeliveryState(TransactionCase):
                 "campaign_id": utm_campaign_email_campaign_products.id,
                 "medium_id": self.env.ref("utm.utm_medium_email").id,
                 "source_id": utm_source.id,
-                "date_order": (datetime.today() - relativedelta(months=1)).strftime(
-                    "%Y-%m-%d %H:%M"
-                ),
+                "date_order": (
+                    fields.Datetime.now() - relativedelta(months=1)
+                ).strftime("%Y-%m-%d %H:%M"),
                 "order_line": [
                     Command.create(
                         {
@@ -226,3 +225,39 @@ class TestDeliveryState(TransactionCase):
             lambda a: a.product_id and a.product_id == self.service_product
         ).write({"skip_sale_delivery_state": True})
         self.assertEqual(self.order.delivery_status, "full")
+
+    def test_action_force_unforce_delivery_state(self):
+        self.order.action_confirm()
+        self.order.action_force_delivery_state()
+        self.assertTrue(self.order.force_delivery_state)
+        self.assertEqual(self.order.delivery_status, "full")
+        self.order.action_unforce_delivery_state()
+        self.assertFalse(self.order.force_delivery_state)
+
+    def test_delivery_status_started(self):
+        self.order.action_confirm()
+        with mock.patch.object(
+            type(self.order), "_is_delivery_status_started", return_value=True
+        ):
+            self.order._compute_oca_delivery_status()
+            self.assertEqual(self.order.delivery_status, "started")
+
+    def test_company_skip_service_delivery_state(self):
+        self.order.company_id.skip_service_sale_delivery_state = True
+        line = self.env["sale.order.line"].create(
+            {
+                "order_id": self.order.id,
+                "name": "Service Line",
+                "product_id": self.service_product.id,
+                "product_uom_qty": 1,
+                "product_uom_id": self.env.ref("uom.product_uom_unit").id,
+                "price_unit": 10.0,
+            }
+        )
+        self.assertTrue(line.skip_sale_delivery_state)
+
+    def test_post_init_hook(self):
+        from ..hooks import post_init_hook
+
+        with mock.patch.object(self.env.cr, "commit"):
+            post_init_hook(self.env)
