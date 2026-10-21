@@ -17,6 +17,16 @@ msgstr ""
 "X-Generator: Weblate 5.6.2\n"
 
 #. module: sale_order_line_input
+#: model:res.groups,name:sale_order_line_input.sale_orderline_view_group
+msgid "Allows to view SO line right on SO Form"
+msgstr ""
+
+#. module: sale_order_line_input
+#: model:ir.model,name:sale_order_line_input.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Delivered"
 msgstr "Teslim Edilen"
@@ -25,6 +35,11 @@ msgstr "Teslim Edilen"
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Disc.%"
 msgstr "İnd %"
+
+#. module: sale_order_line_input
+#: model:ir.model.fields,field_description:sale_order_line_input.field_res_config_settings__show_view_sale_order_line
+msgid "Enable Smart Button to view SO line right on SO Form"
+msgstr ""
 
 #. module: sale_order_line_input
 #: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line__force_company_id
@@ -87,6 +102,19 @@ msgid "Product"
 msgstr "Ürün"
 
 #. module: sale_order_line_input
+#. odoo-python
+#: code:addons/sale_order_line_input/models/sale_order.py:0
+#: model_terms:ir.ui.view,arch_db:sale_order_line_input.sale_order_form_inherit
+#, python-format
+msgid "SO Lines"
+msgstr ""
+
+#. module: sale_order_line_input
+#: model:ir.model,name:sale_order_line_input.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_line_input
 #: model:ir.model,name:sale_order_line_input.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Sipariş Satırı"
@@ -98,6 +126,11 @@ msgid "Sales Orders Lines"
 msgstr "Sipariş Satırları"
 
 #. module: sale_order_line_input
+#: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order__sol_count
+msgid "Sol Count"
+msgstr ""
+
+#. module: sale_order_line_input
 #: model:ir.model.fields,help:sale_order_line_input.field_sale_order_line__force_company_id
 msgid ""
 "Technical field to force company or get it from env user if order don't "
@@ -105,6 +138,11 @@ msgid ""
 msgstr ""
 "Sipariş yoksa şirketi zorlamak veya çevre kullanıcısından almak için teknik "
 "alan."
+
+#. module: sale_order_line_input
+#: model_terms:ir.ui.view,arch_db:sale_order_line_input.res_config_settings_view_form
+msgid "This access will be applied to all Salesman"
+msgstr ""
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
