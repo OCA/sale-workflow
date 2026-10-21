@@ -8,7 +8,7 @@
     "summary": (
         "Base module for definition of stock references creation rules for Sale order"
     ),
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "author": (
         "Camptocamp,"
         "ForgeFlow,"
