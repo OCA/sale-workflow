@@ -3,6 +3,7 @@
 # © 2016 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo import Command
 from odoo.tests import Form
 
 from odoo.addons.sale_stock.tests.common import TestSaleStockCommon
@@ -147,3 +148,36 @@ class TestSaleStockReferenceByLine(TestSaleStockCommon):
         self.sale.order_line[1].product_uom_qty += 1
         self.assertEqual(self.sale.order_line[1].stock_reference_id, stock_ref)
         self.assertEqual(len(self.line1.move_ids), 1)
+
+    def test_07_kit_product_on_second_line(self):
+        """A kit on a line other than the first must be procured once."""
+        if "mrp.bom" not in self.env:
+            self.skipTest("Requires mrp")
+        kit = self._create_product(name="test_kit", categ_id=self.product_ctg.id)
+        self.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": kit.product_tmpl_id.id,
+                "type": "phantom",
+                "bom_line_ids": [
+                    Command.create(
+                        {"product_id": self.new_product2.id, "product_qty": 2}
+                    )
+                ],
+            }
+        )
+        sale = self.sale_model.create(
+            {
+                "partner_id": self.partner_a.id,
+                "warehouse_id": self.warehouse_id.id,
+                "order_line": [
+                    Command.create(
+                        {"product_id": self.new_product1.id, "product_uom_qty": 1}
+                    ),
+                    Command.create({"product_id": kit.id, "product_uom_qty": 3}),
+                ],
+            }
+        )
+        sale.action_confirm()
+        kit_moves = sale.order_line[1].move_ids
+        self.assertEqual(kit_moves.product_id, self.new_product2)
+        self.assertEqual(sum(kit_moves.mapped("product_uom_qty")), 6)

@@ -41,6 +41,7 @@ class SaleOrderLine(models.Model):
         groups = {}
         if not previous_product_uom_qty:
             previous_product_uom_qty = {}
+        procured_product_uom_qty = dict(previous_product_uom_qty)
         for line in self:
             line = line.with_company(line.company_id)
             if (
@@ -86,7 +87,7 @@ class SaleOrderLine(models.Model):
             )
             # We store the procured quantity in the UoM of the line to avoid
             # duplicated procurements, specially for dropshipping and kits.
-            previous_product_uom_qty[line.id] = line.product_uom_qty
+            procured_product_uom_qty[line.id] = line.product_uom_qty
         if procurements:
             self.env["stock.rule"].run(procurements)
         # This next block is currently needed only because the scheduler trigger is done
@@ -101,4 +102,4 @@ class SaleOrderLine(models.Model):
                 pickings_to_confirm.action_confirm()
         return super(
             SaleOrderLine, self.with_context(sale_group_by_line=True)
-        )._action_launch_stock_rule(previous_product_uom_qty=previous_product_uom_qty)
+        )._action_launch_stock_rule(previous_product_uom_qty=procured_product_uom_qty)
