@@ -400,13 +400,14 @@ catalog.</li>
 <p>The catalog search panel gets these sections, combinable with each other
 and with the standard ones:</p>
 <ul class="simple">
-<li><strong>Origin</strong>: the cards shown, the products or the ones other modules
-add (e.g. one card per vendor row with
-<tt class="docutils literal">sale_product_catalog_supplierinfo</tt>). It is only shown when such a
-module is installed.</li>
-<li><strong>Last sales</strong>: restricts the cards of the chosen origin to the
-products previously sold to the customer (last 180 days by default),
-most frequently sold first, then by delivered quantity.</li>
+<li><strong>Products</strong>: the cards shown. <strong>All</strong> shows every product,
+<strong>Available</strong> only the goods with a positive forecasted quantity in
+the order warehouse, and other modules add further options (e.g. one
+card per vendor row with <tt class="docutils literal">sale_product_catalog_supplierinfo</tt>). It is
+only shown when enabled in the settings.</li>
+<li><strong>Last sales</strong>: restricts the cards of the chosen <strong>Products</strong> option
+to the products previously sold to the customer (last 180 days by
+default), most frequently sold first, then by delivered quantity.</li>
 <li><strong>Price</strong>: <strong>Last sale</strong> shows the unit price of the most recent
 delivered sale to the customer instead of the pricelist price, for the
 products that have one, and applies it to the lines added from the
@@ -459,9 +460,12 @@ has the options of the catalog opened from a sale order.</p>
 <p>The options of the catalog search panel preselected when the catalog is
 opened:</p>
 <ul class="simple">
-<li><strong>Origin</strong>: the cards shown. Empty shows the products; other modules
-add further origins (e.g. <strong>Suppliers</strong> in
-<tt class="docutils literal">sale_product_catalog_supplierinfo</tt>).</li>
+<li><strong>Products</strong>: the cards shown. Empty shows all the products,
+<strong>Available</strong> only the goods with a positive forecasted quantity in
+the order warehouse; other modules add further options (e.g.
+<strong>Suppliers</strong> in <tt class="docutils literal">sale_product_catalog_supplierinfo</tt>). Check
+<strong>Show</strong> to show this section in the catalog search panel, hidden by
+default; the option chosen here applies either way.</li>
 <li><strong>Last sales</strong>: only show the products sold to the customer, most
 frequently sold first.</li>
 <li><strong>Price</strong>: empty shows the pricelist price, <strong>Last sale</strong> the price of
