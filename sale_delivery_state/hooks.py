@@ -25,7 +25,7 @@ def _setup_new_columns(cr):
         create_column(cr, "sale_order", "delivery_status", "varchar")
     if not column_exists(cr, "sale_order_line", "skip_sale_delivery_state"):
         _logger.info("Create sale_order_line column skip_sale_delivery_state")
-        create_column(cr, "sale_order_line", "skip_sale_delivery_state", "boolean")
+        create_column(cr, "sale_order_line", "skip_sale_delivery_state", "bool")
         cr.execute("UPDATE sale_order_line SET skip_sale_delivery_state = False")
 
 
