@@ -1,0 +1,1 @@
+odoo-addon-sale_delivery_state @ git+https://github.com/OCA/sale-workflow.git@refs/pull/4673/head#subdirectory=sale_delivery_state
