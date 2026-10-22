@@ -14,8 +14,9 @@ class StockMove(models.Model):
         # sale order line. sale_stock's own _get_sale_order_lines() already
         # walks the whole chain (both directions) to find it.
         sale_line = self.sale_line_id or self._get_sale_order_lines()[:1]
-        vals["secondary_uom_id"] = sale_line.secondary_uom_id.id
-        vals["secondary_uom_qty"] = self.env.context.get(
-            "procure_secondary_uom_qty", {}
-        ).get(self.id, sale_line.secondary_uom_qty)
+        if sale_line:
+            vals["secondary_uom_id"] = sale_line.secondary_uom_id.id
+            vals["secondary_uom_qty"] = self.env.context.get(
+                "procure_secondary_uom_qty", {}
+            ).get(self.id, sale_line.secondary_uom_qty)
         return vals
