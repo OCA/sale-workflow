@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="action_sale_test_tree" model="ir.actions.act_window">
@@ -14,8 +14,8 @@
         >{'active_test': False, 'default_model' : 'sale.order'}</field>
     </record>
     <menuitem
-        action="action_sale_test_tree"
         id="menu_sale_test"
+        action="action_sale_test_tree"
         sequence="90"
         parent="sale.menu_sales_config"
         groups="base_exception.group_exception_rule_manager"

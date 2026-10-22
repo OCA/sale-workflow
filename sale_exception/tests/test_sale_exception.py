@@ -285,12 +285,10 @@ class TestSaleException(TransactionCase):
         )
         sale_order.action_confirm()
         so_except_confirm = self.sale_exception_confirm.with_context(
-            **{
-                "active_id": sale_order.id,
-                "active_ids": [sale_order.id],
-                "exception_ids": [self.excep_no_free.id],
-                "active_model": sale_order._name,
-            }
+            active_id=sale_order.id,
+            active_ids=[sale_order.id],
+            exception_ids=[self.excep_no_free.id],
+            active_model=sale_order._name,
         ).create({"ignore": True})
         with self.assertRaisesRegex(
             UserError,
