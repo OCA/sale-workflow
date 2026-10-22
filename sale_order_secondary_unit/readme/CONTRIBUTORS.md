@@ -7,3 +7,5 @@
   - Ernesto Tejeda
   - Pedro M. Baeza
   - Pilar Vargas
+- [Quartile](https://www.quartile.co):
+  - Aung Ko Ko Lin
