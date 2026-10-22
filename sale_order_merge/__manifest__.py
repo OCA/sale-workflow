@@ -3,7 +3,7 @@
 {
     "name": "Merge sale orders",
     "summary": "Merge sale orders that are confirmed, invoiced or delivered",
-    "version": "8.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Sales Management",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Opener B.V., Odoo Community Association (OCA)",
@@ -14,7 +14,10 @@
         "sale_stock",
     ],
     "data": [
+        "security/ir.model.access.csv",
+        "data/ir_actions_server_data.xml",
         "views/sale_order.xml",
-        "views/sale_order_merge.xml",
+        "wizards/wizard_sale_order_merge.xml",
+        "wizards/res_config_settings.xml",
     ],
 }
