@@ -5,7 +5,7 @@
 
 {
     "name": "Sale Cancel Reason",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "author": "Camptocamp,Odoo Community Association (OCA)",
     "category": "Sale",
     "license": "AGPL-3",
@@ -14,8 +14,8 @@
     "depends": ["sale"],
     "data": [
         "data/sale_order_cancel_reason.xml",
-        "security/ir.model.access.csv",
-        "view/sale_view.xml",
+        "security/ir.access.csv",
+        "view/sale_order_view.xml",
         "wizard/sale_order_cancel_wizard_views.xml",
         "wizard/mass_cancel_orders_view.xml",
     ],

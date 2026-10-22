@@ -8,7 +8,7 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     cancel_reason_id = fields.Many2one(
-        "sale.order.cancel.reason",
+        comodel_name="sale.order.cancel.reason",
         string="Reason for cancellation",
         readonly=True,
         ondelete="restrict",
@@ -26,10 +26,3 @@ class SaleOrder(models.Model):
         return self.env["sale.order.cancel.wizard"]._get_records_action(
             target="new", context={"default_order_id": self.id}
         )
-
-
-class SaleOrderCancelReason(models.Model):
-    _name = "sale.order.cancel.reason"
-    _description = "Sale Order Cancel Reason"
-
-    name = fields.Char("Reason", required=True, translate=True)

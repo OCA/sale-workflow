@@ -8,7 +8,8 @@ class SaleMassCancelOrders(models.TransientModel):
     _inherit = "sale.mass.cancel.orders"
 
     reason_id = fields.Many2one(
-        "sale.order.cancel.reason", string="Reason", required=True
+        comodel_name="sale.order.cancel.reason",
+        required=True,
     )
 
     def action_mass_cancel(self):
