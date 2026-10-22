@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="sale_exception_line_tooltip.SaleExceptionLineTooltipField">
+        <span
+            t-if="this.props.record.data[this.props.name]"
+            class="oi text-tooltip"
+            data-icon="warning"
+            t-att-title="this.props.record.data.exceptions_tooltip"
+        />
+    </t>
+</templates>
