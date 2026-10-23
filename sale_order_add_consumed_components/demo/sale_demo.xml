@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_product_finished" model="product.product">
+        <field name="name">Finished Product</field>
+        <field name="list_price">100.0</field>
+        <field name="is_storable" eval="True" />
+        <field
+            name="route_ids"
+            eval="[(4, ref('mrp.route_warehouse0_manufacture')), (4, ref('stock.route_warehouse0_mto'))]"
+        />
+    </record>
+
+    <record id="product_product_component_1" model="product.product">
+        <field name="name">Component 1</field>
+        <field name="list_price">10.0</field>
+        <field name="sale_ok" eval="True" />
+        <field name="is_storable" eval="True" />
+    </record>
+
+    <record id="product_product_component_2" model="product.product">
+        <field name="name">Component 2</field>
+        <field name="list_price">15.0</field>
+        <field name="is_storable" eval="True" />
+    </record>
+
+    <record id="mrp_bom_finished" model="mrp.bom">
+        <field name="product_tmpl_id" ref="product_product_finished_product_template" />
+        <field name="product_qty">1.0</field>
+    </record>
+
+    <record id="mrp_bom_line_1" model="mrp.bom.line">
+        <field name="bom_id" ref="mrp_bom_finished" />
+        <field name="product_id" ref="product_product_component_1" />
+        <field name="product_qty">2.0</field>
+    </record>
+
+    <record id="mrp_bom_line_2" model="mrp.bom.line">
+        <field name="bom_id" ref="mrp_bom_finished" />
+        <field name="product_id" ref="product_product_component_2" />
+        <field name="product_qty">3.0</field>
+    </record>
+
+    <record id="demo_sale_order" model="sale.order">
+        <field name="partner_id" ref="base.res_partner_1" />
+        <field
+            name="order_line"
+            eval="[(0, 0, {
+            'product_id': ref('product_product_finished'),
+            'product_uom_qty': 1.0,
+            'product_uom': ref('uom.product_uom_unit'),
+            'price_unit': 100.0
+        })]"
+        />
+    </record>
+</odoo>
