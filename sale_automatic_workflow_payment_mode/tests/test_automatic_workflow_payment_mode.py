@@ -2,6 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from unittest.mock import patch
 
+from odoo import fields
+
 from odoo.addons.account.models.account_payment_method import AccountPaymentMethod
 from odoo.addons.sale_automatic_workflow.tests.common import (
     TestAutomaticWorkflowMixin,
@@ -98,3 +100,86 @@ class TestAutomaticWorkflowPaymentMode(TestCommon, TestAutomaticWorkflowMixin):
         self.assertEqual(invoice.payment_state, "paid")
         picking = sale.picking_ids
         self.assertEqual(picking.state, "done")
+
+    def _create_foreign_invoice(self):
+        currency = self.env.ref(
+            "base.USD" if self.env.company.currency_id.name == "EUR" else "base.EUR"
+        )
+        currency.active = True
+        self.env["res.currency.rate"].search(
+            [
+                ("currency_id", "=", currency.id),
+                ("name", "=", fields.Date.today()),
+                ("company_id", "=", self.env.company.id),
+            ]
+        ).unlink()
+        self.env["res.currency.rate"].create(
+            {
+                "currency_id": currency.id,
+                "name": fields.Date.today(),
+                "rate": 2.0,
+                "company_id": self.env.company.id,
+            }
+        )
+        partner = self.env["res.partner"].create({"name": "Currency partner"})
+        invoice = self.env["account.move"].create(
+            {
+                "move_type": "out_invoice",
+                "partner_id": partner.id,
+                "currency_id": currency.id,
+                "invoice_date": fields.Date.today(),
+                "payment_mode_id": self.pay_mode.id,
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Bread",
+                            "quantity": 1,
+                            "price_unit": 100.0,
+                            "tax_ids": [(5, 0, 0)],
+                        },
+                    )
+                ],
+            }
+        )
+        invoice.action_post()
+        return invoice
+
+    def _find_payment(self, last_payment_id):
+        payment = self.env["account.payment"].search(
+            [("id", ">", last_payment_id)], order="id desc", limit=1
+        )
+        self.assertTrue(payment, "No payment was created")
+        return payment
+
+    def _last_payment_id(self):
+        payment = self.env["account.payment"].search([], order="id desc", limit=1)
+        return payment.id or 0
+
+    def test_04_payment_mode_submodule_preserves_currency(self):
+        self.create_full_automatic()
+        invoice = self._create_foreign_invoice()
+        self.assertNotEqual(invoice.currency_id, self.env.company.currency_id)
+        last_payment_id = self._last_payment_id()
+        self.env["automatic.workflow.job"]._register_payment_invoice(invoice)
+        payment = self._find_payment(last_payment_id)
+        self.assertEqual(payment.journal_id, self.acc_journ)
+        self.assertEqual(
+            payment.currency_id,
+            invoice.currency_id,
+            "Payment currency must match the invoice currency",
+        )
+
+    def test_05_fixed_journal_with_own_currency(self):
+        self.create_full_automatic()
+        company_currency = self.env.company.currency_id
+        self.acc_journ.currency_id = company_currency
+        invoice = self._create_foreign_invoice()
+        self.assertNotEqual(invoice.currency_id, company_currency)
+        last_payment_id = self._last_payment_id()
+        self.env["automatic.workflow.job"]._register_payment_invoice(invoice)
+        payment = self._find_payment(last_payment_id)
+        self.assertEqual(payment.journal_id, self.acc_journ)
+        self.assertEqual(payment.currency_id, invoice.currency_id)
+        self.assertIn(invoice.payment_state, ("paid", "in_payment"))
