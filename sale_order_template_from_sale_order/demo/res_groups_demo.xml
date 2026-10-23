@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Cetmix
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="group_template_from_order" model="res.groups">
+        <field name="users" eval="[Command.link(ref('base.user_admin'))]" />
+    </record>
+</odoo>
