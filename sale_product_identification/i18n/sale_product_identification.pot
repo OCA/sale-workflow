@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-03 15:18+0000\n"
+"PO-Revision-Date: 2025-12-03 15:18+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,11 +17,32 @@ msgstr ""
 
 #. module: sale_product_identification
 #. odoo-python
+#: code:addons/sale_product_identification/models/product_template.py:0
 #: code:addons/sale_product_identification/models/res_partner_id_number.py:0
 msgid ""
 "\n"
 "%(product)s\n"
 "%(categories)s"
+msgstr ""
+
+#. module: sale_product_identification
+#. odoo-python
+#: code:addons/sale_product_identification/models/product_template_id_category.py:0
+msgid ""
+"# Extra validation executed during identification checks.\n"
+"              # Leave this field empty or commented to skip the extra validation.\n"
+"              # Available variables:\n"
+"              # env: environment on which the action is triggered\n"
+"              # order: Current record of the sale.order\n"
+"              # time, datetime, dateutil, timezone: useful Python libraries\n"
+"              # float_compare: utility function to compare\n"
+"              #                floats based on specific precision\n"
+"              # result (bool): Set to True to approve the validation,\n"
+"              #                keep False to fail it.\n"
+"              # Example:\n"
+"              # result = order.amount_total < 500.0  # approve only when\n"
+"              #                                      # amount is below 500\n"
+"          "
 msgstr ""
 
 #. module: sale_product_identification
@@ -39,6 +62,14 @@ msgstr ""
 msgid ""
 "Allows you to define a description of why this identification is being added.\n"
 "Example: Asking the customer for identification"
+msgstr ""
+
+#. module: sale_product_identification
+#. odoo-python
+#: code:addons/sale_product_identification/models/product_template_id_category.py:0
+msgid ""
+"An error occurred while evaluating the expression for product %(product)s and identification category %(category)s: \n"
+"\n"
 msgstr ""
 
 #. module: sale_product_identification
@@ -85,6 +116,13 @@ msgid "Created on"
 msgstr ""
 
 #. module: sale_product_identification
+#: model:ir.model.fields,help:sale_product_identification.field_product_template_id_category__value
+msgid ""
+"Define the Python expression to perform an extra check. Leave this field "
+"blank if you do not want this check. Note that it will always be evaluated."
+msgstr ""
+
+#. module: sale_product_identification
 #: model:ir.model.fields,help:sale_product_identification.field_product_template_id_category__is_mandatory
 msgid "Defines whether identification is mandatory."
 msgstr ""
@@ -93,6 +131,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__display_name
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: sale_product_identification
+#: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__value
+msgid "Extra validation"
 msgstr ""
 
 #. module: sale_product_identification
@@ -173,6 +216,14 @@ msgstr ""
 
 #. module: sale_product_identification
 #. odoo-python
+#: code:addons/sale_product_identification/models/product_template.py:0
+msgid ""
+"Some identifications were detected that could not be validated. \n"
+"We recommend reviewing your settings and the data you entered to correct the problem. %(details)s"
+msgstr ""
+
+#. module: sale_product_identification
+#. odoo-python
 #: code:addons/sale_product_identification/models/sale_order.py:0
 msgid ""
 "The following identifications are required for partner, please verify.\n"
@@ -193,4 +244,10 @@ msgstr ""
 msgid ""
 "There are repeated categories in the identifications configuration, the quantities are shown below.\n"
 "%(categories)s"
+msgstr ""
+
+#. module: sale_product_identification
+#. odoo-python
+#: code:addons/sale_product_identification/models/product_template.py:0
+msgid " • %(category)s%(details)s"
 msgstr ""
