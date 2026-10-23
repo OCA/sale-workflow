@@ -113,7 +113,7 @@ class SaleOrderLine(models.Model):
             lambda x: x.product_id and x.product_tracking != "none" and x.move_ids
         ):
             moves = item.move_ids.filtered(lambda x: x.restrict_lot_id)
-            if all(move.state == "done" for move in moves):
+            if moves and all(move.state == "done" for move in moves):
                 raise ValidationError(
                     self.env._(
                         "You can't modify the Lot/Serial number "
