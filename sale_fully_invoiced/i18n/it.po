@@ -1,0 +1,78 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_fully_invoiced
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-03-05 16:45+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: sale_fully_invoiced
+#: model:ir.model.fields.selection,name:sale_fully_invoiced.selection__sale_order__invoice_status_validated__to_invoice
+msgid "Can be Invoiced"
+msgstr "Può essere fatturato"
+
+#. module: sale_fully_invoiced
+#: model:ir.model.fields,field_description:sale_fully_invoiced.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: sale_fully_invoiced
+#: model:ir.model.fields.selection,name:sale_fully_invoiced.selection__sale_order__invoice_status_validated__invoiced
+msgid "Fully Invoiced"
+msgstr "Completamente fatturato"
+
+#. module: sale_fully_invoiced
+#: model_terms:ir.ui.view,arch_db:sale_fully_invoiced.fully_invoice_delivered_filters_view_fully_invoice_validated_search
+msgid "Fully Invoiced and Not Validated"
+msgstr "Completamente fatturato e non validato"
+
+#. module: sale_fully_invoiced
+#: model_terms:ir.ui.view,arch_db:sale_fully_invoiced.fully_invoice_delivered_filters_view_fully_invoice_validated_search
+msgid "Fully Invoiced and Validated"
+msgstr "Completamente fatturato e validato"
+
+#. module: sale_fully_invoiced
+#: model:ir.model.fields,field_description:sale_fully_invoiced.field_sale_order__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_fully_invoiced
+#: model:ir.model.fields.selection,name:sale_fully_invoiced.selection__sale_order__invoice_status_validated__no
+msgid "Nothing to Invoice"
+msgstr "Niente da fatturare"
+
+#. module: sale_fully_invoiced
+#: model:ir.model.fields,field_description:sale_fully_invoiced.field_sale_order__invoice_status_validated
+msgid "Posted Invoice Status"
+msgstr "Stato fattura inserito"
+
+#. module: sale_fully_invoiced
+#: model_terms:ir.ui.view,arch_db:sale_fully_invoiced.fully_invoice_delivered_filters_view_fully_invoice_validated_search
+msgid "Sale orders that are Fully Invoiced and with all invoices validated"
+msgstr ""
+"Ordini di vendita che sono completamente fatturati e con tutte le fatture "
+"validate"
+
+#. module: sale_fully_invoiced
+#: model_terms:ir.ui.view,arch_db:sale_fully_invoiced.fully_invoice_delivered_filters_view_fully_invoice_validated_search
+msgid ""
+"Sale orders that are Fully Invoiced but with some of their invoices not "
+"validated"
+msgstr ""
+"Ordini di vendita che sono completamente fatturati ma con alcune delle loro "
+"fatture non validate"
+
+#. module: sale_fully_invoiced
+#: model:ir.model,name:sale_fully_invoiced.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
