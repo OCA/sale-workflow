@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale.menu_sale_quotations" model="ir.ui.menu">
+        <field
+            name="group_ids"
+            eval="[(4, ref('sales_team_readonly.group_sales_readonly'))]"
+        />
+    </record>
+
+    <record id="sale.menu_sale_order" model="ir.ui.menu">
+        <field
+            name="group_ids"
+            eval="[(4, ref('sales_team_readonly.group_sales_readonly'))]"
+        />
+    </record>
+
+    <record id="sale.res_partner_menu" model="ir.ui.menu">
+        <field
+            name="group_ids"
+            eval="[(4, ref('sales_team_readonly.group_sales_readonly'))]"
+        />
+    </record>
+
+    <record id="sale.product_menu_catalog" model="ir.ui.menu">
+        <field
+            name="group_ids"
+            eval="[(4, ref('sales_team_readonly.group_sales_readonly'))]"
+        />
+    </record>
+</odoo>
