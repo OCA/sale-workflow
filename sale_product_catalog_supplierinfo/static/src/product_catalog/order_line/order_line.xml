@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-inherit="product.ProductCatalogOrderLine" t-inherit-mode="extension">
+        <!-- Vendor cards (supplier origin) show the vendor and its comment. The
+             price goes to the price of the card, as on the other cards. It is a
+             detail of the card, in a column of its own in the rows layout of
+             sale_product_catalog_extended when it fits. -->
+        <xpath expr="//t[@t-portal]" position="after">
+            <div
+                t-if="props.vendorId"
+                class="o_product_catalog_vendor o_product_catalog_card_detail"
+            >
+                <div class="text-truncate" t-att-title="props.vendorName">
+                    <i class="fa fa-truck me-1" />
+                    <span t-out="props.vendorName" />
+                </div>
+                <div
+                    t-if="props.vendorComment"
+                    class="o_product_catalog_vendor_comment text-muted small"
+                    t-att-title="props.vendorComment"
+                    t-out="props.vendorComment"
+                />
+            </div>
+        </xpath>
+    </t>
+</templates>
