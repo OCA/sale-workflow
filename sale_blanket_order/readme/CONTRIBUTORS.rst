@@ -6,3 +6,6 @@
 * `Trobz <https://trobz.com>`_:
 
     * Nguyễn Minh Chiến <chien@trobz.com>
+* `Escodoo <https://www.escodoo.com.br>`_:
+
+  * Wesley Oliveira <wesley.oliveira@escodoo.com.br>

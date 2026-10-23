@@ -24,6 +24,20 @@
                             </div>
                         </div>
                     </div>
+                    <div
+                        class="col-xs-12 col-md-6 o_setting_box"
+                        id="assign_bo_number_setting"
+                    >
+                        <div class="o_setting_left_pane">
+                            <field name="blanket_order_seq_number_from_draft" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="blanket_order_seq_number_from_draft" />
+                            <div class="text-muted">
+                                Assign Blanket Order number to draft Blanket Order
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </xpath>
         </field>
