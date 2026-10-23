@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t
+        t-name="sale_order_lot_selection.QtyAtDatePopover"
+        t-inherit="sale_stock.QtyAtDatePopover"
+        t-inherit-mode="extension"
+    >
+        <xpath expr="//div" position="inside">
+            <div
+                t-if="props.record.data.product_type === 'consu' and props.record.data.product_id"
+                class="mt-3 border-top pt-2"
+            >
+                <strong>Lots / Serial Numbers</strong>
+                <div t-if="state.lotsLoading" class="text-muted"><i
+                    class="fa fa-spin fa-spinner"
+                /> Loading lots...</div>
+                <div
+                    t-elif="state.lots.length === 0"
+                    class="text-muted"
+                >No lots found in this warehouse.</div>
+                <div
+                    t-else=""
+                    class="list-group list-group-flush mt-1"
+                    style="max-height: 200px; overflow-y: auto; overflow-x: hidden;"
+                >
+                    <div
+                        t-foreach="state.lots"
+                        t-as="lot"
+                        t-key="lot.id"
+                        class="list-group-item p-2 d-flex align-items-center justify-content-between"
+                    >
+                        <!-- Lot Name &amp; Exp -->
+                        <div
+                            class="d-flex flex-column flex-grow-1 overflow-hidden me-2"
+                        >
+                            <span t-esc="lot.name" class="fw-bold text-truncate" />
+                            <small
+                                t-if="lot.expiration_date"
+                                class="text-muted"
+                                style="font-size: 0.75em;"
+                            >
+                                Exp: <span t-esc="lot.expiration_date" />
+                            </small>
+                        </div>
+                        <!-- Available Qty -->
+                        <div class="me-3 text-nowrap" title="Available Quantity">
+                            <span
+                                class="badge text-bg-info rounded-pill"
+                                t-esc="lot.qty"
+                            />
+                        </div>
+                        <!-- Selected Qty -->
+                        <div class="text-nowrap" style="width: 80px;">
+                            <t
+                                t-if="['draft', 'sent'].includes(props.record.data.state)"
+                            >
+                                <input
+                                    type="number"
+                                    class="form-control form-control-sm text-end px-1"
+                                    placeholder="Qty"
+                                    t-att-data-lot-id="lot.id"
+                                    t-on-change="onLotQtyChange"
+                                    min="0"
+                                    t-att-max="lot.qty"
+                                    t-att-value="state.selectedLots[lot.id] || 0"
+                                />
+                            </t>
+                            <t t-else="">
+                                <div
+                                    class="text-end fw-bold pe-2"
+                                    t-esc="state.selectedLots[lot.id] || 0"
+                                />
+                            </t>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="mt-2 text-end"
+                    t-if="state.lots.length > 0 and ['draft', 'sent'].includes(props.record.data.state)"
+                >
+                    <button
+                        class="btn btn-primary btn-sm w-100"
+                        t-on-click="applyLotsSelection"
+                        t-att-disabled="state.applying"
+                    >
+                        <t t-if="state.applying">
+                        <i class="fa fa-spin fa-spinner me-1" />
+                    </t>
+                        Apply Selection
+                    </button>
+                </div>
+            </div>
+        </xpath>
+    </t>
+</templates>
