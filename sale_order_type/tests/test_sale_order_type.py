@@ -368,3 +368,13 @@ class TestSaleOrderType(BaseCommon):
             order.order_line[0].analytic_distribution,
             {str(self.analytic_account.id): 100.0},
         )
+
+    def test_picking_policy_kept_when_type_has_none(self):
+        sale_type_no_policy = self.sale_type_model.create(
+            {"name": "Test Type No Policy"}
+        )
+        order = self.create_sale_order()
+        self.assertEqual(order.picking_policy, "one")
+        with Form(order) as sale_form:
+            sale_form.type_id = sale_type_no_policy
+        self.assertEqual(order.picking_policy, "one")
