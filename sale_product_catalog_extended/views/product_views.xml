@@ -36,6 +36,9 @@
         <field name="model">product.product</field>
         <field name="inherit_id" ref="product.product_view_search_catalog" />
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='categ_id']" position="after">
+                <field name="catalog_price_limit" string="Max price" operator="&lt;=" />
+            </xpath>
             <xpath expr="//searchpanel/field[@name='categ_id']" position="before">
                 <field name="catalog_origin_data" string="Origin" expand="1" />
                 <field name="catalog_last_sales" string="Last sales" expand="1" />
