@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="action_report_saleorder_without_price" model="ir.actions.report">
         <field name="name">Quotation / Order Without Price</field>
