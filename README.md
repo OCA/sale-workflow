@@ -131,7 +131,7 @@ addon | version | maintainers | summary
 [sale_order_requested_delivery](sale_order_requested_delivery/) | 18.0.1.0.0 |  | This module adds two new fields `requested_delivery_period_start` and `requested_delivery_period_end` to both the `sale.order` and `sale.order.line` models.
 [sale_order_restrict_copy_archived_product](sale_order_restrict_copy_archived_product/) | 18.0.1.0.0 |  | Restrict dulpication of sales order if they have archived products
 [sale_order_revision](sale_order_revision/) | 18.0.1.0.1 |  | Keep track of revised quotations
-[sale_order_secondary_unit](sale_order_secondary_unit/) | 18.0.1.1.1 |  | Sale product in a secondary unit
+[sale_order_secondary_unit](sale_order_secondary_unit/) | 18.0.1.2.0 |  | Sale product in a secondary unit
 [sale_order_show_currency_rate](sale_order_show_currency_rate/) | 18.0.1.1.0 |  | Show informative exchange rate on sale order PDF reports
 [sale_order_split_strategy](sale_order_split_strategy/) | 18.0.1.1.0 | <a href='https://github.com/grindtildeath'><img src='https://github.com/grindtildeath.png' width='32' height='32' style='border-radius:50%;' alt='grindtildeath'/></a> | Define strategies to split sales orders
 [sale_order_tag](sale_order_tag/) | 18.0.1.0.0 | <a href='https://github.com/patrickrwilson'><img src='https://github.com/patrickrwilson.png' width='32' height='32' style='border-radius:50%;' alt='patrickrwilson'/></a> | Adds Tags to Sales Orders.
@@ -187,7 +187,7 @@ addon | version | maintainers | summary
 [sale_stock_qty_at_date_widget_multi_warehouse](sale_stock_qty_at_date_widget_multi_warehouse/) | 18.0.1.0.0 | <a href='https://github.com/CarlosRoca13'><img src='https://github.com/CarlosRoca13.png' width='32' height='32' style='border-radius:50%;' alt='CarlosRoca13'/></a> | Shows the availability of all the warehouses in the Qty at Date widget
 [sale_stock_reservation_issue_on_qty_at_date_widget](sale_stock_reservation_issue_on_qty_at_date_widget/) | 18.0.1.0.2 | <a href='https://github.com/Shide'><img src='https://github.com/Shide.png' width='32' height='32' style='border-radius:50%;' alt='Shide'/></a> <a href='https://github.com/rafaelbn'><img src='https://github.com/rafaelbn.png' width='32' height='32' style='border-radius:50%;' alt='rafaelbn'/></a> <a href='https://github.com/Andrii9090'><img src='https://github.com/Andrii9090.png' width='32' height='32' style='border-radius:50%;' alt='Andrii9090'/></a> | Warn user when a reservation issue will happen when confirming an order
 [sale_stock_return_request](sale_stock_return_request/) | 18.0.1.0.2 | <a href='https://github.com/chienandalu'><img src='https://github.com/chienandalu.png' width='32' height='32' style='border-radius:50%;' alt='chienandalu'/></a> | Sale Stock Return Request
-[sale_stock_secondary_unit](sale_stock_secondary_unit/) | 18.0.1.0.2 |  | Get product quantities in a secondary unit
+[sale_stock_secondary_unit](sale_stock_secondary_unit/) | 18.0.1.1.0 |  | Get product quantities in a secondary unit
 [sale_substate](sale_substate/) | 18.0.1.0.0 |  | Sale Sub State
 [sale_team_payment_term](sale_team_payment_term/) | 18.0.1.0.0 | <a href='https://github.com/Kev-Roche'><img src='https://github.com/Kev-Roche.png' width='32' height='32' style='border-radius:50%;' alt='Kev-Roche'/></a> | add payment term on sale team
 [sale_tier_validation](sale_tier_validation/) | 18.0.1.1.0 |  | Extends the functionality of Sale Orders to support a tier validation process.
