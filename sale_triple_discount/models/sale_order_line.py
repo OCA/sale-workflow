@@ -91,8 +91,10 @@ class SaleOrderLine(models.Model):
         )
 
     @api.depends(
-        lambda self: self._get_multiple_discount_field_names()
-        + ["product_id", "product_uom_id", "product_uom_qty"]
+        lambda self: (
+            self._get_multiple_discount_field_names()
+            + ["product_id", "product_uom_id", "product_uom_qty"]
+        )
     )
     def _compute_discount(self):
         # A combo item not linked to its parent yet makes the core compute call
