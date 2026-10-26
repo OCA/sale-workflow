@@ -248,8 +248,8 @@ class TestSaleOrder(SaleTripleDiscountCommon):
                     Command.create(
                         {
                             "applied_on": "3_global",
-                            "compute_price": "percentage",
-                            "percent_price": 20,
+                            "compute_price": "discount",
+                            "price_discount": 20,
                             "min_quantity": 50,
                         }
                     )
@@ -257,10 +257,10 @@ class TestSaleOrder(SaleTripleDiscountCommon):
             }
         )
         self.env.user.write(
-            {"group_ids": [(5, self.env.ref("sale.group_discount_per_so_line").id)]}
+            {"group_ids": [(3, self.env.ref("sale.group_discount_per_so_line").id)]}
         )
         self.order.pricelist_id = pricelist
-        self.order.action_update_prices()
+        self.order._recompute_prices()
         # initially, with quantity below 50, no discount should apply
         self.assertAlmostEqual(self.so_line1.discount1, 0)
         self.assertAlmostEqual(self.so_line1.discount2, 0.0)
@@ -332,10 +332,22 @@ class TestSaleOrder(SaleTripleDiscountCommon):
 
 
 class TestSaleOrderCombo(BaseCommon):
+    _test_user_groups = (
+        "product.group_product_manager",
+        "sales_team.group_sale_salesman_all_leads",
+        "sale.group_discount_per_so_line",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env.user.group_ids += cls.env.ref("sale.group_discount_per_so_line")
+        # _is_discount_feature_enabled() asks whether the SUPERUSER has this
+        # group: it is the global switch for per-line discounts, not a per-user
+        # right. In 19 the test ran as superuser, so granting it to the test user
+        # did both at once; since 20 they are two separate things.
+        cls.env.ref("base.user_root").group_ids += cls.env.ref(
+            "sale.group_discount_per_so_line"
+        )
         cls.partner = cls.env["res.partner"].create({"name": "Combo Buyer"})
 
     def test_combo_order_line_precompute_discount(self):
@@ -372,8 +384,8 @@ class TestSaleOrderCombo(BaseCommon):
                     Command.create(
                         {
                             "applied_on": "3_global",
-                            "compute_price": "percentage",
-                            "percent_price": 10.0,
+                            "compute_price": "discount",
+                            "price_discount": 10.0,
                         }
                     )
                 ],

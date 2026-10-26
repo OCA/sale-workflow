@@ -8,10 +8,36 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class SaleTripleDiscountCommon(BaseCommon):
+    # Since 20.0 BaseCommon runs each test as a plain user, not as superuser.
+    _test_user_groups = (
+        "product.group_product_manager",
+        "sales_team.group_sale_salesman_all_leads",
+        "sale.group_discount_per_so_line",
+        "account.group_account_invoice",
+    )
+
     @classmethod
     def setUpClass(cls) -> None:
         super().setUpClass()
-        cls.env.user.group_ids += cls.env.ref("sale.group_discount_per_so_line")
+        # _is_discount_feature_enabled() asks whether the SUPERUSER has this
+        # group: it is the global switch for per-line discounts, not a per-user
+        # right. In 19 the test ran as superuser, so granting it to the test user
+        # did both at once; since 20 they are two separate things.
+        cls.env.ref("base.user_root").group_ids += cls.env.ref(
+            "sale.group_discount_per_so_line"
+        )
+        # sale.order.discount creates this product on first use, but that needs
+        # write access on res.company, which only base.group_system grants. It is
+        # company setup, so seed it here instead of widening the test user.
+        cls.env.company.sale_discount_product_id = cls.env["product.product"].create(
+            {
+                "name": "Discount",
+                "type": "service",
+                "invoice_policy": "order",
+                "list_price": 0.0,
+                "taxes_id": None,
+            }
+        )
         cls.partner = cls.env["res.partner"].create({"name": "Mr. Odoo"})
         cls.product1 = cls.env["product.product"].create(
             {"name": "Test Product 1", "type": "service", "invoice_policy": "order"}
