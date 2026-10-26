@@ -9,6 +9,8 @@ from unittest import skip
 from odoo import Command
 from odoo.exceptions import ValidationError
 
+from odoo.addons.base.tests.common import BaseCommon
+
 from .common import SaleTripleDiscountCommon
 
 
@@ -327,3 +329,93 @@ class TestSaleOrder(SaleTripleDiscountCommon):
         self.assertEqual(self.so_line1.discount1, 5)
         self.assertEqual(self.so_line1.discount2, 9)
         self.assertEqual(self.so_line1.discount3, 13)
+
+
+class TestSaleOrderCombo(BaseCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env.user.group_ids += cls.env.ref("sale.group_discount_per_so_line")
+        cls.partner = cls.env["res.partner"].create({"name": "Combo Buyer"})
+
+    def test_combo_order_line_precompute_discount(self):
+        """Saving an SO with a combo product must not crash during precompute.
+
+        Regression: ``discount`` is readonly (it comes from the mixin), so the core
+        drops it from the create vals and recomputes it in ``_add_precomputed_values``.
+        For a combo item line, the inherited ``_compute_discount`` calls
+        ``_get_linked_line().ensure_one()`` on the parent line that isn't linked yet
+        during create -> ``Expected singleton``. The combo item must be deferred in
+        precompute and recomputed in ``create`` (inheriting the parent's discount).
+        """
+        item_product = self.env["product.product"].create(
+            {"name": "Combo Item", "type": "service", "invoice_policy": "order"}
+        )
+        combo = self.env["product.combo"].create(
+            {
+                "name": "Test Combo",
+                "combo_item_ids": [Command.create({"product_id": item_product.id})],
+            }
+        )
+        combo_product = self.env["product.product"].create(
+            {
+                "name": "Combo Product",
+                "type": "combo",
+                "list_price": 30.0,
+                "combo_ids": [Command.set(combo.ids)],
+            }
+        )
+        pricelist = self.env["product.pricelist"].create(
+            {
+                "name": "10% off",
+                "item_ids": [
+                    Command.create(
+                        {
+                            "applied_on": "3_global",
+                            "compute_price": "percentage",
+                            "percent_price": 10.0,
+                        }
+                    )
+                ],
+            }
+        )
+        # Mimic the web client payload: the combo item line comes with
+        # ``linked_virtual_id`` (not ``linked_line_id``) and without ``discount``.
+        order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "pricelist_id": pricelist.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": combo_product.id,
+                            "virtual_id": "combo_parent",
+                            "product_uom_qty": 1.0,
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "product_id": item_product.id,
+                            "combo_item_id": combo.combo_item_ids.id,
+                            "linked_virtual_id": "combo_parent",
+                            "price_unit": 30.0,
+                        }
+                    ),
+                ],
+            }
+        )
+        combo_line = order.order_line.filtered(
+            lambda line: line.product_id == combo_product
+        )
+        item_line = order.order_line.filtered("combo_item_id")
+        self.assertEqual(
+            item_line.linked_line_id,
+            combo_line,
+            "The combo item should be linked to its parent line after create.",
+        )
+        self.assertAlmostEqual(
+            item_line.discount,
+            combo_line.discount,
+            msg="The combo item discount should inherit the parent line's discount.",
+        )
+        self.assertAlmostEqual(item_line.discount, 10.0)
