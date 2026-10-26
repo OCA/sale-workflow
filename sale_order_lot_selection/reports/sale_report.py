@@ -6,17 +6,10 @@ from odoo import fields, models
 class SaleReport(models.Model):
     _inherit = "sale.report"
 
-    lot_id = fields.Many2one(
-        comodel_name="stock.lot",
-        string="Lot",
-    )
+    lot_id = fields.Many2one(comodel_name="stock.lot")
 
-    def _select_additional_fields(self):
-        res = super()._select_additional_fields()
-        res["lot_id"] = "l.lot_id"
-        return res
+    def _select_dict(self, table):
+        return super()._select_dict(table) | {"lot_id": table.lot_id}
 
-    def _group_by_sale(self):
-        group_by = super()._group_by_sale()
-        group_by += ", l.lot_id"
-        return group_by
+    def _groupby_list(self, table):
+        return super()._groupby_list(table) + [table.lot_id]

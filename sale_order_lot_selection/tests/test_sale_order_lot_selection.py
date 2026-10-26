@@ -9,6 +9,15 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestSaleOrderLotSelection(BaseCommon):
+    _test_user_groups = (
+        "product.group_product_manager",
+        "sales_team.group_sale_manager",
+        "stock.group_stock_manager",
+        "stock.group_production_lot",
+    )
+
+    _test_user_name = "Test Sales & Stock Manager"
+
     @classmethod
     def setUpClass(cls):
         """
@@ -132,7 +141,7 @@ class TestSaleOrderLotSelection(BaseCommon):
             {
                 "product_id": self.product_12.id,
                 "product_uom_qty": self.product_12.qty_available,
-                "product_uom": self.product_12.uom_id.id,
+                "uom_id": self.product_12.uom_id.id,
                 "picking_id": picking_out.id,
                 "location_id": self.stock_location.id,
                 "location_dest_id": self.customer_location.id,
@@ -142,7 +151,7 @@ class TestSaleOrderLotSelection(BaseCommon):
             {
                 "product_id": self.product_46.id,
                 "product_uom_qty": self.product_46.qty_available,
-                "product_uom": self.product_46.uom_id.id,
+                "uom_id": self.product_46.uom_id.id,
                 "picking_id": picking_out.id,
                 "location_id": self.stock_location.id,
                 "location_dest_id": self.customer_location.id,
@@ -168,7 +177,7 @@ class TestSaleOrderLotSelection(BaseCommon):
             {
                 "product_id": self.prd_cable.id,
                 "product_uom_qty": 1,
-                "product_uom": self.prd_cable.uom_id.id,
+                "uom_id": self.prd_cable.uom_id.id,
                 "picking_id": picking_in.id,
                 "location_id": self.supplier_location.id,
                 "location_dest_id": self.stock_location.id,
@@ -178,7 +187,7 @@ class TestSaleOrderLotSelection(BaseCommon):
             {
                 "product_id": self.product_12.id,
                 "product_uom_qty": 1,
-                "product_uom": self.product_12.uom_id.id,
+                "uom_id": self.product_12.uom_id.id,
                 "picking_id": picking_in.id,
                 "location_id": self.supplier_location.id,
                 "location_dest_id": self.stock_location.id,
@@ -188,7 +197,7 @@ class TestSaleOrderLotSelection(BaseCommon):
             {
                 "product_id": self.product_46.id,
                 "product_uom_qty": 2,
-                "product_uom": self.product_46.uom_id.id,
+                "uom_id": self.product_46.uom_id.id,
                 "picking_id": picking_in.id,
                 "location_id": self.supplier_location.id,
                 "location_dest_id": self.stock_location.id,

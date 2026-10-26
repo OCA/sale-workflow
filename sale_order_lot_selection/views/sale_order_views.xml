@@ -5,12 +5,12 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='order_line']/list/field[@name='product_template_id']"
+                expr="//field[@name='order_line']/list/column[@name='product_and_description']"
                 position="after"
             >
                 <field
                     name="lot_id"
-                    invisible="not product_id or product_tracking=='none'"
+                    invisible="not product_id or not product_tracking"
                     readonly="qty_delivered>0"
                     context="{'default_product_id': product_id}"
                     groups="stock.group_production_lot"
@@ -23,7 +23,7 @@
             >
                 <field
                     name="lot_id"
-                    invisible="not product_id or product_tracking=='none'"
+                    invisible="not product_id or not product_tracking"
                     readonly="qty_delivered>0"
                     context="{'default_product_id': product_id}"
                     groups="stock.group_production_lot"
@@ -41,7 +41,7 @@
                     Lot:
                     <field
                     name="lot_id"
-                    invisible="not product_id or product_tracking=='none'"
+                    invisible="not product_id or not product_tracking"
                     context="{'default_product_id': product_id}"
                 />
                 </div>

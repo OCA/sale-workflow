@@ -15,10 +15,9 @@ class SaleOrderLine(models.Model):
         selection=_selection_product_tracking,
         compute="_compute_product_tracking",
     )
-    domain_lot_id = fields.Binary(compute="_compute_domain_lot_id")
+    domain_lot_id = fields.Json(compute="_compute_domain_lot_id")
     lot_id = fields.Many2one(
         "stock.lot",
-        "Lot",
         domain="domain_lot_id",
         copy=False,
         compute="_compute_lot_id",
@@ -37,7 +36,9 @@ class SaleOrderLine(models.Model):
     @api.depends("product_id")
     def _compute_product_tracking(self):
         for sol in self:
-            sol.product_tracking = sol.product_id.tracking or sol.product_tracking
+            sol.product_tracking = (
+                sol.product_id.tracking if sol.product_id else sol.product_tracking
+            )
 
     def _get_lot_id_quant_domain_locations(self):
         """This method retrieves the location(s) that will later be used in
@@ -66,7 +67,7 @@ class SaleOrderLine(models.Model):
         dp = self.env["decimal.precision"].precision_get("Product Unit of Measure")
         for sol in self:
             domain = []
-            if sol.product_id and sol.product_tracking != "none":
+            if sol.product_id and sol.product_tracking:
                 # Only available lots should be displayed. In pickings, the
                 # corresponding stock.quant record is selected directly, so we
                 # use the same filters that are used.
@@ -112,7 +113,7 @@ class SaleOrderLine(models.Model):
 
     def _inverse_lot_id(self):
         for item in self.filtered(
-            lambda x: x.product_id and x.product_tracking != "none" and x.move_ids
+            lambda x: x.product_id and x.product_tracking and x.move_ids
         ):
             moves = item.move_ids.filtered(lambda x: x.restrict_lot_id)
             if moves and all(move.state == "done" for move in moves):
