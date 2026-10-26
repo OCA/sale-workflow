@@ -42,6 +42,14 @@ due to reaching the validity date or exhausting all the quantities of products.
 .. contents::
    :local:
 
+Configuration
+=============
+
+In Settings > Sales, user can choose to:
+
+- Disable adding more lines to SOs from Blanket Orders
+- Assign BO number to draft BOs
+
 Usage
 =====
 
@@ -128,6 +136,9 @@ Contributors
 * `Trobz <https://trobz.com>`_:
 
     * Nguyễn Minh Chiến <chien@trobz.com>
+* `Escodoo <https://www.escodoo.com.br>`_:
+
+  * Wesley Oliveira <wesley.oliveira@escodoo.com.br>
 
 Other credits
 ~~~~~~~~~~~~~
