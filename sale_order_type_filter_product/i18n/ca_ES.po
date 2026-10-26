@@ -1,0 +1,136 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_type_filter_product
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-30 14:44+0000\n"
+"PO-Revision-Date: 2026-09-30 16:59+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ca_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.9\n"
+
+#. module: sale_order_type_filter_product
+#: model:ir.model,name:sale_order_type_filter_product.model_res_company
+msgid "Companies"
+msgstr "Empreses"
+
+#. module: sale_order_type_filter_product
+#: model:ir.model,name:sale_order_type_filter_product.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paràmetres de configuració"
+
+#. module: sale_order_type_filter_product
+#: model_terms:ir.ui.view,arch_db:sale_order_type_filter_product.res_config_settings_view_form_filter_product
+msgid ""
+"Define what happens when changing the sale order type if the order contains "
+"products that are not allowed for the new type."
+msgstr ""
+"Definiu què passa en canviar el tipus de comanda de venda si la comanda "
+"conté productes no permesos per al nou tipus."
+
+#. module: sale_order_type_filter_product
+#: model:ir.model.fields,help:sale_order_type_filter_product.field_res_company__sale_order_type_invalid_product_action
+#: model:ir.model.fields,help:sale_order_type_filter_product.field_res_config_settings__sale_order_type_invalid_product_action
+msgid ""
+"Defines what happens when changing the sale order type if the order "
+"contains products that are not allowed for the new type."
+msgstr ""
+"Defineix què passa en canviar el tipus de comanda de venda si la comanda "
+"conté productes no permesos per al nou tipus."
+
+#. module: sale_order_type_filter_product
+#: model:ir.model.fields,field_description:sale_order_type_filter_product.field_res_company__sale_order_type_invalid_product_action
+#: model:ir.model.fields,field_description:sale_order_type_filter_product.field_res_config_settings__sale_order_type_invalid_product_action
+#: model_terms:ir.ui.view,arch_db:sale_order_type_filter_product.res_config_settings_view_form_filter_product
+msgid "Invalid Products on Sale Order Type Change"
+msgstr "Canvi de tipus de comanda amb productes no vàlids en oferta"
+
+#. module: sale_order_type_filter_product
+#: model:ir.model.fields.selection,name:sale_order_type_filter_product.selection__res_company__sale_order_type_invalid_product_action__prevent
+msgid "Prevent Sale Order Type Change"
+msgstr "Evitar el canvi de tipus de comanda de venda"
+
+#. module: sale_order_type_filter_product
+#: model:ir.model,name:sale_order_type_filter_product.model_product_template
+msgid "Product"
+msgstr "Producte"
+
+#. module: sale_order_type_filter_product
+#: model:ir.model,name:sale_order_type_filter_product.model_product_product
+msgid "Product Variant"
+msgstr "Variant de producte"
+
+#. module: sale_order_type_filter_product
+#: model:ir.model.fields.selection,name:sale_order_type_filter_product.selection__res_company__sale_order_type_invalid_product_action__remove
+msgid "Remove Invalid Sale Order Lines"
+msgstr "Elimina les línies de comanda de venda no vàlides"
+
+#. module: sale_order_type_filter_product
+#: model:ir.model.fields,field_description:sale_order_type_filter_product.field_product_product__sale_order_type_ids
+#: model:ir.model.fields,field_description:sale_order_type_filter_product.field_product_template__sale_order_type_ids
+msgid "Sale Order Types"
+msgstr "Tipus de comandes de venda"
+
+#. module: sale_order_type_filter_product
+#: model:ir.model.fields,help:sale_order_type_filter_product.field_product_product__sale_order_type_ids
+#: model:ir.model.fields,help:sale_order_type_filter_product.field_product_template__sale_order_type_ids
+msgid "Sale order types for which this product is allowed."
+msgstr ""
+"Tipus de comandes de venda per a les quals està permès aquest producte."
+
+#. module: sale_order_type_filter_product
+#: model:ir.model.fields,help:sale_order_type_filter_product.field_product_product__variant_sale_order_type_ids
+msgid "Sale order types for which this product variant is allowed."
+msgstr ""
+"Tipus de comandes de venda per a les quals està permesa aquesta variant de "
+"producte."
+
+#. module: sale_order_type_filter_product
+#: model:ir.model,name:sale_order_type_filter_product.model_sale_order
+msgid "Sales Order"
+msgstr "Comanda"
+
+#. module: sale_order_type_filter_product
+#: model:ir.model,name:sale_order_type_filter_product.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línia comanda de venda"
+
+#. module: sale_order_type_filter_product
+#. odoo-python
+#: code:addons/sale_order_type_filter_product/models/sale_order_line.py:0
+msgid ""
+"The product %(product)s is not allowed for sale order type %"
+"(sale_order_type)s."
+msgstr ""
+"El producte %(product)s no està permès per al tipus de comanda de venda %"
+"(sale_order_type)s."
+
+#. module: sale_order_type_filter_product
+#: model:ir.model.fields,field_description:sale_order_type_filter_product.field_sale_order__type_allowed_product_ids
+msgid "Type Allowed Product"
+msgstr "Producte permès per tipus"
+
+#. module: sale_order_type_filter_product
+#: model:ir.model.fields,field_description:sale_order_type_filter_product.field_product_product__variant_sale_order_type_ids
+msgid "Variant Sale Order Types"
+msgstr "Tipus de comandes de venda de la variant"
+
+#. module: sale_order_type_filter_product
+#. odoo-python
+#: code:addons/sale_order_type_filter_product/models/sale_order.py:0
+msgid ""
+"You cannot change the sale order type because the following products are "
+"not allowed for the selected type:\n"
+"%(products)s"
+msgstr ""
+"No podeu canviar el tipus de comanda de venda perquè els productes següents "
+"no estan permesos per al tipus seleccionat:\n"
+"%(products)s"
