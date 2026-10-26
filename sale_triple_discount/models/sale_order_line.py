@@ -95,19 +95,27 @@ class SaleOrderLine(models.Model):
         + ["product_id", "product_uom_id", "product_uom_qty"]
     )
     def _compute_discount(self):
+        # A combo item not linked to its parent yet makes the core compute call
+        # _get_linked_line().ensure_one() on an empty recordset, which raises
+        # during create() precompute. Defer it: create() recomputes it once the
+        # link is set.
+        lines = self.filtered(
+            lambda line: line.linked_line_id or not line.combo_item_id
+        )
+        (self - lines).discount = 0.0
         # Base Odoo just continues instead of assigning to 0 in this case
         # but we depend on the super() value resetting to a discount unpolluted
         # by the extra fields before taking them into account
         discount_enabled = self.env[
             "product.pricelist.item"
         ]._is_discount_feature_enabled()
-        for line in self:
+        for line in lines:
             if not (line.order_id.pricelist_id and discount_enabled):
                 line.discount = 0
-        res = super()._compute_discount()
+        res = super(SaleOrderLine, lines)._compute_discount()
         if self.env.context.get("skip_triple_discount"):
             return res
-        for line in self:
+        for line in lines:
             line.discount = line._get_final_discount()
         return res
 
@@ -152,4 +160,12 @@ class SaleOrderLine(models.Model):
             if "discount" in vals and vals["discount"] == 0:
                 lines_to_discount |= line
         lines_to_discount.write({"discount1": 0.0, "discount2": 0.0, "discount3": 0.0})
+        # The combo items deferred in _compute_discount are linked now, so they
+        # can take the discount of their parent line.
+        deferred = order_lines.filtered(
+            lambda line: line.combo_item_id and line.linked_line_id
+        )
+        if deferred:
+            deferred._compute_discount1()
+            deferred._compute_discount()
         return order_lines
