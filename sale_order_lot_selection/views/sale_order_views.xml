@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_order_tree_lot" model="ir.ui.view">
         <field name="model">sale.order</field>
@@ -34,8 +34,8 @@
                 position="after"
             >
                 <div
-                    class="text-muted"
                     t-if="record.lot_id.value"
+                    class="text-muted"
                     groups="stock.group_production_lot"
                 >
                     Lot:

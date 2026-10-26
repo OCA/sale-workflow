@@ -74,12 +74,14 @@ class SaleOrderLine(models.Model):
                     sol._domain_lot_id_quant_domain()
                 )
                 available_quants = quants.filtered(
-                    lambda x, qty=sol.product_uom_qty: float_compare(
-                        x.available_quantity,
-                        qty,
-                        precision_digits=dp,
+                    lambda x, qty=sol.product_uom_qty: (
+                        float_compare(
+                            x.available_quantity,
+                            qty,
+                            precision_digits=dp,
+                        )
+                        >= 0
                     )
-                    >= 0
                 )
                 available_lots = available_quants.mapped("lot_id")
                 if (
