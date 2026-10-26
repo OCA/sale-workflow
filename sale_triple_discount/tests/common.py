@@ -11,7 +11,7 @@ class SaleTripleDiscountCommon(BaseCommon):
     @classmethod
     def setUpClass(cls) -> None:
         super().setUpClass()
-        cls.env.user.groups_id += cls.env.ref("sale.group_discount_per_so_line")
+        cls.env.user.group_ids += cls.env.ref("sale.group_discount_per_so_line")
         cls.partner = cls.env["res.partner"].create({"name": "Mr. Odoo"})
         cls.product1 = cls.env["product.product"].create(
             {"name": "Test Product 1", "type": "service", "invoice_policy": "order"}
@@ -35,7 +35,7 @@ class SaleTripleDiscountCommon(BaseCommon):
                 "product_id": cls.product1.id,
                 "name": "Line 1",
                 "product_uom_qty": 1.0,
-                "tax_id": [(6, 0, [cls.tax.id])],
+                "tax_ids": [(6, 0, [cls.tax.id])],
                 "price_unit": 600.0,
             }
         )
@@ -45,7 +45,7 @@ class SaleTripleDiscountCommon(BaseCommon):
                 "product_id": cls.product2.id,
                 "name": "Line 2",
                 "product_uom_qty": 10.0,
-                "tax_id": [(6, 0, [cls.tax.id])],
+                "tax_ids": [(6, 0, [cls.tax.id])],
                 "price_unit": 60.0,
             }
         )

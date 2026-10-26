@@ -52,7 +52,7 @@ class TestSaleOrder(SaleTripleDiscountCommon):
         self.assertAlmostEqual(self.order.amount_untaxed, 450.0)
         self.assertAlmostEqual(self.order.amount_tax, 67.5)
         # Mix taxed and untaxed:
-        self.so_line1.tax_id = False
+        self.so_line1.tax_ids = False
         self.assertAlmostEqual(self.order.amount_tax, 22.5)
         self._test_invoice_discount()
 
@@ -255,7 +255,7 @@ class TestSaleOrder(SaleTripleDiscountCommon):
             }
         )
         self.env.user.write(
-            {"groups_id": [(5, self.env.ref("sale.group_discount_per_so_line").id)]}
+            {"group_ids": [(5, self.env.ref("sale.group_discount_per_so_line").id)]}
         )
         self.order.pricelist_id = pricelist
         self.order.action_update_prices()
