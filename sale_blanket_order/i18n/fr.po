@@ -159,6 +159,11 @@ msgid "Analytic Precision"
 msgstr ""
 
 #. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_config_settings_form_view
+msgid "Assign Blanket Order number to draft Blanket Order"
+msgstr ""
+
+#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_attachment_count
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_attachment_count
 msgid "Attachment Count"
@@ -244,6 +249,11 @@ msgid ""
 msgstr ""
 "Cliquez pour créer une soumission pouvant être convertie en commande de "
 "vente."
+
+#. module: sale_blanket_order
+#: model:ir.model,name:sale_blanket_order.model_res_company
+msgid "Companies"
+msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__company_id
@@ -369,9 +379,18 @@ msgid "Done"
 msgstr "Fait"
 
 #. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__draft
+#, python-format
 msgid "Draft"
 msgstr "Brouillon"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_res_company__blanket_order_seq_number_from_draft
+#: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__blanket_order_seq_number_from_draft
+msgid "Enable Blanket Order numbering from draft state"
+msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.actions.server,name:sale_blanket_order.expired_blanket_orders_cron_ir_actions_server

@@ -23,7 +23,8 @@ msgstr ""
 msgid ""
 "\n"
 "                    You cannot change the type of a sale order line.\n"
-"                    Instead you should delete the current line and create a new line\n"
+"                    Instead you should delete the current line and create a "
+"new line\n"
 "                    of the proper type.\n"
 "                    "
 msgstr ""
@@ -158,6 +159,11 @@ msgid "Analytic Precision"
 msgstr "Precisão Analítica"
 
 #. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_config_settings_form_view
+msgid "Assign Blanket Order number to draft Blanket Order"
+msgstr ""
+
+#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_attachment_count
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_attachment_count
 msgid "Attachment Count"
@@ -243,6 +249,11 @@ msgid ""
 msgstr ""
 "Clique para criar um pedido em aberto que pode ser convertido em pedido de "
 "venda."
+
+#. module: sale_blanket_order
+#: model:ir.model,name:sale_blanket_order.model_res_company
+msgid "Companies"
+msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__company_id
@@ -370,9 +381,18 @@ msgid "Done"
 msgstr "Concluído"
 
 #. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__draft
+#, python-format
 msgid "Draft"
 msgstr "Rascunho"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_res_company__blanket_order_seq_number_from_draft
+#: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__blanket_order_seq_number_from_draft
+msgid "Enable Blanket Order numbering from draft state"
+msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.actions.server,name:sale_blanket_order.expired_blanket_orders_cron_ir_actions_server
@@ -953,7 +973,8 @@ msgstr "Valor sem Impostos"
 #: model_terms:ir.actions.act_window,help:sale_blanket_order.act_open_blanket_order_view
 msgid ""
 "Use this menu to search within your blanket orders. For each blanket order,\n"
-"                you can track the related discussion with the customer, control\n"
+"                you can track the related discussion with the customer, "
+"control\n"
 "                the products delivered and control the vendor bills."
 msgstr ""
 "Use este menu para pesquisar em seus pedidos guarda-chuva. Para cada pedido "
@@ -1024,8 +1045,8 @@ msgstr ""
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid ""
-"You can not delete an open blanket or with active sale orders! Try to cancel"
-" it before."
+"You can not delete an open blanket or with active sale orders! Try to cancel "
+"it before."
 msgstr ""
 "Você não pode excluir um pedido guarda-chuva ou com pedidos de venda ativos! "
 "Tente cancelá-lo antes."
