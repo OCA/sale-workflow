@@ -33,3 +33,4 @@ class SaleOrderCancelReason(models.Model):
     _description = "Sale Order Cancel Reason"
 
     name = fields.Char("Reason", required=True, translate=True)
+    active = fields.Boolean(default=True)
