@@ -39,9 +39,9 @@ class TestSaleExceptionUncommittedLine(TransactionCase):
         # (bypassing the test_enable short-circuit), so our mocked
         # Environment below is the one used as new_env.
         cls.env = cls.env(context=dict(cls.env.context, test_base_exception=True))
-        cls.partner = cls.env.ref("base.res_partner_1")
-        cls.product_1 = cls.env.ref("product.product_product_6")
-        cls.product_2 = cls.env.ref("product.product_product_7")
+        cls.partner = cls.env["res.partner"].create({"name": "Test partner"})
+        cls.product_1 = cls.env["product.product"].create({"name": "Product 1"})
+        cls.product_2 = cls.env["product.product"].create({"name": "Product 2"})
 
     def test_add_line_to_confirmed_order_uncommitted(self):
         order = self.env["sale.order"].create(
