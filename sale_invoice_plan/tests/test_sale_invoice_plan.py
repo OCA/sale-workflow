@@ -266,6 +266,52 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         self.so_service.remove_invoice_plan()
         self.assertFalse(self.so_service.invoice_plan_ids)
 
+    def test_04_one_installment_with_advance(self):
+        """Test Case: installment = 1 must be allowed when
+        advance=True, but must still raise ValidationError when advance = False."""
+        ctx = {
+            "active_id": self.so_service.id,
+            "active_ids": [self.so_service.id],
+            "all_remain_invoices": True,
+        }
+        # 1 installment without advance must still raise ValidationError
+        f = Form(self.env["sale.create.invoice.plan"])
+        f.num_installment = 1
+        with self.assertRaises(ValidationError):
+            f.save()
+        # 1 installment with advance must be allowed (the fix)
+        f.advance = True
+        plan = f.save()
+        plan.with_context(**ctx).sale_create_invoice_plan()
+        # Expect 2 lines: 1 advance line + 1 installment line
+        self.assertEqual(
+            len(self.so_service.invoice_plan_ids),
+            2,
+            "Should have 1 advance line + 1 installment line",
+        )
+        advance_line = self.so_service.invoice_plan_ids.filtered(
+            lambda ip: ip.invoice_type == "advance"
+        )
+        self.assertEqual(len(advance_line), 1, "Should have exactly 1 advance line")
+        installment_line = self.so_service.invoice_plan_ids.filtered(
+            lambda ip: ip.invoice_type == "installment"
+        )
+        self.assertEqual(
+            installment_line.percent, 100.0, "Single installment should be 100%"
+        )
+        # Fill advance percent to allow SO confirmation
+        advance_line.percent = 30
+        self.so_service.action_confirm()
+        # Create all invoices
+        wizard = self.env["sale.make.planned.invoice"].create({})
+        wizard.with_context(**ctx).create_invoices_by_plan()
+        # Should produce 2 invoices: advance + installment
+        self.assertEqual(
+            len(self.so_service.invoice_ids),
+            2,
+            "Should create 2 invoices: advance + installment",
+        )
+
     def test_invoice_plan_so_edit(self):
         """Case when some installment already invoiced,
         but then, the SO line added. Test to ensure that
