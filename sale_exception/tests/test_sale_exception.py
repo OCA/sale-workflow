@@ -8,7 +8,7 @@
 from odoo import SUPERUSER_ID, Command
 from odoo.api import Environment
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests import Form, TransactionCase
+from odoo.tests import Form, TransactionCase, new_test_user
 
 from odoo.addons.base_exception.exceptions import BaseExceptionError
 from odoo.addons.base_exception.tests.common import (
@@ -362,3 +362,30 @@ class TestSaleException(TransactionCase):
             self.assertTrue(sale_order.order_line.with_env(new_env).exception_ids)
             self.assertNotEqual(sale_order.state, "sale")
             self.assertNotEqual(sale_order.with_env(new_env).state, "sale")
+
+    def test_confirm_in_sudo_without_write_access(self):
+        """The exceptions are stored in a new cursor: this must also work when
+        the order is confirmed in sudo by a user without write access on
+        sale orders (e.g. from the portal)."""
+        self.env["exception.rule"].create(
+            {
+                "name": "No dumping",
+                "sequence": 50,
+                "model": "sale.order.line",
+                "code": (
+                    "failed = obj.product_id.standard_price != 0 and "
+                    "obj.product_id.standard_price > obj.price_unit"
+                ),
+            }
+        )
+        self.product_6.standard_price = 10.0
+        sale_order = self._create_sale_order(
+            partner=self.partner, product=self.product_6
+        )
+        sale_order.order_line.price_unit = 5.0
+        portal_user = new_test_user(
+            self.env, login="sale_exception_portal", groups="base.group_portal"
+        )
+        self.enterContext(self.registry_test_mode())
+        with self.assertRaises(BaseExceptionError):
+            sale_order.with_user(portal_user).sudo().action_confirm()
