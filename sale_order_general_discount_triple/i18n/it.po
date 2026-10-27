@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-10-05 10:46+0000\n"
+"PO-Revision-Date: 2026-10-27 14:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -57,7 +57,7 @@ msgstr "Sconto 3 (%)"
 #. module: sale_order_general_discount_triple
 #: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_res_config_settings__general_discount
 msgid "General Discount"
-msgstr "Sconto Generale"
+msgstr "Sconto generale"
 
 #. module: sale_order_general_discount_triple
 #: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_res_config_settings__pricelist_discount
