@@ -326,15 +326,24 @@ class TestSaleException(TransactionCase):
         self.assertTrue(sale_order.state == "draft")
 
     def test_sale_order_line_exception_stored(self):
-        exception = self.env.ref("sale_exception.excep_no_dumping").sudo()
-        exception.active = True
-        partner = self.env.ref("base.res_partner_1")
-        product = self.env.ref("product.product_product_6")
+        self.env["exception.rule"].create(
+            {
+                "name": "No dumping",
+                "description": "A product is sold cheaper than his cost.",
+                "sequence": 50,
+                "model": "sale.order.line",
+                "code": (
+                    "failed = obj.product_id.standard_price != 0 and "
+                    "obj.product_id.standard_price > obj.price_unit"
+                ),
+            }
+        )
+        partner = self.partner
+        product = self.product_6
         product.standard_price = 10.0
         sale_order = self._create_sale_order(partner=partner, product=product)
         sale_order.order_line.price_unit = 5.0
-        self.registry.enter_test_mode(self.cr)
-        self.addCleanup(self.registry.leave_test_mode)
+        self.enterContext(self.registry_test_mode())
         with (
             self.registry.cursor() as new_cr,
         ):
@@ -346,7 +355,7 @@ class TestSaleException(TransactionCase):
                 self.assertRaises(BaseExceptionError),
             ):
                 sale_order.action_confirm()
-            new_cr._savepoint = None
+            new_cr._cnx._savepoint = None
             self.assertFalse(sale_order.exception_ids)
             self.assertTrue(sale_order.with_env(new_env).exception_ids)
             self.assertFalse(sale_order.order_line.exception_ids)
