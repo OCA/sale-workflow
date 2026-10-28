@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-22 23:36+0000\n"
-"PO-Revision-Date: 2026-01-11 17:42+0000\n"
+"PO-Revision-Date: 2026-10-28 11:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_rental
 #: help:sale.rental,in_state:0 help:sale.rental,out_state:0
@@ -112,7 +112,7 @@ msgstr "Creato il"
 #. module: sale_rental
 #: field:create.rental.product,default_code:0
 msgid "Default Code"
-msgstr "Default Code"
+msgstr "Codice predefinito"
 
 #. module: sale_rental
 #: view:sale.rental:sale_rental.sale_rental_form
@@ -155,7 +155,7 @@ msgstr "ID"
 #. module: sale_rental
 #: help:sale.order.line,rental_qty:0 help:sale.rental,rental_qty:0
 msgid "Indicate the number of items that will be rented."
-msgstr "Indica il numero di pezzi che verranno noleggiati."
+msgstr "Indica il numero di oggetti che verranno noleggiati."
 
 #. module: sale_rental
 #: field:create.rental.product,__last_update:0
@@ -306,7 +306,7 @@ msgstr "Servizio noleggio collegato"
 #. module: sale_rental
 #: field:product.product,rented_product_id:0
 msgid "Related Rented Product"
-msgstr "Prodotto noleggiabile collegato"
+msgstr "Prodotto noleggiato collegato"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:522
@@ -343,13 +343,13 @@ msgstr "Estensioni noleggio"
 #: model:stock.location,name:sale_rental.rental_in_stock_location
 #: field:stock.warehouse,rental_in_location_id:0
 msgid "Rental In"
-msgstr "Noleggio In"
+msgstr "Ingresso noleggio"
 
 #. module: sale_rental
 #: model:stock.location,name:sale_rental.rental_out_stock_location
 #: field:stock.warehouse,rental_out_location_id:0
 msgid "Rental Out"
-msgstr "Noleggio Out"
+msgstr "Uscita noleggio"
 
 #. module: sale_rental
 #: field:create.rental.product,sale_price_per_day:0
@@ -364,7 +364,7 @@ msgstr "Quantità noleggio"
 #. module: sale_rental
 #: field:stock.warehouse,rental_route_id:0
 msgid "Rental Route"
-msgstr "Route - Noleggio"
+msgstr "Percorso noleggio"
 
 #. module: sale_rental
 #: field:sale.rental,start_order_id:0
@@ -410,7 +410,7 @@ msgstr "Rental of one iPad Mini"
 #. module: sale_rental
 #: field:sale.order.line,extension_rental_id:0
 msgid "Rental to Extend"
-msgstr "Estensione noleggio"
+msgstr "Noleggio da estendere"
 
 #. module: sale_rental
 #: field:sale.order.line,sell_rental_id:0
@@ -472,7 +472,7 @@ msgstr ""
 #: model:stock.location.route,name:sale_rental.route_warehouse0_sell_rented_product
 #, python-format
 msgid "Sell Rented Product"
-msgstr "Prodotti noleggiati venduti"
+msgstr "Vendita prodotti noleggiati"
 
 #. module: sale_rental
 #: field:stock.warehouse,sell_rented_product_route_id:0
@@ -528,7 +528,8 @@ msgstr "Movimento di magazzino"
 #: code:addons/sale_rental/rental.py:541
 #, python-format
 msgid "The Rental Input stock location is not set on the warehouse %s"
-msgstr "La locazione \"Noleggio In\" non fa parte del magazzino %s"
+msgstr ""
+"L'ubicazione di magazzino ingresso noleggio non è impostata nel magazzino %s"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:545
