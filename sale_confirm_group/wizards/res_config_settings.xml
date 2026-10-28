@@ -19,9 +19,9 @@
                         nolabel="1"
                         invisible="not use_sale_confirmation_groups"
                     >
-                        <list editable="bottom">
+                        <tree editable="bottom">
                             <field name="display_name" nolabel="1" />
-                        </list>
+                        </tree>
                     </field>
                 </setting>
             </block>

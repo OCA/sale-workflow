@@ -1,14 +1,16 @@
 # Copyright 2025 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 
-from odoo import api, exceptions, fields, models
+from lxml import etree
+
+from odoo import _, api, exceptions, fields, models
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     user_can_confirm = fields.Boolean(
-        compute="_compute_user_can_confirm", compute_sudo=True
+        compute="_compute_user_can_confirm", compute_sudo=False
     )
 
     @api.depends(
@@ -25,13 +27,14 @@ class SaleOrder(models.Model):
     @api.depends_context("uid")
     def _compute_user_can_confirm(self):
         user = self.env.user
-        for company, sales in self.grouped("company_id").items():
+        for sale in self:
+            company = sale.company_id.sudo()
             if not company.use_sale_confirmation_groups:
-                sales.user_can_confirm = True
+                sale.user_can_confirm = True
             elif not (groups := company.sale_confirmation_group_ids):
-                sales.user_can_confirm = True
+                sale.user_can_confirm = True
             else:
-                sales.user_can_confirm = (
+                sale.user_can_confirm = (
                     user in groups.with_context(active_test=False).users
                 )
 
@@ -49,10 +52,12 @@ class SaleOrder(models.Model):
 
         # 3- at least 1 SO cannot be confirmed by the user
         raise exceptions.ValidationError(
-            self.env._(
-                "User %s cannot confirm Sale(s) %s",
-                self.env.user.name,
-                ", ".join((self - can_confirm).mapped(lambda s: f"'{s.display_name}'")),
+            _(
+                "User %(user)s cannot confirm Sale(s) %(sales)s",
+                user=self.env.user.name,
+                sales=", ".join(
+                    f"'{sale.display_name}'" for sale in self - can_confirm
+                ),
             )
         )
 
@@ -74,15 +79,12 @@ class SaleOrder(models.Model):
     def _get_view(self, view_id=None, view_type="form", **options):
         # OVERRIDE: hide the SO ``action_confirm`` button to users who shouldn't be
         # allowed confirmation
-        # NB: we override ``sale.order._get_view()``, not ``sale.order.get_view()``,
-        # because:
-        # - the result of ``sale.order._get_view()`` is cached
-        # - the result of ``sale.order._get_view()`` is updated by method
-        #   ``ir.ui.view._add_missing_fields()`` to automatically add fields needed for
-        #   the evaluation of nodes' attributes (required, invisible, etc...),
-        #   so we don't need to do it here
         arch, view = super()._get_view(view_id=view_id, view_type=view_type, **options)
-        for node in arch.xpath("//button[@name='action_confirm']"):
+        buttons = arch.xpath("//button[@name='action_confirm']")
+        if buttons and not arch.xpath("./field[@name='user_can_confirm']"):
+            # Odoo 17 does not automatically add fields used by modifiers.
+            etree.SubElement(arch, "field", name="user_can_confirm", invisible="1")
+        for node in buttons:
             if value := node.get("invisible"):
                 node.set("invisible", f"not user_can_confirm or ({value})")
             else:
