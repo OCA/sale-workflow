@@ -63,7 +63,7 @@ class SaleOrderLine(models.Model):
 
     @api.depends("product_id", "product_uom_qty", "warehouse_id")
     def _compute_domain_lot_id(self):
-        dp = self.env["decimal.precision"].precision_get("Product Unit of Measure")
+        dp = self.env["decimal.precision"].precision_get("Product Unit")
         for sol in self:
             domain = []
             if sol.product_id and sol.product_tracking != "none":
