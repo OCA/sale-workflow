@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2026-10-28 09:25+0000\n"
+"PO-Revision-Date: 2026-10-28 11:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -617,8 +617,8 @@ msgid ""
 "The rental product '{}' must have the option 'Must Have Start and End Dates' "
 "checked."
 msgstr ""
-"Il prodotto noleggiabile '{}' deve avere il flag su \"Deve avere una data di "
-"inizio e di fine\""
+"Il prodotto noleggio '{}' deve avere l'opzione 'Deve avere una data di "
+"inizio e di fine' selezionata."
 
 #. module: sale_rental
 #: model:ir.model.constraint,message:sale_rental.constraint_sale_order_line_rental_qty_positive
@@ -629,7 +629,7 @@ msgstr ""
 #: code:addons/sale_rental/models/product.py:0
 #, python-format
 msgid "The unit of measure of the rental product '{}' must be 'Day'."
-msgstr "L'unità di misura per il prodotto '{}' deve essere \"Giorno\""
+msgstr "L'unità di misura per il prodotto '{}' deve essere \"Giorno\"."
 
 #. module: sale_rental
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_form
