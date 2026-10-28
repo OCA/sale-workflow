@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2026-01-11 17:42+0000\n"
+"PO-Revision-Date: 2026-10-28 11:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_rental
 #: model:ir.model.fields,help:sale_rental.field_sale_rental_in_state
@@ -122,7 +122,7 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_default_code
 msgid "Default Code"
-msgstr "Default Code"
+msgstr "Codice predefinito"
 
 #. module: sale_rental
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_form
@@ -173,7 +173,7 @@ msgstr "ID"
 #: model:ir.model.fields,help:sale_rental.field_sale_order_line_rental_qty
 #: model:ir.model.fields,help:sale_rental.field_sale_rental_rental_qty
 msgid "Indicate the number of items that will be rented."
-msgstr "Indica il numero di pezzi che verranno noleggiati."
+msgstr "Indica il numero di oggetti che verranno noleggiati."
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_stock_inventory
@@ -325,7 +325,7 @@ msgstr "Servizio noleggio collegato"
 #: model:ir.model.fields,field_description:sale_rental.field_delivery_carrier_rented_product_id
 #: model:ir.model.fields,field_description:sale_rental.field_product_product_rented_product_id
 msgid "Related Rented Product"
-msgstr "Prodotto noleggiabile collegato"
+msgstr "Prodotto noleggiato collegato"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock.py:36
@@ -365,14 +365,14 @@ msgstr "Estensioni noleggio"
 #: model:ir.model.fields,field_description:sale_rental.field_stock_warehouse_rental_in_location_id
 #, python-format
 msgid "Rental In"
-msgstr "Noleggio In"
+msgstr "Ingresso noleggio"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock.py:133
 #: model:ir.model.fields,field_description:sale_rental.field_stock_warehouse_rental_out_location_id
 #, python-format
 msgid "Rental Out"
-msgstr "Noleggio Out"
+msgstr "Uscita noleggio"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_sale_price_per_day
@@ -388,7 +388,7 @@ msgstr "Quantità noleggio"
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_stock_warehouse_rental_route_id
 msgid "Rental Route"
-msgstr "Route - Noleggio"
+msgstr "Percorso noleggio"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_start_order_id
@@ -437,7 +437,7 @@ msgstr "Rental of one iPad Mini"
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_order_line_extension_rental_id
 msgid "Rental to Extend"
-msgstr "Estensione noleggio"
+msgstr "Noleggio da estendere"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_order_line_sell_rental_id
@@ -504,7 +504,7 @@ msgstr ""
 #: model:stock.location.route,name:sale_rental.route_warehouse0_sell_rented_product
 #, python-format
 msgid "Sell Rented Product"
-msgstr "Prodotti noleggiati venduti"
+msgstr "Vendita prodotti noleggiati"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_stock_warehouse_sell_rented_product_route_id
@@ -559,7 +559,8 @@ msgstr ""
 #: code:addons/sale_rental/models/stock.py:54
 #, python-format
 msgid "The Rental Input stock location is not set on the warehouse %s"
-msgstr "La locazione \"Noleggio In\" non fa parte del magazzino %s"
+msgstr ""
+"L'ubicazione di magazzino ingresso noleggio non è impostata nel magazzino %s"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock.py:58
