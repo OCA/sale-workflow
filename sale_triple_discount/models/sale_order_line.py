@@ -154,12 +154,16 @@ class SaleOrderLine(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
+        # Reset the discounts through the values instead of pairing the created lines
+        # with them afterwards: super() may return a different number of lines, as
+        # sale_product_pack replaces a pack line with the lines of its components.
+        vals_list = [
+            dict(vals, discount1=0.0, discount2=0.0, discount3=0.0)
+            if vals.get("discount") == 0
+            else vals
+            for vals in vals_list
+        ]
         order_lines = super().create(vals_list)
-        lines_to_discount = self.env["sale.order.line"]
-        for line, vals in zip(order_lines, vals_list, strict=True):
-            if "discount" in vals and vals["discount"] == 0:
-                lines_to_discount |= line
-        lines_to_discount.write({"discount1": 0.0, "discount2": 0.0, "discount3": 0.0})
         # The combo items deferred in _compute_discount are linked now, so they
         # can take the discount of their parent line.
         deferred = order_lines.filtered(
