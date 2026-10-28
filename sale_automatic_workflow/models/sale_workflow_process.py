@@ -89,21 +89,18 @@ class SaleWorkflowProcess(models.Model):
     )
     create_invoice_filter_id = fields.Many2one(
         "ir.filters",
-        string="Create Invoice Filter",
         default=lambda self: self._default_filter(
             "sale_automatic_workflow.automatic_workflow_create_invoice_filter"
         ),
     )
     validate_invoice_filter_id = fields.Many2one(
         "ir.filters",
-        string="Validate Invoice Filter",
         default=lambda self: self._default_filter(
             "sale_automatic_workflow.automatic_workflow_validate_invoice_filter"
         ),
     )
     sale_done_filter_id = fields.Many2one(
         "ir.filters",
-        string="Sale Done Filter",
         default=lambda self: self._default_filter(
             "sale_automatic_workflow.automatic_workflow_sale_done_filter"
         ),

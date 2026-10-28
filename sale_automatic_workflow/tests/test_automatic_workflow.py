@@ -278,7 +278,7 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         """No payment is created when there is nothing left to pay."""
         workflow = self.create_full_automatic()
         workflow.register_payment = True
-        dummy, invoice = self._create_zero_amount_invoice(workflow)
+        _sale, invoice = self._create_zero_amount_invoice(workflow)
         payment_obj = self.env["account.payment"]
         payments_before = payment_obj.search_count([])
         payment = self.env["automatic.workflow.job"]._register_payment_invoice(invoice)
@@ -294,7 +294,7 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         """
         workflow = self.create_full_automatic()
         workflow.register_payment = True
-        sale, dummy = self._create_zero_amount_invoice(workflow)
+        sale, _invoice = self._create_zero_amount_invoice(workflow)
         # The partner is created by create_sale_order, so it is only used by
         # this order and we can count its payments safely.
         domain = [("partner_id", "=", sale.partner_id.id)]
@@ -318,7 +318,7 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         """
         workflow = self.create_full_automatic()
         workflow.register_payment = True
-        sale, dummy = self._create_zero_amount_invoice(workflow)
+        sale, _invoice = self._create_zero_amount_invoice(workflow)
         job = self.env["automatic.workflow.job"]
         domain = [
             ("state", "=", "posted"),
