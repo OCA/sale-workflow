@@ -10,6 +10,13 @@ You can find the following configurations in the settings:
     orders of the current day are assigned.
 5.  **Calendar event max duration**: Show a warning message when
     duration is more than this time. Set 00:00 to disable warning.
+6.  **Event done when confirm sale**: Set the event as done when its
+    related sale order is confirmed.
+7.  **Open new orders in the order form**: A sale order created from a
+    planner event opens in the product catalog by default. Enable this
+    option to open the order form instead, to fill in the order header
+    first (commitment date, notes...) and add products later with the
+    Catalog button of the order lines.
 
 Other setting are available with system parameters
 
