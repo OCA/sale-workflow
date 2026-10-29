@@ -149,3 +149,16 @@ class TestSaleMultiPickingByCommitmentDate(TransactionCase):
                 procurements = self.move_ob.search([("group_id", "=", group.id)])
                 self.assertEqual(len(procurements), 4)
         self.assertEqual(len(groups), 1)
+
+    def test_move_date_from_commitment_date(self):
+        """The move is planned at the commitment date minus the security
+        lead time, and its deadline is the commitment date"""
+        self.sale1.company_id.security_lead = 1
+        self.sale1.action_confirm()
+        commitment_date = self.sale_line1.commitment_date.replace(microsecond=0)
+        move = self.sale_line1.move_ids
+        self.assertEqual(
+            move.date.replace(microsecond=0),
+            commitment_date - datetime.timedelta(days=1),
+        )
+        self.assertEqual(move.date_deadline.replace(microsecond=0), commitment_date)
