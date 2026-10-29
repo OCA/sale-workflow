@@ -24,9 +24,7 @@ class SaleOrder(models.Model):
 
     @api.depends("order_line.qty_delivered", "order_line.product_uom_qty")
     def _compute_all_qty_delivered(self):
-        precision = self.env["decimal.precision"].precision_get(
-            "Product Unit of Measure"
-        )
+        precision = self.env["decimal.precision"].precision_get("Product Unit")
         for order in self:
             order.all_qty_delivered = all(
                 line.product_id.type == "service"
