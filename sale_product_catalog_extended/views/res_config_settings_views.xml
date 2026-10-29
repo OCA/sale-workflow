@@ -16,13 +16,24 @@
                         <div class="row mt8">
                             <label
                                 for="default_catalog_origin_data"
-                                string="Origin"
+                                string="Products"
                                 class="col-lg-4 o_light_label"
                             />
-                            <field
-                                name="default_catalog_origin_data"
-                                placeholder="Products"
-                            />
+                            <div class="col d-flex align-items-center">
+                                <field
+                                    name="default_catalog_origin_data"
+                                    placeholder="All"
+                                />
+                                <field
+                                    name="catalog_show_origin_data"
+                                    class="w-auto ms-2"
+                                />
+                                <label
+                                    for="catalog_show_origin_data"
+                                    string="Show"
+                                    class="o_light_label ms-1"
+                                />
+                            </div>
                         </div>
                         <div class="row">
                             <label

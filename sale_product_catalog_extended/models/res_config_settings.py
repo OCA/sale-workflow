@@ -19,10 +19,16 @@ class ResConfigSettings(models.TransientModel):
 
     default_catalog_origin_data = fields.Selection(
         selection=_catalog_field_selection("catalog_origin_data"),
-        string="Catalog origin",
+        string="Catalog products",
         default_model="product.product",
         help="Cards shown by default in the product catalog of sale orders. "
-        "Products when empty.",
+        "All the products when empty.",
+    )
+    catalog_show_origin_data = fields.Boolean(
+        string="Show the catalog products",
+        config_parameter="sale_product_catalog_extended.catalog_show_origin_data",
+        help="Show the Products section in the product catalog search panel. "
+        "When hidden, the products default still applies.",
     )
     default_catalog_last_sales = fields.Selection(
         selection=_catalog_field_selection("catalog_last_sales"),
