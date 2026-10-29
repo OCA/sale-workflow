@@ -1,9 +1,17 @@
 # Copyright 2025 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from datetime import timedelta
+from operator import ge, gt, le, lt
 
 from odoo import api, fields, models
 from odoo.osv import expression
+
+# Operators of the catalog_price_limit leaf, the search view sets "<=".
+CATALOG_PRICE_OPERATORS = {"<=": le, "<": lt, ">=": ge, ">": gt}
+# Key of the cursor cache of the prices compared with the price limit. It lives
+# as long as the cursor, that is one request, so the kanban records, their
+# count and the search panel sections compute each price once.
+CATALOG_PRICE_CACHE_KEY = "sale_product_catalog_extended.catalog_prices"
 
 
 class ProductProduct(models.Model):
@@ -45,6 +53,16 @@ class ProductProduct(models.Model):
         selection=[("name", "Name"), ("category", "Category")],
         store=False,
         search="_search_catalog_sort",
+    )
+    # Maximum price of the products shown, typed in the catalog search bar.
+    # It is compared with the price the card shows for the product: the
+    # pricelist price of the order or, with the Last sale price, the last sale
+    # price when the product has one.
+    catalog_price_limit = fields.Float(
+        string="Max price",
+        digits="Product Price",
+        store=False,
+        search="_search_catalog_price_limit",
     )
 
     @api.model
@@ -115,6 +133,98 @@ class ProductProduct(models.Model):
         return [pid for pid in product_ids if pid in matching_ids]
 
     @api.model
+    def _get_catalog_leaf(self, domain, field_name):
+        """Last leaf of ``field_name`` found in ``domain``, or ``None``."""
+        found = None
+        for leaf in domain:
+            if (
+                isinstance(leaf, list | tuple)
+                and len(leaf) == 3
+                and leaf[0] == field_name
+            ):
+                found = leaf
+        return found
+
+    @api.model
+    def _get_catalog_sale_order(self):
+        """Sale order the catalog is opened from, empty for other catalogs
+        (e.g. the purchase one)."""
+        if self.env.context.get("product_catalog_order_model") != "sale.order":
+            return self.env["sale.order"]
+        return (
+            self.env["sale.order"]
+            .browse(self.env.context.get("product_catalog_order_id"))
+            .exists()
+        )
+
+    @api.model
+    def _get_catalog_prices(self, product_ids, domain):
+        """Return ``{product_id: price}`` with the price the catalog cards of
+        ``product_ids`` show, for the price options found in ``domain``.
+
+        The prices are kept in the cursor cache, so the several searches of a
+        catalog load (records, count, search panel) compute each one once.
+        """
+        order = self._get_catalog_sale_order()
+        price_mode = self._get_catalog_leaf(domain, "catalog_price_mode")
+        history_partner = self._get_catalog_leaf(domain, "catalog_history_partner")
+        last_price = bool(price_mode and price_mode[2] == "last_price")
+        use_delivery_address = bool(
+            history_partner and history_partner[2] == "delivery_address"
+        )
+        key = (
+            order.id,
+            order.pricelist_id.id,
+            order.currency_id.id,
+            order.date_order,
+            last_price,
+            use_delivery_address,
+        )
+        cache = self.env.cr.cache.setdefault(CATALOG_PRICE_CACHE_KEY, {})
+        prices = cache.setdefault(key, {})
+        missing_ids = [pid for pid in product_ids if pid not in prices]
+        if missing_ids:
+            prices.update(
+                order._get_catalog_filter_prices(
+                    self.browse(missing_ids),
+                    last_price=last_price,
+                    use_delivery_address=use_delivery_address,
+                )
+            )
+        return prices
+
+    @api.model
+    def _apply_catalog_price_limit(
+        self, product_ids, domain, search_domain=None, order=None
+    ):
+        """Keep the products whose catalog price matches the
+        ``catalog_price_limit`` leaf of ``domain``.
+
+        :param product_ids: ordered product ids, ``None`` to take the ones
+            matching ``search_domain`` (``domain`` by default) in ``order``.
+        :return: the kept ids in the same order, or ``product_ids`` unchanged
+            when there is no price limit or no sale order to price with.
+        """
+        leaf = self._get_catalog_leaf(domain, "catalog_price_limit")
+        compare = leaf and CATALOG_PRICE_OPERATORS.get(leaf[1])
+        if (
+            not compare
+            or not isinstance(leaf[2], int | float)
+            or not self._get_catalog_sale_order()
+        ):
+            return product_ids
+        if product_ids is None:
+            # The price limit leaf is a no-op on search, so the rest of the
+            # filters are applied in SQL before pricing the products.
+            product_ids = list(
+                self._search(
+                    domain if search_domain is None else search_domain, order=order
+                ).get_result_ids()
+            )
+        prices = self._get_catalog_prices(product_ids, domain)
+        return [pid for pid in product_ids if compare(prices.get(pid, 0.0), leaf[2])]
+
+    @api.model
     def _get_catalog_sort_orders(self):
         """Order of each ``catalog_sort`` option. The product name is sorted in
         the language of the user, and the category by its complete name, so the
@@ -140,7 +250,11 @@ class ProductProduct(models.Model):
     @api.model
     def search_fetch(self, domain, field_names, offset=0, limit=None, order=None):
         sort_order = self._get_catalog_sort_order(domain)
-        product_ids = self._search_catalog_origin_ids(domain)
+        product_ids = self._apply_catalog_price_limit(
+            self._search_catalog_origin_ids(domain),
+            domain,
+            order=sort_order or order,
+        )
         if product_ids is not None:
             if sort_order:
                 # Sorted once the origin products are chosen, so e.g. the last
@@ -161,8 +275,10 @@ class ProductProduct(models.Model):
     @api.model
     def search_count(self, domain, limit=None):
         # The pager counts the records with the same domain, so it must be
-        # restricted to the origin products too.
-        product_ids = self._search_catalog_origin_ids(domain)
+        # restricted to the origin products and the price limit too.
+        product_ids = self._apply_catalog_price_limit(
+            self._search_catalog_origin_ids(domain), domain
+        )
         if product_ids is not None:
             return min(len(product_ids), limit) if limit else len(product_ids)
         return super().search_count(domain, limit=limit)
@@ -170,7 +286,8 @@ class ProductProduct(models.Model):
     @api.model
     def _catalog_origin_search_panel_kwargs(self, kwargs):
         """Restrict the search panel computation (categories, filters and their
-        counters) to the products of the selected catalog origin.
+        counters) to the products of the selected catalog origin and under the
+        price limit.
 
         The origin leaf may arrive through any of the search panel domains
         (``search_domain`` for the base search, ``category_domain`` and
@@ -183,7 +300,13 @@ class ProductProduct(models.Model):
             + kwargs.get("category_domain", [])
             + kwargs.get("filter_domain", [])
         )
-        product_ids = self._get_catalog_origin_product_ids(domain)
+        # Without origin, the price limit is applied on the products of the
+        # base search only, so the panel keeps the categories not selected.
+        product_ids = self._apply_catalog_price_limit(
+            self._get_catalog_origin_product_ids(domain),
+            domain,
+            search_domain=kwargs.get("search_domain", []),
+        )
         if product_ids is None:
             return kwargs
         kwargs = dict(kwargs)
@@ -227,6 +350,11 @@ class ProductProduct(models.Model):
     @api.model
     def _search_catalog_sort(self, operator, value):
         # Display-only field: resolved in search_fetch
+        return []
+
+    @api.model
+    def _search_catalog_price_limit(self, operator, value):
+        # Display-only field: resolved in _apply_catalog_price_limit
         return []
 
     @api.model
