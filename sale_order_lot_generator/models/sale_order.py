@@ -26,7 +26,7 @@ class SaleOrder(models.Model):
                 if (
                     line.product_id.auto_generate_prodlot
                     and not line.lot_id
-                    and line.product_id.tracking != "none"
+                    and line.product_id.tracking
                 ):
                     lot_id = line.create_lot(index_lot)
                     index_lot += 1

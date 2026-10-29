@@ -32,7 +32,7 @@ class SaleOrderLine(models.Model):
                 line.order_id.state == "sale"
                 and line.product_id.auto_generate_prodlot
                 and not line.lot_id
-                and line.product_id.tracking != "none"
+                and line.product_id.tracking
             ):
                 index_lot = line.order_id._get_max_lot_index() + 1
                 lot_id = line.create_lot(index_lot)
