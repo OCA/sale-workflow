@@ -1,0 +1,188 @@
+# Copyright 2015 ADHOC SA  (http://www.adhoc.com.ar)
+# Copyright 2017 - 2019 Alex Comba - Agile Business Group
+# Copyright 2017 Tecnativa - David Vidal
+# Copyright 2018 Simone Rubino - Agile Business Group
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+
+from odoo import api, fields, models
+from odoo.exceptions import ValidationError
+
+
+class SaleOrderLine(models.Model):
+    _name = "sale.order.line"
+    _inherit = ["sale.order.line", "triple.discount.mixin"]
+
+    # core discount field is now a computed field
+    # based on the 3 discounts defined below.
+    # the digits limitation is removed, to make
+    # the computation of the subtotal exact.
+    # For exemple, if discounts are 05%, 09% and 13%
+    # the main discount is 24.7885 % (and not 24.79)
+    discount = fields.Float(
+        string="Total Disc (%)",
+        digits=None,
+        store=True,
+        compute="_compute_discount",
+        compute_sudo=True,
+        precompute=True,
+    )
+    discount1 = fields.Float(
+        string="Disc. 1 (%)",
+        digits="Discount",
+        compute="_compute_discount1",
+        store=True,
+        compute_sudo=True,
+        precompute=True,
+        readonly=False,
+    )
+    discounting_type = fields.Selection(
+        selection=[("additive", "Additive"), ("multiplicative", "Multiplicative")],
+        default="multiplicative",
+        required=True,
+        help="Specifies whether discounts should be additive "
+        "or multiplicative.\nAdditive discounts are summed first and "
+        "then applied.\nMultiplicative discounts are applied sequentially.\n"
+        "Multiplicative discounts are default",
+    )
+
+    @api.constrains("discounting_type")
+    def _discounting_type_additive_not_allowed(self):
+        # FIXME: see https://github.com/OCA/sale-workflow/issues/3649
+        if any(rec.discounting_type == "additive" for rec in self):
+            raise ValidationError(
+                self.env._(
+                    "Additive discount type is not fully implemented."
+                    " See https://github.com/OCA/sale-workflow/issues/3649 "
+                )
+            )
+
+    def _get_final_discount(self):
+        self.ensure_one()
+        if self.discounting_type == "additive":  # pragma: no cover
+            return self._additive_discount()
+        elif self.discounting_type == "multiplicative":
+            return self._multiplicative_discount()
+        else:  # pragma: no cover
+            raise ValidationError(
+                self.env._(
+                    "Sale order line %(name)s has unknown discounting type "
+                    "%(disc_type)s",
+                    name=self.name,
+                    disc_type=self.discounting_type,
+                )
+            )
+
+    def _additive_discount(self):  # pragma: no cover
+        self.ensure_one()
+        discount = sum(
+            self[x] or 0.0 for x in self._get_multiple_discount_field_names()
+        )
+        if discount <= 0:
+            return 0
+        elif discount >= 100:
+            return 100
+        return discount
+
+    def _multiplicative_discount(self):
+        self.ensure_one()
+        return self._get_aggregated_multiple_discounts(
+            [self[x] for x in self._get_multiple_discount_field_names()]
+        )
+
+    @api.depends(
+        lambda self: (
+            self._get_multiple_discount_field_names()
+            + ["product_id", "product_uom_id", "product_uom_qty"]
+        )
+    )
+    def _compute_discount(self):
+        # A combo item not linked to its parent yet makes the core compute call
+        # _get_linked_line().ensure_one() on an empty recordset, which raises
+        # during create() precompute. Defer it: create() recomputes it once the
+        # link is set.
+        lines = self.filtered(
+            lambda line: line.linked_line_id or not line.combo_item_id
+        )
+        (self - lines).discount = 0.0
+        # Base Odoo just continues instead of assigning to 0 in this case
+        # but we depend on the super() value resetting to a discount unpolluted
+        # by the extra fields before taking them into account
+        discount_enabled = self.env[
+            "product.pricelist.item"
+        ]._is_discount_feature_enabled()
+        for line in lines:
+            if not (line.order_id.pricelist_id and discount_enabled):
+                # Only in the cache: assigning outside of the ORM compute goes
+                # through triple.discount.mixin.write(), which would move it to
+                # discount1 and clear discount2 and discount3.
+                line.invalidate_recordset(["discount"])
+        res = super(SaleOrderLine, lines)._compute_discount()
+        if self.env.context.get("skip_triple_discount"):
+            return res
+        for line in lines:
+            line.discount = line._get_final_discount()
+        return res
+
+    @api.depends("product_id", "product_uom_id", "product_uom_qty")
+    def _compute_discount1(self):
+        # Calculate the original super()s discount and drag it to discount1
+        # This is primarily for the field to visually update when creating new lines
+        # rather than updating itself in the create() after you save
+        # Since we aren't in the actual compute, this shouldn't actually save any
+        # values to .discount
+        # Only where the pricelist can give a discount: otherwise _compute_discount
+        # forces it to 0 and this would wipe a discount1 the user typed in.
+        discount_enabled = self.env[
+            "product.pricelist.item"
+        ]._is_discount_feature_enabled()
+        lines = self.filtered(
+            lambda line: line.order_id.pricelist_id and discount_enabled
+        )
+        with self.env.protecting(
+            [self.env["sale.order.line"]._fields["discount"]], lines
+        ):
+            lines.with_context(skip_triple_discount=True)._compute_discount()
+            for line in lines:
+                line.discount1 = line.discount
+
+    def _prepare_invoice_line(self, **kwargs):
+        """
+        Inherit this method to bring
+        more discount fields to the invoice lines
+        """
+        res = super()._prepare_invoice_line(**kwargs)
+        res.pop("discount", None)
+        if self.discounting_type == "multiplicative":
+            res.update(
+                {
+                    "discount1": self.discount1,
+                    "discount2": self.discount2,
+                    "discount3": self.discount3,
+                }
+            )
+        else:  # pragma: no cover
+            res.update({"discount1": self.discount})
+        return res
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        # Reset the discounts through the values instead of pairing the created lines
+        # with them afterwards: super() may return a different number of lines, as
+        # sale_product_pack replaces a pack line with the lines of its components.
+        vals_list = [
+            dict(vals, discount1=0.0, discount2=0.0, discount3=0.0)
+            if vals.get("discount") == 0
+            else vals
+            for vals in vals_list
+        ]
+        order_lines = super().create(vals_list)
+        # The combo items deferred in _compute_discount are linked now, so they
+        # can take the discount of their parent line.
+        deferred = order_lines.filtered(
+            lambda line: line.combo_item_id and line.linked_line_id
+        )
+        if deferred:
+            deferred._compute_discount1()
+            deferred._compute_discount()
+        return order_lines
