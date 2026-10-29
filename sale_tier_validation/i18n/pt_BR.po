@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-10-29 23:21+0000\n"
+"Last-Translator: Luis Felipe Miléo <mileo@kmee.com.br>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,help:sale_tier_validation.field_res_company__sale_report_print_block
@@ -21,144 +23,145 @@ msgstr ""
 msgid ""
 "Block the printing of the sale order report if the order is not validated."
 msgstr ""
+"Bloqueia a impressão do pedido de venda enquanto o pedido não for validado."
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__can_review
 msgid "Can Review"
-msgstr ""
+msgstr "Pode revisar"
 
 #. module: sale_tier_validation
 #: model:ir.model,name:sale_tier_validation.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Empresas"
 
 #. module: sale_tier_validation
 #: model:ir.model,name:sale_tier_validation.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Configurações"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__has_comment
 msgid "Has Comment"
-msgstr ""
+msgstr "Possui comentário"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__hide_reviews
 msgid "Hide Reviews"
-msgstr ""
+msgstr "Ocultar revisões"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,help:sale_tier_validation.field_sale_order__has_comment
 msgid "If set, Allow the reviewer to leave a comment on the review."
-msgstr ""
+msgstr "Se marcado, o revisor pode deixar um comentário na revisão."
 
 #. module: sale_tier_validation
 #: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
 msgid "My Sales to review"
-msgstr ""
+msgstr "Minhas vendas para revisar"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__need_validation
 msgid "Need Validation"
-msgstr ""
+msgstr "Precisa de validação"
 
 #. module: sale_tier_validation
 #: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
 msgid "Needs my Review"
-msgstr ""
+msgstr "Aguardando minha revisão"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__next_review
 msgid "Next Review"
-msgstr ""
+msgstr "Próxima revisão"
 
 #. module: sale_tier_validation
 #. odoo-python
 #: code:addons/sale_tier_validation/reports/sale_report.py:0
 msgid "Quotation printing is blocked until the order is approved."
-msgstr ""
+msgstr "A impressão da cotação fica bloqueada até o pedido ser aprovado."
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__rejected
 msgid "Rejected"
-msgstr ""
+msgstr "Rejeitada"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__rejected_message
 msgid "Rejected Message"
-msgstr ""
+msgstr "Mensagem de rejeição"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__reviewer_ids
 msgid "Reviewers"
-msgstr ""
+msgstr "Revisores"
 
 #. module: sale_tier_validation
 #: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
 msgid "SOs validated and ready to be confirmed"
-msgstr ""
+msgstr "Pedidos de venda validados e prontos para confirmar"
 
 #. module: sale_tier_validation
 #: model:ir.model,name:sale_tier_validation.model_report_sale_report_saleorder
 msgid "Sale Order Report"
-msgstr ""
+msgstr "Relatório do pedido de venda"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_res_company__sale_report_print_block
 #: model:ir.model.fields,field_description:sale_tier_validation.field_res_config_settings__sale_report_print_block
 msgid "Sale Report Print Block"
-msgstr ""
+msgstr "Bloquear a impressão do pedido de venda"
 
 #. module: sale_tier_validation
 #: model:ir.model,name:sale_tier_validation.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Pedido de venda"
 
 #. module: sale_tier_validation
 #: model:ir.model,name:sale_tier_validation.model_tier_definition
 msgid "Tier Definition"
-msgstr ""
+msgstr "Definição de alçada"
 
 #. module: sale_tier_validation
 #: model:mail.message.subtype,name:sale_tier_validation.crm_team_tier_validation_accepted
 #: model:mail.message.subtype,name:sale_tier_validation.sale_order_tier_validation_accepted
 msgid "Tier Validation Accepted Notification"
-msgstr ""
+msgstr "Aviso de validação aceita"
 
 #. module: sale_tier_validation
 #: model:mail.message.subtype,name:sale_tier_validation.crm_team_tier_validation_rejected
 #: model:mail.message.subtype,name:sale_tier_validation.sale_order_tier_validation_rejected
 msgid "Tier Validation Rejected Notification"
-msgstr ""
+msgstr "Aviso de validação rejeitada"
 
 #. module: sale_tier_validation
 #: model:mail.message.subtype,name:sale_tier_validation.crm_team_tier_validation_requested
 #: model:mail.message.subtype,name:sale_tier_validation.sale_order_tier_validation_requested
 msgid "Tier Validation Requested"
-msgstr ""
+msgstr "Validação solicitada"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__to_validate_message
 msgid "To Validate Message"
-msgstr ""
+msgstr "Mensagem para validar"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__validated
 #: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
 msgid "Validated"
-msgstr ""
+msgstr "Validada"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__validated_message
 msgid "Validated Message"
-msgstr ""
+msgstr "Mensagem de validação"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__validation_status
 msgid "Validation Status"
-msgstr ""
+msgstr "Status da validação"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__review_ids
 msgid "Validations"
-msgstr ""
+msgstr "Validações"
