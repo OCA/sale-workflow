@@ -113,7 +113,10 @@ class SaleOrderLine(models.Model):
         ]._is_discount_feature_enabled()
         for line in lines:
             if not (line.order_id.pricelist_id and discount_enabled):
-                line.discount = 0
+                # Only in the cache: assigning outside of the ORM compute goes
+                # through triple.discount.mixin.write(), which would move it to
+                # discount1 and clear discount2 and discount3.
+                line.invalidate_recordset(["discount"])
         res = super(SaleOrderLine, lines)._compute_discount()
         if self.env.context.get("skip_triple_discount"):
             return res
@@ -128,11 +131,19 @@ class SaleOrderLine(models.Model):
         # rather than updating itself in the create() after you save
         # Since we aren't in the actual compute, this shouldn't actually save any
         # values to .discount
+        # Only where the pricelist can give a discount: otherwise _compute_discount
+        # forces it to 0 and this would wipe a discount1 the user typed in.
+        discount_enabled = self.env[
+            "product.pricelist.item"
+        ]._is_discount_feature_enabled()
+        lines = self.filtered(
+            lambda line: line.order_id.pricelist_id and discount_enabled
+        )
         with self.env.protecting(
-            [self.env["sale.order.line"]._fields["discount"]], self
+            [self.env["sale.order.line"]._fields["discount"]], lines
         ):
-            self.with_context(skip_triple_discount=True)._compute_discount()
-            for line in self:
+            lines.with_context(skip_triple_discount=True)._compute_discount()
+            for line in lines:
                 line.discount1 = line.discount
 
     def _prepare_invoice_line(self, **kwargs):

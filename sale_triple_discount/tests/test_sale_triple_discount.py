@@ -330,6 +330,23 @@ class TestSaleOrder(SaleTripleDiscountCommon):
         self.assertEqual(self.so_line1.discount2, 9)
         self.assertEqual(self.so_line1.discount3, 13)
 
+    def test_16_manual_discount_kept_without_the_feature(self) -> None:
+        """A discount typed by hand survives when the feature is off.
+
+        _compute_discount forces the discount to 0 when the per-line discount
+        feature is off or the order has no pricelist. Dragging that 0 into
+        discount1 would clear a discount the user typed in, on any change of
+        product, unit of measure or quantity.
+        """
+        self.env.ref("base.user_root").sudo().group_ids -= self.env.ref(
+            "sale.group_discount_per_so_line"
+        )
+        self.so_line1.discount1 = 10.0
+        self.so_line1.product_uom_qty = 3
+
+        self.assertAlmostEqual(self.so_line1.discount1, 10.0)
+        self.assertAlmostEqual(self.so_line1.discount, 10.0)
+
 
 class TestSaleOrderCombo(BaseCommon):
     _test_user_groups = (
