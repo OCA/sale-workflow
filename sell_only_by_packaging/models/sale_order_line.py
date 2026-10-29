@@ -28,16 +28,18 @@ class SaleOrderLine(models.Model):
             ):
                 raise ValidationError(
                     self.env._(
-                        "Product %s can only be sold with a packaging and a "
+                        "Product %(product)s can only be sold with a packaging and a "
                         "packaging quantity.",
-                        line.product_id.name,
+                        product=line.product_id.name,
                     ),
                 )
 
     def _force_qty_with_package(self):
         self.ensure_one()
         qty = self.product_id._convert_packaging_qty(
-            self.product_uom_qty, self.product_uom, packaging=self.product_packaging_id
+            self.product_uom_qty,
+            self.product_uom_id,
+            packaging=self.product_packaging_id,
         )
         self.product_uom_qty = qty
         return True

@@ -23,7 +23,7 @@
         <field name="inherit_id" ref="product.product_template_tree_view" />
         <field name="arch" type="xml">
             <field name="standard_price" position="after">
-                <field name="sell_only_by_packaging" invisible="1" />
+                <field name="sell_only_by_packaging" column_invisible="1" />
                 <field name="min_sellable_qty" optional="show" />
             </field>
         </field>

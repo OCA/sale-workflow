@@ -26,9 +26,7 @@ class ProductProduct(models.Model):
             record.min_sellable_qty = 0.0
             if record.sell_only_by_packaging and record.packaging_ids:
                 sellable_pkgs = record.packaging_ids.filtered(lambda p: p.sales)
-                record.min_sellable_qty = fields.first(
-                    sellable_pkgs.sorted(lambda p: p.qty)
-                ).qty
+                record.min_sellable_qty = sellable_pkgs.sorted(lambda p: p.qty)[:1].qty
 
     def _convert_packaging_qty(self, qty, uom, packaging):
         """

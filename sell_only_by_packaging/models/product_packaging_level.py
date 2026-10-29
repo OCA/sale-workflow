@@ -19,9 +19,9 @@ class ProductPackagingLevel(models.Model):
             except exceptions.ValidationError as e:
                 raise exceptions.ValidationError(
                     self.env._(
-                        'Packaging level %s must stay with "Can be sold",'
+                        'Packaging level %(level)s must stay with "Can be sold",'
                         ' at least one product configured as "sell only'
                         ' by packaging" is using it.',
-                        record.display_name,
+                        level=record.display_name,
                     ),
                 ) from e
