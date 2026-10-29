@@ -1,0 +1,141 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_invoice_frequency
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-11-20 22:42+0000\n"
+"Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
+"Language-Team: none\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: sale_invoice_frequency
+#: model:sale.invoice.frequency,name:sale_invoice_frequency.sale_invoice_frequency_annual
+msgid "Annual"
+msgstr "Jaarlijks"
+
+#. module: sale_invoice_frequency
+#: model:sale.invoice.frequency,name:sale_invoice_frequency.sale_invoice_frequency_biannual
+msgid "Biannual"
+msgstr "Halfjaarlijks"
+
+#. module: sale_invoice_frequency
+#: model:sale.invoice.frequency,name:sale_invoice_frequency.sale_invoice_frequency_biweekly
+msgid "Biweekly"
+msgstr "Tweewekelijks"
+
+#. module: sale_invoice_frequency
+#: model:ir.model,name:sale_invoice_frequency.model_res_partner
+msgid "Contact"
+msgstr "Contact"
+
+#. module: sale_invoice_frequency
+#: model_terms:ir.actions.act_window,help:sale_invoice_frequency.sale_invoice_frequency_action
+msgid "Create a new invoicing frequency record"
+msgstr "Maak een nieuwe facturatiefrequentie-record aan"
+
+#. module: sale_invoice_frequency
+#: model:ir.model.fields,field_description:sale_invoice_frequency.field_sale_invoice_frequency__create_uid
+msgid "Created by"
+msgstr "Aangemaakt door"
+
+#. module: sale_invoice_frequency
+#: model:ir.model.fields,field_description:sale_invoice_frequency.field_sale_invoice_frequency__create_date
+msgid "Created on"
+msgstr "Aangemaakt op"
+
+#. module: sale_invoice_frequency
+#: model:sale.invoice.frequency,name:sale_invoice_frequency.sale_invoice_frequency_daily
+msgid "Daily"
+msgstr "Dagelijks"
+
+#. module: sale_invoice_frequency
+#: model:ir.model.fields,field_description:sale_invoice_frequency.field_sale_invoice_frequency__display_name
+msgid "Display Name"
+msgstr "Weergavenaam"
+
+#. module: sale_invoice_frequency
+#: model:ir.model.fields,field_description:sale_invoice_frequency.field_sale_invoice_frequency__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_invoice_frequency
+#: model_terms:ir.ui.view,arch_db:sale_invoice_frequency.view_sales_order_filter
+msgid "Invoice frequency"
+msgstr "Facturatiefrequentie"
+
+#. module: sale_invoice_frequency
+#: model:ir.actions.act_window,name:sale_invoice_frequency.sale_invoice_frequency_action
+#: model:ir.model.fields,field_description:sale_invoice_frequency.field_res_partner__invoice_frequency_id
+#: model:ir.model.fields,field_description:sale_invoice_frequency.field_res_users__invoice_frequency_id
+#: model:ir.model.fields,field_description:sale_invoice_frequency.field_sale_order__invoice_frequency_id
+#: model:ir.ui.menu,name:sale_invoice_frequency.sale_invoice_frequency_menu
+msgid "Invoicing frequency"
+msgstr "Facturatiefrequentie"
+
+#. module: sale_invoice_frequency
+#: model:ir.model,name:sale_invoice_frequency.model_sale_invoice_frequency
+msgid "Invoicing frequency for Customers"
+msgstr "Facturatiefrequentie voor Klanten"
+
+#. module: sale_invoice_frequency
+#: model:ir.model.fields,help:sale_invoice_frequency.field_res_partner__invoice_frequency_id
+#: model:ir.model.fields,help:sale_invoice_frequency.field_res_users__invoice_frequency_id
+msgid "Invoicing frequency for this customer"
+msgstr "Facturatiefrequentie voor deze klant"
+
+#. module: sale_invoice_frequency
+#: model:ir.model.fields,help:sale_invoice_frequency.field_sale_order__invoice_frequency_id
+msgid "Invoicing frequency for this order"
+msgstr "Facturatiefrequentie voor deze order"
+
+#. module: sale_invoice_frequency
+#: model:ir.model.fields,field_description:sale_invoice_frequency.field_sale_invoice_frequency__write_uid
+msgid "Last Updated by"
+msgstr "Laatst bijgewerkt door"
+
+#. module: sale_invoice_frequency
+#: model:ir.model.fields,field_description:sale_invoice_frequency.field_sale_invoice_frequency__write_date
+msgid "Last Updated on"
+msgstr "Laatst bijgewerkt op"
+
+#. module: sale_invoice_frequency
+#: model:sale.invoice.frequency,name:sale_invoice_frequency.sale_invoice_frequency_monthly
+msgid "Monthly"
+msgstr "Maandelijks"
+
+#. module: sale_invoice_frequency
+#: model:ir.model.fields,field_description:sale_invoice_frequency.field_sale_invoice_frequency__name
+msgid "Name"
+msgstr "Naam"
+
+#. module: sale_invoice_frequency
+#: model_terms:ir.actions.act_window,help:sale_invoice_frequency.sale_invoice_frequency_action
+msgid ""
+"Once the invoicing frequency record is created, you can assign it to a "
+"Customer."
+msgstr ""
+"Nadat de facturatiefrequentie-record is aangemaakt, kunt u deze aan een "
+"Klant toewijzen."
+
+#. module: sale_invoice_frequency
+#: model:sale.invoice.frequency,name:sale_invoice_frequency.sale_invoice_frequency_quarterly
+msgid "Quarterly"
+msgstr "Per kwartaal"
+
+#. module: sale_invoice_frequency
+#: model:ir.model,name:sale_invoice_frequency.model_sale_order
+msgid "Sales Order"
+msgstr "Verkooporder"
+
+#. module: sale_invoice_frequency
+#: model:sale.invoice.frequency,name:sale_invoice_frequency.sale_invoice_frequency_weekly
+msgid "Weekly"
+msgstr "Wekelijks"
