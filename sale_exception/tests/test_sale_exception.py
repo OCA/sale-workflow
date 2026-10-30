@@ -291,3 +291,29 @@ class TestSaleException(TransactionCase):
             self.assertTrue(sale_order.order_line.with_env(new_env).exception_ids)
             self.assertNotEqual(sale_order.state, "sale")
             self.assertNotEqual(sale_order.with_env(new_env).state, "sale")
+
+    def test_line_exceptions_summary_without_description(self):
+        rule = self.env["exception.rule"].create(
+            {
+                "name": "Line rule without description",
+                "model": "sale.order.line",
+                "code": "failed = True",
+            }
+        )
+        sale_order = self.env["sale.order"].create(
+            {
+                "partner_id": self.env.ref("base.res_partner_1").id,
+                "pricelist_id": self.default_pl.id,
+                "order_line": [
+                    Command.create(
+                        {"product_id": self.env.ref("product.product_product_7").id}
+                    )
+                ],
+            }
+        )
+        line = sale_order.order_line
+        line.exception_ids = rule
+        self.assertEqual(
+            line.exceptions_summary,
+            "<ul><li>Line rule without description: <i></i></li></ul>",
+        )
