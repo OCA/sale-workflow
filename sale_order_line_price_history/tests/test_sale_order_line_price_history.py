@@ -1,6 +1,7 @@
 # Copyright 2018 Tecnativa - Ernesto Tejeda
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo import Command
 from odoo.tests.common import TransactionCase
 
 
@@ -184,3 +185,14 @@ class TestSaleOrderLinePriceHistory(TransactionCase):
         history_line.action_set_price()
         self.assertEqual(self.sale_order_line_3.price_unit, 10)
         self.assertEqual(self.sale_order_line_3.discount, 5)
+
+    def test_order_partner_change(self):
+        quotation = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner_1.id,
+                "order_line": [Command.create({"product_id": self.product.id})],
+            }
+        )
+        self.assertEqual(quotation.order_line.order_partner_id, self.partner_1)
+        quotation.partner_id = self.partner_2
+        self.assertEqual(quotation.order_line.order_partner_id, self.partner_2)
