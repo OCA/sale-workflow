@@ -7,17 +7,25 @@ from odoo import api, fields, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
+    incoterm = fields.Many2one(
+        compute="_compute_incoterm",
+        store=True,
+        readonly=False,
+        precompute=True,
+        copy=True,
+    )
     incoterm_address_id = fields.Many2one(
         comodel_name="res.partner",
         string="Incoterm Address",
+        compute="_compute_incoterm",
+        store=True,
+        readonly=False,
+        precompute=True,
+        copy=True,
     )
 
-    @api.onchange("partner_id")
-    def onchange_partner_id_set_incoterm(self):
-        partner = self.partner_id
-        self.update(
-            {
-                "incoterm": partner.sale_incoterm_id.id,
-                "incoterm_address_id": partner.sale_incoterm_address_id.id,
-            }
-        )
+    @api.depends("partner_id")
+    def _compute_incoterm(self):
+        for order in self:
+            order.incoterm = order.partner_id.sale_incoterm_id
+            order.incoterm_address_id = order.partner_id.sale_incoterm_address_id
