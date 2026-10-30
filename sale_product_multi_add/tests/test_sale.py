@@ -15,6 +15,9 @@ class TestSale(BaseCommon):
         cls.product_11 = cls.env["product.product"].create(
             {"name": "Test Product 11", "type": "consu"}
         )
+        cls.product_priced = cls.env["product.product"].create(
+            {"name": "Test Product Priced", "type": "consu", "list_price": 100.0}
+        )
         cls.so = cls.env["sale.order"].create(
             {
                 "partner_id": cls.partner.id,
@@ -92,3 +95,67 @@ class TestSale(BaseCommon):
                 self.assertEqual(line.product_uom_qty, 3)
             elif line.product_id.id == self.product_11.id:
                 self.assertEqual(line.product_uom_qty, 5)
+
+    def _import_product(self, sale, product, quantity):
+        wizard = self.env["sale.import.products"].with_context(
+            active_id=sale.id, active_model="sale.order"
+        )
+        wizard_id = wizard.create([{"products": [Command.set([product.id])]}])
+        wizard_id.create_items()
+        wizard_id.items[0].quantity = quantity
+        wizard_id.select_products()
+        return sale.order_line.filtered(lambda line: line.product_id == product)
+
+    def test_select_products_applies_pricelist(self):
+        """The order pricelist price is applied to the created sale order line"""
+        pricelist = self.env["product.pricelist"].create(
+            {
+                "name": "Test Pricelist with 10% Discount",
+                "currency_id": self.env.company.currency_id.id,
+            }
+        )
+        self.env["product.pricelist.item"].create(
+            {
+                "pricelist_id": pricelist.id,
+                "applied_on": "3_global",
+                "compute_price": "percentage",
+                "percent_price": 10.0,
+            }
+        )
+        sale = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "pricelist_id": pricelist.id,
+            }
+        )
+
+        line = self._import_product(sale, self.product_priced, 2.0)
+
+        self.assertEqual(len(sale.order_line), 1)
+        self.assertEqual(line.product_uom_qty, 2.0)
+        # Pricelist grants 10% off the 100.0 list price
+        self.assertNotEqual(line.price_unit, self.product_priced.list_price)
+        self.assertAlmostEqual(line.price_unit, 90.0, places=2)
+
+    def test_select_products_without_pricelist_rule(self):
+        """Without pricelist rules the product list price is used"""
+        pricelist = self.env["product.pricelist"].create(
+            {
+                "name": "Empty Pricelist",
+                "currency_id": self.env.company.currency_id.id,
+            }
+        )
+        sale = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "pricelist_id": pricelist.id,
+            }
+        )
+
+        line = self._import_product(sale, self.product_priced, 3.0)
+
+        self.assertEqual(len(sale.order_line), 1)
+        self.assertEqual(line.product_uom_qty, 3.0)
+        self.assertAlmostEqual(
+            line.price_unit, self.product_priced.list_price, places=2
+        )
