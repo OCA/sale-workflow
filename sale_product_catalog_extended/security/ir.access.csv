@@ -1,0 +1,3 @@
+id,name,model_id,group_id/id,operation,domain
+access_sale_catalog_product_exclusion_user,sale.catalog.product.exclusion user,sale.catalog.product.exclusion,sales_team.group_sale_salesman,crud,
+access_sale_catalog_product_exclusion_manager,sale.catalog.product.exclusion manager,sale.catalog.product.exclusion,sales_team.group_sale_manager,crud,
