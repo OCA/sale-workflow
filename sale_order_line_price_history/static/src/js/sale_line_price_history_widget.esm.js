@@ -1,23 +1,26 @@
-import {Component} from "@odoo/owl";
+import {Component, useProps} from "@odoo/owl";
 import {registry} from "@web/core/registry";
 import {standardWidgetProps} from "@web/views/widgets/standard_widget_props";
 import {useService} from "@web/core/utils/hooks";
 
 export class PriceHistoryWidget extends Component {
+    static template = "sale_order_line_price_history.price_history_widget";
+    props = useProps(standardWidgetProps);
+
     setup() {
-        super.setup();
         this.actionService = useService("action");
     }
 
     viewPriceHistory() {
+        const lineId = this.props.record.resId || false;
         this.actionService.doAction(
             "sale_order_line_price_history.sale_order_line_price_history_action",
             {
                 additionalContext: {
                     default_product_id: this.props.record.data.product_id.id,
                     default_partner_id: this.props.record.data.order_partner_id.id,
-                    default_active_id: this.props.value,
-                    default_sale_order_line_id: this.props.value,
+                    active_id: lineId,
+                    default_sale_order_line_id: lineId,
                 },
                 onClose: (value) => {
                     if (value && "price_unit" in value) {
@@ -28,13 +31,6 @@ export class PriceHistoryWidget extends Component {
         );
     }
 }
-
-PriceHistoryWidget.template = "sale_order_line_price_history.price_history_widget";
-PriceHistoryWidget.props = {
-    ...standardWidgetProps,
-    // Onchange decorator returns an undefined value for the id instead of false
-    value: {optional: true},
-};
 
 registry
     .category("view_widgets")

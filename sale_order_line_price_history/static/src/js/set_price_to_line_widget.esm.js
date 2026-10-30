@@ -1,11 +1,13 @@
-import {Component} from "@odoo/owl";
+import {Component, useProps} from "@odoo/owl";
 import {registry} from "@web/core/registry";
 import {standardFieldProps} from "@web/views/fields/standard_field_props";
 import {useService} from "@web/core/utils/hooks";
 
 export class SetPriceToLineWidget extends Component {
+    static template = "sale_order_line_price_history.price_to_line_history_widget";
+    props = useProps(standardFieldProps);
+
     setup() {
-        super.setup();
         this.actionService = useService("action");
     }
 
@@ -24,10 +26,6 @@ export class SetPriceToLineWidget extends Component {
         });
     }
 }
-
-SetPriceToLineWidget.template =
-    "sale_order_line_price_history.price_to_line_history_widget";
-SetPriceToLineWidget.props = standardFieldProps;
 
 // Add the field to the correct category
 registry
