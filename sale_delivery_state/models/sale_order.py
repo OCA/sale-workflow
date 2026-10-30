@@ -49,9 +49,7 @@ class SaleOrder(models.Model):
         sale_lines = self.order_line.filtered(
             lambda rec: not rec._is_delivery() and not rec.skip_sale_delivery_state
         )
-        precision = self.env["decimal.precision"].precision_get(
-            "Product Unit of Measure"
-        )
+        precision = self.env["decimal.precision"].precision_get("Product Unit")
         return all(
             float_compare(
                 line.qty_delivered, line.product_uom_qty, precision_digits=precision
@@ -71,9 +69,7 @@ class SaleOrder(models.Model):
         sale_lines = self.order_line.filtered(
             lambda rec: not rec._is_delivery() and not rec.skip_sale_delivery_state
         )
-        precision = self.env["decimal.precision"].precision_get(
-            "Product Unit of Measure"
-        )
+        precision = self.env["decimal.precision"].precision_get("Product Unit")
         return any(
             not float_is_zero(line.qty_delivered, precision_digits=precision)
             for line in sale_lines
