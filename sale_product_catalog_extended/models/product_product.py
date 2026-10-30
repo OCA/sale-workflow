@@ -3,7 +3,7 @@
 from datetime import timedelta
 
 from odoo import api, fields, models
-from odoo.osv import expression
+from odoo.fields import Domain
 
 
 class ProductProduct(models.Model):
@@ -48,6 +48,17 @@ class ProductProduct(models.Model):
     )
 
     @api.model
+    def _get_catalog_domain_values(self, domain):
+        """Return ``{field: value}`` of the ``=`` conditions of ``domain``, a
+        list or a ``Domain``, where the catalog search panel puts its values.
+        """
+        return {
+            condition.field_expr: condition.value
+            for condition in Domain(domain).iter_conditions()
+            if condition.operator == "="
+        }
+
+    @api.model
     def _get_catalog_origin_product_ids(self, domain):
         """Return the ordered product ids for the ``catalog_origin_data`` and
         ``catalog_last_sales`` leaves found in ``domain``, or ``None`` if the
@@ -59,11 +70,7 @@ class ProductProduct(models.Model):
         last sales option, only the ones sold to the customer are kept, most
         frequently sold first.
         """
-        values = {
-            leaf[0]: leaf[2]
-            for leaf in domain
-            if isinstance(leaf, list | tuple) and len(leaf) == 3
-        }
+        values = self._get_catalog_domain_values(domain)
         products = self.with_context(
             product_catalog_use_delivery_address=(
                 values.get("catalog_history_partner") == "delivery_address"
@@ -85,10 +92,10 @@ class ProductProduct(models.Model):
             sold_ids = [pid for pid in sold_ids if pid in origin_ids]
         # Applied after combining with the origin, so it limits the products
         # actually shown.
-        limit = int(
+        limit = (
             self.env["ir.config_parameter"]
             .sudo()
-            .get_param("sale_product_catalog_extended.catalog_last_order_limit", "0")
+            .get_int("sale_product_catalog_extended.catalog_last_order_limit")
         )
         return sold_ids[:limit] if limit else sold_ids
 
@@ -108,7 +115,7 @@ class ProductProduct(models.Model):
         # Use _search, as search() goes through search_fetch() again.
         matching_ids = set(
             self._search(
-                expression.AND([domain, [("id", "in", product_ids)]])
+                Domain(domain) & Domain("id", "in", product_ids)
             ).get_result_ids()
         )
         # Keep the ordering provided by the origin method.
@@ -128,14 +135,10 @@ class ProductProduct(models.Model):
     def _get_catalog_sort_order(self, domain):
         """Order of the ``catalog_sort`` option found in ``domain``, or ``None``
         to keep the default one."""
-        for leaf in domain:
-            if (
-                isinstance(leaf, list | tuple)
-                and len(leaf) == 3
-                and leaf[0] == "catalog_sort"
-            ):
-                return self._get_catalog_sort_orders().get(leaf[2])
-        return None
+        sort = self._get_catalog_domain_values(domain).get("catalog_sort")
+        if not sort:
+            return None
+        return self._get_catalog_sort_orders().get(sort)
 
     @api.model
     def search_fetch(self, domain, field_names, offset=0, limit=None, order=None):
@@ -178,17 +181,16 @@ class ProductProduct(models.Model):
         no-op, without this the panel would be computed over the whole catalog
         instead of over the products actually shown for the chosen origin.
         """
-        domain = (
-            kwargs.get("search_domain", [])
-            + kwargs.get("category_domain", [])
-            + kwargs.get("filter_domain", [])
+        domain = Domain.AND(
+            Domain(kwargs.get(key) or [])
+            for key in ("search_domain", "category_domain", "filter_domain")
         )
         product_ids = self._get_catalog_origin_product_ids(domain)
         if product_ids is None:
             return kwargs
         kwargs = dict(kwargs)
-        kwargs["search_domain"] = expression.AND(
-            [kwargs.get("search_domain", []), [("id", "in", product_ids)]]
+        kwargs["search_domain"] = list(
+            Domain(kwargs.get("search_domain") or []) & Domain("id", "in", product_ids)
         )
         return kwargs
 
@@ -241,10 +243,10 @@ class ProductProduct(models.Model):
     @api.model
     def _product_picker_data_sale_order_domain(self):
         """Domain to find recent SO lines."""
-        days = int(
+        days = (
             self.env["ir.config_parameter"]
             .sudo()
-            .get_param("sale_product_catalog_extended.catalog_last_order_days", "180")
+            .get_int("sale_product_catalog_extended.catalog_last_order_days", 180)
         )
         start = fields.Datetime.now() - timedelta(days=days)
         start = fields.Datetime.to_string(start)

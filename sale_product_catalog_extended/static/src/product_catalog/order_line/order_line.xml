@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
     <t t-inherit="product.ProductCatalogOrderLine" t-inherit-mode="extension">
-        <!-- Portal to the price of the own card, as several cards can show the
-             same product (one per order line or vendor). -->
-        <xpath expr="//t[@t-portal]" position="attributes">
-            <attribute
-                name="t-portal"
-            >env.catalogCardKey ? `[data-catalog-card="${env.catalogCardKey}"] [name="o_kanban_price"]` : `#product-${props.productId}-price`</attribute>
-        </xpath>
         <!-- Name the quantity and buttons row for the layouts (see catalog.scss) -->
         <xpath
             expr="//div[hasclass('o_product_catalog_buttons')]/.."
@@ -19,20 +12,17 @@
                 separator=" "
             />
         </xpath>
-        <!-- Wrap New line + Edit as a connected button group above Remove -->
-        <xpath
-            expr="//div[hasclass('o_product_catalog_buttons')]/button[@t-on-click.stop='() => this.env.addProduct()']"
-            position="before"
-        >
+        <!-- New line + Edit as a connected button group next to the quantity -->
+        <xpath expr="//div[hasclass('o_product_catalog_buttons')]" position="inside">
             <div
-                t-if="isInOrder() &amp;&amp; displayEdit()"
-                class="btn-group-vertical w-100 mb-1"
+                t-if="this.isInOrder() and this.displayEdit()"
+                class="btn-group-vertical"
             >
                 <button
                     t-on-click.stop="() => this.env.addNewOrderLine()"
                     class="btn btn-light border"
                 >
-                    <i class="fa fa-plus" />
+                    <i class="oi" data-icon="add" />
                     New line
                 </button>
                 <button
@@ -40,7 +30,7 @@
                     class="btn btn-light border o_product_catalog_edit_line"
                     title="Edit"
                 >
-                    <i class="fa fa-pencil-square-o" />
+                    <i class="oi" data-icon="edit" />
                     Edit
                 </button>
             </div>
@@ -55,18 +45,6 @@
             <attribute
                 name="t-on-click.stop"
             >() => this.displayEdit() ? this.env.addNewOrderLine() : this.env.addProduct()</attribute>
-        </xpath>
-        <!-- Make the Remove button wrapper and button full-width to match -->
-        <xpath expr="//div[hasclass('o_tooltip_div_remove')]" position="attributes">
-            <attribute name="class">o_tooltip_div_remove w-100</attribute>
-        </xpath>
-        <xpath
-            expr="//div[hasclass('o_tooltip_div_remove')]/button[@t-on-click.stop='this.env.removeProduct']"
-            position="attributes"
-        >
-            <attribute name="class">btn btn-light border w-100</attribute>
-            <!-- Tooltip when only its icon is shown (rows layout) -->
-            <attribute name="title">Remove</attribute>
         </xpath>
     </t>
 </templates>

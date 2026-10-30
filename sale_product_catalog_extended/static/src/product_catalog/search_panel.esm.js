@@ -1,6 +1,6 @@
 /* Copyright 2025 Tecnativa - Carlos Roca
  * License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). */
-import {ProductCatalogSearchPanel} from "@product/product_catalog/search/search_panel";
+import {ProductCatalogSearchPanel} from "@product/product_catalog/product_catalog_search_panel";
 import {_t} from "@web/core/l10n/translation";
 import {patch} from "@web/core/utils/patch";
 

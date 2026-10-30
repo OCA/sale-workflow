@@ -1,11 +1,11 @@
 /* Copyright 2025 Tecnativa - Carlos Roca
  * License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). */
+import {ImageZoomDialog} from "./image_zoom_dialog.esm";
 import {ProductCatalogKanbanRecord} from "@product/product_catalog/kanban_record";
-import {useSubEnv} from "@odoo/owl";
 import {patch} from "@web/core/utils/patch";
 import {rpc} from "@web/core/network/rpc";
 import {useService} from "@web/core/utils/hooks";
-import {ImageZoomDialog} from "./image_zoom_dialog.esm";
+import {useSubEnv} from "@web/owl2/utils";
 
 patch(ProductCatalogKanbanRecord.prototype, {
     setup() {
@@ -49,7 +49,7 @@ patch(ProductCatalogKanbanRecord.prototype, {
                 },
             },
             {
-                onClose: () => this.props.list.model.load(),
+                onClose: () => this.props.record.model.load(),
             }
         );
     },
@@ -61,7 +61,7 @@ patch(ProductCatalogKanbanRecord.prototype, {
         // Only meaningful when the Last sales option restricts the catalog.
         return (
             this.env.orderResModel === "sale.order" &&
-            (this.props.list.domain || []).some(
+            (this.props.record.model.root.domain || []).some(
                 (cond) =>
                     Array.isArray(cond) &&
                     cond[0] === "catalog_last_sales" &&
@@ -78,7 +78,7 @@ patch(ProductCatalogKanbanRecord.prototype, {
             ),
         });
         // Reload so the card disappears when the last sales origin is active.
-        await this.props.list.model.load();
+        await this.props.record.model.load();
     },
     onGlobalClick(ev) {
         if (ev.target.closest(".o_field_image")) {
@@ -99,7 +99,7 @@ patch(ProductCatalogKanbanRecord.prototype, {
             );
             return this.action.doAction(
                 {...action, res_id: lineId},
-                {onClose: () => this.props.list.model.load()}
+                {onClose: () => this.props.record.model.load()}
             );
         }
         const order_line_ids = await rpc("/product/catalog/sale/open_order_line", {
@@ -111,7 +111,7 @@ patch(ProductCatalogKanbanRecord.prototype, {
         );
         return this.action.doAction(
             {...action, res_id: order_line_ids[0]},
-            {onClose: () => this.props.list.model.load()}
+            {onClose: () => this.props.record.model.load()}
         );
     },
     updateQuantity(quantity) {
@@ -124,17 +124,18 @@ patch(ProductCatalogKanbanRecord.prototype, {
         }
         return super.updateQuantity(quantity);
     },
-    async _updateQuantity() {
+    async _onQuantityChange() {
+        // The card of an order line (see the renderer) updates that line only.
         const lineId = this.props.record.productCatalogData.lineId;
         if (lineId) {
             await rpc("/product/catalog/sale/update_line_qty", {
                 line_id: lineId,
                 quantity: this.productCatalogData.quantity,
             });
-            await this.props.list.model.load();
+            await this.props.record.model.load();
             return;
         }
-        return super._updateQuantity(...arguments);
+        return super._onQuantityChange(...arguments);
     },
     _getUpdateQuantityAndGetPriceParams() {
         return {

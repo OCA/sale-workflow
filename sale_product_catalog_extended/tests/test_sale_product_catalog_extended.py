@@ -1,6 +1,6 @@
 # Copyright 2026 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import fields
+from odoo import Command, fields
 from odoo.tests import Form
 from odoo.tests.common import TransactionCase, tagged
 
@@ -38,8 +38,13 @@ class TestSaleProductCatalogExtended(TransactionCase):
                 },
             ]
         )
-        # The order currently being edited, whose catalog is under test.
-        cls.order = cls.env["sale.order"].create({"partner_id": cls.partner.id})
+        # The order currently being edited, whose catalog is under test, in the
+        # context the catalog is opened from the order lines with.
+        cls.order = (
+            cls.env["sale.order"]
+            .create({"partner_id": cls.partner.id})
+            .with_context(child_field="order_line")
+        )
 
     def _last_sales_products(self):
         return (
@@ -113,8 +118,8 @@ class TestSaleProductCatalogExtended(TransactionCase):
         self.assertIn(self.product_a, self._last_sales_products())
 
     def test_last_order_limit_config_parameter(self):
-        self.env["ir.config_parameter"].sudo().set_param(
-            "sale_product_catalog_extended.catalog_last_order_limit", "1"
+        self.env["ir.config_parameter"].sudo().set_int(
+            "sale_product_catalog_extended.catalog_last_order_limit", 1
         )
         products = self._last_sales_products()
         self.assertEqual(len(products), 1)
@@ -147,8 +152,8 @@ class TestSaleProductCatalogExtended(TransactionCase):
             {
                 "name": "Own Documents Salesman",
                 "login": "catalog_own_documents_salesman",
-                "groups_id": [
-                    (6, 0, [self.env.ref("sales_team.group_sale_salesman").id])
+                "group_ids": [
+                    Command.set([self.env.ref("sales_team.group_sale_salesman").id])
                 ],
             }
         )
@@ -256,7 +261,7 @@ class TestSaleProductCatalogExtended(TransactionCase):
             {
                 "order_id": self.history_order.id,
                 "product_id": self.product_c.id,
-                "product_uom": self.env.ref("uom.product_uom_dozen").id,
+                "product_uom_id": self.env.ref("uom.product_uom_dozen").id,
                 "product_uom_qty": 1,
                 "qty_delivered": 1.0,
                 "price_unit": 12.0,
@@ -273,8 +278,8 @@ class TestSaleProductCatalogExtended(TransactionCase):
             fields.Datetime.now(), days=90
         )
         self.assertIn(self.product_a, self._last_sales_products())
-        self.env["ir.config_parameter"].sudo().set_param(
-            "sale_product_catalog_extended.catalog_last_order_days", "60"
+        self.env["ir.config_parameter"].sudo().set_int(
+            "sale_product_catalog_extended.catalog_last_order_days", 60
         )
         self.assertNotIn(self.product_a, self._last_sales_products())
 
@@ -298,12 +303,12 @@ class TestSaleProductCatalogExtended(TransactionCase):
             context["searchpanel_default_catalog_price_mode"], "last_price"
         )
         self.assertNotIn("searchpanel_default_catalog_origin_data", context)
-        get_param = self.env["ir.config_parameter"].sudo().get_param
+        get_int = self.env["ir.config_parameter"].sudo().get_int
         self.assertEqual(
-            get_param("sale_product_catalog_extended.catalog_last_order_days"), "30"
+            get_int("sale_product_catalog_extended.catalog_last_order_days"), 30
         )
         self.assertEqual(
-            get_param("sale_product_catalog_extended.catalog_last_order_limit"), "5"
+            get_int("sale_product_catalog_extended.catalog_last_order_limit"), 5
         )
 
     def test_last_sales_exclusion_deleted_from_its_list(self):
@@ -395,8 +400,8 @@ class TestSaleProductCatalogExtended(TransactionCase):
             products.search_fetch(sorted_last_sales, ["id"]).ids,
             [self.product_b.id, self.product_a.id],
         )
-        self.env["ir.config_parameter"].sudo().set_param(
-            "sale_product_catalog_extended.catalog_last_order_limit", "1"
+        self.env["ir.config_parameter"].sudo().set_int(
+            "sale_product_catalog_extended.catalog_last_order_limit", 1
         )
         self.assertEqual(
             products.search_fetch(sorted_last_sales, ["id"]).ids,
@@ -522,7 +527,9 @@ class TestSaleProductCatalogExtended(TransactionCase):
             ]
         )
         data = self.order._get_product_catalog_order_line_info(
-            self.product_a.ids, catalog_use_delivery_address=True
+            self.product_a.ids,
+            child_field="order_line",
+            catalog_use_delivery_address=True,
         )[self.product_a.id]
         self.assertEqual(len(data["lines"]), 2)
         for card in [data, *data["lines"]]:

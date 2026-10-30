@@ -22,10 +22,7 @@ class SaleCatalogProductExclusion(models.Model):
         index=True,
     )
 
-    _sql_constraints = [
-        (
-            "partner_product_uniq",
-            "unique(partner_id, product_id)",
-            "This product is already excluded from the last sales of this partner.",
-        ),
-    ]
+    _partner_product_uniq = models.Constraint(
+        "unique(partner_id, product_id)",
+        "This product is already excluded from the last sales of this partner.",
+    )

@@ -5,7 +5,9 @@
              (see the order line template) also when several cards show the
              same product, sharing the product-level #product-{id}-price id. -->
         <xpath expr="//article" position="attributes">
-            <attribute name="t-att-data-catalog-card">env.catalogCardKey</attribute>
+            <attribute
+                name="t-att-data-catalog-card"
+            >this.env.catalogCardKey</attribute>
         </xpath>
         <!-- Name the parts of the card, so the layouts (see catalog.scss) do
              not depend on its structure. The order line renders several
@@ -14,7 +16,7 @@
         <xpath expr="//article/div" position="attributes">
             <attribute name="class" add="o_product_catalog_card" separator=" " />
         </xpath>
-        <xpath expr="//t[@t-component='orderLineComponent']" position="replace">
+        <xpath expr="//t[@t-component='this.orderLineComponent']" position="replace">
             <div class="o_product_catalog_card_actions">$0</div>
         </xpath>
     </t>
@@ -24,12 +26,12 @@
          the catalog specific entries are added here instead. -->
     <t
         t-name="sale_product_catalog_extended.KanbanRecordMenu"
-        t-inherit="web.KanbanRecordMenu"
+        t-inherit="web.KanbanMenu"
         t-inherit-mode="primary"
     >
         <xpath expr="//KanbanDropdownMenuWrapper" position="inside">
             <div
-                t-if="displayExcludeFromLastSales"
+                t-if="this.displayExcludeFromLastSales"
                 class="o_product_catalog_cancel_global_click"
             >
                 <a

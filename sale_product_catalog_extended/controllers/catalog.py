@@ -6,7 +6,7 @@ from odoo.addons.product.controllers.catalog import ProductCatalogController
 
 
 class SaleProductCatalogController(ProductCatalogController):
-    @route("/product/catalog/sale/open_order_line", auth="user", type="json")
+    @route("/product/catalog/sale/open_order_line", auth="user", type="jsonrpc")
     def product_catalog_open_order_line(self, order_id, product_id, **kwargs):
         """Open sale order line on a given order for a given product.
 
@@ -21,7 +21,7 @@ class SaleProductCatalogController(ProductCatalogController):
             **kwargs,
         )
 
-    @route("/product/catalog/sale/exclude_from_last_sales", auth="user", type="json")
+    @route("/product/catalog/sale/exclude_from_last_sales", auth="user", type="jsonrpc")
     def product_catalog_exclude_from_last_sales(self, order_id, product_id, **kwargs):
         """Exclude a product from the catalog *Last sales* option.
 
@@ -39,7 +39,7 @@ class SaleProductCatalogController(ProductCatalogController):
             product_id, use_delivery_address=kwargs.get("use_delivery_address", False)
         )
 
-    @route("/product/catalog/sale/get_order_line_data", auth="user", type="json")
+    @route("/product/catalog/sale/get_order_line_data", auth="user", type="jsonrpc")
     def product_catalog_get_order_line_data(self, order_line_ids, **kwargs):
         """Return the catalog data of the given sale order lines.
 
@@ -48,12 +48,15 @@ class SaleProductCatalogController(ProductCatalogController):
         :rtype: dict
         """
         order_lines = request.env["sale.order.line"].browse(order_line_ids)
-        res = order_lines._get_product_catalog_lines_data(**kwargs)
-        if order_lines:
-            res["productType"] = order_lines[0].product_id.type
+        if not order_lines:
+            return {}
+        res = order_lines._get_product_catalog_lines_data(
+            parent_record=order_lines.order_id[:1], **kwargs
+        )
+        res["productType"] = order_lines[0].product_id.type
         return res
 
-    @route("/product/catalog/sale/update_line_qty", auth="user", type="json")
+    @route("/product/catalog/sale/update_line_qty", auth="user", type="jsonrpc")
     def product_catalog_update_line_qty(self, line_id, quantity, **kwargs):
         """Update the quantity of a specific sale order line.
 
@@ -69,15 +72,12 @@ class SaleProductCatalogController(ProductCatalogController):
         line = request.env["sale.order.line"].browse(line_id)
         order = line.order_id.with_company(line.company_id)
         request.update_context(catalog_skip_tracking=True)
-        if quantity == 0 and order.state in ["draft", "sent"]:
-            price_unit = order.pricelist_id._get_product_price(
-                product=line.product_id,
-                quantity=1.0,
-                currency=order.currency_id,
-                date=order.date_order,
-            )
+        if quantity == 0 and line._can_be_unlinked_from_catalog():
+            product = line.product_id
             line.unlink()
-            return price_unit
+            return order._get_product_catalog_default_unit_price(
+                product, product.uom_id
+            )
         line.write(
             order._get_catalog_line_quantity_vals(line.product_id, quantity, line)
         )

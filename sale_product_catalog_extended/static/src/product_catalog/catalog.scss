@@ -142,18 +142,13 @@
                     border-radius: var(--bs-btn-border-radius) !important;
                 }
             }
-            .o_tooltip_div_remove,
-            .o_tooltip_div_remove > .btn {
-                width: auto !important;
-            }
         }
-        // Without room for all the labels, the edit and remove buttons only
-        // show their icon (and their title as tooltip).
+        // Without room for all the labels, the edit button only shows its icon
+        // (and its title as tooltip).
         @container (max-width: 34rem) {
-            .o_product_catalog_edit_line,
-            .o_tooltip_div_remove > .btn {
+            .o_product_catalog_edit_line {
                 font-size: 0;
-                > .fa {
+                > .oi {
                     font-size: $font-size-base;
                     // Same height as the buttons with label.
                     line-height: $btn-line-height;

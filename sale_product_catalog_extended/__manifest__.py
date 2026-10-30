@@ -7,11 +7,11 @@
     "license": "AGPL-3",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "maintainers": ["carlosdauden", "CarlosRoca13"],
-    "version": "18.0.1.1.0",
+    "version": "20.0.1.0.0",
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale", "onchange_helper"],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/product_views.xml",
         "views/sale_order_line_views.xml",
         "views/res_config_settings_views.xml",

@@ -34,12 +34,12 @@ class SaleOrderLine(models.Model):
         )
 
     @api.model
-    def default_get(self, fields_list):
+    def default_get(self, fields):
         """Start the line opened from a catalog card with the values the
         catalog sets on the lines it adds (see
         ``sale.order._get_catalog_new_line_vals``).
         """
-        defaults = super().default_get(fields_list)
+        defaults = super().default_get(fields)
         order, product, options = self._get_catalog_form_card()
         # ``create`` only asks for the defaults of the fields it misses, so the
         # order and the product are taken from the card.
@@ -54,9 +54,7 @@ class SaleOrderLine(models.Model):
             # The quantity the card Add button puts, in the unit of the card.
             **order._get_catalog_line_quantity_vals(product, 1.0),
         }
-        defaults.update(
-            {name: value for name, value in vals.items() if name in fields_list}
-        )
+        defaults.update({name: value for name, value in vals.items() if name in fields})
         return defaults
 
     def _compute_price_unit(self):
@@ -101,6 +99,7 @@ class SaleOrderLine(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
+        lines_model = self
         if "catalog_line_params" in self.env.context:
             # The form opened from a catalog card does not send its readonly
             # fields (e.g. the vendor of a confirmed order), so their defaults
@@ -110,8 +109,8 @@ class SaleOrderLine(models.Model):
             vals_list = [self._add_missing_default_values(vals) for vals in vals_list]
             context = clean_context(self.env.context)
             context.pop("catalog_line_params")
-            self = self.with_env(self.env(context=context))  # pylint: disable=self-cls-assignment
-        lines = super().create(vals_list)
+            lines_model = self.with_env(self.env(context=context))
+        lines = super(SaleOrderLine, lines_model).create(vals_list)
         lines._remove_catalog_last_sales_exclusions()
         return lines
 

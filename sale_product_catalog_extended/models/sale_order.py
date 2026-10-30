@@ -56,7 +56,9 @@ class SaleOrder(models.Model):
     def _get_catalog_line_last_price(self, line):
         """Price of a previous sale ``line`` in the product UoM, the one the
         catalog adds lines in."""
-        return line.product_uom._compute_price(line.price_unit, line.product_id.uom_id)
+        return line.product_uom_id._compute_price(
+            line.price_unit, line.product_id.uom_id
+        )
 
     def _get_catalog_last_prices(self, product_ids, use_delivery_address=False):
         """Return {product_id: last_price} from previous confirmed orders for
@@ -106,7 +108,9 @@ class SaleOrder(models.Model):
             if len(lines) > 1:
                 result[product.id]["lines"] = [
                     {
-                        **line._get_product_catalog_lines_data(**kwargs),
+                        **line._get_product_catalog_lines_data(
+                            parent_record=self, **kwargs
+                        ),
                         "lineId": line.id,
                         "productType": product.type,
                     }
@@ -173,33 +177,37 @@ class SaleOrder(models.Model):
 
     def _update_order_line_info(
         self,
-        product_id,
+        product,
         quantity,
+        uom,
+        child_field,
         catalog_show_last_price=False,
         catalog_use_delivery_address=False,
         **kwargs,
     ):
-        is_new_line = quantity > 0 and not self.order_line.filtered(
-            lambda line: line.product_id.id == product_id
+        is_new_line = (
+            child_field == "order_line"
+            and quantity > 0
+            and not self.order_line.filtered(lambda line: line.product_id == product)
         )
-        result = super()._update_order_line_info(product_id, quantity, **kwargs)
+        result = super()._update_order_line_info(
+            product, quantity, uom, child_field, **kwargs
+        )
         if not is_new_line:
             return result
-        sol = self.order_line.filtered(lambda line: line.product_id.id == product_id)
+        sol = self.order_line.filtered(lambda line: line.product_id == product)
         if not sol:
             return result
         # Replay the line onchanges that the base catalog ``create`` skips.
         self._play_catalog_line_onchanges(sol)
-        result = sol._get_discounted_price()
         if catalog_show_last_price:
             last_price = self._get_catalog_new_line_last_price(
-                product_id,
+                product.id,
                 catalog_use_delivery_address=catalog_use_delivery_address,
                 **kwargs,
             )
             self._apply_catalog_last_price(sol, last_price)
-            result = sol._get_discounted_price()
-        return result
+        return {**result, "price": sol._get_discounted_price()}
 
     def _add_catalog_last_sales_exclusion(self, product_id, use_delivery_address=False):
         """Exclude ``product_id`` from the catalog *Last sales* option for the
@@ -295,15 +303,13 @@ class SaleOrder(models.Model):
             if value:
                 context[f"searchpanel_default_{field_name}"] = value
         params = self.env["ir.config_parameter"].sudo()
-        context["catalog_show_history_partner"] = bool(
-            params.get_param(
-                "sale_product_catalog_extended.catalog_show_history_partner"
-            )
+        context["catalog_show_history_partner"] = params.get_bool(
+            "sale_product_catalog_extended.catalog_show_history_partner"
         )
-        context["catalog_show_sort"] = bool(
-            params.get_param("sale_product_catalog_extended.catalog_show_sort")
+        context["catalog_show_sort"] = params.get_bool(
+            "sale_product_catalog_extended.catalog_show_sort"
         )
-        context["catalog_layout"] = params.get_param(
+        context["catalog_layout"] = params.get_str(
             "sale_product_catalog_extended.catalog_layout", "grid"
         )
         return context
