@@ -8,7 +8,7 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     force_invoiced_quantity = fields.Float(
-        digits="Product Unit of Measure",
+        digits="Product Unit",
         help=(
             "This amount will be deducted from quantity to invoice."
             "\nquantity to invoice = delivered - invoiced - force invoiced"
