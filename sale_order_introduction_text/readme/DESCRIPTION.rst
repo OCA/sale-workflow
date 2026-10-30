@@ -1,0 +1,1 @@
+This module adds an introduction text to Sale Orders, configurable from the Sales settings, and displays it in the Sale Order form, report, and customer portal view.

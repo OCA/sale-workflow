@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_saleorder_document_inherit_sale_order_introduction_text"
+        inherit_id="sale.report_saleorder_document"
+    >
+        <xpath expr="//div[@id='informations']" position="before">
+            <div class="w-100">
+                <span t-out="doc.sale_order_introduction_text" />
+            </div>
+        </xpath>
+    </template>
+
+    <template
+        id="sale_order_portal_content_inherit_sale_order_introduction_text"
+        inherit_id="sale.sale_order_portal_content"
+    >
+        <xpath expr="//div[@id='informations']" position="inside">
+            <t t-if="sale_order.sale_order_introduction_text">
+                <span t-out="sale_order.sale_order_introduction_text" />
+            </t>
+        </xpath>
+    </template>
+</odoo>

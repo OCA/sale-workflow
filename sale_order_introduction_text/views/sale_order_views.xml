@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record
+        id="view_order_form_inherit_sale_order_introduction_text"
+        model="ir.ui.view"
+    >
+        <field name="name">sale.order.form.inherit.sale.order.introduction.text</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='sale_header']" position="after">
+                <group>
+                    <group name="sale_order_introduction_text_group">
+                        <separator string="Sale Order Introduction Text" />
+                        <field
+                            name="sale_order_introduction_text"
+                            widget="html"
+                            nolabel="1"
+                            colspan="2"
+                        />
+                    </group>
+                    <group />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
