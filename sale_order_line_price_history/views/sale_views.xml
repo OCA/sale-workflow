@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2019 Tecnativa - Ernesto Tejeda
      Copyright 2024 Moduon Team S.L. <info@moduon.team>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
@@ -7,7 +7,7 @@
         <field name="name">sale.order.line.price.history.form</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
-        <field name="priority">999</field>
+        <field name="priority" eval="999" />
         <field name="arch" type="xml">
             <xpath
                 expr="//field[@name='order_line']/list/field[@name='price_unit']"
