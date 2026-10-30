@@ -109,6 +109,7 @@ class TestProductCategory(common.TransactionCase):
         self.assertEqual(child.sale_own_min_qty, 0.0)
 
         child.is_sale_own_restrict_min_qty_set = False
+        child._onchange_is_sale_restrict_min_qty_set()
         self.assertEqual(child.sale_restrict_min_qty, RESTRICTION_ENABLED)
         self.assertFalse(child.sale_own_restrict_min_qty)
 
@@ -118,6 +119,7 @@ class TestProductCategory(common.TransactionCase):
         self.assertEqual(child.sale_own_max_qty, 0.0)
 
         child.is_sale_own_restrict_max_qty_set = False
+        child._onchange_is_sale_restrict_max_qty_set()
         self.assertEqual(child.sale_restrict_max_qty, RESTRICTION_ENABLED)
         self.assertFalse(child.sale_own_restrict_max_qty)
 
@@ -127,5 +129,6 @@ class TestProductCategory(common.TransactionCase):
         self.assertEqual(child.sale_own_multiple_of_qty, 0.0)
 
         child.is_sale_own_restrict_multiple_of_qty_set = False
+        child._onchange_is_sale_restrict_multiple_of_qty_set()
         self.assertEqual(child.sale_restrict_multiple_of_qty, RESTRICTION_ENABLED)
         self.assertFalse(child.sale_own_restrict_multiple_of_qty)
