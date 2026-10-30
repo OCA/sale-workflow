@@ -186,3 +186,16 @@ class TestSaleDeliveryBlock(TransactionCase):
             "Delivery block should come from payment term's "
             "default_delivery_block_reason_id",
         )
+
+    def test_block_reason_set_on_new_order_is_kept(self):
+        """The block reason chosen before the first save blocks the delivery"""
+        block_reason = self.block_model.create({"name": "Manual block"})
+        so_form = Form(self.so_model.with_user(self.user_test))
+        so_form.partner_id = self.env.ref("base.res_partner_1")
+        so_form.delivery_block_id = block_reason
+        with so_form.order_line.new() as line:
+            line.product_id = self.product
+        so = so_form.save()
+        self.assertEqual(so.delivery_block_id, block_reason)
+        so.action_confirm()
+        self.assertFalse(so.picking_ids)
