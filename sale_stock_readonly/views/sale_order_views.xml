@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form_inherit_sale_stock_readonly" model="ir.ui.view">
+        <field name="name">sale.order.form.sale.stock.readonly</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock" />
+        <field name="arch" type="xml">
+            <button name="action_view_delivery" position="attributes">
+                <attribute
+                    name="groups"
+                    add="stock_readonly.group_stock_readonly"
+                    separator=","
+                />
+            </button>
+        </field>
+    </record>
+</odoo>
