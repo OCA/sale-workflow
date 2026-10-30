@@ -47,13 +47,10 @@ class SaleOrderLine(models.Model):
 
     @api.depends("price_final")
     def _compute_price_unit(self):
-        dp = self.env["decimal.precision"].precision_get("Product Price")
         handled = self.browse()
         for line in self:
             # Distinguish if the final price has been changed
-            if float_compare(
-                line.price_final, line._get_discounted_price(), precision_digits=dp
-            ):
+            if line._should_compute_price_final():
                 handled += line
                 if not line.technical_price_unit:
                     # If not initial price, we need to set it to the final price, as no
@@ -73,9 +70,7 @@ class SaleOrderLine(models.Model):
                 line.price_final, line._get_discounted_price(), precision_digits=dp
             ):
                 handled += line
-                if not line.technical_price_unit or float_is_zero(
-                    line.price_unit, precision_digits=dp
-                ):
+                if float_is_zero(line.price_unit, precision_digits=dp):
                     line.discount = 0
                 else:
                     line.discount = float_round(
@@ -84,6 +79,15 @@ class SaleOrderLine(models.Model):
                     )
         self -= handled
         return super()._compute_discount()
+
+    def _should_compute_price_final(self):
+        self.ensure_one()
+        dp = self.env["decimal.precision"].precision_get("Product Price")
+        return bool(
+            float_compare(
+                self.price_final, self._get_discounted_price(), precision_digits=dp
+            )
+        )
 
     def _add_precomputed_values(self, vals_list):
         for vals in vals_list:
