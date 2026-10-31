@@ -7,7 +7,7 @@
              Delivery Date field in the Other Info tab. -->
         <field name="priority">20</field>
         <field name="arch" type="xml">
-            <xpath expr="(//field[@name='date_order'])[2]" position="after">
+            <xpath expr="//field[@name='show_update_pricelist']" position="before">
                 <field name="sale_require_commitment_date" invisible="1" />
                 <field name="sale_commitment_date_in_header" invisible="1" />
                 <field
