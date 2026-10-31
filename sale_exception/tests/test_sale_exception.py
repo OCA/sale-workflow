@@ -13,6 +13,8 @@ class TestSaleException(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env["sale.order"]._register_hook()
+        cls.env["exception.rule"].search([]).write({"active": False})
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.default_pl = cls.env["product.pricelist"].create(
             {
