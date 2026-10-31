@@ -3,6 +3,9 @@
         <field name="name">sale.order.form.inherit.show.commitment_date</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
+        <!-- Apply after sale_stock, which replaces the div holding the
+             Delivery Date field in the Other Info tab. -->
+        <field name="priority">20</field>
         <field name="arch" type="xml">
             <xpath expr="(//field[@name='date_order'])[2]" position="after">
                 <field name="sale_require_commitment_date" invisible="1" />
@@ -12,6 +15,14 @@
                     required="sale_require_commitment_date"
                     invisible="not sale_commitment_date_in_header"
                 />
+            </xpath>
+            <!-- The header field is invisible unless the header option is set,
+                 and invisible fields are not checked as required. -->
+            <xpath
+                expr="//group[@name='sale_shipping']//field[@name='commitment_date']"
+                position="attributes"
+            >
+                <attribute name="required">sale_require_commitment_date</attribute>
             </xpath>
         </field>
     </record>

@@ -1,6 +1,8 @@
 # Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from lxml import etree
+
 from odoo import Command
 from odoo.tests import TransactionCase
 
@@ -217,3 +219,20 @@ class PricelistFromCommitmentDate(TransactionCase):
         self.assertTrue(order.sale_require_commitment_date)
         order.order_line[1].qty_delivered = 5
         self.assertFalse(order.sale_require_commitment_date)
+
+    def test_04_commitment_date_required_in_form(self):
+        """The header and Other Info Delivery Date fields both carry the required
+        condition, so it holds whether or not the header field is shown."""
+        arch = self.env["sale.order"].get_view(
+            self.env.ref("sale.view_order_form").id, "form"
+        )["arch"]
+        doc = etree.fromstring(arch)
+        header_node = doc.xpath(
+            "//group[@name='order_details']/field[@name='commitment_date']"
+        )
+        other_info_node = doc.xpath(
+            "//group[@name='sale_shipping']//field[@name='commitment_date']"
+        )
+        for nodes in (header_node, other_info_node):
+            self.assertEqual(len(nodes), 1)
+            self.assertEqual(nodes[0].get("required"), "sale_require_commitment_date")
