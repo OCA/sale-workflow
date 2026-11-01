@@ -135,6 +135,15 @@ class TestSaleSemaphore(BaseCommon):
         with self.assertRaises(UserError):
             self.order.with_user(self.salesperson).action_confirm()
 
+    def test_sale_line_product_without_semaphore(self):
+        line = self._create_line(85.0)
+        self.assertEqual(line.semaphore, "danger")
+        line.product_id = self.env["product.product"].create(
+            {"name": "Product without semaphore", "lst_price": 100.0}
+        )
+        self.assertFalse(line.semaphore_active)
+        self.assertFalse(line.semaphore)
+
     def test_sale_line_zero_qty_uses_unit_price(self):
         """With no quantity the qty-dependent ``price_reduce_*`` fields are 0;
         the semaphore must instead evaluate the discounted unit price so it is
