@@ -104,7 +104,7 @@ addon | version | maintainers | summary
 [sale_partner_selectable_option](sale_partner_selectable_option/) | 19.0.1.0.1 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Sale Partner Selectable Option
 [sale_pricelist_display_surcharge](sale_pricelist_display_surcharge/) | 19.0.1.0.0 |  | This module shows to the customer the surcharges if wanted.
 [sale_pricelist_global_rule](sale_pricelist_global_rule/) | 19.0.1.0.1 | <a href='https://github.com/carlos-lopez-tecnativa'><img src='https://github.com/carlos-lopez-tecnativa.png' width='32' height='32' style='border-radius:50%;' alt='carlos-lopez-tecnativa'/></a> | Apply a global rule to all sale order
-[sale_product_multi_add](sale_product_multi_add/) | 19.0.1.0.0 |  | Sale Product Multi Add
+[sale_product_multi_add](sale_product_multi_add/) | 19.0.1.0.1 |  | Sale Product Multi Add
 [sale_product_set](sale_product_set/) | 19.0.1.0.1 |  | Sales product set
 [sale_purchase_stock_auto_confirm](sale_purchase_stock_auto_confirm/) | 19.0.1.0.0 | <a href='https://github.com/carlos-lopez-tecnativa'><img src='https://github.com/carlos-lopez-tecnativa.png' width='32' height='32' style='border-radius:50%;' alt='carlos-lopez-tecnativa'/></a> | Sale purchase stock auto confirm
 [sale_quotation_number](sale_quotation_number/) | 19.0.1.0.0 |  | Different sequence for sale quotations
