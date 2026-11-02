@@ -10,6 +10,7 @@ from odoo import fields
 from odoo.tests import tagged
 from odoo.tools.safe_eval import safe_eval
 
+from ..models.automatic_workflow_job import AutomaticWorkflowJob
 from .common import TestAutomaticWorkflowMixin, TestCommon
 
 _logger = logging.getLogger(__name__)
@@ -30,6 +31,86 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
                 queue_job__no_delay=True,
             )
         )
+        cls.company_currency = cls.env.company.currency_id
+        cls.bank_journal = cls.env["account.journal"].create(
+            {"name": "Test Bank", "type": "bank", "code": "TBNK1"}
+        )
+        cls.foreign_currency = cls.env.ref(
+            "base.USD" if cls.company_currency.name == "EUR" else "base.EUR"
+        )
+        cls.foreign_currency.active = True
+        cls.foreign_rate = 2.0
+        cls.env["res.currency.rate"].search(
+            [
+                ("currency_id", "=", cls.foreign_currency.id),
+                ("name", "=", fields.Date.today()),
+                ("company_id", "=", cls.env.company.id),
+            ]
+        ).unlink()
+        cls.env["res.currency.rate"].create(
+            {
+                "currency_id": cls.foreign_currency.id,
+                "name": fields.Date.today(),
+                "rate": cls.foreign_rate,
+                "company_id": cls.env.company.id,
+            }
+        )
+        cls.foreign_pricelist = cls.env["product.pricelist"].create(
+            {"name": "Foreign pricelist", "currency_id": cls.foreign_currency.id}
+        )
+
+    def _create_posted_invoice(self, currency, amount=100.0):
+        partner = self.env["res.partner"].create({"name": "Currency partner"})
+        invoice = self.env["account.move"].create(
+            {
+                "move_type": "out_invoice",
+                "partner_id": partner.id,
+                "currency_id": currency.id,
+                "invoice_date": fields.Date.today(),
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Bread",
+                            "quantity": 1,
+                            "price_unit": amount,
+                            "tax_ids": [(5, 0, 0)],
+                        },
+                    )
+                ],
+            }
+        )
+        invoice.action_post()
+        return invoice
+
+    def _find_payment(self, last_payment_id):
+        payment = self.env["account.payment"].search(
+            [("id", ">", last_payment_id)], order="id desc", limit=1
+        )
+        self.assertTrue(payment, "No payment was created")
+        return payment
+
+    def _last_payment_id(self):
+        payment = self.env["account.payment"].search([], order="id desc", limit=1)
+        return payment.id or 0
+
+    def _register_payment(self, invoice):
+        """Run the base implementation, bypassing optional submodule overrides"""
+        job = self.env["automatic.workflow.job"]
+        prepare = AutomaticWorkflowJob._prepare_dict_account_payment
+
+        def _prepare_dict_account_payment(job, invoice):
+            vals = prepare(job, invoice)
+            vals["journal_id"] = self.bank_journal.id
+            return vals
+
+        with mock.patch.object(
+            type(job),
+            "_prepare_dict_account_payment",
+            _prepare_dict_account_payment,
+        ):
+            AutomaticWorkflowJob._register_payment_invoice(job, invoice)
 
     def test_full_automatic(self):
         workflow = self.create_full_automatic()
@@ -254,3 +335,72 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         self.assertIn("job bypassed", res_create_invoice)
         self.assertIn("job bypassed", res_validate_invoice)
         self.assertIn("job bypassed", res_send_invoice)
+
+    def test_01_payment_currency_matches_invoice(self):
+        workflow = self.create_full_automatic()
+        sale = self.create_sale_order(
+            workflow, override={"pricelist_id": self.foreign_pricelist.id}
+        )
+        sale._onchange_workflow_process_id()
+        self.run_job()
+        invoice = sale.invoice_ids
+        self.assertEqual(invoice.state, "posted")
+        last_payment_id = self._last_payment_id()
+        self._register_payment(invoice)
+        self.assertEqual(invoice.currency_id, self.foreign_currency)
+        payment = self._find_payment(last_payment_id)
+        self.assertFalse(
+            payment.journal_id.currency_id,
+            "Premise: the payment journal must have no own currency",
+        )
+        self.assertEqual(
+            payment.currency_id,
+            invoice.currency_id,
+            "Payment currency must match the invoice currency, not the "
+            "journal/company one",
+        )
+
+    def test_02_payment_same_currency_unaffected(self):
+        workflow = self.create_full_automatic()
+        sale = self.create_sale_order(workflow)
+        sale._onchange_workflow_process_id()
+        self.run_job()
+        invoice = sale.invoice_ids
+        self.assertEqual(invoice.state, "posted")
+        last_payment_id = self._last_payment_id()
+        self._register_payment(invoice)
+        self.assertEqual(invoice.currency_id, self.company_currency)
+        payment = self._find_payment(last_payment_id)
+        self.assertEqual(payment.currency_id, self.company_currency)
+        self.assertIn(invoice.payment_state, ("paid", "in_payment"))
+
+    def test_03_payment_amount_currency_coherent(self):
+        invoice = self._create_posted_invoice(self.foreign_currency, amount=100.0)
+        self.assertEqual(invoice.amount_residual, 100.0)
+        last_payment_id = self._last_payment_id()
+        self._register_payment(invoice)
+        payment = self._find_payment(last_payment_id)
+        self.assertEqual(payment.currency_id, self.foreign_currency)
+        self.assertEqual(payment.amount, 100.0)
+        liquidity_line = payment.move_id.line_ids.filtered(
+            lambda line: line.account_id.account_type
+            not in ("asset_receivable", "liability_payable")
+        )
+        self.assertEqual(len(liquidity_line), 1)
+        self.assertEqual(liquidity_line.currency_id, self.foreign_currency)
+        self.assertEqual(
+            self.foreign_currency.compare_amounts(liquidity_line.amount_currency, 100),
+            0,
+            "Liquidity amount_currency must be 100 in the invoice currency",
+        )
+        expected_balance = self.foreign_currency._convert(
+            100.0, self.company_currency, self.env.company, payment.date
+        )
+        self.assertEqual(
+            self.company_currency.compare_amounts(
+                liquidity_line.balance, expected_balance
+            ),
+            0,
+            "Liquidity balance must be the company-currency conversion",
+        )
+        self.assertIn(invoice.payment_state, ("paid", "in_payment"))
