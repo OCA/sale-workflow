@@ -71,6 +71,4 @@ class SaleImportProductsItem(models.TransientModel):
     product_id = fields.Many2one(
         string="Product", comodel_name="product.product", required=True
     )
-    quantity = fields.Float(
-        digits="Product Unit of Measure", default=1.0, required=True
-    )
+    quantity = fields.Float(digits="Product Unit", default=1.0, required=True)
