@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-03 12:00+0000\n"
-"PO-Revision-Date: 2023-11-03 13:40+0000\n"
+"PO-Revision-Date: 2026-11-02 10:41+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_restricted_qty
 #. odoo-python
@@ -30,6 +30,8 @@ msgid ""
 "<span class=\"o_form_label oe_inline fst-italic text-muted\" "
 "invisible=\"is_sale_own_max_qty_set\"> (inherited)</span>"
 msgstr ""
+"<span class=\"o_form_label oe_inline fst-italic text-muted\" "
+"invisible=\"is_sale_own_max_qty_set\"> (ereditato)</span>"
 
 #. module: sale_restricted_qty
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
@@ -38,6 +40,8 @@ msgid ""
 "<span class=\"o_form_label oe_inline fst-italic text-muted\" "
 "invisible=\"is_sale_own_min_qty_set\"> (inherited)</span>"
 msgstr ""
+"<span class=\"o_form_label oe_inline fst-italic text-muted\" "
+"invisible=\"is_sale_own_min_qty_set\"> (ereditato)</span>"
 
 #. module: sale_restricted_qty
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
@@ -46,6 +50,8 @@ msgid ""
 "<span class=\"o_form_label oe_inline fst-italic text-muted\" "
 "invisible=\"is_sale_own_multiple_of_qty_set\"> (inherited)</span>"
 msgstr ""
+"<span class=\"o_form_label oe_inline fst-italic text-muted\" "
+"invisible=\"is_sale_own_multiple_of_qty_set\"> (ereditato)</span>"
 
 #. module: sale_restricted_qty
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
@@ -54,6 +60,8 @@ msgid ""
 "<span class=\"o_form_label oe_inline fst-italic text-muted\" "
 "invisible=\"is_sale_own_restrict_max_qty_set\"> (inherited)</span>"
 msgstr ""
+"<span class=\"o_form_label oe_inline fst-italic text-muted\" "
+"invisible=\"is_sale_own_restrict_max_qty_set\"> (ereditato)</span>"
 
 #. module: sale_restricted_qty
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
@@ -62,6 +70,8 @@ msgid ""
 "<span class=\"o_form_label oe_inline fst-italic text-muted\" "
 "invisible=\"is_sale_own_restrict_min_qty_set\"> (inherited)</span>"
 msgstr ""
+"<span class=\"o_form_label oe_inline fst-italic text-muted\" "
+"invisible=\"is_sale_own_restrict_min_qty_set\"> (ereditato)</span>"
 
 #. module: sale_restricted_qty
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
@@ -70,6 +80,8 @@ msgid ""
 "<span class=\"o_form_label oe_inline fst-italic text-muted\" "
 "invisible=\"is_sale_own_restrict_multiple_of_qty_set\"> (inherited)</span>"
 msgstr ""
+"<span class=\"o_form_label oe_inline fst-italic text-muted\" "
+"invisible=\"is_sale_own_restrict_multiple_of_qty_set\"> (ereditato)</span>"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_category__sale_inherited_restrict_max_qty__blocking
@@ -128,6 +140,10 @@ msgid ""
 "Use 'Warning' if you want to allow large orders that exceed strict policies "
 "under special conditions."
 msgstr ""
+"Decidere se il vincolo sulla quantità massima deve essere applicato "
+"rigorosamente (Bloccante) o se deve generare solo un avviso (Avvertimento).\n"
+"Utilizzare 'Avvertimento' per consentire ordini di grandi quantità che "
+"superano i limiti previsti in condizioni particolari."
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_category__sale_restrict_min_qty
@@ -140,6 +156,10 @@ msgid ""
 "Use 'Warning' if you want to allow exceptions like selling samples or "
 "leftover stock."
 msgstr ""
+"Decidere se il vincolo sulla quantità minima deve essere applicato "
+"rigorosamente (Bloccante) o se deve generare solo un avviso (Avvertimento).\n"
+"Utilizzare 'Avvertimento' per consentire eccezioni, come la vendita di "
+"campioni o di scorte residue."
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_category__sale_restrict_multiple_of_qty
@@ -152,36 +172,40 @@ msgid ""
 "Use 'Warning' to allow selling non-standard quantities for special cases "
 "like clearing leftover stock."
 msgstr ""
+"Decidere se il vincolo sui multipli della quantità deve essere applicato "
+"rigorosamente (Bloccante) o se deve generare solo un avviso (Avvertimento).\n"
+"Utilizzare 'Avvertimento' per consentire la vendita di quantità non standard "
+"in casi particolari, ad esempio per smaltire le scorte residue."
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__is_above_max_qty
 msgid "Is Above Max Qty"
-msgstr ""
+msgstr "È superiore alla quantità massima"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__is_below_min_qty
 msgid "Is Below Min Qty"
-msgstr ""
+msgstr "È inferiore alla quantità minima"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__is_max_qty_set
 msgid "Is Max Qty Set"
-msgstr ""
+msgstr "È impostata la quantità massima"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__is_min_qty_set
 msgid "Is Min Qty Set"
-msgstr ""
+msgstr "È impostata la quantità minima"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__is_multiple_of_qty_set
 msgid "Is Multiple Of Qty Set"
-msgstr ""
+msgstr "È impostato il multiplo della quantità"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__is_not_multiple_of_qty
 msgid "Is Not Multiple Of Qty"
-msgstr ""
+msgstr "Non è un multiplo della quantità"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__is_sale_inherited_max_qty_set
@@ -189,7 +213,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__is_sale_inherited_max_qty_set
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__is_sale_inherited_max_qty_set
 msgid "Is Sale Inherited Max Qty Set"
-msgstr ""
+msgstr "È impostata la quantità massima di vendita ereditata"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__is_sale_inherited_min_qty_set
@@ -197,7 +221,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__is_sale_inherited_min_qty_set
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__is_sale_inherited_min_qty_set
 msgid "Is Sale Inherited Min Qty Set"
-msgstr ""
+msgstr "È impostata la quantità minima di vendita ereditata"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__is_sale_inherited_multiple_of_qty_set
@@ -205,7 +229,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__is_sale_inherited_multiple_of_qty_set
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__is_sale_inherited_multiple_of_qty_set
 msgid "Is Sale Inherited Multiple Of Qty Set"
-msgstr ""
+msgstr "È impostato il multiplo della quantità di vendita ereditato"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__is_sale_inherited_restrict_max_qty_set
@@ -213,7 +237,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__is_sale_inherited_restrict_max_qty_set
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__is_sale_inherited_restrict_max_qty_set
 msgid "Is Sale Inherited Restrict Max Qty Set"
-msgstr ""
+msgstr "È impostata la restrizione ereditata sulla quantità massima di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__is_sale_inherited_restrict_min_qty_set
@@ -221,7 +245,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__is_sale_inherited_restrict_min_qty_set
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__is_sale_inherited_restrict_min_qty_set
 msgid "Is Sale Inherited Restrict Min Qty Set"
-msgstr ""
+msgstr "È impostata la restrizione ereditata sulla quantità minima di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__is_sale_inherited_restrict_multiple_of_qty_set
@@ -230,6 +254,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__is_sale_inherited_restrict_multiple_of_qty_set
 msgid "Is Sale Inherited Restrict Multiple Of Qty Set"
 msgstr ""
+"È impostata la restrizione ereditata sui multipli della quantità di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__is_sale_max_qty_set
@@ -237,7 +262,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__is_sale_max_qty_set
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__is_sale_max_qty_set
 msgid "Is Sale Max Qty Set"
-msgstr ""
+msgstr "È impostata la quantità massima di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__is_sale_min_qty_set
@@ -245,7 +270,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__is_sale_min_qty_set
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__is_sale_min_qty_set
 msgid "Is Sale Min Qty Set"
-msgstr ""
+msgstr "È impostata la quantità minima di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__is_sale_multiple_of_qty_set
@@ -253,7 +278,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__is_sale_multiple_of_qty_set
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__is_sale_multiple_of_qty_set
 msgid "Is Sale Multiple Of Qty Set"
-msgstr ""
+msgstr "È impostato il multiplo della quantità di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__is_sale_own_max_qty_set
@@ -261,7 +286,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__is_sale_own_max_qty_set
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__is_sale_own_max_qty_set
 msgid "Is Sale Own Max Qty Set"
-msgstr ""
+msgstr "È impostata la quantità massima di vendita specifica"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__is_sale_own_min_qty_set
@@ -269,7 +294,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__is_sale_own_min_qty_set
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__is_sale_own_min_qty_set
 msgid "Is Sale Own Min Qty Set"
-msgstr ""
+msgstr "È impostata la quantità minima di vendita specifica"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__is_sale_own_multiple_of_qty_set
@@ -277,7 +302,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__is_sale_own_multiple_of_qty_set
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__is_sale_own_multiple_of_qty_set
 msgid "Is Sale Own Multiple Of Qty Set"
-msgstr ""
+msgstr "È impostato il multiplo della quantità di vendita specifico"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__is_sale_own_restrict_max_qty_set
@@ -285,7 +310,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__is_sale_own_restrict_max_qty_set
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__is_sale_own_restrict_max_qty_set
 msgid "Is Sale Own Restrict Max Qty Set"
-msgstr ""
+msgstr "È impostata la restrizione specifica sulla quantità massima di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__is_sale_own_restrict_min_qty_set
@@ -293,7 +318,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__is_sale_own_restrict_min_qty_set
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__is_sale_own_restrict_min_qty_set
 msgid "Is Sale Own Restrict Min Qty Set"
-msgstr ""
+msgstr "È impostata la restrizione specifica sulla quantità minima di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__is_sale_own_restrict_multiple_of_qty_set
@@ -302,6 +327,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__is_sale_own_restrict_multiple_of_qty_set
 msgid "Is Sale Own Restrict Multiple Of Qty Set"
 msgstr ""
+"È impostata la restrizione specifica sui multipli della quantità di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__is_sale_restrict_max_qty_set
@@ -309,7 +335,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__is_sale_restrict_max_qty_set
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__is_sale_restrict_max_qty_set
 msgid "Is Sale Restrict Max Qty Set"
-msgstr ""
+msgstr "È impostata la restrizione sulla quantità massima di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__is_sale_restrict_min_qty_set
@@ -317,7 +343,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__is_sale_restrict_min_qty_set
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__is_sale_restrict_min_qty_set
 msgid "Is Sale Restrict Min Qty Set"
-msgstr ""
+msgstr "È impostata la restrizione sulla quantità minima di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__is_sale_restrict_multiple_of_qty_set
@@ -325,7 +351,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__is_sale_restrict_multiple_of_qty_set
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__is_sale_restrict_multiple_of_qty_set
 msgid "Is Sale Restrict Multiple Of Qty Set"
-msgstr ""
+msgstr "È impostata la restrizione sui multipli della quantità di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__max_qty
@@ -345,7 +371,6 @@ msgstr "Q.tà minima"
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__multiple_of_qty
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
-#, fuzzy
 msgid "Multiple-Of Qty"
 msgstr "Q.tà multiple"
 
@@ -362,33 +387,33 @@ msgstr "Categoria prodotto"
 #. module: sale_restricted_qty
 #: model:ir.model,name:sale_restricted_qty.model_sale_product_restricted_qty_mixin
 msgid "Product Restricted Qty Mixin"
-msgstr ""
+msgstr "Mixin quantità limitate prodotto"
 
 #. module: sale_restricted_qty
 #: model:ir.model,name:sale_restricted_qty.model_product_product
 msgid "Product Variant"
-msgstr ""
+msgstr "Variante prodotto"
 
 #. module: sale_restricted_qty
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
 msgid "Restrict"
-msgstr ""
+msgstr "Limita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__restrict_max_qty
 msgid "Restrict Max Qty"
-msgstr ""
+msgstr "Limita quantità massima"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__restrict_min_qty
 msgid "Restrict Min Qty"
-msgstr ""
+msgstr "Limita quantità minima"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__restrict_multiple_of_qty
 msgid "Restrict Multiple Of Qty"
-msgstr ""
+msgstr "Limita multipli della quantità"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_inherited_max_qty
@@ -396,7 +421,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_inherited_max_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__sale_inherited_max_qty
 msgid "Sale Inherited Max Qty"
-msgstr ""
+msgstr "Quantità massima di vendita ereditata"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_inherited_min_qty
@@ -404,7 +429,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_inherited_min_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__sale_inherited_min_qty
 msgid "Sale Inherited Min Qty"
-msgstr ""
+msgstr "Quantità minima di vendita ereditata"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_inherited_multiple_of_qty
@@ -412,7 +437,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_inherited_multiple_of_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__sale_inherited_multiple_of_qty
 msgid "Sale Inherited Multiple Of Qty"
-msgstr ""
+msgstr "Multiplo della quantità di vendita ereditato"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_inherited_restrict_max_qty
@@ -420,7 +445,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_inherited_restrict_max_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__sale_inherited_restrict_max_qty
 msgid "Sale Inherited Restrict Max Qty"
-msgstr ""
+msgstr "Restrizione ereditata sulla quantità massima di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_inherited_restrict_min_qty
@@ -428,7 +453,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_inherited_restrict_min_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__sale_inherited_restrict_min_qty
 msgid "Sale Inherited Restrict Min Qty"
-msgstr ""
+msgstr "Restrizione ereditata sulla quantità minima di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_inherited_restrict_multiple_of_qty
@@ -436,7 +461,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_inherited_restrict_multiple_of_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__sale_inherited_restrict_multiple_of_qty
 msgid "Sale Inherited Restrict Multiple Of Qty"
-msgstr ""
+msgstr "Restrizione ereditata sui multipli della quantità di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_max_qty
@@ -460,7 +485,7 @@ msgstr "Q.tà minima di vendita"
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_multiple_of_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__sale_multiple_of_qty
 msgid "Sale Multiple Of Qty"
-msgstr ""
+msgstr "Multiplo della quantità di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_own_max_qty
@@ -468,7 +493,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_own_max_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__sale_own_max_qty
 msgid "Sale Own Max Qty"
-msgstr ""
+msgstr "Quantità massima di vendita specifica"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_own_min_qty
@@ -476,7 +501,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_own_min_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__sale_own_min_qty
 msgid "Sale Own Min Qty"
-msgstr ""
+msgstr "Quantità minima di vendita specifica"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_own_multiple_of_qty
@@ -484,7 +509,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_own_multiple_of_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__sale_own_multiple_of_qty
 msgid "Sale Own Multiple Of Qty"
-msgstr ""
+msgstr "Multiplo della quantità di vendita specifico"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_own_restrict_max_qty
@@ -492,7 +517,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_own_restrict_max_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__sale_own_restrict_max_qty
 msgid "Sale Own Restrict Max Qty"
-msgstr ""
+msgstr "Restrizione specifica sulla quantità massima di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_own_restrict_min_qty
@@ -500,7 +525,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_own_restrict_min_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__sale_own_restrict_min_qty
 msgid "Sale Own Restrict Min Qty"
-msgstr ""
+msgstr "Restrizione specifica sulla quantità minima di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_own_restrict_multiple_of_qty
@@ -508,7 +533,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_own_restrict_multiple_of_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__sale_own_restrict_multiple_of_qty
 msgid "Sale Own Restrict Multiple Of Qty"
-msgstr ""
+msgstr "Restrizione specifica sui multipli della quantità di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_restrict_max_qty
@@ -516,7 +541,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_restrict_max_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__sale_restrict_max_qty
 msgid "Sale Restrict Max Qty"
-msgstr ""
+msgstr "Restrizione sulla quantità massima di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_restrict_min_qty
@@ -524,7 +549,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_restrict_min_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__sale_restrict_min_qty
 msgid "Sale Restrict Min Qty"
-msgstr ""
+msgstr "Restrizione sulla quantità minima di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_restrict_multiple_of_qty
@@ -532,14 +557,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_restrict_multiple_of_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_product_restricted_qty_mixin__sale_restrict_multiple_of_qty
 msgid "Sale Restrict Multiple Of Qty"
-msgstr ""
+msgstr "Restrizione sui multipli della quantità di vendita"
 
 #. module: sale_restricted_qty
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
-#, fuzzy
 msgid "Sale Restricted Qty"
-msgstr "Quantità di vendita limitata"
+msgstr "Q.tà di vendita limitata"
 
 #. module: sale_restricted_qty
 #: model:ir.model,name:sale_restricted_qty.model_sale_order_line
@@ -552,9 +576,8 @@ msgstr "Riga ordine di vendita"
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_template__sale_max_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_sale_order_line__max_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_sale_product_restricted_qty_mixin__sale_max_qty
-#, fuzzy
 msgid "The maximum quantity of product that can be sold."
-msgstr "Controlla la quantità di vendita massima per questi prodotti: * \n"
+msgstr "La quantità di vendita massima per questo prodotto."
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_category__sale_min_qty
@@ -562,9 +585,8 @@ msgstr "Controlla la quantità di vendita massima per questi prodotti: * \n"
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_template__sale_min_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_sale_order_line__min_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_sale_product_restricted_qty_mixin__sale_min_qty
-#, fuzzy
 msgid "The minimum quantity of product that can be sold."
-msgstr "Controlla la quantità di vendita minima per questi prodotti: * \n"
+msgstr "La quantità di vendita minima per questo prodotto."
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_category__sale_multiple_of_qty
@@ -572,15 +594,14 @@ msgstr "Controlla la quantità di vendita minima per questi prodotti: * \n"
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_template__sale_multiple_of_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_sale_order_line__multiple_of_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_sale_product_restricted_qty_mixin__sale_multiple_of_qty
-#, fuzzy
 msgid "The multiple-of quantity of product that can be sold."
-msgstr "Controlla la quantità di vendita multipla per questi prodotti: * \n"
+msgstr "La quantità di vendita multipla per questo prodotto."
 
 #. module: sale_restricted_qty
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
 msgid "Value"
-msgstr ""
+msgstr "Valore"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_category__sale_inherited_restrict_max_qty__warning
