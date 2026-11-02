@@ -1,0 +1,273 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_merge
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_merge
+#. odoo-python
+#: code:addons/sale_order_merge/models/sale_order.py:0
+#, python-format
+msgid ""
+"\n"
+"Company - Orders"
+msgstr ""
+
+#. module: sale_order_merge
+#. odoo-python
+#: code:addons/sale_order_merge/models/sale_order.py:0
+#, python-format
+msgid ""
+"\n"
+"Currency - Orders"
+msgstr ""
+
+#. module: sale_order_merge
+#. odoo-python
+#: code:addons/sale_order_merge/models/sale_order.py:0
+#, python-format
+msgid ""
+"\n"
+"Delivery address - Orders"
+msgstr ""
+
+#. module: sale_order_merge
+#. odoo-python
+#: code:addons/sale_order_merge/models/sale_order.py:0
+#, python-format
+msgid ""
+"\n"
+"Partner - Orders"
+msgstr ""
+
+#. module: sale_order_merge
+#. odoo-python
+#: code:addons/sale_order_merge/models/sale_order.py:0
+#, python-format
+msgid ""
+"\n"
+"State - Orders"
+msgstr ""
+
+#. module: sale_order_merge
+#. odoo-python
+#: code:addons/sale_order_merge/models/sale_order.py:0
+#, python-format
+msgid ""
+"\n"
+"Warehouse - Orders"
+msgstr ""
+
+#. module: sale_order_merge
+#. odoo-python
+#: code:addons/sale_order_merge/models/sale_order.py:0
+#, python-format
+msgid ""
+"\n"
+" %(company)s:  %(orders)s"
+msgstr ""
+
+#. module: sale_order_merge
+#. odoo-python
+#: code:addons/sale_order_merge/models/sale_order.py:0
+#, python-format
+msgid ""
+"\n"
+" %(currency)s:  %(orders)s"
+msgstr ""
+
+#. module: sale_order_merge
+#. odoo-python
+#: code:addons/sale_order_merge/models/sale_order.py:0
+#, python-format
+msgid ""
+"\n"
+" %(delivery)s:  %(orders)s"
+msgstr ""
+
+#. module: sale_order_merge
+#. odoo-python
+#: code:addons/sale_order_merge/models/sale_order.py:0
+#, python-format
+msgid ""
+"\n"
+" %(partner)s:  %(orders)s"
+msgstr ""
+
+#. module: sale_order_merge
+#. odoo-python
+#: code:addons/sale_order_merge/models/sale_order.py:0
+#, python-format
+msgid ""
+"\n"
+" %(state)s:  %(orders)s"
+msgstr ""
+
+#. module: sale_order_merge
+#. odoo-python
+#: code:addons/sale_order_merge/models/sale_order.py:0
+#, python-format
+msgid ""
+"\n"
+" %(warehouse)s:  %(orders)s"
+msgstr ""
+
+#. module: sale_order_merge
+#: model_terms:ir.ui.view,arch_db:sale_order_merge.sale_order_merge_form
+msgid ""
+") is not confirmed,\n"
+"                        please note that confirmed orders (Sales Order) that are marked to have their\n"
+"                        pickings merged will be cancelled and not merged."
+msgstr ""
+
+#. module: sale_order_merge
+#: model_terms:ir.ui.view,arch_db:sale_order_merge.res_config_settings_view_form
+msgid "Allow merging confirmed orders"
+msgstr ""
+
+#. module: sale_order_merge
+#: model:ir.model.fields,field_description:sale_order_merge.field_sale_order__merge_with_ids
+#: model:ir.model.fields,field_description:sale_order_merge.field_sale_order_merge__mergeable_ids
+msgid "Can be merged with"
+msgstr ""
+
+#. module: sale_order_merge
+#: model_terms:ir.ui.view,arch_db:sale_order_merge.sale_order_merge_form
+msgid "Cancel"
+msgstr ""
+
+#. module: sale_order_merge
+#: model:ir.model,name:sale_order_merge.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_order_merge
+#: model:ir.model.fields,field_description:sale_order_merge.field_sale_order_merge__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: sale_order_merge
+#: model:ir.model.fields,field_description:sale_order_merge.field_sale_order_merge__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: sale_order_merge
+#: model:ir.model.fields,field_description:sale_order_merge.field_sale_order_merge__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_order_merge
+#: model:ir.model.fields,field_description:sale_order_merge.field_sale_order__merge_ok
+msgid "Has candidates to merge with"
+msgstr ""
+
+#. module: sale_order_merge
+#: model:ir.model.fields,field_description:sale_order_merge.field_sale_order_merge__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_merge
+#: model:ir.model.fields,field_description:sale_order_merge.field_sale_order_merge__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sale_order_merge
+#: model:ir.model.fields,field_description:sale_order_merge.field_sale_order_merge__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sale_order_merge
+#: model_terms:ir.ui.view,arch_db:sale_order_merge.sale_order_merge_form
+#: model_terms:ir.ui.view,arch_db:sale_order_merge.view_order_form
+msgid "Merge"
+msgstr ""
+
+#. module: sale_order_merge
+#: model:ir.model.fields,field_description:sale_order_merge.field_res_config_settings__merge_order_confirm
+msgid "Merge confirmed orders"
+msgstr ""
+
+#. module: sale_order_merge
+#: model:ir.model.fields,field_description:sale_order_merge.field_sale_order_merge__order_id
+msgid "Merge into"
+msgstr ""
+
+#. module: sale_order_merge
+#. odoo-python
+#: code:addons/sale_order_merge/models/sale_order.py:0
+#: model:ir.model,name:sale_order_merge.model_sale_order_merge
+#: model_terms:ir.ui.view,arch_db:sale_order_merge.sale_order_merge_form
+#, python-format
+msgid "Merge sale orders"
+msgstr ""
+
+#. module: sale_order_merge
+#: model:ir.actions.server,name:sale_order_merge.action_merge_selected_orders
+msgid "Merge selected orders"
+msgstr ""
+
+#. module: sale_order_merge
+#. odoo-python
+#: code:addons/sale_order_merge/wizards/wizard_sale_order_merge.py:0
+#, python-format
+msgid "Merged into %(order)s"
+msgstr ""
+
+#. module: sale_order_merge
+#: model:ir.model.fields,field_description:sale_order_merge.field_sale_order_merge__message_alert
+msgid "Message Alert"
+msgstr ""
+
+#. module: sale_order_merge
+#. odoo-python
+#: code:addons/sale_order_merge/models/sale_order.py:0
+#, python-format
+msgid "Operation not supported: %(operator)s %(value)s"
+msgstr ""
+
+#. module: sale_order_merge
+#. odoo-python
+#: code:addons/sale_order_merge/wizards/wizard_sale_order_merge.py:0
+#, python-format
+msgid "Order(s) %(orders)s merged into this one"
+msgstr ""
+
+#. module: sale_order_merge
+#: model:ir.model.fields,field_description:sale_order_merge.field_sale_order_merge__to_merge_ids
+msgid "Orders to merge"
+msgstr ""
+
+#. module: sale_order_merge
+#: model:ir.model,name:sale_order_merge.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_merge
+#. odoo-python
+#: code:addons/sale_order_merge/models/sale_order.py:0
+#, python-format
+msgid ""
+"Some selected orders do not meet the merge criteria (partner, delivery address, warehouse, company, currency, order status) with the target order %(order_target)s (the first one created among the selected orders in any of the %(states)s statuses), detailed below:\n"
+"%(message)s"
+msgstr ""
+
+#. module: sale_order_merge
+#: model_terms:ir.ui.view,arch_db:sale_order_merge.sale_order_merge_form
+msgid "The target order ("
+msgstr ""
+
+#. module: sale_order_merge
+#. odoo-python
+#: code:addons/sale_order_merge/wizards/wizard_sale_order_merge.py:0
+#, python-format
+msgid "Unlock the orders %(orders)s before merging them."
+msgstr ""
