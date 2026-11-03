@@ -1,6 +1,8 @@
 # Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from lxml import etree
+
 from odoo import Command
 from odoo.tests import TransactionCase
 
@@ -31,8 +33,44 @@ class PricelistFromCommitmentDate(TransactionCase):
             cls.pricelist_parent, 30, "2020-03-15", "2020-03-20"
         )
 
-        # Create the SO with 1 order line
-        cls.sale = cls.env.ref("sale.sale_order_1")
+        # Create the test records explicitly, as CI databases have no demo data.
+        cls.partner = cls.env["res.partner"].create({"name": "Test Customer"})
+        cls.product = cls.env["product.product"].create(
+            {"name": "Test Product", "list_price": 100.0}
+        )
+        cls.sale = cls.env["sale.order"].create(
+            {
+                "partner_id": cls.partner.id,
+                "order_line": [
+                    Command.create({"product_id": cls.product.id, "product_uom_qty": 1})
+                ],
+            }
+        )
+        cls.partner_xmlid = "__export__.sale_pricelist_test_partner"
+        cls.product_xmlid = "__export__.sale_pricelist_test_product"
+        cls.sale_xmlid = "__export__.sale_pricelist_test_order"
+        cls.env["ir.model.data"].create(
+            [
+                {
+                    "module": "__export__",
+                    "name": "sale_pricelist_test_partner",
+                    "model": cls.partner._name,
+                    "res_id": cls.partner.id,
+                },
+                {
+                    "module": "__export__",
+                    "name": "sale_pricelist_test_product",
+                    "model": cls.product._name,
+                    "res_id": cls.product.id,
+                },
+                {
+                    "module": "__export__",
+                    "name": "sale_pricelist_test_order",
+                    "model": cls.sale._name,
+                    "res_id": cls.sale.id,
+                },
+            ]
+        )
 
     @classmethod
     def _create_price_list(cls, name):
@@ -118,16 +156,12 @@ class PricelistFromCommitmentDate(TransactionCase):
     def test_01_import_create(self):
         """Tests whether prices are correctly set when creating a new SO"""
         # These are the values we'll use to create the file to import
-        partner = self.env.ref("base.res_partner_2")
-        product = self.env.ref("product.product_product_8")
-        user = self.env.ref("base.user_demo")
         self._import_file_and_check_price_unit(
             {
                 "id": "__import__.sale_order_test_pricelist_from_commitment_date",
                 "name": "Test Pricelist From Commitment Date",
-                "partner_id": partner.name,
-                "user_id": user.name,
-                "order_line/product_id": product.name,
+                "partner_id/id": self.partner_xmlid,
+                "order_line/product_id/id": self.product_xmlid,
                 "order_line/product_uom_qty": "1",
                 "order_line/price_unit": "300.00",
                 "commitment_date": "2021-10-22 6:30:00",
@@ -137,11 +171,10 @@ class PricelistFromCommitmentDate(TransactionCase):
     def test_02_import_write(self):
         """Tests whether prices are correctly set when updating a SO"""
         # These are the values we'll use to create the file to import
-        product = self.env.ref("product.product_product_8")
         self._import_file_and_check_price_unit(
             {
-                "id": self.sale.get_external_id()[self.sale.id],
-                "order_line/product_id": product.name,
+                "id": self.sale_xmlid,
+                "order_line/product_id/id": self.product_xmlid,
                 "order_line/product_uom_qty": "1",
                 "order_line/price_unit": "300.00",
             }
@@ -186,3 +219,20 @@ class PricelistFromCommitmentDate(TransactionCase):
         self.assertTrue(order.sale_require_commitment_date)
         order.order_line[1].qty_delivered = 5
         self.assertFalse(order.sale_require_commitment_date)
+
+    def test_04_commitment_date_required_in_form(self):
+        """The header and Other Info Delivery Date fields both carry the required
+        condition, so it holds whether or not the header field is shown."""
+        arch = self.env["sale.order"].get_view(
+            self.env.ref("sale.view_order_form").id, "form"
+        )["arch"]
+        doc = etree.fromstring(arch)
+        header_node = doc.xpath(
+            "//group[@name='order_details']/field[@name='commitment_date']"
+        )
+        other_info_node = doc.xpath(
+            "//group[@name='sale_shipping']//field[@name='commitment_date']"
+        )
+        for nodes in (header_node, other_info_node):
+            self.assertEqual(len(nodes), 1)
+            self.assertEqual(nodes[0].get("required"), "sale_require_commitment_date")
