@@ -56,9 +56,30 @@ msgid "Add set to sale order"
 msgstr "Tilføj sæt til salgsordre"
 
 #. module: sale_product_set
+#: model_terms:ir.ui.view,arch_db:sale_product_set.res_config_settings_inherit_view
+msgid ""
+"Archive/unarchive product sets related to partners together with partner"
+msgstr ""
+
+#. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 msgid "Cancel"
 msgstr "Annuller"
+
+#. module: sale_product_set
+#: model:ir.model,name:sale_product_set.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_product_set
+#: model:ir.model,name:sale_product_set.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: sale_product_set
+#: model:ir.model,website_form_label:sale_product_set.model_res_partner
+msgid "Create a Customer"
+msgstr ""
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__create_uid
@@ -81,6 +102,9 @@ msgid "Discount (%)"
 msgstr "Rabat (%)"
 
 #. module: sale_product_set
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__display_name
+#: model:ir.model.fields,field_description:sale_product_set.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:sale_product_set.field_res_partner__display_name
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__display_name
 msgid "Display Name"
 msgstr "Vist navn"
@@ -94,6 +118,9 @@ msgstr ""
 "med i salgsordrelinjerne."
 
 #. module: sale_product_set
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__id
+#: model:ir.model.fields,field_description:sale_product_set.field_res_config_settings__id
+#: model:ir.model.fields,field_description:sale_product_set.field_res_partner__id
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__id
 msgid "ID"
 msgstr "Id"
@@ -107,6 +134,11 @@ msgstr "Sidst opdateret af"
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__write_date
 msgid "Last Updated on"
 msgstr "Sidst opdateret den"
+
+#. module: sale_product_set
+#: model_terms:ir.ui.view,arch_db:sale_product_set.res_config_settings_inherit_view
+msgid "Product Sets"
+msgstr ""
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__product_set_id
@@ -141,6 +173,18 @@ msgid "Skip Existing Products"
 msgstr "Spring eksisterende produkter over"
 
 #. module: sale_product_set
+#: model:ir.model.fields,field_description:sale_product_set.field_res_config_settings__archive_partner_product_sets
+msgid "Sync product sets active state with partner"
+msgstr ""
+
+#. module: sale_product_set
+#: model:ir.model.fields,help:sale_product_set.field_res_config_settings__archive_partner_product_sets
+msgid ""
+"When a partner is archived or un-archived             its product sets are "
+"archived or un-archived as well."
+msgstr ""
+
+#. module: sale_product_set
 #: model:ir.model,name:sale_product_set.model_sale_product_set_wizard
 msgid "Wizard model to add product set into a quotation"
 msgstr "Guidemodel til at tilføje et produktsæt til et tilbud"
@@ -148,9 +192,13 @@ msgstr "Guidemodel til at tilføje et produktsæt til et tilbud"
 #. module: sale_product_set
 #. odoo-python
 #: code:addons/sale_product_set/wizard/sale_product_set_wizard.py:0
+msgid "You can use a sale order assigned only to following partner(s): %s"
+msgstr ""
+
 #, python-format
-msgid "You can use a sale order assigned only to following partner(s): {}"
-msgstr "Du kan kun bruge en salgsordre, der er tildelt følgende partner(e): {}"
+#~ msgid "You can use a sale order assigned only to following partner(s): {}"
+#~ msgstr ""
+#~ "Du kan kun bruge en salgsordre, der er tildelt følgende partner(e): {}"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Sidst ændret den"
