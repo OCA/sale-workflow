@@ -71,6 +71,11 @@ msgid "Contact"
 msgstr ""
 
 #. module: sale_product_set
+#: model:ir.model,website_form_label:sale_product_set.model_res_partner
+msgid "Create a Customer"
+msgstr ""
+
+#. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__create_uid
 msgid "Created by"
 msgstr ""
