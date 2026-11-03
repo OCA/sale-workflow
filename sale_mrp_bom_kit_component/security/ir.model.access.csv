@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_line_kit_component_salesman,sale.order.line.kit.component.salesman,model_sale_order_line_kit_component,sales_team.group_sale_salesman,1,1,1,1
+access_sale_order_line_kit_component_manager,sale.order.line.kit.component.manager,model_sale_order_line_kit_component,sales_team.group_sale_manager,1,1,1,1
+access_sale_order_line_kit_component_internal,sale.order.line.kit.component.internal,model_sale_order_line_kit_component,base.group_user,1,0,0,0

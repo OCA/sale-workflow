@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form_inherit_kit_component" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.kit.component</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']//list//field[@name='name']"
+                position="after"
+            >
+                <field name="is_kit" column_invisible="True" />
+            </xpath>
+            <xpath expr="//field[@name='order_line']//form" position="inside">
+                <group string="Kit Components" invisible="not is_kit">
+                    <button
+                        name="action_reload_kit_components"
+                        type="object"
+                        string="Reset to Default BoM"
+                        class="btn-secondary mb-2"
+                    />
+                    <field name="kit_component_ids" nolabel="1">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle" />
+                            <field name="is_selected" widget="boolean_toggle" />
+                            <field name="product_id" readonly="bom_line_id" />
+                            <field name="product_qty" />
+                            <field name="product_uom_id" readonly="1" />
+                            <field name="bom_line_id" column_invisible="True" />
+                        </list>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
