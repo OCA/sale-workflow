@@ -45,9 +45,8 @@ class SaleOrderLine(models.Model):
     _name = "sale.order.line"
 
     date_order = fields.Datetime(related="order_id.date_order", string="Date")
-    route_id = fields.Many2one(
-        comodel_name="stock.route",
-        compute="_compute_route_id",
+    route_ids = fields.Many2many(
+        compute="_compute_route_ids",
         store=True,
         readonly=False,
     )
@@ -74,9 +73,9 @@ class SaleOrderLine(models.Model):
         return self.elaboration_ids.route_ids[:1]
 
     @api.depends("elaboration_ids")
-    def _compute_route_id(self):
+    def _compute_route_ids(self):
         for line in self:
-            line.route_id = line.get_elaboration_stock_route()
+            line.route_ids = line.get_elaboration_stock_route()
 
     @api.depends("elaboration_ids", "order_id.pricelist_id")
     def _compute_elaboration_price_unit(self):
