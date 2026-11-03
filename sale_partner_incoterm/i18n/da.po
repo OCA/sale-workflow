@@ -22,6 +22,11 @@ msgid "Contact"
 msgstr "Kontakt"
 
 #. module: sale_partner_incoterm
+#: model:ir.model,website_form_label:sale_partner_incoterm.model_res_partner
+msgid "Create a Customer"
+msgstr ""
+
+#. module: sale_partner_incoterm
 #: model:ir.model.fields,field_description:sale_partner_incoterm.field_res_partner__sale_incoterm_address_id
 #: model:ir.model.fields,field_description:sale_partner_incoterm.field_res_users__sale_incoterm_address_id
 msgid "Default Sale Incoterm Address"
