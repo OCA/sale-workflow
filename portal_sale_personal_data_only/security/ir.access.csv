@@ -1,0 +1,4 @@
+id,name,model_id,group_id/id,operation,domain
+portal_sale_order_user_rule,Portal Only Personal Quotations/Sales,sale.order,base.group_portal,r,"['|',('partner_id','child_of',user.partner_id.ids),('message_partner_ids','child_of',user.partner_id.ids)]"
+portal_account_invoice_user_rule,Portal display personal invoices linked to personal sale orders,account.move,base.group_portal,r,"['|',('invoice_line_ids.sale_line_ids.order_id.partner_id','child_of',user.partner_id.ids),('invoice_line_ids.sale_line_ids.order_id.message_partner_ids','child_of',user.partner_id.ids)]"
+portal_account_invoice_line_rule,Portal display personal invoice lines linked to personal sale orders,account.move.line,base.group_portal,r,"['|',('sale_line_ids.order_id.partner_id','child_of',user.partner_id.ids),('sale_line_ids.order_id.message_partner_ids','child_of',user.partner_id.ids)]"
