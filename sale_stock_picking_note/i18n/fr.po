@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2026-01-16 14:53+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -37,6 +38,11 @@ msgstr "Commentaires qui seront imprimés sur le rapport de livraison"
 #. module: sale_stock_picking_note
 #: model:ir.model,name:sale_stock_picking_note.model_res_partner
 msgid "Contact"
+msgstr ""
+
+#. module: sale_stock_picking_note
+#: model:ir.model,website_form_label:sale_stock_picking_note.model_res_partner
+msgid "Create a Customer"
 msgstr ""
 
 #. module: sale_stock_picking_note
@@ -98,7 +104,9 @@ msgstr "Bons de commande"
 msgid ""
 "The notes will be added to the sales order and pickings and will be printed "
 "on the delivery slip."
-msgstr "Les notes seront ajoutées au bon de commande et aux transferts et seront imprimées sur le bon de livraison."
+msgstr ""
+"Les notes seront ajoutées au bon de commande et aux transferts et seront "
+"imprimées sur le bon de livraison."
 
 #. module: sale_stock_picking_note
 #: model:ir.model.fields,help:sale_stock_picking_note.field_res_partner__picking_note
@@ -106,7 +114,9 @@ msgstr "Les notes seront ajoutées au bon de commande et aux transferts et seron
 msgid ""
 "The notes will be added to the sales order and pickings but will not be "
 "printed on the delivery slip."
-msgstr "Les notes seront ajoutées au bon de commande et aux transferts mais ne seront pas imprimées sur le bon de livraison."
+msgstr ""
+"Les notes seront ajoutées au bon de commande et aux transferts mais ne "
+"seront pas imprimées sur le bon de livraison."
 
 #. module: sale_stock_picking_note
 #: model:ir.model,name:sale_stock_picking_note.model_stock_picking
