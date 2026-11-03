@@ -25,6 +25,11 @@ msgid "Contact"
 msgstr ""
 
 #. module: sale_order_general_discount
+#: model:ir.model,website_form_label:sale_order_general_discount.model_res_partner
+msgid "Create a Customer"
+msgstr ""
+
+#. module: sale_order_general_discount
 #: model_terms:ir.ui.view,arch_db:sale_order_general_discount.view_partner_form
 msgid "Discount"
 msgstr ""
