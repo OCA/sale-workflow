@@ -33,6 +33,11 @@ msgid "Contact"
 msgstr ""
 
 #. module: sale_stock_picking_blocking
+#: model:ir.model,website_form_label:sale_stock_picking_blocking.model_res_partner
+msgid "Create a Customer"
+msgstr ""
+
+#. module: sale_stock_picking_blocking
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason__create_uid
 msgid "Created by"
 msgstr ""
