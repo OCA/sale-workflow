@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,10 +14,34 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_partner_sale_contact_on_project
+#: model:ir.model,name:sale_partner_sale_contact_on_project.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: sale_partner_sale_contact_on_project
 #: model:ir.model.fields,help:sale_partner_sale_contact_on_project.field_project_project__sale_contact_partner_id
 msgid ""
-"Contact person for this project from the sale order. Only child contacts of "
-"the customer can be selected."
+"Contact person for this record. Only child contacts of the partner can be "
+"selected."
+msgstr ""
+
+#. module: sale_partner_sale_contact_on_project
+#: model:ir.model,website_form_label:sale_partner_sale_contact_on_project.model_res_partner
+msgid "Create a Customer"
+msgstr ""
+
+#. module: sale_partner_sale_contact_on_project
+#: model:ir.model.fields,field_description:sale_partner_sale_contact_on_project.field_project_project__display_name
+#: model:ir.model.fields,field_description:sale_partner_sale_contact_on_project.field_res_partner__display_name
+#: model:ir.model.fields,field_description:sale_partner_sale_contact_on_project.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_partner_sale_contact_on_project
+#: model:ir.model.fields,field_description:sale_partner_sale_contact_on_project.field_project_project__id
+#: model:ir.model.fields,field_description:sale_partner_sale_contact_on_project.field_res_partner__id
+#: model:ir.model.fields,field_description:sale_partner_sale_contact_on_project.field_sale_order_line__id
+msgid "ID"
 msgstr ""
 
 #. module: sale_partner_sale_contact_on_project
@@ -28,6 +52,12 @@ msgstr ""
 #. module: sale_partner_sale_contact_on_project
 #: model:ir.model.fields,field_description:sale_partner_sale_contact_on_project.field_project_project__sale_contact_partner_id
 msgid "Sale Contact"
+msgstr ""
+
+#. module: sale_partner_sale_contact_on_project
+#: model:ir.model.fields,field_description:sale_partner_sale_contact_on_project.field_res_partner__sale_contact_project_ids
+#: model:ir.model.fields,field_description:sale_partner_sale_contact_on_project.field_res_users__sale_contact_project_ids
+msgid "Sale Contact Project"
 msgstr ""
 
 #. module: sale_partner_sale_contact_on_project
