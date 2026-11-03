@@ -98,6 +98,17 @@ class TestSaleElaboration(AccountTestInvoicingCommon):
             cls, [(cls.product, 10, [cls.elaboration_a])]
         )
         cls.category_1.elaboration_profile_id = cls.elaboration_profile_b
+        cls.route_elaboration = cls.env["stock.route"].create(
+            {"name": "Elaboration route", "sale_selectable": True}
+        )
+        cls.elaboration_route = cls.Elaboration.create(
+            {
+                "code": "RR",
+                "name": "Routed",
+                "product_id": cls.product_elaboration_A.id,
+                "route_ids": [Command.set(cls.route_elaboration.ids)],
+            }
+        )
 
     def _create_sale_order(self, products_info):
         order_form = Form(self.env["sale.order"])
@@ -248,3 +259,11 @@ class TestSaleElaboration(AccountTestInvoicingCommon):
         elaboration_lines = self.order.order_line.filtered("is_elaboration")
         self.assertEqual(len(elaboration_lines), 1)
         self.assertEqual(elaboration_lines.product_uom_qty, 15.0)
+
+    def test_route_procurement(self):
+        line = self.order.order_line
+        line.elaboration_ids = self.elaboration_route
+        self.assertEqual(line.route_ids, self.route_elaboration)
+        self.assertEqual(
+            line._prepare_procurement_values()["route_ids"], self.route_elaboration
+        )
