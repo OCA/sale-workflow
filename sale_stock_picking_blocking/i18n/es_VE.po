@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-05-31 04:21+0000\n"
 "PO-Revision-Date: 2017-05-31 04:21+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Spanish (Venezuela) (https://www.transifex.com/oca/"
-"teams/23907/es_VE/)\n"
+"Language-Team: Spanish (Venezuela) (https://www.transifex.com/oca/teams/"
+"23907/es_VE/)\n"
 "Language: es_VE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,6 +37,11 @@ msgstr ""
 #. module: sale_stock_picking_blocking
 #: model:ir.model,name:sale_stock_picking_blocking.model_res_partner
 msgid "Contact"
+msgstr ""
+
+#. module: sale_stock_picking_blocking
+#: model:ir.model,website_form_label:sale_stock_picking_blocking.model_res_partner
+msgid "Create a Customer"
 msgstr ""
 
 #. module: sale_stock_picking_blocking
@@ -73,12 +78,20 @@ msgid "Description"
 msgstr "Descripción"
 
 #. module: sale_stock_picking_blocking
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_account_payment_term__display_name
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_res_partner__display_name
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason__display_name
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_order_line__display_name
 msgid "Display Name"
 msgstr "Mostrar nombre"
 
 #. module: sale_stock_picking_blocking
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_account_payment_term__id
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_res_partner__id
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason__id
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_order_line__id
 msgid "ID"
 msgstr "ID"
 
@@ -151,7 +164,6 @@ msgstr ""
 #. module: sale_stock_picking_blocking
 #. odoo-python
 #: code:addons/sale_stock_picking_blocking/models/sale_order.py:0
-#, python-format
 msgid "You cannot block a sale order with \"auto_done_setting\" active."
 msgstr ""
 
