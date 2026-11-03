@@ -6,6 +6,10 @@ class TestSaleOrder(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        # Avoid a default note on new orders (e.g. website_sale enables it)
+        cls.env["ir.config_parameter"].sudo().set_param(
+            "account.use_invoice_terms", False
+        )
         cls.term_template = cls.env["sale.terms_template"].create(
             {
                 "name": "My terms and conditions template",
