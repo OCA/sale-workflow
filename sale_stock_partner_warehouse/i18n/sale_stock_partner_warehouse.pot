@@ -29,6 +29,11 @@ msgid "Contact"
 msgstr ""
 
 #. module: sale_stock_partner_warehouse
+#: model:ir.model,website_form_label:sale_stock_partner_warehouse.model_res_partner
+msgid "Create a Customer"
+msgstr ""
+
+#. module: sale_stock_partner_warehouse
 #: model:ir.model.fields,field_description:sale_stock_partner_warehouse.field_res_company__display_name
 #: model:ir.model.fields,field_description:sale_stock_partner_warehouse.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:sale_stock_partner_warehouse.field_res_partner__display_name
