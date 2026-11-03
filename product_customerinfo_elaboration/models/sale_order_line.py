@@ -13,6 +13,7 @@ class SaleOrderLine(models.Model):
         compute="_compute_elaboration_ids",
         store=True,
         readonly=False,
+        precompute=True,
         string="Elaborations",
     )
 
