@@ -13,17 +13,32 @@ class SaleOrderLine(models.Model):
         compute="_compute_fixed_price_pricelist_rule"
     )
 
-    @api.depends("pricelist_item_id")
+    @api.depends(
+        "pricelist_item_id",
+        "product_id",
+        "product_uom",
+        "product_uom_qty",
+        "order_id.date_order",
+    )
     def _compute_fixed_price_pricelist_rule(self):
         for line in self:
             line.fixed_price_pricelist_rule = line._has_fixed_price_pricelist_rule()
 
     def _has_fixed_price_pricelist_rule(self):
         self.ensure_one()
-        return (
-            self.pricelist_item_id.compute_price == "fixed"
-            and self.pricelist_item_id.fixed_price_no_discount
+        return self.pricelist_item_id._has_fixed_price_no_discount(
+            self.product_id,
+            quantity=self.product_uom_qty or 1.0,
+            uom=self.product_uom,
+            date=self._get_order_date(),
         )
+
+    def _get_display_price_ignore_combo(self):
+        if self._has_fixed_price_pricelist_rule():
+            # keep tariff adjustments in the unit price when manual discounts are
+            # blocked
+            return self._get_pricelist_price()
+        return super()._get_display_price_ignore_combo()
 
     @api.depends("pricelist_item_id")
     def _compute_discount(self):
