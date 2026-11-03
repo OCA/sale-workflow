@@ -20,6 +20,23 @@ msgid "Contact"
 msgstr ""
 
 #. module: sale_partner_selectable_option
+#: model:ir.model,website_form_label:sale_partner_selectable_option.model_res_partner
+msgid "Create a Customer"
+msgstr ""
+
+#. module: sale_partner_selectable_option
+#: model:ir.model.fields,field_description:sale_partner_selectable_option.field_res_partner__display_name
+#: model:ir.model.fields,field_description:sale_partner_selectable_option.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_partner_selectable_option
+#: model:ir.model.fields,field_description:sale_partner_selectable_option.field_res_partner__id
+#: model:ir.model.fields,field_description:sale_partner_selectable_option.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_partner_selectable_option
 #: model:ir.model,name:sale_partner_selectable_option.model_sale_order
 msgid "Sales Order"
 msgstr ""
