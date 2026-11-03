@@ -27,6 +27,11 @@ msgid "Contact"
 msgstr ""
 
 #. module: sale_partner_delay
+#: model:ir.model,website_form_label:sale_partner_delay.model_res_partner
+msgid "Create a Customer"
+msgstr ""
+
+#. module: sale_partner_delay
 #: model:ir.model.fields,field_description:sale_partner_delay.field_res_partner__sale_delay
 #: model:ir.model.fields,field_description:sale_partner_delay.field_res_users__sale_delay
 msgid "Customer Lead Time"
