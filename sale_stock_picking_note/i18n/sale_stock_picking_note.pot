@@ -36,6 +36,11 @@ msgid "Contact"
 msgstr ""
 
 #. module: sale_stock_picking_note
+#: model:ir.model,website_form_label:sale_stock_picking_note.model_res_partner
+msgid "Create a Customer"
+msgstr ""
+
+#. module: sale_stock_picking_note
 #: model:ir.model.fields,field_description:sale_stock_picking_note.field_stock_picking__customer_note
 msgid "Customer Comments"
 msgstr ""
