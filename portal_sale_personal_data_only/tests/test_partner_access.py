@@ -59,21 +59,77 @@ class TestPartnerAccess(AccountTestInvoicingCommon):
         return sale
 
     def test_access_sale_order(self):
+        # Access is granted as the customer, with no need to be a follower
+        self.assertNotIn(self.partner_a, self.order_a.message_partner_ids)
         orders_a = self.env["sale.order"].with_user(self.user_a).search([])
-        self.assertTrue(self.order_a in orders_a)
-        self.assertTrue(self.order_b not in orders_a)
-        self.assertTrue(self.order_c not in orders_a)
+        self.assertIn(self.order_a, orders_a)
+        self.assertNotIn(self.order_b, orders_a)
+        self.assertNotIn(self.order_c, orders_a)
         orders_b = self.env["sale.order"].with_user(self.user_b).search([])
-        self.assertTrue(self.order_a not in orders_b)
-        self.assertTrue(self.order_b in orders_b)
-        self.assertTrue(self.order_c not in orders_b)
+        self.assertNotIn(self.order_a, orders_b)
+        self.assertIn(self.order_b, orders_b)
+        self.assertNotIn(self.order_c, orders_b)
         orders_c = self.env["sale.order"].with_user(self.user_c).search([])
-        self.assertTrue(self.order_a not in orders_c)
-        self.assertTrue(self.order_b not in orders_c)
-        self.assertTrue(self.order_c in orders_c)
+        self.assertNotIn(self.order_a, orders_c)
+        self.assertNotIn(self.order_b, orders_c)
+        self.assertIn(self.order_c, orders_c)
 
     def test_access_sale_order_followers(self):
         # Being a follower grants access in addition to being the direct customer
+        orders_b = self.env["sale.order"].with_user(self.user_b).search([])
+        self.assertNotIn(self.order_a, orders_b)
         self.order_a.message_subscribe(partner_ids=self.partner_b.ids)
         orders_b = self.env["sale.order"].with_user(self.user_b).search([])
-        self.assertTrue(self.order_a in orders_b)
+        self.assertIn(self.order_a, orders_b)
+
+    def test_access_sale_order_same_commercial_partner(self):
+        # Contacts of the same company only see their own sale orders, unlike
+        # the core rule, which grants access to the whole commercial partner
+        company = self.env["res.partner"].create(
+            {"name": "Company", "is_company": True}
+        )
+        (self.partner_a | self.partner_b).parent_id = company
+        order_company = self._create_sale_order(company)
+        orders_a = self.env["sale.order"].with_user(self.user_a).search([])
+        self.assertIn(self.order_a, orders_a)
+        self.assertNotIn(self.order_b, orders_a)
+        self.assertNotIn(order_company, orders_a)
+
+    def test_access_sale_order_child_contact(self):
+        delivery_address = self.env["res.partner"].create(
+            {
+                "name": "Delivery address A",
+                "type": "delivery",
+                "parent_id": self.partner_a.id,
+            }
+        )
+        order = self._create_sale_order(delivery_address)
+        orders_a = self.env["sale.order"].with_user(self.user_a).search([])
+        self.assertIn(order, orders_a)
+        orders_b = self.env["sale.order"].with_user(self.user_b).search([])
+        self.assertNotIn(order, orders_b)
+
+    def test_access_invoice(self):
+        invoice_a = self.order_a.invoice_ids
+        invoice_b = self.order_b.invoice_ids
+        # Draft invoices are not accessible
+        invoices_a = self.env["account.move"].with_user(self.user_a).search([])
+        self.assertNotIn(invoice_a, invoices_a)
+        (invoice_a | invoice_b).action_post()
+        invoices_a = self.env["account.move"].with_user(self.user_a).search([])
+        self.assertIn(invoice_a, invoices_a)
+        self.assertNotIn(invoice_b, invoices_a)
+        lines_a = self.env["account.move.line"].with_user(self.user_a).search([])
+        self.assertTrue(invoice_a.line_ids <= lines_a)
+        self.assertFalse(invoice_b.line_ids & lines_a)
+
+    def test_access_invoice_sale_order_followers(self):
+        # Following the sale order grants access to its posted invoices
+        invoice_a = self.order_a.invoice_ids
+        invoice_a.action_post()
+        self.order_a.message_subscribe(partner_ids=self.partner_b.ids)
+        self.assertNotIn(self.partner_b, invoice_a.message_partner_ids)
+        invoices_b = self.env["account.move"].with_user(self.user_b).search([])
+        self.assertIn(invoice_a, invoices_b)
+        lines_b = self.env["account.move.line"].with_user(self.user_b).search([])
+        self.assertTrue(invoice_a.invoice_line_ids <= lines_b)

@@ -3,5 +3,5 @@
 3.  Log in with each portal user credential.
 4.  Only the sale orders belonging to the logged in user's partner or
     his descendants should be accessible.
-5.  Invoices associated to a partner's sale order will be visible as
+5.  Posted invoices associated to a partner's sale order will be visible as
     well.
