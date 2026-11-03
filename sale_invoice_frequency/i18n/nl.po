@@ -37,6 +37,11 @@ msgid "Contact"
 msgstr "Contact"
 
 #. module: sale_invoice_frequency
+#: model:ir.model,website_form_label:sale_invoice_frequency.model_res_partner
+msgid "Create a Customer"
+msgstr ""
+
+#. module: sale_invoice_frequency
 #: model_terms:ir.actions.act_window,help:sale_invoice_frequency.sale_invoice_frequency_action
 msgid "Create a new invoicing frequency record"
 msgstr "Maak een nieuwe facturatiefrequentie-record aan"
@@ -57,12 +62,16 @@ msgid "Daily"
 msgstr "Dagelijks"
 
 #. module: sale_invoice_frequency
+#: model:ir.model.fields,field_description:sale_invoice_frequency.field_res_partner__display_name
 #: model:ir.model.fields,field_description:sale_invoice_frequency.field_sale_invoice_frequency__display_name
+#: model:ir.model.fields,field_description:sale_invoice_frequency.field_sale_order__display_name
 msgid "Display Name"
 msgstr "Weergavenaam"
 
 #. module: sale_invoice_frequency
+#: model:ir.model.fields,field_description:sale_invoice_frequency.field_res_partner__id
 #: model:ir.model.fields,field_description:sale_invoice_frequency.field_sale_invoice_frequency__id
+#: model:ir.model.fields,field_description:sale_invoice_frequency.field_sale_order__id
 msgid "ID"
 msgstr "ID"
 

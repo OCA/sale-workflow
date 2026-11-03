@@ -38,6 +38,11 @@ msgid "Contact"
 msgstr "Contacto"
 
 #. module: sale_invoice_frequency
+#: model:ir.model,website_form_label:sale_invoice_frequency.model_res_partner
+msgid "Create a Customer"
+msgstr ""
+
+#. module: sale_invoice_frequency
 #: model_terms:ir.actions.act_window,help:sale_invoice_frequency.sale_invoice_frequency_action
 msgid "Create a new invoicing frequency record"
 msgstr "Crea un nuevo registro de Frecuencia de facturación"
@@ -58,12 +63,16 @@ msgid "Daily"
 msgstr "Diaria"
 
 #. module: sale_invoice_frequency
+#: model:ir.model.fields,field_description:sale_invoice_frequency.field_res_partner__display_name
 #: model:ir.model.fields,field_description:sale_invoice_frequency.field_sale_invoice_frequency__display_name
+#: model:ir.model.fields,field_description:sale_invoice_frequency.field_sale_order__display_name
 msgid "Display Name"
 msgstr "Mostrar nombre"
 
 #. module: sale_invoice_frequency
+#: model:ir.model.fields,field_description:sale_invoice_frequency.field_res_partner__id
 #: model:ir.model.fields,field_description:sale_invoice_frequency.field_sale_invoice_frequency__id
+#: model:ir.model.fields,field_description:sale_invoice_frequency.field_sale_order__id
 msgid "ID"
 msgstr "ID (identificación)"
 
@@ -96,11 +105,6 @@ msgstr "Frecuencia de facturación para éste cliente"
 #: model:ir.model.fields,help:sale_invoice_frequency.field_sale_order__invoice_frequency_id
 msgid "Invoicing frequency for this order"
 msgstr "Frecuencia de facturación para éste pedido"
-
-#. module: sale_invoice_frequency
-#: model:ir.model.fields,field_description:sale_invoice_frequency.field_sale_invoice_frequency____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
 
 #. module: sale_invoice_frequency
 #: model:ir.model.fields,field_description:sale_invoice_frequency.field_sale_invoice_frequency__write_uid
@@ -145,3 +149,6 @@ msgstr "Pedido de venta"
 #: model:sale.invoice.frequency,name:sale_invoice_frequency.sale_invoice_frequency_weekly
 msgid "Weekly"
 msgstr "Semanal"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
