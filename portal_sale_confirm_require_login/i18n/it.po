@@ -37,6 +37,11 @@ msgid "Contact"
 msgstr "Contatto"
 
 #. module: portal_sale_confirm_require_login
+#: model:ir.model,website_form_label:portal_sale_confirm_require_login.model_res_partner
+msgid "Create a Customer"
+msgstr ""
+
+#. module: portal_sale_confirm_require_login
 #: model:ir.model.fields,field_description:portal_sale_confirm_require_login.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:portal_sale_confirm_require_login.field_res_partner__display_name
 #: model:ir.model.fields,field_description:portal_sale_confirm_require_login.field_sale_order__display_name
