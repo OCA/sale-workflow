@@ -54,6 +54,11 @@ msgid "Contact"
 msgstr "Contatto"
 
 #. module: sale_partner_primeship
+#: model:ir.model,website_form_label:sale_partner_primeship.model_res_partner
+msgid "Create a Customer"
+msgstr ""
+
+#. module: sale_partner_primeship
 #: model:ir.model.fields,field_description:sale_partner_primeship.field_sale_primeship__create_uid
 msgid "Created by"
 msgstr "Creato da"
@@ -69,6 +74,10 @@ msgid "Currently Active"
 msgstr "Attualmente attiva"
 
 #. module: sale_partner_primeship
+#: model:ir.model.fields,field_description:sale_partner_primeship.field_product_template__display_name
+#: model:ir.model.fields,field_description:sale_partner_primeship.field_res_partner__display_name
+#: model:ir.model.fields,field_description:sale_partner_primeship.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_partner_primeship.field_sale_order_line__display_name
 #: model:ir.model.fields,field_description:sale_partner_primeship.field_sale_primeship__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
@@ -79,6 +88,10 @@ msgid "End Date"
 msgstr "Data fine"
 
 #. module: sale_partner_primeship
+#: model:ir.model.fields,field_description:sale_partner_primeship.field_product_template__id
+#: model:ir.model.fields,field_description:sale_partner_primeship.field_res_partner__id
+#: model:ir.model.fields,field_description:sale_partner_primeship.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_partner_primeship.field_sale_order_line__id
 #: model:ir.model.fields,field_description:sale_partner_primeship.field_sale_primeship__id
 msgid "ID"
 msgstr "ID"
