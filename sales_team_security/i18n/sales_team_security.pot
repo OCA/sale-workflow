@@ -19,6 +19,11 @@ msgid "Contact"
 msgstr ""
 
 #. module: sales_team_security
+#: model:ir.model,website_form_label:sales_team_security.model_res_partner
+msgid "Create a Customer"
+msgstr ""
+
+#. module: sales_team_security
 #: model:ir.model.fields,field_description:sales_team_security.field_ir_rule__display_name
 #: model:ir.model.fields,field_description:sales_team_security.field_res_partner__display_name
 msgid "Display Name"
