@@ -36,6 +36,11 @@ msgid "Contact"
 msgstr "Kontakt"
 
 #. module: sale_invoice_to_partner
+#: model:ir.model,website_form_label:sale_invoice_to_partner.model_res_partner
+msgid "Create a Customer"
+msgstr ""
+
+#. module: sale_invoice_to_partner
 #: model:ir.model.fields,field_description:sale_invoice_to_partner.field_res_partner__display_name
 #: model:ir.model.fields,field_description:sale_invoice_to_partner.field_sale_order__display_name
 msgid "Display Name"
