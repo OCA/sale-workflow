@@ -47,8 +47,13 @@ class SaleOrderLine(models.Model):
     def _compute_name(self):
         # A NewId is needed to set the product for the parent method to set
         # the language correctly. Empty id leads to error in ‘_get_lang’.
+        # We only create a dummy order when there is truly no order context at
+        # all (neither a real id nor an origin record). Checking _origin avoids
+        # overwriting the parent’s virtual id when the line is being edited
+        # inside an unsaved sale order form, which would cause the server to
+        # lose the order reference and raise "Invalid fields: Order Reference".
         for line in self:
-            if not line.order_id and line.product_id:
+            if not line.order_id and not line._origin.order_id and line.product_id:
                 SaleOrder = self.env["sale.order"]
                 line.order_id = SaleOrder.new({})
         return super()._compute_name()
