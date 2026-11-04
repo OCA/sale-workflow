@@ -24,7 +24,10 @@ class SaleOrder(models.Model):
     order_type_required = fields.Boolean(related="company_id.sale_order_type_required")
     # Fields converted to computed writable
     picking_policy = fields.Selection(
-        compute="_compute_picking_policy", store=True, readonly=False
+        compute="_compute_picking_policy",
+        store=True,
+        readonly=False,
+        precompute=True,
     )
     incoterm = fields.Many2one(compute="_compute_incoterm", store=True, readonly=False)
 

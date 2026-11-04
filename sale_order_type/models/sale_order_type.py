@@ -31,9 +31,6 @@ class SaleOrderTypology(models.Model):
     picking_policy = fields.Selection(
         selection=lambda self: self._get_selection_picking_policy(),
         string="Shipping Policy",
-        default=lambda self: self.env["sale.order"]
-        .default_get(["picking_policy"])
-        .get("picking_policy"),
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
