@@ -7,12 +7,14 @@
         <!--complicated expr to be compatible with other modules-->
         <xpath expr="//table/thead/tr/th[1]" position="before">
             <th
+                name="th_linenumber"
                 t-if="(o.move_type == 'out_invoice' or o.move_type == 'out_refund') and any(l.related_so_sequence for l in o.invoice_line_ids)"
             >#</th>
         </xpath>
         <!--complicated expr to be compatible with other modules-->
         <xpath expr="//table/tbody//span[1]/.." position="before">
             <td
+                name="td_linenumber"
                 t-if="(o.move_type == 'out_invoice' or o.move_type == 'out_refund') and line.related_so_sequence"
             >
                 <span t-field="line.related_so_sequence" />
