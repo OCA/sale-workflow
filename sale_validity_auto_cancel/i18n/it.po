@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-07-30 08:58+0000\n"
+"PO-Revision-Date: 2026-11-04 09:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_validity_auto_cancel
 #: model_terms:ir.ui.view,arch_db:sale_validity_auto_cancel.res_config_settings_view_form
@@ -61,7 +61,7 @@ msgstr "Contatto"
 #. module: sale_validity_auto_cancel
 #: model:ir.model,website_form_label:sale_validity_auto_cancel.model_res_partner
 msgid "Create a Customer"
-msgstr ""
+msgstr "Crea un cliente"
 
 #. module: sale_validity_auto_cancel
 #: model:ir.model.fields,field_description:sale_validity_auto_cancel.field_res_company__display_name
@@ -69,7 +69,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_validity_auto_cancel.field_res_partner__display_name
 #: model:ir.model.fields,field_description:sale_validity_auto_cancel.field_sale_order__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: sale_validity_auto_cancel
 #: model:ir.model.fields,field_description:sale_validity_auto_cancel.field_res_company__id
@@ -77,7 +77,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_validity_auto_cancel.field_res_partner__id
 #: model:ir.model.fields,field_description:sale_validity_auto_cancel.field_sale_order__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_validity_auto_cancel
 #: model:ir.model.fields,help:sale_validity_auto_cancel.field_res_partner__auto_cancel_expired_so
