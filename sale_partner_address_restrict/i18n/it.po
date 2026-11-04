@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-08-26 12:06+0000\n"
+"PO-Revision-Date: 2026-11-04 09:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,12 +14,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_partner_address_restrict
 #: model_terms:ir.ui.view,arch_db:sale_partner_address_restrict.res_config_settings_view_form
 msgid "Address restriction"
-msgstr ""
+msgstr "Restrizione indirizzo"
 
 #. module: sale_partner_address_restrict
 #: model:ir.model.fields,help:sale_partner_address_restrict.field_res_company__sale_partner_address_restriction
@@ -28,6 +28,8 @@ msgid ""
 "Check this box if you want to restrict partner addresses selection in sale "
 "orders. They should depends on the Customer filled in."
 msgstr ""
+"Selezionare questa casella se si vuole limitare la selezione degli indirizzi "
+"del partner negli ordini di vendita. Devono dipendere dal cliente inserito."
 
 #. module: sale_partner_address_restrict
 #: model_terms:ir.ui.view,arch_db:sale_partner_address_restrict.res_config_settings_view_form
@@ -35,26 +37,28 @@ msgid ""
 "Check this if you want to restrict the address selection to contacts of same "
 "company."
 msgstr ""
+"Selezionarla se si vuole limitare la selezione indirizzo ai contatti della "
+"stessa azienda."
 
 #. module: sale_partner_address_restrict
 #: model:ir.model,name:sale_partner_address_restrict.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: sale_partner_address_restrict
 #: model:ir.model,name:sale_partner_address_restrict.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni configurazione"
 
 #. module: sale_partner_address_restrict
 #: model:ir.model,name:sale_partner_address_restrict.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contatto"
 
 #. module: sale_partner_address_restrict
 #: model:ir.model,website_form_label:sale_partner_address_restrict.model_res_partner
 msgid "Create a Customer"
-msgstr ""
+msgstr "Crea un cliente"
 
 #. module: sale_partner_address_restrict
 #: model:ir.model.fields,field_description:sale_partner_address_restrict.field_res_company__display_name
@@ -62,13 +66,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_partner_address_restrict.field_res_partner__display_name
 #: model:ir.model.fields,field_description:sale_partner_address_restrict.field_sale_order__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: sale_partner_address_restrict
 #: model:ir.model.fields,field_description:sale_partner_address_restrict.field_res_partner__is_dropship_address
 #: model:ir.model.fields,field_description:sale_partner_address_restrict.field_res_users__is_dropship_address
 msgid "Dropship Address"
-msgstr ""
+msgstr "Indirizzo consegna"
 
 #. module: sale_partner_address_restrict
 #: model:ir.model.fields,field_description:sale_partner_address_restrict.field_res_company__id
@@ -76,7 +80,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_partner_address_restrict.field_res_partner__id
 #: model:ir.model.fields,field_description:sale_partner_address_restrict.field_sale_order__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_partner_address_restrict
 #. odoo-python
@@ -91,13 +95,13 @@ msgstr ""
 #. module: sale_partner_address_restrict
 #: model:ir.model.fields,field_description:sale_partner_address_restrict.field_sale_order__partner_address_restriction_domain
 msgid "Partner Address Restriction Domain"
-msgstr ""
+msgstr "Dominio restrizione indirizzo partner"
 
 #. module: sale_partner_address_restrict
 #: model:ir.model.fields,field_description:sale_partner_address_restrict.field_res_company__sale_partner_address_restriction
 #: model:ir.model.fields,field_description:sale_partner_address_restrict.field_res_config_settings__sale_partner_address_restriction
 msgid "Sale Partner Address Restriction"
-msgstr ""
+msgstr "Restrizione indirizzo partner vendite"
 
 #. module: sale_partner_address_restrict
 #: model:ir.model,name:sale_partner_address_restrict.model_sale_order
@@ -108,3 +112,5 @@ msgstr "Ordine di vendita"
 #: model:ir.model.fields,help:sale_partner_address_restrict.field_sale_order__partner_address_restriction_domain
 msgid "This is the computed domain to filter delivery and invoicing addresses."
 msgstr ""
+"Questo è il dominio calcolato per filtrare gli indirizzi di consegna e "
+"fatturazione."
