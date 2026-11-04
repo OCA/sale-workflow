@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="sale_quantity_restriction_view_form" model="ir.ui.view">
+        <field name="name">sale.quantity.restriction.form</field>
+        <field name="model">sale.quantity.restriction</field>
+        <field name="arch" type="xml">
+            <form string="Quantity Restriction Rule">
+                <sheet>
+                    <div class="oe_title">
+                        <label
+                            class="oe_edit_only"
+                            for="name"
+                            string="Quantity Restriction Name"
+                        />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+<group>
+                    </group>
+                    <group string="Quantity Restrictions">
+                        <group name="min_max_restriction">
+                            <field name="min_qty" />
+                            <field name="is_min_mandatory" />
+                            <field name="max_qty" />
+                            <field name="is_max_mandatory" />
+                        </group>
+                        <group name="multiple_restriction">
+                            <field name="multiple_qty" />
+                            <field name="is_multiple_mandatory" />
+                        </group>
+                    </group>
+                    <group string="Applied on">
+                            <field name="product_tmpl_ids">
+                                <tree>
+                                    <field name="name" />
+                                </tree>
+                            </field>
+                            <field name="category_ids">
+                                <tree>
+                                    <field name="name" />
+                                </tree>
+                            </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_quantity_restriction_view_tree" model="ir.ui.view">
+        <field name="name">sale.quantity.restriction.tree</field>
+        <field name="model">sale.quantity.restriction</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="min_qty" />
+                <field name="max_qty" />
+                <field name="multiple_qty" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="sale_quantity_restriction_action" model="ir.actions.act_window">
+        <field name="name">Sale Restriction Rules</field>
+        <field name="res_model">sale.quantity.restriction</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_sale_quantity_restriction"
+        name="Sale Quantity Restrictions"
+        parent="sale.product_menu_catalog"
+        action="sale_quantity_restriction_action"
+        sequence="90"
+    />
+
+</odoo>

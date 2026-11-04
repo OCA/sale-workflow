@@ -1,0 +1,1 @@
+Restricts sale order line quantities based on min, max or multiple
