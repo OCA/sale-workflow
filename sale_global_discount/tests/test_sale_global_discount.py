@@ -274,3 +274,27 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
         self.assertAlmostEqual(
             self.get_taxes_widget_total_tax(self.sale), self.sale.amount_tax
         )
+
+    def test_09_tax_totals_without_global_discount(self):
+        self.env.company.tax_calculation_rounding_method = "round_globally"
+        tax = self.env["account.tax"].create(
+            {
+                "name": "Tax 21%",
+                "amount": 21,
+                "amount_type": "percent",
+                "type_tax_use": "sale",
+            }
+        )
+        sale_form = Form(self.env["sale.order"])
+        sale_form.partner_id = self.partner_1
+        for _i in range(10):
+            with sale_form.order_line.new() as order_line:
+                order_line.product_id = self.product_1
+                order_line.tax_ids.clear()
+                order_line.tax_ids.add(tax)
+                order_line.price_unit = 0.05
+        sale = sale_form.save()
+        self.assertFalse(sale.global_discount_ids)
+        self.assertAlmostEqual(sale.amount_total, 0.61)
+        self.assertAlmostEqual(sale.tax_totals["total_amount"], sale.amount_total)
+        self.assertAlmostEqual(self.get_taxes_widget_total_tax(sale), sale.amount_tax)

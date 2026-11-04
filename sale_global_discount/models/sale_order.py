@@ -150,6 +150,8 @@ class SaleOrder(models.Model):
     def _compute_tax_totals(self):
         res = super()._compute_tax_totals()
         for order in self:
+            if not order.global_discount_ids:
+                continue
             amount_discount_by_group = {}
             cumulative_discount_rate = 1.0
             currency = order.currency_id
