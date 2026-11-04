@@ -38,9 +38,7 @@ class TestActionPaid(PaymentCommon):
             flow="direct", state="pending", sale_order_ids=[self.sale_order.id]
         )
         self.assertEqual(tx.state, "pending")
-        self.env["ir.config_parameter"].sudo().set_param(
-            "sale.automatic_invoice", "True"
-        )
+        self.env.company.sale_automatic_invoice = True
         self.sale_order.action_paid()
         self.assertEqual(len(tx), 1)
         self.assertEqual(tx.state, "done")

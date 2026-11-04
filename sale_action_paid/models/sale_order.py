@@ -1,7 +1,7 @@
 # Copyright 2025 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, tools
+from odoo import models
 
 
 class SaleOrder(models.Model):
@@ -23,6 +23,8 @@ class SaleOrder(models.Model):
         self.ensure_one()
         tx = self._action_paid_get_transaction()
         if tx:
+            # Since 20.0, transactions refuse direct writes without this context key
+            tx = tx.with_context(payment_safe_write=True)
             tx._set_done()
             # Prevent to generate a new payment for marking the invoice as paid.
             # This will disable the send_payment_succeeded_for_order_mail,
@@ -53,8 +55,5 @@ class SaleOrder(models.Model):
         return self.env["account.move"]
 
     def action_paid(self):
-        auto_invoice = tools.str2bool(
-            self.env["ir.config_parameter"].sudo().get_param("sale.automatic_invoice")
-        )
         for order in self.filtered(lambda so: so.state in ("draft", "sent")):
-            order._action_paid(force_invoice=auto_invoice)
+            order._action_paid(force_invoice=order.company_id.sale_automatic_invoice)
