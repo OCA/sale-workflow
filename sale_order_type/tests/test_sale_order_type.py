@@ -4,7 +4,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 from freezegun import freeze_time
 
-from odoo import fields
+from odoo import Command, fields
 from odoo.tests import Form
 
 from odoo.addons.base.tests.common import BaseCommon
@@ -43,8 +43,13 @@ class TestSaleOrderType(BaseCommon):
                 "padding": 3,
             }
         )
+        # Ensure that get sale journal has the same company that environment
         cls.journal = cls.env["account.journal"].search(
-            [("type", "=", "sale")], limit=1
+            [
+                ("company_id", "=", cls.env.company.id),
+                ("type", "=", "sale"),
+            ],
+            limit=1,
         )
         cls.default_sale_type_id = cls.env["sale.order.type"].search([], limit=1)
         cls.default_sale_type_id.sequence_id = False
@@ -160,6 +165,9 @@ class TestSaleOrderType(BaseCommon):
                 "analytic_distribution": {str(cls.analytic_account.id): 100.0},
             }
         )
+        cls.analytic_account_model = cls.env["account.analytic.account"].create(
+            {"name": "Test SOT Model Analytic Account", "plan_id": cls.analytic_plan.id}
+        )
 
     def create_sale_order(self, partner=False):
         sale_form = Form(self.env["sale.order"])
@@ -260,6 +268,60 @@ class TestSaleOrderType(BaseCommon):
         }
         order.write({"order_line": [(0, 0, sale_line_dict)]})
         self.assertEqual(order.type_id.route_ids, order.order_line[1].route_ids)
+
+    def test_sale_order_analytic_distribution_type_change(self):
+        """Changing the type redistributes existing lines and the new ones."""
+        order = self.create_sale_order()
+        self.assertFalse(order.order_line.analytic_distribution)
+        order.type_id = self.sale_type_analytic
+        self.assertEqual(
+            order.order_line.analytic_distribution,
+            {str(self.analytic_account.id): 100.0},
+        )
+        order.write(
+            {
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.product.id,
+                            "name": self.product.name,
+                            "product_uom_qty": 2.0,
+                            "price_unit": self.product.lst_price,
+                        },
+                    )
+                ]
+            }
+        )
+        self.assertEqual(
+            order.order_line[1].analytic_distribution,
+            {str(self.analytic_account.id): 100.0},
+        )
+
+    def test_sale_order_analytic_distribution_prevails_over_model(self):
+        """The type distribution prevails over the one of the analytic models.
+
+        Picking a type is an explicit per order decision, so it wins over the
+        generic rules, the same way its pricelist wins over the partner one.
+        """
+        self.env["account.analytic.distribution.model"].create(
+            {
+                "partner_id": self.partner.id,
+                "analytic_distribution": {str(self.analytic_account_model.id): 100.0},
+            }
+        )
+        order = self.create_sale_order()
+        self.assertEqual(order.type_id, self.sale_type)
+        self.assertFalse(self.sale_type.analytic_distribution)
+        # Without a distribution in the type, the analytic model one is kept
+        self.assertEqual(
+            order.order_line.analytic_distribution,
+            {str(self.analytic_account_model.id): 100.0},
+        )
+        order.type_id = self.sale_type_analytic
+        self.assertEqual(
+            order.order_line.analytic_distribution,
+            {str(self.analytic_account.id): 100.0},
+        )
 
     def test_sale_order_in_draft_state_update_name(self):
         order = self.create_sale_order()
@@ -367,4 +429,53 @@ class TestSaleOrderType(BaseCommon):
         self.assertEqual(
             order.order_line[0].analytic_distribution,
             {str(self.analytic_account.id): 100.0},
+        )
+
+    def test_credit_note_preserves_sale_type_from_sale_order(self):
+        """Test credit notes preserve sale order type.
+
+        When creating a credit note (refund) from an invoice that originated
+        from a sale order, the sale_type_id from the sale order should be
+        maintained and not overridden by the partner's default sale type.
+        """
+        # Create a test partner with a specific default sale type
+        test_partner = self.env["res.partner"].create(
+            {
+                "name": "Test Partner",
+                "sale_type": self.sale_type_quot.id,
+            }
+        )
+        # Create and confirm a sale order with a DIFFERENT sale type
+        # than partner's default
+        sale_form = Form(self.env["sale.order"])
+        sale_form.partner_id = test_partner
+        sale_form.type_id = self.sale_type
+        with sale_form.order_line.new() as order_line:
+            order_line.product_id = self.product
+        sale_order = sale_form.save()
+        sale_order.action_confirm()
+        invoice = sale_order._create_invoices()
+        invoice.action_post()
+        # Create a credit note (refund) from the invoice
+        refund_wizard = (
+            self.env["account.move.reversal"]
+            .with_context(active_model="account.move", active_ids=invoice.ids)
+            .create(
+                {
+                    "reason": "Test refund",
+                    "journal_id": invoice.journal_id.id,
+                }
+            )
+        )
+        refund_action = refund_wizard.refund_moves()
+        credit_note = self.env["account.move"].browse(refund_action["res_id"])
+        # CRITICAL ASSERTION: Credit note should preserve the sale order's type,
+        # NOT default to the partner's sale type
+        self.assertEqual(
+            credit_note._origin.sale_type_id,
+            sale_order.type_id,
+            "Credit note should preserve sale type from sale order "
+            f"(expected: {sale_order.type_id.name}), "
+            "not use partner's default sale type "
+            f"(partner has: {sale_order.partner_id.sale_type.name})",
         )

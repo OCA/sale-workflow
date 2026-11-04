@@ -84,6 +84,11 @@ Usage
 3. When no type is set on the partner and no default is provided in the
    context, the sale order uses the first available type according to
    the sequence configured on sale order types.
+4. When the type defines an analytic distribution, it is applied to the
+   lines of its orders. As picking a type is an explicit decision taken
+   order by order, that distribution prevails over the one that the
+   analytic distribution models would resolve for the product or the
+   partner.
 
 Bug Tracker
 ===========
@@ -173,6 +178,14 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-carlosdauden| image:: https://github.com/carlosdauden.png?size=40px
+    :target: https://github.com/carlosdauden
+    :alt: carlosdauden
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-carlosdauden| 
 
 This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/19.0/sale_order_type>`_ project on GitHub.
 

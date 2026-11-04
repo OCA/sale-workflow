@@ -25,8 +25,11 @@ class AccountMove(models.Model):
             if record.move_type not in ["out_invoice", "out_refund"]:
                 record.sale_type_id = sale_type
                 continue
-            else:
+            # Preserve existing sale_type_id (e.g., from sale order or manual entry)
+            # instead of overwriting with partner's default
+            if record._origin.sale_type_id:
                 record.sale_type_id = record._origin.sale_type_id
+                continue
             if not record.partner_id:
                 record.sale_type_id = self.env["sale.order.type"].search(
                     [("company_id", "in", [self.env.company.id, False])], limit=1
