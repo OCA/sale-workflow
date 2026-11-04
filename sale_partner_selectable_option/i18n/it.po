@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-04 06:35+0000\n"
+"PO-Revision-Date: 2026-11-04 09:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_partner_selectable_option
 #: model:ir.model,name:sale_partner_selectable_option.model_res_partner
@@ -24,19 +24,19 @@ msgstr "Contatto"
 #. module: sale_partner_selectable_option
 #: model:ir.model,website_form_label:sale_partner_selectable_option.model_res_partner
 msgid "Create a Customer"
-msgstr ""
+msgstr "Crea un cliente"
 
 #. module: sale_partner_selectable_option
 #: model:ir.model.fields,field_description:sale_partner_selectable_option.field_res_partner__display_name
 #: model:ir.model.fields,field_description:sale_partner_selectable_option.field_sale_order__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: sale_partner_selectable_option
 #: model:ir.model.fields,field_description:sale_partner_selectable_option.field_res_partner__id
 #: model:ir.model.fields,field_description:sale_partner_selectable_option.field_sale_order__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_partner_selectable_option
 #: model:ir.model,name:sale_partner_selectable_option.model_sale_order
