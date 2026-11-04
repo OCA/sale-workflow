@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 ================
 Sale Action Paid
 ================
@@ -13,31 +17,37 @@ Sale Action Paid
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/18.0/sale_action_paid
+    :target: https://github.com/OCA/sale-workflow/tree/20.0/sale_action_paid
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-18-0/sale-workflow-18-0-sale_action_paid
+    :target: https://translation.odoo-community.org/projects/sale-workflow-20-0/sale-workflow-20-0-sale_action_paid
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=20.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Adds a button "Paid" on a sent sales order.
+Adds a button "Paid" on a sent sales order. This is especially
+convenient for wire transfer, to mark the SO as paid. It can also serve
+for other payment modes in case the postprocessing failed but the
+payment went through.
 
-The action will confirm the SO and the pending payment transaction. Note
-that marking as done the payment transaction will change the invoicing
-policy to on order (odoo standard). This can also enable standard
-automatic invoicing.
+The action will confirm the SO. An email confirmation will be generated
+to notify the client that the order has been confirmed.
 
-This is especially convenient for wire transfer, to mark the SO as paid.
-It can also serve for other payment mode in case the postprocessing
-failed but the payment went through.
+When there is pending payment transaction (for instance for webshop
+orders), the transaction will be confirmed.
+
+The SO invoicing policy will be forced to on order to be able to
+generate the invoice for any non invoiced line.
+
+According to odoo standard settings, the invoice will be posted and the
+invoice will be sent.
 
 **Table of contents**
 
@@ -50,7 +60,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_action_paid%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_action_paid%0Aversion:%2020.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -65,7 +75,7 @@ Authors
 Contributors
 ------------
 
-- Jacques-Etienne Baudoux (BCIM) <<je.bcim.be>>
+- Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 
 Maintainers
 -----------
@@ -80,6 +90,14 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/18.0/sale_action_paid>`_ project on GitHub.
+.. |maintainer-jbaudoux| image:: https://github.com/jbaudoux.png?size=40px
+    :target: https://github.com/jbaudoux
+    :alt: jbaudoux
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-jbaudoux| 
+
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/20.0/sale_action_paid>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
