@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field
+            name="name"
+        >res.config.settings.view.form.inherit.sale.automatic.workflow</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//setting[@id='no_edit_order']" position="after">
+                <setting
+                    id="sale_workflow_copy_mode_setting"
+                    string="Copy workflow on duplication"
+                    help="Propagate the automatic workflow when a sale order is duplicated (this includes order splits)."
+                >
+                    <field name="sale_workflow_copy_mode" />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
