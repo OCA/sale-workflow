@@ -6,21 +6,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-04-08 17:05+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2026-11-04 09:46+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_order_general_discount
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_product_product__bypass_general_discount
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_product_template__bypass_general_discount
 msgid "Bypass General Discount"
-msgstr ""
+msgstr "Evita lo sconto generale"
 
 #. module: sale_order_general_discount
 #: model:ir.model,name:sale_order_general_discount.model_res_partner
@@ -30,7 +30,7 @@ msgstr "Contatto"
 #. module: sale_order_general_discount
 #: model:ir.model,website_form_label:sale_order_general_discount.model_res_partner
 msgid "Create a Customer"
-msgstr ""
+msgstr "Crea un cliente"
 
 #. module: sale_order_general_discount
 #: model_terms:ir.ui.view,arch_db:sale_order_general_discount.view_partner_form
@@ -50,18 +50,18 @@ msgstr "Sconto (%)"
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_sale_order_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: sale_order_general_discount
 #: model_terms:ir.ui.view,arch_db:sale_order_general_discount.product_normal_form_view
 #: model_terms:ir.ui.view,arch_db:sale_order_general_discount.product_template_only_form_view
 msgid "Don't apply general discount"
-msgstr ""
+msgstr "Non applicare lo sconto generale"
 
 #. module: sale_order_general_discount
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_sale_order__general_discount
 msgid "General Discount"
-msgstr ""
+msgstr "Sconto generale"
 
 #. module: sale_order_general_discount
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_product_product__id
@@ -70,7 +70,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_sale_order_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_order_general_discount
 #: model:ir.model.fields,help:sale_order_general_discount.field_product_product__bypass_general_discount
@@ -79,22 +79,25 @@ msgid ""
 "If this checkbox is not ticked, it means changing general discount on sale "
 "order will impact sale order lines with this related product."
 msgstr ""
+"Se questa casella di controllo non è selezionata, significa che la modifica "
+"dello sconto generale sull'ordine di vendita avrà un impatto sulle righe "
+"dell'ordine di vendita relative a questo prodotto."
 
 #. module: sale_order_general_discount
 #: model:ir.model,name:sale_order_general_discount.model_product_template
 msgid "Product"
-msgstr ""
+msgstr "Prodotto"
 
 #. module: sale_order_general_discount
 #: model:ir.model,name:sale_order_general_discount.model_product_product
 msgid "Product Variant"
-msgstr ""
+msgstr "Variante prodotto"
 
 #. module: sale_order_general_discount
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_res_partner__sale_discount
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_res_users__sale_discount
 msgid "Sale Discount"
-msgstr ""
+msgstr "Sconto vendita"
 
 #. module: sale_order_general_discount
 #: model:ir.model,name:sale_order_general_discount.model_sale_order
