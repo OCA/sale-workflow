@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-08-26 17:46+0000\n"
+"PO-Revision-Date: 2026-11-04 09:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -39,7 +39,7 @@ msgstr "Contatto"
 #. module: portal_sale_confirm_require_login
 #: model:ir.model,website_form_label:portal_sale_confirm_require_login.model_res_partner
 msgid "Create a Customer"
-msgstr ""
+msgstr "Crea un cliente"
 
 #. module: portal_sale_confirm_require_login
 #: model:ir.model.fields,field_description:portal_sale_confirm_require_login.field_res_config_settings__display_name
