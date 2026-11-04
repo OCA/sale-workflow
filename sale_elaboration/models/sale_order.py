@@ -69,8 +69,11 @@ class SaleOrderLine(models.Model):
             )
 
     def get_elaboration_stock_route(self):
+        """Routes of all the line elaborations. For each step, procurement
+        takes the first of them by sequence with a rule for it, so the routes
+        of several elaborations can complement each other."""
         self.ensure_one()
-        return self.elaboration_ids.route_ids[:1]
+        return self.elaboration_ids.route_ids
 
     @api.depends("elaboration_ids")
     def _compute_route_ids(self):
@@ -95,9 +98,9 @@ class SaleOrderLine(models.Model):
         if hasattr(super(), "_compute_route_ids"):
             res = super()._compute_route_ids()
         for line in self.filtered("elaboration_ids"):
-            route = line.get_elaboration_stock_route()
-            if route:
-                line.route_ids = route
+            routes = line.get_elaboration_stock_route()
+            if routes:
+                line.route_ids = routes
         return res
 
     @api.depends("elaboration_ids", "order_id.pricelist_id")
