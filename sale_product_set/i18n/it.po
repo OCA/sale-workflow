@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2024-08-20 09:58+0000\n"
+"PO-Revision-Date: 2026-11-04 09:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
@@ -60,6 +60,8 @@ msgstr "Aggiungere set all'ordine di vendita"
 msgid ""
 "Archive/unarchive product sets related to partners together with partner"
 msgstr ""
+"Archivia/riattiva i set di prodotti correlati ai partner, insieme al partner "
+"stesso"
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
@@ -69,17 +71,17 @@ msgstr "Annulla"
 #. module: sale_product_set
 #: model:ir.model,name:sale_product_set.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni configurazione"
 
 #. module: sale_product_set
 #: model:ir.model,name:sale_product_set.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contatto"
 
 #. module: sale_product_set
 #: model:ir.model,website_form_label:sale_product_set.model_res_partner
 msgid "Create a Customer"
-msgstr ""
+msgstr "Crea un cliente"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__create_uid
@@ -138,7 +140,7 @@ msgstr "Ultimo aggiornamento il"
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.res_config_settings_inherit_view
 msgid "Product Sets"
-msgstr ""
+msgstr "Set prodotto"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__product_set_id
@@ -175,7 +177,7 @@ msgstr "Salta prodotti esistenti"
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_res_config_settings__archive_partner_product_sets
 msgid "Sync product sets active state with partner"
-msgstr ""
+msgstr "Sincronizza lo stato attivo dei set partner con il partner"
 
 #. module: sale_product_set
 #: model:ir.model.fields,help:sale_product_set.field_res_config_settings__archive_partner_product_sets
@@ -183,6 +185,8 @@ msgid ""
 "When a partner is archived or un-archived             its product sets are "
 "archived or un-archived as well."
 msgstr ""
+"Quanto un partner è archiviato o riattivato             i suoi prodotti sono "
+"archiviati o riattivati di conseguenza."
 
 #. module: sale_product_set
 #: model:ir.model,name:sale_product_set.model_sale_product_set_wizard
@@ -195,6 +199,7 @@ msgstr ""
 #: code:addons/sale_product_set/wizard/sale_product_set_wizard.py:0
 msgid "You can use a sale order assigned only to following partner(s): %s"
 msgstr ""
+"Si può utilizzare un ordine di vendita assegnato solo ai seguenti partner: %s"
 
 #, python-format
 #~ msgid "You can use a sale order assigned only to following partner(s): {}"
