@@ -18,6 +18,9 @@
     "depends": [
         "sale_procurement_group_by_line",
     ],
-    "data": ["view/sale_view.xml"],
+    "data": [
+        "view/sale_view.xml",
+        "view/res_config_settings.xml",
+    ],
     "installable": True,
 }
