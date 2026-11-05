@@ -63,14 +63,17 @@ class SaleOrderLine(models.Model):
         # Calculate the original super()s discount and drag it to discount1
         # This is primarily for the field to visually update when creating new lines
         # rather than updating itself in the create() after you save
-        # Since we aren't in the actual compute, this shouldn't actually save any
-        # values to .discount
+        # protecting() avoids triggering other computes by modifying discount
+        # and setting it as "modified"
         with self.env.protecting(
             [self.env["sale.order.line"]._fields["discount"]], self
         ):
             self.with_context(skip_triple_discount=True)._compute_discount()
             for line in self:
                 line.discount1 = line.discount
+        # re-add discount to compute so the next call will start fresh
+        # rather than use the modified discount from this method
+        self.env.add_to_compute(self._fields["discount"], self)
 
     def _get_final_discount(self):
         self.ensure_one()
