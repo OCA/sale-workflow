@@ -1,0 +1,154 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_template_from_sale_order
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-14 08:00+0000\n"
+"PO-Revision-Date: 2026-10-14 08:00+0000\n"
+"Last-Translator: Cetmix\n"
+"Language-Team: Polish\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#. module: sale_order_template_from_sale_order
+#: model:res.groups,name:sale_order_template_from_sale_order.group_template_from_order
+msgid "Allow"
+msgstr "Zezwól"
+
+#. module: sale_order_template_from_sale_order
+#: model_terms:ir.ui.view,arch_db:sale_order_template_from_sale_order.sale_order_create_template_view_form
+msgid "Cancel"
+msgstr "Anuluj"
+
+#. module: sale_order_template_from_sale_order
+#: model_terms:ir.ui.view,arch_db:sale_order_template_from_sale_order.sale_order_create_template_view_form
+msgid "Create"
+msgstr "Utwórz"
+
+#. module: sale_order_template_from_sale_order
+#: model:ir.model,name:sale_order_template_from_sale_order.model_sale_order_create_template
+msgid "Create Sale Order Template from Sale Order"
+msgstr "Tworzenie szablonu oferty z zamówienia"
+
+#. module: sale_order_template_from_sale_order
+#: model_terms:ir.ui.view,arch_db:sale_order_template_from_sale_order.sale_order_view_form
+msgid "Create Template"
+msgstr "Utwórz szablon"
+
+#. module: sale_order_template_from_sale_order
+#: model:ir.model.fields,field_description:sale_order_template_from_sale_order.field_sale_order_template_line__discount
+#: model:ir.model.fields,field_description:sale_order_template_from_sale_order.field_sale_order_template_option__discount
+msgid "Discount (%)"
+msgstr "Rabat (%)"
+
+#. module: sale_order_template_from_sale_order
+#: model:ir.model.fields,field_description:sale_order_template_from_sale_order.field_sale_order_template_line__manual_price
+#: model:ir.model.fields,field_description:sale_order_template_from_sale_order.field_sale_order_template_option__manual_price
+msgid "Fixed Price"
+msgstr "Cena stała"
+
+#. module: sale_order_template_from_sale_order
+#: model:ir.model.fields,help:sale_order_template_from_sale_order.field_sale_order_template_line__description_from_order
+#: model:ir.model.fields,help:sale_order_template_from_sale_order.field_sale_order_template_option__description_from_order
+msgid ""
+"Keep the description copied from the sales order when the template is "
+"applied."
+msgstr "Zachowaj opis skopiowany z zamówienia przy stosowaniu szablonu."
+
+#. module: sale_order_template_from_sale_order
+#: model:ir.model.fields,field_description:sale_order_template_from_sale_order.field_sale_order_create_template__name
+msgid "Name"
+msgstr "Nazwa"
+
+#. module: sale_order_template_from_sale_order
+#: model:ir.rule,name:sale_order_template_from_sale_order.sale_order_template_line_rule_sale_manager
+msgid "Quotation template lines: manager writes every template"
+msgstr "Pozycje szablonu oferty: administrator zmienia wszystkie"
+
+#. module: sale_order_template_from_sale_order
+#: model:ir.rule,name:sale_order_template_from_sale_order.sale_order_template_line_rule_sale_salesman
+msgid "Quotation template lines: salesman writes own templates"
+msgstr "Pozycje szablonu oferty: sprzedawca zmienia własne"
+
+#. module: sale_order_template_from_sale_order
+#: model:ir.rule,name:sale_order_template_from_sale_order.sale_order_template_option_rule_sale_manager
+msgid "Quotation template options: manager writes every template"
+msgstr "Opcje szablonu oferty: administrator zmienia wszystkie"
+
+#. module: sale_order_template_from_sale_order
+#: model:ir.rule,name:sale_order_template_from_sale_order.sale_order_template_option_rule_sale_salesman
+msgid "Quotation template options: salesman writes own templates"
+msgstr "Opcje szablonu oferty: sprzedawca zmienia własne"
+
+#. module: sale_order_template_from_sale_order
+#: model:ir.rule,name:sale_order_template_from_sale_order.sale_order_template_rule_sale_manager
+msgid "Quotation templates: manager writes every template"
+msgstr "Szablony ofert: administrator zmienia wszystkie"
+
+#. module: sale_order_template_from_sale_order
+#: model:ir.rule,name:sale_order_template_from_sale_order.sale_order_template_rule_sale_salesman
+msgid "Quotation templates: salesman writes own templates"
+msgstr "Szablony ofert: sprzedawca zmienia własne"
+
+#. module: sale_order_template_from_sale_order
+#: model:ir.model.fields,field_description:sale_order_template_from_sale_order.field_sale_order_create_template__sale_order_id
+msgid "Sale Order"
+msgstr "Zamówienie sprzedaży"
+
+#. module: sale_order_template_from_sale_order
+#: model:ir.module.module,name:sale_order_template_from_sale_order.module_sale_order_template_from_sale_order
+msgid "Sale Order Template from Sale Order"
+msgstr "Szablon oferty z zamówienia"
+
+#. module: sale_order_template_from_sale_order
+#: model:ir.module.module,summary:sale_order_template_from_sale_order.module_sale_order_template_from_sale_order
+msgid "Save a quotation or sales order as a sale order template"
+msgstr "Zapis oferty lub zamówienia sprzedaży jako szablon oferty"
+
+#. module: sale_order_template_from_sale_order
+#: model:ir.module.category,description:sale_order_template_from_sale_order.module_category_template_from_order
+msgid "Save a sales order as a quotation template."
+msgstr "Zapis zamówienia jako szablon oferty."
+
+#. module: sale_order_template_from_sale_order
+#: model:ir.actions.act_window,name:sale_order_template_from_sale_order.sale_order_create_template_action
+msgid "Template"
+msgstr "Szablon oferty"
+
+#. module: sale_order_template_from_sale_order
+#: code:addons/sale_order_template_from_sale_order/wizard/sale_order_create_template.py:0
+msgid "Template %(name)s is created"
+msgstr "Utworzono szablon %(name)s"
+
+#. module: sale_order_template_from_sale_order
+#: model:ir.module.category,name:sale_order_template_from_sale_order.module_category_template_from_order
+msgid "Template from Order"
+msgstr "Szablon z zamówienia"
+
+#. module: sale_order_template_from_sale_order
+#: model:ir.model.fields,field_description:sale_order_template_from_sale_order.field_sale_order_template_line__price_unit
+#: model:ir.model.fields,field_description:sale_order_template_from_sale_order.field_sale_order_template_option__price_unit
+msgid "Unit Price"
+msgstr "Cena jednostkowa"
+
+#. module: sale_order_template_from_sale_order
+#: code:addons/sale_order_template_from_sale_order/models/sale_order_template.py:0
+msgid "You can only modify quotation templates you created."
+msgstr "Możesz zmieniać tylko szablony ofert utworzone przez siebie."
+
+#. module: sale_order_template_from_sale_order
+#: model:ir.model.fields,help:sale_order_template_from_sale_order.field_sale_order_template_line__manual_price
+#: model:ir.model.fields,help:sale_order_template_from_sale_order.field_sale_order_template_option__manual_price
+msgid "Apply this unit price and discount instead of the pricelist."
+msgstr "Użyj tej ceny jednostkowej i tego rabatu zamiast cennika."
+
+#. module: sale_order_template_from_sale_order
+#: model:res.groups,comment:sale_order_template_from_sale_order.group_template_from_order
+msgid "the user can save a sales order as a quotation template."
+msgstr "użytkownik może zapisać zamówienie jako szablon oferty."
