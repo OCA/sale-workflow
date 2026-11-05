@@ -6,30 +6,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-11-05 20:46+0000\n"
+"Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
 "Language-Team: none\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_order_line_price_history
 #: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.sale_order_line_price_history_view_form
 msgid "Close"
-msgstr ""
+msgstr "Sluiten"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__create_uid
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__create_date
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history_line__sale_order_date_order
@@ -37,90 +39,93 @@ msgid ""
 "Creation date of draft/sent orders,\n"
 "Confirmation date of confirmed orders."
 msgstr ""
+"Aanmaakdatum van concept/verzonden orders,\n"
+"Bevestigingsdatum van bevestigde orders."
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line__order_partner_id
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__partner_id
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__partner_id
 msgid "Customer"
-msgstr ""
+msgstr "Klant"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__discount
 msgid "Discount (%)"
-msgstr ""
+msgstr "Korting (%)"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line__display_name
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__display_name
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Schermnaam"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__history_id
 msgid "History"
-msgstr ""
+msgstr "Historie"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__line_ids
 msgid "History lines"
-msgstr ""
+msgstr "Historieregels"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line__id
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__id
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__include_quotations
 msgid "Include Quotations"
-msgstr ""
+msgstr "Offertes opnemen"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__include_commercial_partner
 msgid "Include commercial entity"
-msgstr ""
+msgstr "Commerciële entiteit opnemen"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history__include_commercial_partner
 msgid "Include commercial entity and its contacts in the sale history"
 msgstr ""
+"Commerciële entiteit en bijbehorende contacten opnemen in de verkoophistorie"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history__include_quotations
 msgid "Include quotations lines in the sale history"
-msgstr ""
+msgstr "Offerteregels opnemen in de verkoophistorie"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__write_uid
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__write_date
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: sale_order_line_price_history
 #. odoo-python
 #: code:addons/sale_order_line_price_history/wizards/sale_order_line_price_history.py:0
 msgid "Not found historical sale order line for this action!"
-msgstr ""
+msgstr "Geen historische verkooporderregel gevonden voor deze actie!"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__sale_order_date_order
 msgid "Order Date"
-msgstr ""
+msgstr "Orderdatum"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__order_id
 msgid "Order Reference"
-msgstr ""
+msgstr "Orderreferentie"
 
 #. module: sale_order_line_price_history
 #. odoo-javascript
@@ -128,71 +133,71 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.sale_order_line_price_history_view_form
 #: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.view_order_form
 msgid "Price History"
-msgstr ""
+msgstr "Prijshistorie"
 
 #. module: sale_order_line_price_history
 #: model:ir.actions.act_window,name:sale_order_line_price_history.sale_order_line_price_history_action
 msgid "Price history per customer"
-msgstr ""
+msgstr "Prijshistorie per klant"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__product_id
 msgid "Product"
-msgstr ""
+msgstr "Product"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__product_uom_qty
 msgid "Quantity"
-msgstr ""
+msgstr "Aantal"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__sale_order_line_id
 msgid "Sale Order Line"
-msgstr ""
+msgstr "Verkooporderregel"
 
 #. module: sale_order_line_price_history
 #: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.sale_order_line_price_history_view_form
 msgid "Sale history"
-msgstr ""
+msgstr "Verkoophistorie"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__sale_order_line_id
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__target_sale_order_line_id
 msgid "Sale order line"
-msgstr ""
+msgstr "Verkooporderregel"
 
 #. module: sale_order_line_price_history
 #: model:ir.model,name:sale_order_line_price_history.model_sale_order_line_price_history
 msgid "Sale order line price history"
-msgstr ""
+msgstr "Prijshistorie verkooporderregel"
 
 #. module: sale_order_line_price_history
 #: model:ir.model,name:sale_order_line_price_history.model_sale_order_line_price_history_line
 msgid "Sale order line price history line"
-msgstr ""
+msgstr "Prijshistorie-regel verkooporderregel"
 
 #. module: sale_order_line_price_history
 #: model:ir.model,name:sale_order_line_price_history.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Verkooporderregel"
 
 #. module: sale_order_line_price_history
 #. odoo-javascript
 #: code:addons/sale_order_line_price_history/static/src/xml/set_price_to_line_widget.xml:0
 msgid "Set Historic Price"
-msgstr ""
+msgstr "Historische prijs instellen"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__order_state
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__price_unit
 msgid "Unit Price"
-msgstr ""
+msgstr "Prijs"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__history_sale_order_line_id
 msgid "history sale order line"
-msgstr ""
+msgstr "historische verkooporderregel"
