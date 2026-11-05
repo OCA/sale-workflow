@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="ignore_country_sale" model="res.groups">
+        <field name="name">Ignore products sale countries</field>
+        <field name="users" eval="[(4, ref('base.user_admin'))]" />
+    </record>
+</odoo>
