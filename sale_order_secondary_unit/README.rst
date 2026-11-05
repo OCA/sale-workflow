@@ -60,6 +60,11 @@ To use this module you need to:
 5. Change quantities in line and secondary unit (produc_qty will be
    change).
 
+When adding products from the product catalog, if the product has a
+default sale secondary unit of measure set, the catalog quantity is
+handled as that secondary unit: each added unit corresponds to one unit
+of the secondary unit of measure.
+
 Bug Tracker
 ===========
 
