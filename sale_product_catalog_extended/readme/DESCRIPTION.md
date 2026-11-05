@@ -39,6 +39,19 @@ with the standard ones:
 The options preselected when the catalog is opened, the period and the product
 limit of the last sales are set in the Sales settings (see *Configuration*).
 
+## Max price
+
+Typing a price in the catalog search bar offers **Search Max price for**, which
+only shows the products whose price is lower or equal than it. The price
+compared is the one the card shows: the pricelist price of the order or, with
+the *Last sale* price, the last sale price of the products that have one. It
+combines with the rest of the options and filters, and the search panel only
+offers the categories of the products shown.
+
+As the pricelist price is not stored, it is computed for the products matching
+the rest of the filters, so the more filters are applied, the faster the
+catalog loads.
+
 ## Exclude from last sales
 
 The card dropdown menu adds an **Exclude from last sales** entry. It stores the

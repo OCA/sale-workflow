@@ -70,6 +70,28 @@ class SaleOrder(models.Model):
             for (product,), line in last_lines.items()
         }
 
+    def _get_catalog_filter_prices(
+        self, products, last_price=False, use_delivery_address=False
+    ):
+        """Return ``{product_id: price}`` with the price compared with the
+        catalog price limit: the one the card of each product shows.
+
+        That is the pricelist price, computed for all ``products`` at once as
+        the catalog cards do, or the last sale price, with ``last_price``, for
+        the products that have one. Hook for modules showing other prices.
+        """
+        self.ensure_one()
+        prices = self.pricelist_id._get_products_price(
+            products, 1.0, currency=self.currency_id, date=self.date_order
+        )
+        if last_price:
+            last_prices = self._get_catalog_last_prices(
+                products.ids, use_delivery_address=use_delivery_address
+            )
+            # The card keeps the pricelist price without a last price
+            prices.update({pid: price for pid, price in last_prices.items() if price})
+        return prices
+
     def _set_catalog_last_price_data(self, data, last_price):
         """Show ``last_price`` on the catalog card ``data`` and on the cards of
         its order lines."""
