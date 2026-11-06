@@ -22,6 +22,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[sale_order_split_strategy](sale_order_split_strategy/) | 20.0.1.0.0 | <a href='https://github.com/grindtildeath'><img src='https://github.com/grindtildeath.png' width='32' height='32' style='border-radius:50%;' alt='grindtildeath'/></a> | Define strategies to split sales orders
 [sale_order_type](sale_order_type/) | 20.0.1.0.0 |  | Sale Order Type
 
 [//]: # (end addons)
