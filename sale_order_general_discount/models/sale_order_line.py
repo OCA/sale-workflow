@@ -20,15 +20,13 @@ class SaleOrderLine(models.Model):
             # the case where a discount was set to a value != 0 and then
             # set again to 0 to remove the discount on all the lines at the same
             # time
-            if (
-                not line._is_downpayment_line()
-                and not line.product_id.bypass_general_discount
-                and (
-                    line.order_id.general_discount
-                    or line.order_id._origin.general_discount
-                )
-            ):
+            if line._is_downpayment_line() or line.product_id.bypass_general_discount:
+                continue
+            if line.order_id.general_discount or line.order_id._origin.general_discount:
                 line.discount = line.order_id.general_discount
+            elif not line.pricelist_item_id._show_discount():
+                # Keep the discount computed from the pricelist in super()
+                line.discount = 0
         return res
 
     def _is_downpayment_line(self):
