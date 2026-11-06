@@ -35,6 +35,7 @@ class SaleOderLine(models.Model):
     def _compute_semaphore(self):
         dp = self.env["decimal.precision"].precision_get("Product Price")
         self.semaphore_active = False
+        self.semaphore = False
         for record in self:
             if not record.product_id or not record.product_uom:
                 continue
