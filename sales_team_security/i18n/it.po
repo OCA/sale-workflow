@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-28 21:01+0000\n"
-"PO-Revision-Date: 2023-12-12 11:01+0000\n"
+"PO-Revision-Date: 2026-11-06 09:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sales_team_security
 #: model:ir.model,name:sales_team_security.model_res_partner
@@ -25,19 +25,19 @@ msgstr "Contatto"
 #. module: sales_team_security
 #: model:ir.model,website_form_label:sales_team_security.model_res_partner
 msgid "Create a Customer"
-msgstr ""
+msgstr "Crea un cliente"
 
 #. module: sales_team_security
 #: model:ir.model.fields,field_description:sales_team_security.field_ir_rule__display_name
 #: model:ir.model.fields,field_description:sales_team_security.field_res_partner__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: sales_team_security
 #: model:ir.model.fields,field_description:sales_team_security.field_ir_rule__id
 #: model:ir.model.fields,field_description:sales_team_security.field_res_partner__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sales_team_security
 #: model:ir.model,name:sales_team_security.model_ir_rule
