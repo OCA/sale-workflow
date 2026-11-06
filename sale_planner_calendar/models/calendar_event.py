@@ -346,13 +346,16 @@ class CalendarEvent(models.Model):
             return action
         if new_order or (self and not self.sale_ids):
             # The "Order" stat button doesn't pass new_order=True; catch
-            # that case here too so a fresh event also lands on the catalog.
-            order = self.env["sale.order"].create(self._get_planner_sale_order_vals())
-            action = order.action_add_from_catalog()
-            # action_add_from_catalog() only sets product_catalog_order_id,
-            # not this - required by the catalog controller.
-            action["context"]["order_id"] = order.id
-            return action
+            # that case here too so a fresh event also gets its order.
+            orders = self.env["sale.order"].create(self._get_planner_sale_order_vals())
+            if not orders.company_id.sale_planner_open_order_form:
+                action = orders.action_add_from_catalog()
+                # action_add_from_catalog() only sets product_catalog_order_id,
+                # not this - required by the catalog controller.
+                action["context"]["order_id"] = orders.id
+                return action
+        else:
+            orders = self.sale_ids
         action = self.env["ir.actions.act_window"]._for_xml_id(
             "sale.action_quotations_with_onboarding"
         )
@@ -360,11 +363,11 @@ class CalendarEvent(models.Model):
             f"default_{key}": value
             for key, value in self._get_planner_sale_order_vals().items()
         }
-        if len(self.sale_ids) > 1:
+        if len(orders) > 1:
             action["domain"] = [("sale_planner_calendar_event_id", "=", self.id)]
         else:
             action["views"] = list(filter(lambda v: v[1] == "form", action["views"]))
-            action["res_id"] = self.sale_ids.id
+            action["res_id"] = orders.id
         return action
 
     def action_open_invoices(self):
