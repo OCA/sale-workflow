@@ -300,6 +300,9 @@ class SaleOrder(models.Model):
                 "sale_product_catalog_extended.catalog_show_history_partner"
             )
         )
+        context["catalog_show_origin_data"] = bool(
+            params.get_param("sale_product_catalog_extended.catalog_show_origin_data")
+        )
         context["catalog_show_sort"] = bool(
             params.get_param("sale_product_catalog_extended.catalog_show_sort")
         )

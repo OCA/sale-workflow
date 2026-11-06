@@ -21,10 +21,12 @@ Each in-order card exposes three inline actions:
 The catalog search panel gets these sections, combinable with each other and
 with the standard ones:
 
-- **Origin**: the cards shown, the products or the ones other modules add
-  (e.g. one card per vendor row with `sale_product_catalog_supplierinfo`). It
-  is only shown when such a module is installed.
-- **Last sales**: restricts the cards of the chosen origin to the products
+- **Products**: the cards shown. **All** shows every product, **Available**
+  only the goods with a positive forecasted quantity in the order warehouse,
+  and other modules add further options (e.g. one card per vendor row with
+  `sale_product_catalog_supplierinfo`). It is only shown when enabled in the
+  settings.
+- **Last sales**: restricts the cards of the chosen **Products** option to the products
   previously sold to the customer (last 180 days by default), most frequently
   sold first, then by delivered quantity.
 - **Price**: **Last sale** shows the unit price of the most recent delivered

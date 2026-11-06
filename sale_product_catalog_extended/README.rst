@@ -60,13 +60,14 @@ Search panel options
 The catalog search panel gets these sections, combinable with each other
 and with the standard ones:
 
-- **Origin**: the cards shown, the products or the ones other modules
-  add (e.g. one card per vendor row with
-  ``sale_product_catalog_supplierinfo``). It is only shown when such a
-  module is installed.
-- **Last sales**: restricts the cards of the chosen origin to the
-  products previously sold to the customer (last 180 days by default),
-  most frequently sold first, then by delivered quantity.
+- **Products**: the cards shown. **All** shows every product,
+  **Available** only the goods with a positive forecasted quantity in
+  the order warehouse, and other modules add further options (e.g. one
+  card per vendor row with ``sale_product_catalog_supplierinfo``). It is
+  only shown when enabled in the settings.
+- **Last sales**: restricts the cards of the chosen **Products** option
+  to the products previously sold to the customer (last 180 days by
+  default), most frequently sold first, then by delivered quantity.
 - **Price**: **Last sale** shows the unit price of the most recent
   delivered sale to the customer instead of the pricelist price, for the
   products that have one, and applies it to the lines added from the
@@ -125,9 +126,12 @@ Order catalog options
 The options of the catalog search panel preselected when the catalog is
 opened:
 
-- **Origin**: the cards shown. Empty shows the products; other modules
-  add further origins (e.g. **Suppliers** in
-  ``sale_product_catalog_supplierinfo``).
+- **Products**: the cards shown. Empty shows all the products,
+  **Available** only the goods with a positive forecasted quantity in
+  the order warehouse; other modules add further options (e.g.
+  **Suppliers** in ``sale_product_catalog_supplierinfo``). Check
+  **Show** to show this section in the catalog search panel, hidden by
+  default; the option chosen here applies either way.
 - **Last sales**: only show the products sold to the customer, most
   frequently sold first.
 - **Price**: empty shows the pricelist price, **Last sale** the price of

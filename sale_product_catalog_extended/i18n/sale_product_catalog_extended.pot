@@ -14,8 +14,15 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_product_catalog_extended
+#. odoo-javascript
+#: code:addons/sale_product_catalog_extended/static/src/product_catalog/search_panel.esm.js:0
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
 msgid "All"
+msgstr ""
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields.selection,name:sale_product_catalog_extended.selection__product_product__catalog_origin_data__available
+msgid "Available"
 msgstr ""
 
 #. module: sale_product_catalog_extended
@@ -33,8 +40,8 @@ msgstr ""
 #. module: sale_product_catalog_extended
 #: model:ir.model.fields,help:sale_product_catalog_extended.field_res_config_settings__default_catalog_origin_data
 msgid ""
-"Cards shown by default in the product catalog of sale orders. Products when "
-"empty."
+"Cards shown by default in the product catalog of sale orders. All the "
+"products when empty."
 msgstr ""
 
 #. module: sale_product_catalog_extended
@@ -94,13 +101,13 @@ msgid "Catalog layout"
 msgstr ""
 
 #. module: sale_product_catalog_extended
-#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__default_catalog_origin_data
-msgid "Catalog origin"
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__default_catalog_price_mode
+msgid "Catalog price"
 msgstr ""
 
 #. module: sale_product_catalog_extended
-#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__default_catalog_price_mode
-msgid "Catalog price"
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__default_catalog_origin_data
+msgid "Catalog products"
 msgstr ""
 
 #. module: sale_product_catalog_extended
@@ -291,12 +298,6 @@ msgid ""
 msgstr ""
 
 #. module: sale_product_catalog_extended
-#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.product_view_search_catalog
-#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
-msgid "Origin"
-msgstr ""
-
-#. module: sale_product_catalog_extended
 #: model:ir.model.fields,field_description:sale_product_catalog_extended.field_sale_catalog_product_exclusion__partner_id
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.sale_catalog_product_exclusion_view_search
 msgid "Partner"
@@ -350,8 +351,7 @@ msgid "Product limit"
 msgstr ""
 
 #. module: sale_product_catalog_extended
-#. odoo-javascript
-#: code:addons/sale_product_catalog_extended/static/src/product_catalog/search_panel.esm.js:0
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.product_view_search_catalog
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
 msgid "Products"
 msgstr ""
@@ -360,7 +360,8 @@ msgstr ""
 #: model_terms:ir.actions.act_window,help:sale_product_catalog_extended.sale_catalog_product_exclusion_action
 msgid ""
 "Products are excluded from the last sales of a customer from the\n"
-"                product catalog of a sale order. Delete an exclusion to offer the\n"
+"                product catalog of a sale order. Delete an exclusion to "
+"offer the\n"
 "                product again."
 msgstr ""
 
@@ -399,8 +400,8 @@ msgstr ""
 #. module: sale_product_catalog_extended
 #: model:ir.model.fields,help:sale_product_catalog_extended.field_res_config_settings__default_catalog_last_sales
 msgid ""
-"Show by default only the products sold to the customer, most frequently sold"
-" first."
+"Show by default only the products sold to the customer, most frequently sold "
+"first."
 msgstr ""
 
 #. module: sale_product_catalog_extended
@@ -408,6 +409,13 @@ msgstr ""
 msgid ""
 "Show the History section in the product catalog search panel. When hidden, "
 "the history partner default still applies."
+msgstr ""
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,help:sale_product_catalog_extended.field_res_config_settings__catalog_show_origin_data
+msgid ""
+"Show the Products section in the product catalog search panel. When hidden, "
+"the products default still applies."
 msgstr ""
 
 #. module: sale_product_catalog_extended
@@ -420,6 +428,11 @@ msgstr ""
 #. module: sale_product_catalog_extended
 #: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__catalog_show_history_partner
 msgid "Show the catalog history partner"
+msgstr ""
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__catalog_show_origin_data
+msgid "Show the catalog products"
 msgstr ""
 
 #. module: sale_product_catalog_extended

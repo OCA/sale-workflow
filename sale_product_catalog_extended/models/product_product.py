@@ -11,11 +11,12 @@ class ProductProduct(models.Model):
 
     # Display-only search panel fields. Their default can be set as any other
     # field through Default Values (ir.default), also from the Sales settings.
-    # Cards shown by the catalog: the products when empty, or the ones other
-    # modules add (e.g. the vendor cards of sale_product_catalog_supplierinfo)
-    # through their ``_get_product_picker_data_<key>`` method.
+    # Cards shown by the catalog (the "Products" section): all the products when
+    # empty, the available ones, or the ones other modules add (e.g. the vendor
+    # cards of sale_product_catalog_supplierinfo) through their
+    # ``_get_product_picker_data_<key>`` method.
     catalog_origin_data = fields.Selection(
-        selection=[],
+        selection=[("available", "Available")],
         store=False,
         search="_search_catalog_origin_data",
     )
@@ -228,6 +229,19 @@ class ProductProduct(models.Model):
     def _search_catalog_sort(self, operator, value):
         # Display-only field: resolved in search_fetch
         return []
+
+    @api.model
+    def _get_product_picker_data_available(self):
+        """Return the ids of the sellable goods with a positive forecasted
+        quantity, in the default product order.
+
+        The quantity is computed with the catalog context, so it is the one of
+        the order warehouse (see ``sale_stock``). Only the sellable goods are
+        computed, instead of every product as a ``virtual_available`` domain
+        would.
+        """
+        products = self.search([("sale_ok", "=", True), ("is_storable", "=", True)])
+        return products.filtered(lambda product: product.virtual_available > 0).ids
 
     @api.model
     def _get_catalog_history_partner_id(self):

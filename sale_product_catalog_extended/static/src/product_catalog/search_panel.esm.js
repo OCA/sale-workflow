@@ -25,6 +25,11 @@ patch(ProductCatalogSearchPanel.prototype, {
         ) {
             hidden.push("catalog_history_partner");
         }
+        // The products are only shown when enabled in the settings (their
+        // default applies anyway).
+        if (!context.catalog_show_origin_data) {
+            hidden.push("catalog_origin_data");
+        }
         // The sort is only shown when enabled in the settings (its default
         // applies anyway).
         if (!context.catalog_show_sort) {
@@ -35,12 +40,6 @@ patch(ProductCatalogSearchPanel.prototype, {
     updateActiveValues() {
         super.updateActiveValues(...arguments);
         for (const section of this.sections) {
-            if (
-                section.fieldName === "catalog_origin_data" &&
-                section.values.has(false)
-            ) {
-                section.values.get(false).display_name = _t("Products");
-            }
             if (
                 section.fieldName === "catalog_price_mode" &&
                 section.values.has(false)
