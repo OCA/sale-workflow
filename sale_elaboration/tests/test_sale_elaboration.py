@@ -98,6 +98,21 @@ class TestSaleElaboration(AccountTestInvoicingCommon):
             cls, [(cls.product, 10, [cls.elaboration_a])]
         )
         cls.category_1.elaboration_profile_id = cls.elaboration_profile_b
+        cls.env.user.group_ids += cls.env.ref("stock.group_adv_location")
+        cls.route_elaboration = cls.env["stock.route"].create(
+            {"name": "Elaboration route", "sale_selectable": True}
+        )
+        cls.route_manual = cls.env["stock.route"].create(
+            {"name": "Manual route", "sale_selectable": True}
+        )
+        cls.elaboration_route = cls.Elaboration.create(
+            {
+                "code": "RR",
+                "name": "Routed",
+                "product_id": cls.product_elaboration_A.id,
+                "route_ids": [Command.set(cls.route_elaboration.ids)],
+            }
+        )
 
     def _create_sale_order(self, products_info):
         order_form = Form(self.env["sale.order"])
@@ -248,3 +263,152 @@ class TestSaleElaboration(AccountTestInvoicingCommon):
         elaboration_lines = self.order.order_line.filtered("is_elaboration")
         self.assertEqual(len(elaboration_lines), 1)
         self.assertEqual(elaboration_lines.product_uom_qty, 15.0)
+
+    def test_route_new_line_elaboration_unset(self):
+        order_form = Form(self.order)
+        with order_form.order_line.new() as line_form:
+            line_form.product_id = self.product
+            line_form.elaboration_ids.add(self.elaboration_route)
+            self.assertEqual(line_form.route_ids[:], self.route_elaboration)
+            # Removed before saving the line
+            line_form.elaboration_ids.remove(id=self.elaboration_route.id)
+            self.assertFalse(line_form.route_ids)
+
+    def test_route_saved_line_elaboration_unset(self):
+        order_form = Form(self.order)
+        with order_form.order_line.edit(0) as line_form:
+            line_form.elaboration_ids.add(self.elaboration_route)
+        order_form.save()
+        self.assertEqual(self.order.order_line.route_ids, self.route_elaboration)
+        order_form = Form(self.order)
+        with order_form.order_line.edit(0) as line_form:
+            line_form.elaboration_ids.clear()
+        order_form.save()
+        self.assertFalse(self.order.order_line.route_ids)
+
+    def test_route_manual_kept(self):
+        order_form = Form(self.order)
+        with order_form.order_line.edit(0) as line_form:
+            line_form.route_ids.add(self.route_manual)
+            # Elaborations without route don't touch it
+            line_form.elaboration_ids.add(self.elaboration_b)
+            self.assertEqual(line_form.route_ids[:], self.route_manual)
+            line_form.elaboration_ids.clear()
+            self.assertEqual(line_form.route_ids[:], self.route_manual)
+        order_form.save()
+        self.assertEqual(self.order.order_line.route_ids, self.route_manual)
+
+    def test_route_elaboration_unset_with_write(self):
+        line = self.order.order_line
+        line.write({"elaboration_ids": [Command.set(self.elaboration_route.ids)]})
+        self.assertEqual(line.route_ids, self.route_elaboration)
+        line.write({"elaboration_ids": [Command.clear()]})
+        self.assertFalse(line.route_ids)
+
+    def test_route_procurement(self):
+        line = self.order.order_line
+        line.elaboration_ids = self.elaboration_route
+        self.assertEqual(line.route_ids, self.route_elaboration)
+        self.assertEqual(
+            line._prepare_procurement_values()["route_ids"], self.route_elaboration
+        )
+
+    def test_route_elaborations_union(self):
+        route_2 = self.env["stock.route"].create(
+            {"name": "Second route", "sale_selectable": True}
+        )
+        elaboration_2 = self.Elaboration.create(
+            {
+                "code": "R2",
+                "name": "Routed 2",
+                "product_id": self.product_elaboration_B.id,
+                "route_ids": [Command.set((self.route_elaboration | route_2).ids)],
+            }
+        )
+        order_form = Form(self.order)
+        with order_form.order_line.new() as line_form:
+            line_form.product_id = self.product
+            line_form.elaboration_ids.add(self.elaboration_route)
+            line_form.elaboration_ids.add(elaboration_2)
+            # The shared route is set once
+            self.assertEqual(len(line_form.route_ids), 2)
+            self.assertEqual(line_form.route_ids[:], self.route_elaboration | route_2)
+            line_form.elaboration_ids.remove(id=elaboration_2.id)
+            self.assertEqual(line_form.route_ids[:], self.route_elaboration)
+
+    def test_route_elaborations_complement(self):
+        """Each elaboration route provides one step of the delivery chain"""
+        warehouse = self.env["stock.warehouse"].search(
+            [("company_id", "=", self.env.company.id)], limit=1
+        )
+        elaboration_area = self.env["stock.location"].create(
+            {"name": "Elaboration area", "location_id": warehouse.view_location_id.id}
+        )
+        route_deliver = self.env["stock.route"].create(
+            {
+                "name": "Deliver elaborated",
+                "sale_selectable": True,
+                "rule_ids": [
+                    Command.create(
+                        {
+                            "name": "Elaboration area to customer",
+                            "action": "pull",
+                            "location_src_id": elaboration_area.id,
+                            "location_dest_id": (
+                                self.partner.property_stock_customer.id
+                            ),
+                            "picking_type_id": warehouse.out_type_id.id,
+                            "procure_method": "make_to_order",
+                        }
+                    )
+                ],
+            }
+        )
+        route_prepare = self.env["stock.route"].create(
+            {
+                "name": "Prepare elaboration",
+                "sale_selectable": True,
+                "rule_ids": [
+                    Command.create(
+                        {
+                            "name": "Stock to elaboration area",
+                            "action": "pull",
+                            "location_src_id": warehouse.lot_stock_id.id,
+                            "location_dest_id": elaboration_area.id,
+                            "picking_type_id": warehouse.int_type_id.id,
+                            "procure_method": "make_to_stock",
+                        }
+                    )
+                ],
+            }
+        )
+        elaboration_deliver = self.Elaboration.create(
+            {
+                "code": "D1",
+                "name": "Deliver",
+                "product_id": self.product_elaboration_A.id,
+                "route_ids": [Command.set(route_deliver.ids)],
+            }
+        )
+        elaboration_prepare = self.Elaboration.create(
+            {
+                "code": "P1",
+                "name": "Prepare",
+                "product_id": self.product_elaboration_B.id,
+                "route_ids": [Command.set(route_prepare.ids)],
+            }
+        )
+        order = self._create_sale_order(
+            [(self.product, 1, [elaboration_deliver, elaboration_prepare])]
+        )
+        self.assertEqual(order.order_line.route_ids, route_deliver | route_prepare)
+        order.action_confirm()
+        delivery_move = order.order_line.move_ids.filtered(
+            lambda m: m.picking_type_id == warehouse.out_type_id
+        )
+        self.assertEqual(delivery_move.rule_id.route_id, route_deliver)
+        self.assertEqual(delivery_move.location_id, elaboration_area)
+        self.assertEqual(delivery_move.move_orig_ids.rule_id.route_id, route_prepare)
+        self.assertEqual(
+            delivery_move.move_orig_ids.location_id, warehouse.lot_stock_id
+        )

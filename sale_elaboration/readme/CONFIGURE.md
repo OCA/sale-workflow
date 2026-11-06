@@ -3,8 +3,8 @@ To configure this module you need to:
 1.  Go to *Sale \> Configuration \> Elaborations \> Sale Elaboration*.
 2.  Create a new record.
 3.  Set a product linked to the elaboration.
-4.  If you use Multi-Step Routes, you can also select a route to procure
-    this elaboration.
+4.  If you use Multi-Step Routes, you can also select the routes to
+    procure this elaboration.
 5.  Go to *Settings \> Inventory \> Traceability* and select *Display
     Elaboration notes on Delivery Slips* if you want to show
     elaborations on Delivery Slips or *Display Elaboration notes on
