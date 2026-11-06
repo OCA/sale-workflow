@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_readonly,sale.order readonly,sale.model_sale_order,sales_team_readonly.group_sales_readonly,1,0,0,0
+access_sale_order_line_readonly,sale.order.line readonly,sale.model_sale_order_line,sales_team_readonly.group_sales_readonly,1,0,0,0
+access_sale_report_readonly,sale.report readonly,sale.model_sale_report,sales_team_readonly.group_sales_readonly,1,0,0,0
+access_account_move_readonly,account.move readonly,account.model_account_move,sales_team_readonly.group_sales_readonly,1,0,0,0
+access_account_move_line_readonly,account.move.line readonly,account.model_account_move_line,sales_team_readonly.group_sales_readonly,1,0,0,0
+access_account_journal_readonly,account.journal readonly,account.model_account_journal,sales_team_readonly.group_sales_readonly,1,0,0,0
