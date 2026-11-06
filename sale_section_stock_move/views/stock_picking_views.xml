@@ -1,0 +1,109 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="view_move_tree" model="ir.ui.view">
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//list/field[@name='product_id']" position="after">
+                <field name="sale_section_name" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_picking_move_tree" model="ir.ui.view">
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_picking_move_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//list/field[@name='product_id']" position="before">
+                <field name="sale_section_name" optional="show" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_move_search" model="ir.ui.view">
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//search/field[@name='product_id']" position="before">
+                <field
+                    name="sale_section_name"
+                    string="Section"
+                    filter_domain="[('sale_section_name', 'ilike', self)]"
+                />
+                <field
+                    name="sale_section_name"
+                    string="Sale Order"
+                    filter_domain="[('sale_section_id.order_id', 'ilike', self)]"
+                />
+            </xpath>
+            <xpath expr="//search/group" position="inside">
+                <filter
+                    string="Sale Section"
+                    name="groupby_sale_section_name"
+                    domain="[]"
+                    context="{'group_by': 'sale_section_name'}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_move_line_tree" model="ir.ui.view">
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//list/field[@name='product_id']" position="before">
+                <field name="sale_section_name" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_move_line_tree_detailed" model="ir.ui.view">
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_tree_detailed" />
+        <field name="arch" type="xml">
+            <xpath expr="//list/field[@name='product_id']" position="before">
+                <field name="sale_section_name" optional="show" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stock_move_line_view_search" model="ir.ui.view">
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.stock_move_line_view_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//search/field[@name='product_id']" position="after">
+                <field
+                    name="sale_section_name"
+                    string="Section"
+                    filter_domain="[('sale_section_name', 'ilike', self)]"
+                />
+                <field
+                    name="sale_section_name"
+                    string="Sale Order"
+                    filter_domain="[('sale_section_id.order_id', 'ilike', self)]"
+                />
+            </xpath>
+            <xpath expr="//search/group[@name='groupby']" position="inside">
+                <filter
+                    string="Sale Section"
+                    name="groupby_sale_section_name"
+                    domain="[]"
+                    context="{'group_by': 'sale_section_name'}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_picking_form" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='operations']/field[@name='move_ids']/list/field[@name='product_id']"
+                position="before"
+            >
+                <field name="sale_section_name" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
