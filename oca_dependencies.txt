@@ -1,0 +1,1 @@
+social https://github.com/OCA/social 18.0
