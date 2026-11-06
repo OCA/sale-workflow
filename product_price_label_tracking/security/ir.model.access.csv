@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_label_tracking_rule_salesman,product.label.tracking.rule salesman,model_product_label_tracking_rule,sales_team.group_sale_salesman,1,0,0,0
+access_product_label_tracking_rule_manager,product.label.tracking.rule manager,model_product_label_tracking_rule,sales_team.group_sale_manager,1,1,1,1
+access_product_label_track_salesman,product.label.track salesman,model_product_label_track,sales_team.group_sale_salesman,1,1,0,0
+access_product_label_track_manager,product.label.track manager,model_product_label_track,sales_team.group_sale_manager,1,1,1,1
