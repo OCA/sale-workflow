@@ -1,0 +1,18 @@
+/* Portal Delivery Address – custom styles */
+
+/* Shipping address modal – highlight active address */
+#o_portal_shipping_address_list .list-group-item.active {
+    color: var(--list-group-active-color, #ffffff) !important;
+    background-color: var(--list-group-active-bg, #714b67) !important;
+    border-color: var(--list-group-active-border-color, #714b67) !important;
+}
+
+#o_portal_shipping_address_list .list-group-item.active strong,
+#o_portal_shipping_address_list .list-group-item.active span {
+    color: var(--list-group-active-color, #ffffff) !important;
+}
+
+/* Add delivery address button spacing */
+#o_portal_add_delivery_address_btn {
+    margin-top: 0.5rem;
+}
