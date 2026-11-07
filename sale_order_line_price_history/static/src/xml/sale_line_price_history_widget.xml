@@ -5,7 +5,6 @@
 <templates xml:space="preserve">
     <t t-name="sale_order_line_price_history.price_history_widget">
         <a
-            t-if="props.record.data.qty_invoiced === 0"
             tabindex="0"
             t-on-click="viewPriceHistory"
             class="fa fa-history"
