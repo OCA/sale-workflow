@@ -1,0 +1,301 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pricelist_cache
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-04-16 10:23+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__applied_on
+msgid "Apply On"
+msgstr "Applica a"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__display_cache_line_ids
+msgid "Cached prices"
+msgstr "Prezzi memorizzati"
+
+#. module: pricelist_cache
+#: model_terms:ir.ui.view,arch_db:pricelist_cache.product_pricelist_cache_wizard_view_form
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__categ_id
+msgid "Category"
+msgstr "Categoria"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__company_id
+msgid "Company"
+msgstr "Azienda"
+
+#. module: pricelist_cache
+#: model:ir.model,name:pricelist_cache.model_res_partner
+msgid "Contact"
+msgstr "Contatto"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__create_uid
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__create_date
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: pricelist_cache
+#: model_terms:ir.ui.view,arch_db:pricelist_cache.view_partner_property_form
+msgid "Display Customer Prices"
+msgstr "Visualizza prezzi cliente"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__display_name
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: pricelist_cache
+#: model_terms:ir.ui.view,arch_db:pricelist_cache.product_pricelist_view
+msgid "Display Pricelist Prices"
+msgstr "Visualizza prezzi listino"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__date_end
+msgid "End Date"
+msgstr "Data fine"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,help:pricelist_cache.field_product_pricelist_item__date_end
+msgid ""
+"Ending datetime for the pricelist item validation\n"
+"The displayed value depends on the timezone set in your preferences."
+msgstr ""
+"Data di fine per la validazione riga di listino\n"
+"Il valore mostrato dipende dal fuso orario impostato nelle tue preferenze."
+
+#. module: pricelist_cache
+#: model:ir.model.fields,help:pricelist_cache.field_product_pricelist_item__min_quantity
+msgid ""
+"For the rule to apply, bought/sold quantity must be greater than or equal to the minimum quantity specified in this field.\n"
+"Expressed in the default unit of measure of the product."
+msgstr ""
+"Per rendere applicabile la regola, la quantità acquistata/venduta deve "
+"essere superiore o uguale a quella minima specificata \n"
+"in questo campo, espressa nell'unità di misura predefinita del prodotto."
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__id
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist__is_pricelist_cache_available
+#: model:ir.model.fields,field_description:pricelist_cache.field_res_partner__is_pricelist_cache_available
+#: model:ir.model.fields,field_description:pricelist_cache.field_res_users__is_pricelist_cache_available
+msgid "Is Pricelist Cache Available"
+msgstr "La memoria listino è disponibile"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist__is_pricelist_cache_computed
+msgid "Is Pricelist Cache Computed"
+msgstr "La memoria listino è calcolata"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__write_uid
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__write_date
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__min_quantity
+msgid "Min. Quantity"
+msgstr "Quantità minima"
+
+#. module: pricelist_cache
+#: model_terms:ir.ui.view,arch_db:pricelist_cache.product_pricelist_cache_wizard_view_form
+msgid "Open"
+msgstr "Apri"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__base_pricelist_id
+msgid "Other Pricelist"
+msgstr "Altro listino"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist__parent_pricelist_ids
+msgid "Parent Pricelist"
+msgstr "Listino padre"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__partner_id
+msgid "Partner"
+msgstr "Partner"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__price
+msgid "Price"
+msgstr "Prezzo"
+
+#. module: pricelist_cache
+#: model:ir.model,name:pricelist_cache.model_product_pricelist
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__pricelist_id
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__pricelist_id
+msgid "Pricelist"
+msgstr "Listino prezzi"
+
+#. module: pricelist_cache
+#: model:product.pricelist,name:pricelist_cache.list0
+msgid "Pricelist 0"
+msgstr "Listino prezzi 0"
+
+#. module: pricelist_cache
+#: model:product.pricelist,name:pricelist_cache.list1
+msgid "Pricelist 1"
+msgstr "Listino prezzi 1"
+
+#. module: pricelist_cache
+#: model:product.pricelist,name:pricelist_cache.list2
+msgid "Pricelist 2"
+msgstr "Listino prezzi 2"
+
+#. module: pricelist_cache
+#: model:product.pricelist,name:pricelist_cache.list3
+msgid "Pricelist 3"
+msgstr "Listino prezzi 3"
+
+#. module: pricelist_cache
+#: model:product.pricelist,name:pricelist_cache.list4
+msgid "Pricelist 4"
+msgstr "Listino prezzi 4"
+
+#. module: pricelist_cache
+#: model:product.pricelist,name:pricelist_cache.list5
+msgid "Pricelist 5"
+msgstr "Listino prezzi 5"
+
+#. module: pricelist_cache
+#: model:ir.actions.act_window,name:pricelist_cache.product_pricelist_cache_action
+#: model:ir.actions.act_window,name:pricelist_cache.product_pricelist_cache_wizard_action
+#: model:ir.model,name:pricelist_cache.model_product_pricelist_cache
+#: model:ir.ui.menu,name:pricelist_cache.menuitem_pricelist_cache_wizard
+#: model_terms:ir.ui.view,arch_db:pricelist_cache.product_pricelist_cache_wizard_view_form
+msgid "Pricelist Cache"
+msgstr "Memoria listino"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_res_partner__pricelist_cache_product_filter_id
+#: model:ir.model.fields,field_description:pricelist_cache.field_res_users__pricelist_cache_product_filter_id
+msgid "Pricelist Cache Product Filter"
+msgstr "Filtro prodotto memoria listino"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__pricelist_cache_update_skipped
+msgid "Pricelist Cache Update Skipped"
+msgstr "Aggiornamento memoria listino saltata"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,help:pricelist_cache.field_product_pricelist_item__applied_on
+msgid "Pricelist Item applicable on selected option"
+msgstr "Riga listino applicabile all'opzione selezionata"
+
+#. module: pricelist_cache
+#: model:ir.model,name:pricelist_cache.model_product_pricelist_item
+msgid "Pricelist Rule"
+msgstr "Regola listino prezzi"
+
+#. module: pricelist_cache
+#. odoo-python
+#: code:addons/pricelist_cache/models/res_partner.py:0
+msgid "Pricelist caching in progress. Retry later"
+msgstr "Memorizzazione listino in corso. Riprovare più tardi"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__product_id
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__product_tmpl_id
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: pricelist_cache
+#: model:ir.model,name:pricelist_cache.model_product_product
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__product_id
+msgid "Product Variant"
+msgstr "Variante prodotto"
+
+#. module: pricelist_cache
+#: model:ir.actions.server,name:pricelist_cache.cron_reset_pricelist_cache_ir_actions_server
+msgid "Reset pricelist cache"
+msgstr "Resetta memoria listino"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,help:pricelist_cache.field_product_pricelist_item__categ_id
+msgid ""
+"Specify a product category if this rule only applies to products belonging "
+"to this category or its children categories. Keep empty otherwise."
+msgstr ""
+"Specificare una categoria prodotto se questa regola si applica solo ai "
+"prodotti appartenenti a questa categoria o alle sue categorie figlie, "
+"altrimenti lasciare vuoto."
+
+#. module: pricelist_cache
+#: model:ir.model.fields,help:pricelist_cache.field_product_pricelist_item__product_id
+msgid ""
+"Specify a product if this rule only applies to one product. Keep empty "
+"otherwise."
+msgstr ""
+"Specificare un prodotto se questa regola si applica solo ad un prodotto, "
+"altrimenti lasciare vuoto."
+
+#. module: pricelist_cache
+#: model:ir.model.fields,help:pricelist_cache.field_product_pricelist_item__product_tmpl_id
+msgid ""
+"Specify a template if this rule only applies to one product template. Keep "
+"empty otherwise."
+msgstr ""
+"Specificare un modello prodotto se questa regola si applica solo ad un "
+"modello prodotto, altrimenti lasciare vuoto."
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__date_start
+msgid "Start Date"
+msgstr "Data inizio"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,help:pricelist_cache.field_product_pricelist_item__date_start
+msgid ""
+"Starting datetime for the pricelist item validation\n"
+"The displayed value depends on the timezone set in your preferences."
+msgstr ""
+"Data di inizio per la validazione riga di listino\n"
+"Il valore mostrato dipende dal fuso orario impostato nelle tue preferenze."
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__product_id
+msgid "Variant"
+msgstr "Variante"
+
+#. module: pricelist_cache
+#: model:ir.model,name:pricelist_cache.model_product_pricelist_cache_wizard
+msgid "Wizard for pricelist cache"
+msgstr "Procedura guidata per memoria listino"
