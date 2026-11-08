@@ -22,7 +22,7 @@
                     name="action_open_resource_bookings"
                     type="object"
                     class="oe_stat_button"
-                    icon="fa-calendar-check-o"
+                    icon="event_available"
                     invisible="resource_booking_count==0"
                     groups="resource_booking.group_user"
                 >

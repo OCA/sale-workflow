@@ -13,6 +13,10 @@ from odoo.addons.resource_booking.tests.common import create_test_data
 
 
 class SaleResourceBookingsCase(BaseCommon):
+    # Odoo 20 runs BaseCommon as a plain internal user; these tests need the
+    # sales and resource-booking permissions.
+    _test_user_groups = None
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
