@@ -16,7 +16,6 @@
         "security/ir.model.access.csv",
         "views/product.xml",
         "views/sale_order.xml",
-        "views/res_config_settings.xml",
     ],
     "installable": True,
 }

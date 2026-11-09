@@ -17,15 +17,6 @@
                     <field name="warehouse_rule_need_change" />
                 </div>
             </sheet>
-
-            <xpath
-                expr="//field[@name='order_line']/list/field[@name='warehouse_id']"
-                position="attributes"
-            >
-                <attribute
-                    name="column_invisible"
-                >not parent.show_sale_line_warehouse_column</attribute>
-            </xpath>
         </field>
     </record>
 </odoo>

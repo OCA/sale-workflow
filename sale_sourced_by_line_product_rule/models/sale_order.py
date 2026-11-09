@@ -10,9 +10,6 @@ class SaleOrder(models.Model):
     warehouse_rule_need_change = fields.Html(
         compute="_compute_warehouse_rule_need_change"
     )
-    show_sale_line_warehouse_column = fields.Boolean(
-        related="company_id.show_sale_line_warehouse_column",
-    )
 
     @api.depends("order_line.warehouse_id", "warehouse_id")
     def _compute_warehouse_rule_need_change(self):
@@ -32,8 +29,6 @@ class SaleOrder(models.Model):
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
-
-    warehouse_id = fields.Many2one(readonly=False)
 
     def _compute_warehouse_id(self):
         res = super()._compute_warehouse_id()
