@@ -2,6 +2,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+from odoo.exceptions import UserError
+from odoo.fields import Command
 
 
 class SaleOrderLine(models.Model):
@@ -52,14 +54,14 @@ class SaleOrderLine(models.Model):
         for line in self:
             bom = line._get_kit_bom()
             if not bom:
-                line.kit_component_ids = [(5, 0, 0)]
+                line.kit_component_ids = [Command.clear()]
                 continue
             new_lines = []
             for sequence, bom_line in enumerate(bom.bom_line_ids, start=1):
+                if bom_line._skip_bom_line(line.product_id):
+                    continue
                 new_lines.append(
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "bom_line_id": bom_line.id,
                             "product_id": bom_line.product_id.id,
@@ -67,10 +69,10 @@ class SaleOrderLine(models.Model):
                             "product_uom_id": bom_line.product_uom_id.id,
                             "is_selected": True,
                             "sequence": bom_line.sequence or sequence,
-                        },
+                        }
                     )
                 )
-            line.kit_component_ids = [(5, 0, 0)] + new_lines
+            line.kit_component_ids = [Command.clear()] + new_lines
 
     @api.onchange("product_id", "bom_id")
     def _onchange_kit_bom_populate_components(self):
@@ -78,7 +80,7 @@ class SaleOrderLine(models.Model):
             if line.is_kit:
                 line._populate_kit_components()
             else:
-                line.kit_component_ids = [(5, 0, 0)]
+                line.kit_component_ids = [Command.clear()]
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -88,6 +90,52 @@ class SaleOrderLine(models.Model):
                 line._populate_kit_components()
         return lines
 
+    def write(self, vals):
+        if "product_id" in vals and "bom_id" not in vals:
+            new_product = self.env["product.product"].browse(vals["product_id"])
+            for line in self:
+                if line.bom_id:
+                    bom = line.bom_id
+                    match = (bom.product_id and bom.product_id == new_product) or (
+                        not bom.product_id
+                        and bom.product_tmpl_id == new_product.product_tmpl_id
+                    )
+                    if not match:
+                        vals["bom_id"] = False
+        res = super().write(vals)
+        if "product_id" in vals or "bom_id" in vals:
+            if "kit_component_ids" not in vals:
+                for line in self:
+                    if line.order_id.state not in ("sale", "cancel"):
+                        if line.is_kit:
+                            line._populate_kit_components()
+                        else:
+                            line.kit_component_ids = [Command.clear()]
+        return res
+
     def action_reload_kit_components(self):
-        self._populate_kit_components()
+        for line in self:
+            if line.order_id.state in ("sale", "cancel"):
+                raise UserError(
+                    self.env._(
+                        "Cannot reset kit components on a confirmed or cancelled "
+                        "sale order."
+                    )
+                )
+            line._populate_kit_components()
         return True
+
+    def action_open_kit_components(self):
+        self.ensure_one()
+        view_id = self.env.ref(
+            "sale_mrp_bom_kit_component.view_sale_order_line_kit_component_form"
+        ).id
+        return {
+            "name": self.env._("Kit Components: %s", self.product_id.display_name),
+            "type": "ir.actions.act_window",
+            "res_model": "sale.order.line",
+            "res_id": self.id,
+            "view_mode": "form",
+            "views": [(view_id, "form")],
+            "target": "new",
+        }

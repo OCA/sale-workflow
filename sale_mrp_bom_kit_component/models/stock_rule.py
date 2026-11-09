@@ -29,7 +29,12 @@ class StockRule(models.Model):
             sale_line_id = procurement.values.get("sale_line_id")
             sale_line = sale_lines_map.get(sale_line_id)
 
-            if sale_line and sale_line.is_kit and sale_line.kit_component_ids:
+            if (
+                sale_line
+                and sale_line.is_kit
+                and sale_line.kit_component_ids
+                and procurement.product_id == sale_line.product_id
+            ):
                 bom_kit = sale_line._get_kit_bom()
                 if bom_kit:
                     order_qty = procurement.product_uom._compute_quantity(
