@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-09-04 10:49+0000\n"
+"PO-Revision-Date: 2026-11-09 13:43+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_blanket_order
 #. odoo-python
@@ -160,7 +160,7 @@ msgstr "Precisione analitica"
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_config_settings_form_view
 msgid "Assign Blanket Order number to draft Blanket Order"
-msgstr ""
+msgstr "Assegna numero ordine quadro a ordine quadro in bozza"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_attachment_count
@@ -252,7 +252,7 @@ msgstr ""
 #. module: sale_blanket_order
 #: model:ir.model,name:sale_blanket_order.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__company_id
@@ -389,7 +389,7 @@ msgstr "Bozza"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_res_company__blanket_order_seq_number_from_draft
 #: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__blanket_order_seq_number_from_draft
 msgid "Enable Blanket Order numbering from draft state"
-msgstr ""
+msgstr "Abilita la numerazione degli ordini quadro dallo stato bozza"
 
 #. module: sale_blanket_order
 #: model:ir.actions.server,name:sale_blanket_order.expired_blanket_orders_cron_ir_actions_server
