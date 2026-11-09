@@ -5,7 +5,7 @@
     "name": "Sale Stock Qty By Warehouse",
     "summary": "Display the stock quantity by warehouse on sale order lines",
     "version": "18.0.1.0.0",
-    "category": "Hidden",
+    "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "ACSONE SA/NV, Akretion, Odoo Community Association (OCA)",
     "license": "AGPL-3",

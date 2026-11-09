@@ -155,18 +155,17 @@ class TestSaleStockQtyByWarehouse(TransactionCase):
         self.assertEqual(data[self.warehouse_1.id]["qty"], 11.0)
 
     def test_explicit_location_in_warehouse(self):
+        stock_location = self.warehouse_1.lot_stock_id
         location1 = self.env["stock.location"].create(
             {
                 "name": "Location 1",
-                "usage": "internal",
-                "company_id": self.company.id,
+                "location_id": stock_location.id,
             }
         )
         location2 = self.env["stock.location"].create(
             {
                 "name": "Location 2",
-                "usage": "internal",
-                "company_id": self.company.id,
+                "location_id": stock_location.id,
             }
         )
         self.env["stock.quant"]._update_available_quantity(
@@ -179,6 +178,9 @@ class TestSaleStockQtyByWarehouse(TransactionCase):
             location2,
             20,
         )
+        self.sale_order_line.invalidate_recordset(["qty_by_warehouse_widget_data"])
+        data = self.sale_order_line.qty_by_warehouse_widget_data
+        self.assertEqual(data[self.warehouse_1.id]["qty"], 41.0)
         self.warehouse_1.display_stock_location_ids = location1
         self.sale_order_line.invalidate_recordset(["qty_by_warehouse_widget_data"])
         data = self.sale_order_line.qty_by_warehouse_widget_data

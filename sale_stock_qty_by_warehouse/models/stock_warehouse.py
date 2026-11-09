@@ -16,6 +16,7 @@ class StockWarehouse(models.Model):
             "sale order lines for this warehouse. If empty, the whole "
             "warehouse is used."
         ),
+        check_company=True,
     )
     display_stock_on_sol = fields.Boolean(
         string="Display stock on Sale Order Line",
