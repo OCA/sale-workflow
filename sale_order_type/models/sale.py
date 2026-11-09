@@ -12,7 +12,6 @@ class SaleOrder(models.Model):
 
     type_id = fields.Many2one(
         comodel_name="sale.order.type",
-        string="Type",
         compute="_compute_sale_type_id",
         precompute=True,
         store=True,

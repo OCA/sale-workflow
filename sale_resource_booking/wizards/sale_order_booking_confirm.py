@@ -15,7 +15,6 @@ class SaleOrderBookingConfirm(models.TransientModel):
 
     order_id = fields.Many2one(
         "sale.order",
-        string="Order",
         index=True,
         required=True,
         readonly=True,

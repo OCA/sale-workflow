@@ -8,7 +8,6 @@ class SaleReport(models.Model):
 
     type_id = fields.Many2one(
         comodel_name="sale.order.type",
-        string="Type",
     )
 
     # flake8: noqa

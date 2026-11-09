@@ -7,6 +7,4 @@ from odoo import fields, models
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    sale_warehouse_id = fields.Many2one(
-        "stock.warehouse", string="Sale Warehouse", company_dependent=True
-    )
+    sale_warehouse_id = fields.Many2one("stock.warehouse", company_dependent=True)

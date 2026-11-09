@@ -25,9 +25,7 @@ class SaleOrderTypology(models.Model):
         domain="[('type', '=', 'sale')]",
         check_company=True,
     )
-    warehouse_id = fields.Many2one(
-        comodel_name="stock.warehouse", string="Warehouse", check_company=True
-    )
+    warehouse_id = fields.Many2one(comodel_name="stock.warehouse", check_company=True)
     picking_policy = fields.Selection(
         selection=lambda self: self._get_selection_picking_policy(),
         string="Shipping Policy",
@@ -41,12 +39,10 @@ class SaleOrderTypology(models.Model):
         store=True,
     )
     payment_term_id = fields.Many2one(
-        comodel_name="account.payment.term", string="Payment Term", check_company=True
+        comodel_name="account.payment.term", check_company=True
     )
-    pricelist_id = fields.Many2one(
-        comodel_name="product.pricelist", string="Pricelist", check_company=True
-    )
-    incoterm_id = fields.Many2one(comodel_name="account.incoterms", string="Incoterm")
+    pricelist_id = fields.Many2one(comodel_name="product.pricelist", check_company=True)
+    incoterm_id = fields.Many2one(comodel_name="account.incoterms")
     user_id = fields.Many2one(
         comodel_name="res.users",
         string="Salesperson",

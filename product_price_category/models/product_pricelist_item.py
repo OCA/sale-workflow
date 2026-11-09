@@ -19,7 +19,6 @@ class ProductPricelistItem(models.Model):
     )
     price_category_id = fields.Many2one(
         comodel_name="product.price.category",
-        string="Price Category",
         ondelete="cascade",
         help="Specify a product price category if this rule only applies "
         "to one price category. Keep empty otherwise.",

@@ -6,6 +6,4 @@ from odoo import fields, models
 class ProductCategory(models.Model):
     _inherit = "product.category"
 
-    elaboration_profile_id = fields.Many2one(
-        comodel_name="product.elaboration.profile", string="Elaboration Profile"
-    )
+    elaboration_profile_id = fields.Many2one(comodel_name="product.elaboration.profile")
