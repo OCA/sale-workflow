@@ -12,13 +12,11 @@
         "sale_sourced_by_line",
         "product_attribute_value_dependent_mixin",
     ],
-    "external_dependencies": {"python": ["openupgradelib"]},
     "data": [
         "security/ir.model.access.csv",
         "views/product.xml",
         "views/sale_order.xml",
         "views/res_config_settings.xml",
     ],
-    "pre_init_hook": "pre_init_hook",
     "installable": True,
 }
