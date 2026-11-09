@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<template id="template" xml:space="preserve">
+
+    <t t-name="sale_stock_qty_by_warehouse.QtyByWarehouse">
+        <a
+            t-att-tabindex="props.record.data.display_qty_by_warehouse_widget ? '0' : '-1'"
+            t-on-click="showPopup"
+            t-att-class="!props.record.data.display_qty_by_warehouse_widget ? 'invisible' : ''"
+            t-attf-class="fa fa-sort-numeric-asc cursor-pointer"
+        />
+    </t>
+
+    <t t-name="sale_stock_qty_by_warehouse.QtyByWarehousePopover">
+        <div class="p-2">
+            <table class="table table-borderless table-sm">
+                <thead>
+                    <tr>
+                        <th>Warehouse</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        t-foreach="props.record.data.qty_by_warehouse_widget_data"
+                        t-as="location_id"
+                        t-key="location_id"
+                    >
+                        <t
+                            t-set="row"
+                            t-value="props.record.data.qty_by_warehouse_widget_data[location_id]"
+                        />
+                        <td>
+                            <span t-esc="row.warehouse_name" />
+                        </td>
+                        <td class="text-end">
+                            <span t-esc="row.qty_available" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </t>
+</template>
