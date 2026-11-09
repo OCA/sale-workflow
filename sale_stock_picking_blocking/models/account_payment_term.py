@@ -10,7 +10,6 @@ class AccountPaymentTerm(models.Model):
 
     default_delivery_block_reason_id = fields.Many2one(
         comodel_name="sale.delivery.block.reason",
-        string="Default Delivery Block Reason",
         help="Set a reason to block by default the deliveries in this "
         "payment term sales orders.",
     )

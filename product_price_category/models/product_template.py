@@ -8,6 +8,4 @@ from odoo import fields, models
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    price_category_id = fields.Many2one(
-        "product.price.category", string="Price Category", ondelete="restrict"
-    )
+    price_category_id = fields.Many2one("product.price.category", ondelete="restrict")

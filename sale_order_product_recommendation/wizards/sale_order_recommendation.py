@@ -258,7 +258,6 @@ class SaleOrderRecommendationLine(models.TransientModel):
     units_included = fields.Float()
     wizard_id = fields.Many2one(
         "sale.order.recommendation",
-        "Wizard",
         ondelete="cascade",
         required=True,
         readonly=True,

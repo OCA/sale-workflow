@@ -12,13 +12,10 @@ class SaleOrderCancel(models.TransientModel):
 
     order_id = fields.Many2one(
         comodel_name="sale.order",
-        string="Order",
         required=True,
         ondelete="cascade",
     )
-    reason_id = fields.Many2one(
-        "sale.order.cancel.reason", string="Reason", required=True
-    )
+    reason_id = fields.Many2one("sale.order.cancel.reason", required=True)
 
     def action_cancel(self):
         self.ensure_one()

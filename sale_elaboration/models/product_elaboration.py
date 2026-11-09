@@ -12,7 +12,6 @@ class Elaboration(models.Model):
     code = fields.Char(string="Short Code")
     product_id = fields.Many2one(
         comodel_name="product.product",
-        string="Product",
         ondelete="restrict",
         domain=[("type", "=", "service"), ("is_elaboration", "=", True)],
         required=True,

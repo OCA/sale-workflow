@@ -26,7 +26,6 @@ class SaleOrderLinePriceHistory(models.TransientModel):
     )
     product_id = fields.Many2one(
         comodel_name="product.product",
-        string="Product",
         default=lambda self: self._default_product_id(),
     )
     partner_id = fields.Many2one(
@@ -101,7 +100,6 @@ class SaleOrderLinePriceHistoryline(models.TransientModel):
 
     history_id = fields.Many2one(
         comodel_name="sale.order.line.price.history",
-        string="History",
     )
     target_sale_order_line_id = fields.Many2one(
         comodel_name="sale.order.line",

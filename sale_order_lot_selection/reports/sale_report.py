@@ -8,7 +8,6 @@ class SaleReport(models.Model):
 
     lot_id = fields.Many2one(
         comodel_name="stock.lot",
-        string="Lot",
     )
 
     def _select_additional_fields(self):

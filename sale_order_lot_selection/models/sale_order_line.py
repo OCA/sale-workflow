@@ -18,7 +18,6 @@ class SaleOrderLine(models.Model):
     domain_lot_id = fields.Binary(compute="_compute_domain_lot_id")
     lot_id = fields.Many2one(
         "stock.lot",
-        "Lot",
         domain="domain_lot_id",
         copy=False,
         compute="_compute_lot_id",
