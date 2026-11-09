@@ -4,14 +4,14 @@
 {
     "name": "Sales Invoice Plan",
     "summary": "Add to sales order, ability to manage future invoice plan",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "author": "Ecosoft,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales",
     "depends": ["account", "sale_management"],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "data/sale_data.xml",
         "wizard/sale_create_invoice_plan_view.xml",
         "wizard/sale_make_planned_invoice_view.xml",

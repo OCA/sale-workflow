@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record model="ir.ui.view" id="view_sale_invoice_plan_tree">
+    <record id="view_sale_invoice_plan_tree" model="ir.ui.view">
         <field name="name">view.sale.invoice.plan.tree</field>
         <field name="model">sale.invoice.plan</field>
         <field name="arch" type="xml">
@@ -24,7 +24,7 @@
             </list>
         </field>
     </record>
-    <record model="ir.ui.view" id="view_sale_invoice_plan_form">
+    <record id="view_sale_invoice_plan_form" model="ir.ui.view">
         <field name="name">view.sale.invoice.plan.form</field>
         <field name="model">sale.invoice.plan</field>
         <field name="arch" type="xml">
@@ -253,8 +253,8 @@
         </field>
     </record>
     <menuitem
-        action="action_sale_invoice_plan"
         id="menu_sale_invoice_plan"
+        action="action_sale_invoice_plan"
         parent="sale.sale_order_menu"
         groups="sales_team.group_sale_salesman"
         sequence="25"
