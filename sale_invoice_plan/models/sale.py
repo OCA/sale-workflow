@@ -81,11 +81,12 @@ class SaleOrder(models.Model):
     @api.constrains("state")
     def _check_invoice_plan(self):
         for rec in self:
-            if rec.state != "draft":
-                if rec.invoice_plan_ids.filtered(lambda plan: not plan.percent):
-                    raise ValidationError(
-                        self.env._("Please fill percentage for all invoice plan lines")
-                    )
+            if rec.state != "draft" and rec.invoice_plan_ids.filtered(
+                lambda plan: not plan.percent
+            ):
+                raise ValidationError(
+                    self.env._("Please fill percentage for all invoice plan lines")
+                )
 
     def action_confirm(self):
         if self.filtered(lambda r: r.use_invoice_plan and not r.invoice_plan_ids):
@@ -151,8 +152,8 @@ class SaleOrder(models.Model):
         next_date = fields.Date.to_string(next_date)
         return next_date
 
-    def _create_invoices(self, grouped=False, final=False, date=None):
-        moves = super()._create_invoices(grouped=grouped, final=final, date=date)
+    def _create_invoices(self, final=False, grouped=False):
+        moves = super()._create_invoices(final=final, grouped=grouped)
         invoice_plan_id = self.env.context.get("invoice_plan_id")
         if invoice_plan_id:
             plan = self.env["sale.invoice.plan"].browse(invoice_plan_id)

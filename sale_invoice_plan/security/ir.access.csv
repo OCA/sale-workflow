@@ -1,0 +1,4 @@
+id,name,model_id,group_id/id,operation,domain
+access_sale_invoice_plan,sale.invoice.plan salesman,sale.invoice.plan,sales_team.group_sale_salesman,crud,
+access_sale_create_invoice_plan,sale.create.invoice.plan salesman,sale.create.invoice.plan,sales_team.group_sale_salesman,crud,
+access_sale_make_planned_invoice,sale.make.planned.invoice salesman,sale.make.planned.invoice,sales_team.group_sale_salesman,crud,

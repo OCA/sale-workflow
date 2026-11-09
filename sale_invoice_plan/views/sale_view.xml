@@ -72,16 +72,13 @@
                     invisible="not invoice_plan_process"
                 />
             </xpath>
-            <xpath
-                expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d'][1]"
-                position="attributes"
-            >
+            <xpath expr="//button[@id='create_invoice']" position="attributes">
                 <attribute
                     name="invisible"
-                >invoice_plan_process or invoice_status != 'to invoice'</attribute>
+                >invoice_plan_process or (invoice_status != 'to invoice' and not (has_overages and invoice_status == 'upselling'))</attribute>
             </xpath>
             <xpath
-                expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d'][2]"
+                expr="//button[@id='create_invoice_percentage']"
                 position="attributes"
             >
                 <attribute

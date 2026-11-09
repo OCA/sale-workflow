@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
-from odoo.tools.float_utils import float_compare, float_round
 
 
 class SaleInvoicePlan(models.Model):
@@ -141,11 +140,11 @@ class SaleInvoicePlan(models.Model):
         deposit_product_id = (
             self.env["ir.config_parameter"]
             .sudo()
-            .get_param("sale.default_deposit_product_id")
+            .get_int("sale.default_deposit_product_id")
         )
         if deposit_product_id:
             lines = invoices.mapped("invoice_line_ids").filtered(
-                lambda line: line.product_id.id != int(deposit_product_id)
+                lambda line: line.product_id.id != deposit_product_id
             )
             amount_invoiced = sum(lines.mapped("price_subtotal"))
         return amount_invoiced
@@ -156,7 +155,7 @@ class SaleInvoicePlan(models.Model):
             invoiced = rec.invoice_move_ids.filtered(
                 lambda invoice: invoice.state in ("draft", "posted")
             )
-            rec.invoiced = True if invoiced else False
+            rec.invoiced = bool(invoiced)
             rec.amount_invoiced = (
                 sum(invoiced.mapped("amount_untaxed"))
                 if rec.invoice_type == "advance"
@@ -179,14 +178,16 @@ class SaleInvoicePlan(models.Model):
         ):
             self._update_new_quantity(line, percent)
         move.line_ids.filtered(
-            lambda x: x.display_type
-            not in (
-                "product",
-                "line_section",
-                "line_subsection",
-                "line_note",
-                "payment_term",
-                "tax",
+            lambda x: (
+                x.display_type
+                not in (
+                    "product",
+                    "line_section",
+                    "line_subsection",
+                    "line_note",
+                    "payment_term",
+                    "tax",
+                )
             )
         ).unlink()
 
@@ -199,15 +200,10 @@ class SaleInvoicePlan(models.Model):
             line.write({"quantity": -percent / 100})
         else:
             plan_qty = self._get_plan_qty(order_line, percent)
-            prec = order_line.product_uom_id.rounding
+            uom = order_line.product_uom_id
             if plan_qty:
-                plan_qty = float_round(plan_qty, precision_rounding=prec)
-            if (
-                float_compare(
-                    abs(plan_qty), abs(line.quantity), precision_rounding=prec
-                )
-                == 1
-            ):
+                plan_qty = uom.round(plan_qty)
+            if uom.compare(abs(plan_qty), abs(line.quantity)) == 1:
                 raise ValidationError(
                     self.env._(
                         "Plan quantity: %(plan_qty)s, exceed invoiceable quantity: "

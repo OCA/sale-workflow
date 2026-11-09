@@ -117,7 +117,6 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
                 "type": "consu",
                 "uom_id": uom_unit.id,
                 "invoice_policy": "order",
-                "expense_policy": "no",
                 "default_code": "PROD_ORDER",
                 "service_type": "manual",
                 "taxes_id": False,
@@ -138,7 +137,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
                 "taxes_id": False,
             }
         )
-        cls.env["ir.config_parameter"].sudo().set_param(
+        cls.env["ir.config_parameter"].sudo().set_int(
             "sale.default_deposit_product_id", cls.product_advance.id
         )
 
