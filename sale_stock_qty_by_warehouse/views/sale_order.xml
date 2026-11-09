@@ -14,13 +14,13 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
                 expr="//field[@name='order_line']/form//widget[@name='qty_at_date_widget']"
                 position="before"
             >
-                <widget name="qty_per_warehouse_widget" />
+                <widget name="qty_by_warehouse_widget" />
             </xpath>
             <xpath
                 expr="//field[@name='order_line']/list/widget[@name='qty_at_date_widget']"
                 position="before"
             >
-                <widget name="qty_per_warehouse_widget" width="20px" />
+                <widget name="qty_by_warehouse_widget" width="20px" />
             </xpath>
         </field>
     </record>

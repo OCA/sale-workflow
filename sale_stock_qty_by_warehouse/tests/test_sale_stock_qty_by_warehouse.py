@@ -7,7 +7,7 @@ from odoo.tests import TransactionCase
 from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
 
 
-class TestSaleOrderLineDisplayStockPerWarehouse(TransactionCase):
+class TestSaleStockQtyByWarehouse(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -86,14 +86,14 @@ class TestSaleOrderLineDisplayStockPerWarehouse(TransactionCase):
         cls.service_order_line = cls.sale_order.order_line[1]
 
     def test_display_widget_only_for_storable_products(self):
-        self.assertTrue(self.sale_order_line.display_qty_per_warehouse_widget)
-        self.assertFalse(self.service_order_line.display_qty_per_warehouse_widget)
+        self.assertTrue(self.sale_order_line.display_qty_by_warehouse_widget)
+        self.assertFalse(self.service_order_line.display_qty_by_warehouse_widget)
 
-    def test_qty_per_warehouse_widget_data_empty_for_non_storable_product(self):
-        self.assertEqual(self.service_order_line.qty_per_warehouse_widget_data, [])
+    def test_qty_by_warehouse_widget_data_empty_for_non_storable_product(self):
+        self.assertEqual(self.service_order_line.qty_by_warehouse_widget_data, [])
 
     def test_one_stock_per_warehouse_info(self):
-        data = self.sale_order_line.qty_per_warehouse_widget_data
+        data = self.sale_order_line.qty_by_warehouse_widget_data
         self.assertEqual(
             data[self.warehouse_1.id]["warehouse_name"],
             self.warehouse_1.display_name,
@@ -103,7 +103,7 @@ class TestSaleOrderLineDisplayStockPerWarehouse(TransactionCase):
 
     def test_two_stock_per_warehouse_info(self):
         self.warehouse_2.display_stock_on_sol = True
-        data = self.sale_order_line.qty_per_warehouse_widget_data
+        data = self.sale_order_line.qty_by_warehouse_widget_data
         self.assertEqual(data[self.warehouse_1.id]["qty"], 11.0)
         self.assertEqual(data[self.warehouse_2.id]["qty"], 22.0)
 
@@ -123,7 +123,7 @@ class TestSaleOrderLineDisplayStockPerWarehouse(TransactionCase):
                 "quantity": 0,
             }
         )
-        data = self.sale_order_line.qty_per_warehouse_widget_data
+        data = self.sale_order_line.qty_by_warehouse_widget_data
         self.assertEqual(data[self.warehouse_1.id]["qty"], 11.0)
         self.assertEqual(data[self.warehouse_3.id]["qty"], 0)
 
@@ -140,18 +140,18 @@ class TestSaleOrderLineDisplayStockPerWarehouse(TransactionCase):
         )
         move._action_confirm()
         self.env["ir.config_parameter"].sudo().set_param(
-            "sale_order_line_display_stock_per_warehouse.stock_field_on_sol",
+            "sale_stock_qty_by_warehouse.stock_field_on_sol",
             "virtual_available",
         )
-        self.sale_order_line.invalidate_recordset(["qty_per_warehouse_widget_data"])
-        data = self.sale_order_line.qty_per_warehouse_widget_data
+        self.sale_order_line.invalidate_recordset(["qty_by_warehouse_widget_data"])
+        data = self.sale_order_line.qty_by_warehouse_widget_data
         self.assertEqual(data[self.warehouse_1.id]["qty"], 16.0)
         self.env["ir.config_parameter"].sudo().set_param(
-            "sale_order_line_display_stock_per_warehouse.stock_field_on_sol",
+            "sale_stock_qty_by_warehouse.stock_field_on_sol",
             "qty_available",
         )
-        self.sale_order_line.invalidate_recordset(["qty_per_warehouse_widget_data"])
-        data = self.sale_order_line.qty_per_warehouse_widget_data
+        self.sale_order_line.invalidate_recordset(["qty_by_warehouse_widget_data"])
+        data = self.sale_order_line.qty_by_warehouse_widget_data
         self.assertEqual(data[self.warehouse_1.id]["qty"], 11.0)
 
     def test_explicit_location_in_warehouse(self):
@@ -180,6 +180,6 @@ class TestSaleOrderLineDisplayStockPerWarehouse(TransactionCase):
             20,
         )
         self.warehouse_1.display_stock_location_ids = location1
-        self.sale_order_line.invalidate_recordset(["qty_per_warehouse_widget_data"])
-        data = self.sale_order_line.qty_per_warehouse_widget_data
+        self.sale_order_line.invalidate_recordset(["qty_by_warehouse_widget_data"])
+        data = self.sale_order_line.qty_by_warehouse_widget_data
         self.assertEqual(data[self.warehouse_1.id]["qty"], 10.0)

@@ -5,18 +5,17 @@ import {registry} from "@web/core/registry";
 import {standardWidgetProps} from "@web/views/widgets/standard_widget_props";
 import {usePopover} from "@web/core/popover/popover_hook";
 
-export class QtyPerWarehousePopover extends Component {
-    static template =
-        "sale_order_line_display_stock_per_warehouse.QtyPerWarehousePopover";
+export class QtyByWarehousePopover extends Component {
+    static template = "sale_stock_qty_by_warehouse.QtyByWarehousePopover";
     static props = {
         record: Object,
         close: Function,
     };
 }
 
-export class QtyPerWarehouseWidget extends Component {
-    static components = {Popover: QtyPerWarehousePopover};
-    static template = "sale_order_line_display_stock_per_warehouse.QtyPerWarehouse";
+export class QtyByWarehouseWidget extends Component {
+    static components = {Popover: QtyByWarehousePopover};
+    static template = "sale_stock_qty_by_warehouse.QtyByWarehouse";
     static props = {...standardWidgetProps};
     setup() {
         this.popover = usePopover(this.constructor.components.Popover, {
@@ -31,13 +30,11 @@ export class QtyPerWarehouseWidget extends Component {
     }
 }
 
-export const qtyPerWarehouseWidget = {
-    component: QtyPerWarehouseWidget,
+export const qtyByWarehouseWidget = {
+    component: QtyByWarehouseWidget,
     fieldDependencies: [
-        {name: "display_qty_per_warehouse_widget", type: "boolean"},
-        {name: "qty_per_warehouse_widget_data", type: "binary"},
+        {name: "display_qty_by_warehouse_widget", type: "boolean"},
+        {name: "qty_by_warehouse_widget_data", type: "binary"},
     ],
 };
-registry
-    .category("view_widgets")
-    .add("qty_per_warehouse_widget", qtyPerWarehouseWidget);
+registry.category("view_widgets").add("qty_by_warehouse_widget", qtyByWarehouseWidget);

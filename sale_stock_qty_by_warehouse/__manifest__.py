@@ -2,8 +2,8 @@
 # @author Kévin Roche <kevin.roche@akretion.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
-    "name": "Sale Order Line Display Stock Per Warehouse",
-    "summary": "Sale Order Line Display Stock Per Warehouse",
+    "name": "Sale Stock Qty By Warehouse",
+    "summary": "Display the stock quantity by warehouse on sale order lines",
     "version": "18.0.1.0.0",
     "category": "Hidden",
     "website": "https://github.com/OCA/sale-workflow",
@@ -22,8 +22,8 @@
     ],
     "assets": {
         "web.assets_backend": [
-            "sale_order_line_display_stock_per_warehouse/static/src/widgets/qty_per_warehouse_widget.esm.js",
-            "sale_order_line_display_stock_per_warehouse/static/src/widgets/qty_per_warehouse_widget.xml",
+            "sale_stock_qty_by_warehouse/static/src/widgets/qty_by_warehouse_widget.esm.js",
+            "sale_stock_qty_by_warehouse/static/src/widgets/qty_by_warehouse_widget.xml",
         ],
     },
 }
