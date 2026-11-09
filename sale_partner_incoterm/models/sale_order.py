@@ -9,7 +9,6 @@ class SaleOrder(models.Model):
 
     incoterm_address_id = fields.Many2one(
         comodel_name="res.partner",
-        string="Incoterm Address",
     )
 
     @api.onchange("partner_id")
