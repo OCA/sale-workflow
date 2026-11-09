@@ -1,12 +1,15 @@
 # Copyright 2018 Tecnativa - David Vidal
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo import Command
 from odoo.tests import Form
 
 from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestSaleStockPickingNote(BaseCommon):
+    _test_user_groups = None
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -27,7 +30,9 @@ class TestSaleStockPickingNote(BaseCommon):
             {
                 "partner_id": self.partner.id,
                 "order_line": [
-                    (0, 0, {"product_id": self.product.id, "product_uom_qty": 1})
+                    Command.create(
+                        {"product_id": self.product.id, "product_uom_qty": 1}
+                    )
                 ],
             }
         )
@@ -95,7 +100,7 @@ class TestSaleStockPickingNote(BaseCommon):
         picking_in_form = Form(self.env["stock.picking"])
         picking_in_form.picking_type_id = self.env.ref("stock.picking_type_in")
         picking_in_form.partner_id = self.partner
-        with picking_out_form.move_ids.new() as move:
+        with picking_in_form.move_ids.new() as move:
             move.product_id = self.product
             move.product_uom_qty = 1
         self.assertNotEqual(picking_in_form.note, self.partner.picking_note)
