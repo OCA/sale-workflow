@@ -11,7 +11,7 @@ class TestSaleExceptionValidateOrder(TransactionCase):
         cls.exception = cls.env.ref("sale_exception.excep_no_zip")
         cls.exception.active = True
         cls.partner = cls.env["res.partner"].create({"name": "No zip"})
-        cls.product = cls.env.ref("product.product_product_6")
+        cls.product = cls.env["product.product"].create({"name": "Product"})
         cls.order = cls._create_order(cls.partner)
 
     @classmethod
@@ -31,8 +31,10 @@ class TestSaleExceptionValidateOrder(TransactionCase):
 
     def _notes(self, order):
         return order.message_ids.filtered(
-            lambda m: m.subtype_id == self.env.ref("mail.mt_note")
-            and self.exception.name in m.body
+            lambda m: (
+                m.subtype_id == self.env.ref("mail.mt_note")
+                and self.exception.name in m.body
+            )
         )
 
     def test_validate_order_with_exception(self):
