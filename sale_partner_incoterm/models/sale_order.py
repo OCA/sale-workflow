@@ -14,10 +14,10 @@ class SaleOrder(models.Model):
 
     @api.onchange("partner_id")
     def onchange_partner_id_set_incoterm(self):
+        # keep the incoterm already on the order (e.g. from the sale order
+        # type) when the customer has no default one
         partner = self.partner_id
-        self.update(
-            {
-                "incoterm": partner.sale_incoterm_id.id,
-                "incoterm_address_id": partner.sale_incoterm_address_id.id,
-            }
-        )
+        if partner.sale_incoterm_id:
+            self.incoterm = partner.sale_incoterm_id
+        if partner.sale_incoterm_address_id:
+            self.incoterm_address_id = partner.sale_incoterm_address_id
