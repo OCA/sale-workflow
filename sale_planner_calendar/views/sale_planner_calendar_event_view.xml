@@ -401,7 +401,7 @@
                                 >
                                     <div class="row" title="Clock">
                                         <div
-                                            class="col text-center d-flex justify-content-center"
+                                            class="col text-center d-flex justify-content-center gap-1"
                                         >
                                             <widget name="move_previous_record" />
                                             <button
@@ -445,14 +445,13 @@
                                                 type="object"
                                                 invisible="sale_planner_state=='cancel'"
                                                 title="Change calendar event status by adding a previous rating"
-                                                t-att-class="'btn p-0 px-1 btn-lg text-capitalize ' + (record.sale_planner_state.raw_value == 'done' and 'btn-success' or 'btn-info')"
+                                                t-att-class="'btn btn-sm py-0 px-2 ' + (record.sale_planner_state.raw_value == 'done' and 'btn-success' or 'btn-info')"
                                             >
                                                 <span
-                                                    class="badge pt-2"
-                                                    t-esc="record.sale_planner_state.raw_value"
+                                                    t-esc="record.sale_planner_state.value"
                                                 />
                                                 <span
-                                                    class="h3"
+                                                    class="ms-1"
                                                     t-if="record.sale_planner_rating.value"
                                                     t-esc="record.sale_planner_rating.value"
                                                 />
@@ -469,7 +468,7 @@
                                             <i class="fa fa-user fa-fw" />
                                         </div>
                                         <div class="col">
-                                            <field name="partner_ref" />
+                                            <field name="partner_ref" class="me-1" />
                                             <field name="partner_name" />
                                         </div>
                                         <div
