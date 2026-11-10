@@ -25,6 +25,11 @@ class SaleOrder(models.Model):
         "invoice_ids.amount_total_signed",
         "amount_total",
         "invoice_ids.state",
+        "order_line.qty_invoiced",
+        "order_line.is_downpayment",
+        "order_line.price_unit",
+        "order_line.discount",
+        "order_line.tax_id",
     )
     def _compute_invoice_amount(self):
         for rec in self:
@@ -46,16 +51,29 @@ class SaleOrder(models.Model):
                             rec.invoiced_amount += invoice.amount_total_signed
                 # Uninvoiced amount could not be equal to total - invoiced amount.
                 # For example if the amount invoiced does not match with the price unit.
+                uninvoiced_lines_amount = sum(
+                    (line.product_uom_qty - line.qty_invoiced)
+                    * (line.price_total / line.product_uom_qty)
+                    for line in rec.order_line.filtered(
+                        lambda sl: sl.product_uom_qty > 0
+                        and sl.product_uom_qty > sl.qty_invoiced
+                    )
+                )
+                # Down-payment lines always have product_uom_qty == 0.0, so they're
+                # invisible to the per-line sum above: recompute their invoiced
+                # amount from price_unit/discount/tax_id weighted by qty_invoiced.
+                downpayment_amount = sum(
+                    dp.tax_id.compute_all(
+                        dp.price_unit * (1 - (dp.discount or 0.0) / 100.0),
+                        dp.order_id.currency_id,
+                        dp.qty_invoiced,
+                        product=dp.product_id,
+                        partner=dp.order_id.partner_shipping_id,
+                    )["total_included"]
+                    for dp in rec.order_line.filtered("is_downpayment")
+                )
                 rec.uninvoiced_amount = max(
-                    0,
-                    sum(
-                        (line.product_uom_qty - line.qty_invoiced)
-                        * (line.price_total / line.product_uom_qty)
-                        for line in rec.order_line.filtered(
-                            lambda sl: sl.product_uom_qty > 0
-                            and sl.product_uom_qty > sl.qty_invoiced
-                        )
-                    ),
+                    0, uninvoiced_lines_amount - downpayment_amount
                 )
             else:
                 rec.invoiced_amount = 0.0
