@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2026-10-28 11:46+0000\n"
+"PO-Revision-Date: 2026-11-10 14:47+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -586,13 +586,13 @@ msgstr ""
 #: code:addons/sale_rental/models/stock_warehouse.py:0
 #, python-format
 msgid "The Rental Input stock location is not set on the warehouse {}"
-msgstr "La locazione \"Noleggio In\" non fa parte del magazzino {}"
+msgstr "L'ubicazione \"Noleggio In\" non fa parte del magazzino {}"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock_warehouse.py:0
 #, python-format
 msgid "The Rental Output stock location is not set on the warehouse {}"
-msgstr "La locazione \"Noleggio Out\" non fa parte del magazzino {}"
+msgstr "L'ubicazione \"Noleggio Out\" non fa parte del magazzino {}"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:0
