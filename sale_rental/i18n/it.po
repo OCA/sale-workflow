@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2026-10-28 11:46+0000\n"
+"PO-Revision-Date: 2026-11-10 14:47+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -586,7 +586,7 @@ msgstr ""
 #: code:addons/sale_rental/models/stock.py:64
 #, python-format
 msgid "The Rental Output stock location is not set on the warehouse %s"
-msgstr "La locazione \"Noleggio Out\" non fa parte del magazzino %s"
+msgstr "L'ubicazione \"Noleggio Out\" non fa parte del magazzino %s"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:267
@@ -653,8 +653,9 @@ msgid ""
 "the stock location '%s' ! Make sure that you get some units back in the mean "
 "time or re-supply the stock location '%s'."
 msgstr ""
-"Si vuole noleggiare %.2f %s ma sono solo disponibili %.2f %s nella locazione "
-"'%s'. Assicurarsi prima il rientro o procedere alla riallocazione di '%s'"
+"Si vuole noleggiare %.2f %s ma sono solo disponibili %.2f %s nell'ubicazione "
+"'%s'. Assicurarsi prima il rientro di alcune unità o procedere al "
+"rifornimento dell'ubicazione '%s'"
 
 #. module: sale_rental
 #: model:product.product,weight_uom_name:sale_rental.rent_consu_delivery_01
