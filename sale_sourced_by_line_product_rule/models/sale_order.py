@@ -11,10 +11,12 @@ class SaleOrder(models.Model):
         compute="_compute_warehouse_rule_need_change"
     )
 
-    @api.depends("order_line.warehouse_id", "warehouse_id")
+    @api.depends(
+        "order_line.warehouse_id", "order_line.product_id.type", "warehouse_id"
+    )
     def _compute_warehouse_rule_need_change(self):
         for rec in self:
-            warehouses = rec.order_line.warehouse_id
+            warehouses = rec._get_source_warehouses()
             rec.warehouse_rule_need_change = (
                 self.env._(
                     "The delivery will be sent from %s, "
