@@ -6,25 +6,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-11-10 13:46+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_res_company__allow_sale_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order__allow_sale_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order_line__allow_sale_multi_warehouse
 msgid "Allow Sale Multi Warehouse"
-msgstr ""
+msgstr "Consenti vendita multi-magazzino"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_stock_warehouse__alternative_warehouse_ids
 msgid "Alternative Warehouses"
-msgstr ""
+msgstr "Magazzini alternativi"
 
 #. module: sale_order_line_multi_warehouse
 #. odoo-python
@@ -35,126 +37,131 @@ msgid ""
 "when automatically adjusting quantity as no warehouse line could be "
 "selected."
 msgstr ""
+"L'importo per la riga d'ordine di vendita con il prodotto %(product)s non "
+"può essere ridotto durante la rettifica automatica della quantità poiché non "
+"è stato possibile selezionare alcuna riga magazzino."
 
 #. module: sale_order_line_multi_warehouse
 #: model_terms:ir.ui.view,arch_db:sale_order_line_multi_warehouse.so_multi_warehouse_change_wizard_view
 msgid ""
 "Are you sure? Some warehouse distribution lines warehouses might be updated."
 msgstr ""
+"Si è sicuri? I magazzini di alcune righe di distribuzione magazzino "
+"potrebbero essere aggiornati."
 
 #. module: sale_order_line_multi_warehouse
 #: model_terms:ir.ui.view,arch_db:sale_order_line_multi_warehouse.so_multi_warehouse_change_wizard_view
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. module: sale_order_line_multi_warehouse
 #: model_terms:ir.ui.view,arch_db:sale_order_line_multi_warehouse.so_line_multi_warehouse_view_order_form
 #: model_terms:ir.ui.view,arch_db:sale_order_line_multi_warehouse.so_multi_warehouse_change_wizard_view
 msgid "Change Warehouse"
-msgstr ""
+msgstr "Cambia magazzino"
 
 #. module: sale_order_line_multi_warehouse
 #: model_terms:ir.ui.view,arch_db:sale_order_line_multi_warehouse.so_multi_warehouse_change_wizard_view
 msgid "Check Incompatibilities"
-msgstr ""
+msgstr "Controlla incompatibilità"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model,name:sale_order_line_multi_warehouse.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model,name:sale_order_line_multi_warehouse.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni di configurazione"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order_line_warehouse__create_uid
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_line_wizard__create_uid
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_wizard__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order_line_warehouse__create_date
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_line_wizard__create_date
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_wizard__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_line_wizard__sale_order_line_warehouse_id
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_wizard__current_warehouse_id
 msgid "Current Warehouse"
-msgstr ""
+msgstr "Magazzino attuale"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,help:sale_order_line_multi_warehouse.field_sale_order_line_warehouse__qty_forecast_uom_id
 msgid "Default unit of measure used for all stock operations."
-msgstr ""
+msgstr "Unità di misura predefinita usata per tutte le operazioni di magazzino."
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order_line_warehouse__display_name
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_line_wizard__display_name
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_wizard__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order_line_warehouse__qty_forecast
 msgid "Forecast Qty."
-msgstr ""
+msgstr "Q.tà prevista"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order_line_warehouse__qty_forecast_uom_id
 msgid "Forecast Qty. UoM"
-msgstr ""
+msgstr "UdM q.tà prevista"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_wizard__has_incompatibilities
 msgid "Has Incompatibilities"
-msgstr ""
+msgstr "Ha incompatibilità"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order_line_warehouse__id
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_line_wizard__id
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_wizard__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_order_line_multi_warehouse
 #: model_terms:ir.ui.view,arch_db:sale_order_line_multi_warehouse.so_multi_warehouse_change_wizard_view
 msgid "Incompatibilities"
-msgstr ""
+msgstr "Incompatibilità"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order_line_warehouse__write_uid
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_line_wizard__write_uid
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_wizard__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order_line_warehouse__write_date
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_line_wizard__write_date
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_wizard__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order_line_warehouse__move_ids
 msgid "Moves"
-msgstr ""
+msgstr "Movimenti"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_res_config_settings__allow_sale_multi_warehouse
 msgid "Multi Warehouse in Sale Orders"
-msgstr ""
+msgstr "Multi-magazzino negli ordini di vendita"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_wizard__new_warehouse_id
 msgid "New Warehouse"
-msgstr ""
+msgstr "Nuovo magazzino"
 
 #. module: sale_order_line_multi_warehouse
 #: model_terms:ir.ui.view,arch_db:sale_order_line_multi_warehouse.so_multi_warehouse_change_wizard_view
@@ -164,61 +171,65 @@ msgid ""
 "proceed as no changes in sale order lines warehouse assignments warehouses "
 "will be applied."
 msgstr ""
+"Nessuna incompatibilità trovata nelle assegnazioni magazzino delle righe "
+"d'ordine di vendita con il magazzino selezionato nel campo \"Nuovo "
+"magazzino\". È possibile procedere in sicurezza poiché non verrà applicata "
+"alcuna modifica ai magazzini assegnati nelle righe d'ordine di vendita."
 
 #. module: sale_order_line_multi_warehouse
 #. odoo-python
 #: code:addons/sale_order_line_multi_warehouse/models/sale_order_line.py:0
 #, python-format
 msgid "Only one warehouse per line allowed"
-msgstr ""
+msgstr "È consentito un solo magazzino per riga"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order_line_warehouse__product_id
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_line_wizard__product_id
 msgid "Product"
-msgstr ""
+msgstr "Prodotto"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order_line__qty_assigned_to_warehouse
 msgid "Qty. Assigned to Warehouses"
-msgstr ""
+msgstr "Q.tà assegnata ai magazzini"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order_line_warehouse__qty_delivered
 msgid "Qty. Delivered"
-msgstr ""
+msgstr "Q.tà consegnata"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order_line_warehouse__product_uom_qty
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_line_wizard__product_uom_qty
 msgid "Quantity"
-msgstr ""
+msgstr "Quantità"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order_line__sale_order_line_warehouse_ids
 msgid "SO Line Warehouses"
-msgstr ""
+msgstr "Magazzini riga OV"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_line_wizard__so_multi_warehouse_change_wizard_id
 msgid "SO Multi Warehouse Change Wizard"
-msgstr ""
+msgstr "Procedura guidata cambio multi-magazzino OV"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_wizard__sale_order_id
 msgid "Sale Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order_line_warehouse__order_line_id
 msgid "Sale Order Line"
-msgstr ""
+msgstr "Riga ordine di vendita"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model,name:sale_order_line_multi_warehouse.model_sale_order_line_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_stock_move__sale_order_line_warehouse_id
 msgid "Sale Order Line Warehouse"
-msgstr ""
+msgstr "Magazzino riga ordine di vendita"
 
 #. module: sale_order_line_multi_warehouse
 #: model_terms:ir.ui.view,arch_db:sale_order_line_multi_warehouse.so_line_multi_warehouse_res_config_settings_view_form
@@ -226,31 +237,33 @@ msgid ""
 "Sale Order Lines can be split into multiple pickings, depending on the "
 "selected warehouse."
 msgstr ""
+"Le righe degli ordini di vendita possono essere suddivise in più prelievi, a "
+"seconda del magazzino selezionato."
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model,name:sale_order_line_multi_warehouse.model_so_multi_warehouse_change_line_wizard
 msgid "Sale Order Multi Warehouse Change Line Wizard"
-msgstr ""
+msgstr "Procedura guidata riga cambio multi-magazzino ordine di vendita"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model,name:sale_order_line_multi_warehouse.model_so_multi_warehouse_change_wizard
 msgid "Sale Order Multi Warehouse Change Wizard"
-msgstr ""
+msgstr "Procedura guidata cambio multi-magazzino ordine di vendita"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model,name:sale_order_line_multi_warehouse.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model,name:sale_order_line_multi_warehouse.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Riga ordine di vendita"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_wizard__so_multi_warehouse_change_line_ids
 msgid "So Multi Warehouse Change Line"
-msgstr ""
+msgstr "Riga cambio multi-magazzino OV"
 
 #. module: sale_order_line_multi_warehouse
 #. odoo-python
@@ -260,23 +273,26 @@ msgid ""
 "Some sale order line assignment lines are not compatible with the selected "
 "warehouse. Quotation %(order)s could not be validated."
 msgstr ""
+"Alcune righe di assegnazione delle righe d'ordine di vendita non sono "
+"compatibili con il magazzino selezionato. Il preventivo %(order)s non può "
+"essere validato."
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model,name:sale_order_line_multi_warehouse.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimento di magazzino"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model,name:sale_order_line_multi_warehouse.model_stock_rule
 msgid "Stock Rule"
-msgstr ""
+msgstr "Regola di giacenza"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order__suitable_warehouse_ids
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order_line__suitable_warehouse_ids
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order_line_warehouse__suitable_warehouse_ids
 msgid "Suitable Warehouses"
-msgstr ""
+msgstr "Magazzini idonei"
 
 #. module: sale_order_line_multi_warehouse
 #: model_terms:ir.ui.view,arch_db:sale_order_line_multi_warehouse.so_multi_warehouse_change_wizard_view
@@ -285,35 +301,38 @@ msgid ""
 " the new one. If the warehouse is changed, these lines' warehouses will be "
 "updated to the new warehouse."
 msgstr ""
+"Le seguenti righe di distribuzione magazzino hanno magazzini incompatibili "
+"con quello nuovo. Se il magazzino viene modificato, i magazzini di queste "
+"righe verranno aggiornati con il nuovo magazzino."
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_line_wizard__product_uom_id
 msgid "Unit Of Measure"
-msgstr ""
+msgstr "Unità di misura"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order_line_warehouse__product_uom_id
 msgid "UoM"
-msgstr ""
+msgstr "UdM"
 
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model,name:sale_order_line_multi_warehouse.model_stock_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order_line_warehouse__warehouse_id
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_line_wizard__warehouse_id
 msgid "Warehouse"
-msgstr ""
+msgstr "Magazzino"
 
 #. module: sale_order_line_multi_warehouse
 #. odoo-python
 #: code:addons/sale_order_line_multi_warehouse/models/sale_order_line.py:0
 #, python-format
 msgid "Warehouse Distribution"
-msgstr ""
+msgstr "Distribuzione magazzino"
 
 #. module: sale_order_line_multi_warehouse
 #: model_terms:ir.ui.view,arch_db:sale_order_line_multi_warehouse.sale_order_line_warehouse_view
 msgid "Warehouse Lines"
-msgstr ""
+msgstr "Righe magazzino"
 
 #. module: sale_order_line_multi_warehouse
 #. odoo-python
@@ -321,8 +340,10 @@ msgstr ""
 #, python-format
 msgid "Warehouse cannot be changed as sale order is in %(state)s state."
 msgstr ""
+"Il magazzino non può essere modificato poiché l'ordine di vendita è nello "
+"stato %(state)s."
 
 #. module: sale_order_line_multi_warehouse
 #: model_terms:ir.ui.view,arch_db:sale_order_line_multi_warehouse.so_line_multi_warehouse_view_order_form
 msgid "Warehouses"
-msgstr ""
+msgstr "Magazzini"
