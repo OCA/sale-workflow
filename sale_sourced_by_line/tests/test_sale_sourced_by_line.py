@@ -12,7 +12,6 @@ class TestSaleSourcedByLine(BaseCommon):
         super().setUpClass()
         cls.sale_order_model = cls.env["sale.order"]
         cls.sale_order_line_model = cls.env["sale.order.line"]
-        cls.stock_move_model = cls.env["stock.move"]
         cls.stock_warehouse_model = cls.env["stock.warehouse"]
 
         # Refs
@@ -24,28 +23,22 @@ class TestSaleSourcedByLine(BaseCommon):
             {"name": "Test Warehouse", "code": "TWH"}
         )
 
+    def _create_order(self, warehouse=None):
+        vals = {"partner_id": self.customer.id}
+        if warehouse:
+            vals["warehouse_id"] = warehouse.id
+        return self.sale_order_model.create(vals)
+
+    def _create_line(self, order, product, warehouse=None):
+        vals = {"product_id": product.id, "product_uom_qty": 8, "order_id": order.id}
+        if warehouse:
+            vals["warehouse_id"] = warehouse.id
+        return self.sale_order_line_model.create(vals)
+
     def test_sales_order_multi_source(self):
-        so = self.sale_order_model.create(
-            {
-                "partner_id": self.customer.id,
-            }
-        )
-        self.sale_order_line_model.create(
-            {
-                "product_id": self.product_1.id,
-                "product_uom_qty": 8,
-                "warehouse_id": self.warehouse1.id,
-                "order_id": so.id,
-            }
-        )
-        self.sale_order_line_model.create(
-            {
-                "product_id": self.product_2.id,
-                "product_uom_qty": 8,
-                "warehouse_id": self.warehouse0.id,
-                "order_id": so.id,
-            }
-        )
+        so = self._create_order()
+        self._create_line(so, self.product_1, self.warehouse1)
+        self._create_line(so, self.product_2, self.warehouse0)
         # confirm quotation
         so.action_confirm()
         self.assertEqual(
@@ -57,80 +50,31 @@ class TestSaleSourcedByLine(BaseCommon):
             self.assertEqual(
                 line.procurement_group_id.name,
                 line.order_id.name + "/" + line.warehouse_id.name,
-                "The name of the procurement group is not " "correct.",
+                "Wrong procurement group name",
             )
-            moves = self.stock_move_model.search(
-                [("group_id", "=", line.procurement_group_id.id)]
-            )
-            for move in moves:
+            for move in line.move_ids:
                 self.assertEqual(
-                    move.group_id,
-                    line.procurement_group_id,
-                    "The group in the stock move does not "
-                    "match with the procurement group in "
-                    "the sales order line.",
+                    move.group_id, line.procurement_group_id, "Wrong move group"
                 )
                 self.assertEqual(
                     move.picking_id.group_id,
                     line.procurement_group_id,
-                    "The group in the stock picking does "
-                    "not match with the procurement group "
-                    "in the sales order line.",
+                    "Wrong picking group",
+                )
+                # the warehouse of the line is used for its stock moves
+                self.assertEqual(
+                    move.warehouse_id, line.warehouse_id, "Wrong move warehouse"
                 )
 
     def test_sales_order_no_source(self):
-        so = self.sale_order_model.create(
-            {
-                "partner_id": self.customer.id,
-                "warehouse_id": self.warehouse1.id,
-            }
-        )
-        self.sale_order_line_model.create(
-            {"product_id": self.product_1.id, "product_uom_qty": 8, "order_id": so.id}
-        )
-        self.sale_order_line_model.create(
-            {"product_id": self.product_2.id, "product_uom_qty": 8, "order_id": so.id}
-        )
+        so = self._create_order(self.warehouse1)
+        line = self._create_line(so, self.product_1)
+        self._create_line(so, self.product_2)
         # confirm quotation
         so.action_confirm()
+        self.assertEqual(line.warehouse_id, self.warehouse1)
         self.assertEqual(
             len(so.picking_ids),
             1,
             f"1 delivery order expected. Got {len(so.picking_ids)} instead",
         )
-
-    def test_sale_order_source(self):
-        so = self.sale_order_model.create(
-            {
-                "partner_id": self.customer.id,
-            }
-        )
-        self.sale_order_line_model.create(
-            {
-                "product_id": self.product_1.id,
-                "product_uom_qty": 8,
-                "warehouse_id": self.warehouse1.id,
-                "order_id": so.id,
-            }
-        )
-        self.sale_order_line_model.create(
-            {
-                "product_id": self.product_2.id,
-                "product_uom_qty": 8,
-                "warehouse_id": self.warehouse0.id,
-                "order_id": so.id,
-            }
-        )
-        # confirm quotation
-        so.action_confirm()
-        for line in so.order_line:
-            moves = self.stock_move_model.search(
-                [("group_id", "=", line.procurement_group_id.id)]
-            )
-            for move in moves:
-                self.assertEqual(
-                    move.warehouse_id,
-                    line.warehouse_id,
-                    "The warehouse in the stock move does not "
-                    "match with the Sales order line.",
-                )
