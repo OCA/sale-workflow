@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-10-23 18:06+0000\n"
+"PO-Revision-Date: 2026-11-10 23:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,17 +14,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_order_line_input
 #: model:res.groups,name:sale_order_line_input.sale_orderline_view_group
 msgid "Allows to view SO line right on SO Form"
 msgstr ""
+"Consente di visualizzare le righe ordine di vendita direttamente nel modulo "
+"ordine di vendita"
 
 #. module: sale_order_line_input
 #: model:ir.model,name:sale_order_line_input.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni di configurazione"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
@@ -40,11 +42,13 @@ msgstr "Sconto (%)"
 #: model:ir.model.fields,field_description:sale_order_line_input.field_res_config_settings__show_view_sale_order_line
 msgid "Enable Smart Button to view SO line right on SO Form"
 msgstr ""
+"Abilita lo smart button per visualizzare le righe ordine di vendita "
+"direttamente nel modulo ordine di vendita"
 
 #. module: sale_order_line_input
 #: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line__force_company_id
 msgid "Forced company"
-msgstr ""
+msgstr "Azienda forzata"
 
 #. module: sale_order_line_input
 #: model:ir.model.fields,help:sale_order_line_input.field_sale_order_line__pricelist_id
@@ -80,7 +84,7 @@ msgstr "Non Collegato a Fattura"
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Open order"
-msgstr ""
+msgstr "Apri ordine"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
@@ -108,12 +112,12 @@ msgstr "Prodotto"
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.sale_order_form_inherit
 #, python-format
 msgid "SO Lines"
-msgstr ""
+msgstr "Righe OV"
 
 #. module: sale_order_line_input
 #: model:ir.model,name:sale_order_line_input.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: sale_order_line_input
 #: model:ir.model,name:sale_order_line_input.model_sale_order_line
@@ -129,7 +133,7 @@ msgstr "Righe ordini di vendita"
 #. module: sale_order_line_input
 #: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order__sol_count
 msgid "Sol Count"
-msgstr ""
+msgstr "Numero righe OV"
 
 #. module: sale_order_line_input
 #: model:ir.model.fields,help:sale_order_line_input.field_sale_order_line__force_company_id
@@ -137,11 +141,13 @@ msgid ""
 "Technical field to force company or get it from env user if order don't "
 "exist."
 msgstr ""
+"Campo tecnico per forzare l'azienda o ottenerla dall'utente d'ambiente se "
+"l'ordine non esiste."
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.res_config_settings_view_form
 msgid "This access will be applied to all Salesman"
-msgstr ""
+msgstr "Questo accesso verrà applicato a tutti i venditori"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
