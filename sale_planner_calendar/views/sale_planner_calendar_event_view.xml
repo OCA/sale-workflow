@@ -165,7 +165,7 @@
                             class="oe_stat_button"
                             name="action_open_unpaid_invoice"
                             type="object"
-                            icon="fa-pencil-square-o"
+                            icon="fa-money"
                         >
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_value">
@@ -544,6 +544,7 @@
                                                     t-attf-class="fa fa-info fa-fw fa-2x #{record.comment.raw_value ? 'text-warning' : ''}"
                                                 />
                                                 <div
+                                                    class="d-none d-md-block"
                                                     style="font-size: smaller; white-space: nowrap;"
                                                 >Info</div>
                                             </button>
@@ -557,12 +558,13 @@
                                             >
                                                 <i class="fa fa-dollar fa-fw fa-2x" />
                                                 <div
+                                                    class="d-none d-md-block"
                                                     style="font-size: smaller; white-space: nowrap;"
                                                 >Order</div>
                                             </button>
                                             <div
                                                 t-if="record.sale_order_subtotal.raw_value "
-                                                class="text-center mt4"
+                                                class="d-none d-md-block text-center mt4"
                                             >
                                                 <field
                                                     class="text-center"
@@ -581,7 +583,7 @@
                                                     class="fa fa-pencil-square-o fa-fw fa-2x"
                                                 />
                                                 <div
-                                                    class="o_stat_text"
+                                                    class="o_stat_text d-none d-md-block"
                                                     style="font-size: smaller; white-space: nowrap;"
                                                 >Invoices</div>
                                             </button>
@@ -593,17 +595,15 @@
                                                 type="object"
                                                 title="Due"
                                             >
-                                                <i
-                                                    class="fa fa-pencil-square-o fa-fw fa-2x"
-                                                />
+                                                <i class="fa fa-money fa-fw fa-2x" />
                                                 <div
-                                                    class="o_stat_text"
+                                                    class="o_stat_text d-none d-md-block"
                                                     style="font-size: smaller; white-space: nowrap;"
                                                 >Due</div>
                                             </button>
                                             <div
                                                 t-if="record.invoice_amount_residual.raw_value "
-                                                class="text-center mt4 text-danger fw-bold"
+                                                class="d-none d-md-block text-center mt4 text-danger fw-bold"
                                             >
                                                 <field
                                                     class="text-center"
@@ -612,7 +612,7 @@
                                             </div>
                                             <div
                                                 t-if="record.invoice_date_due.raw_value "
-                                                class="text-center"
+                                                class="d-none d-md-block text-center"
                                             >
                                                 <field
                                                     class="text-center"
@@ -620,33 +620,30 @@
                                                 />
                                             </div>
                                         </div>
-                                        <div
-                                            t-if="record.sanitized_partner_mobile.value"
-                                            class="col p-1"
-                                        >
+                                        <!-- Always shown, so that every visit has the same buttons -->
+                                        <div class="col p-1">
                                             <a
                                                 role="button"
-                                                t-att-href="'https://wa.me/' + record.sanitized_partner_mobile.value"
-                                                class="btn btn-primary w-100 h-80 text-white"
+                                                t-att-href="record.sanitized_partner_mobile.value and 'https://wa.me/' + record.sanitized_partner_mobile.value"
+                                                t-attf-class="btn btn-primary w-100 h-80 text-white #{record.sanitized_partner_mobile.value ? '' : 'disabled'}"
+                                                t-att-aria-disabled="!record.sanitized_partner_mobile.value"
                                                 title="Whatsapp"
                                                 target="_blank"
                                                 aria-label="Whatsapp"
                                             >
                                                 <i class="fa fa-whatsapp fa-fw fa-2x" />
                                                 <div
-                                                    class="o_stat_text"
+                                                    class="o_stat_text d-none d-md-block"
                                                     style="font-size: smaller; white-space: nowrap;"
                                                 >Whatsapp</div>
                                             </a>
                                         </div>
-                                        <div
-                                            t-if="record.location_url.value"
-                                            class="col p-1"
-                                        >
+                                        <div class="col p-1">
                                             <a
                                                 role="button"
-                                                t-att-href="'https://www.google.com/maps/search/?api=1&amp;query=' + record.location_url.value"
-                                                class="btn btn-primary w-100 h-80"
+                                                t-att-href="record.location_url.value and 'https://www.google.com/maps/search/?api=1&amp;query=' + record.location_url.value"
+                                                t-attf-class="btn btn-primary w-100 h-80 #{record.location_url.value ? '' : 'disabled'}"
+                                                t-att-aria-disabled="!record.location_url.value"
                                                 title="Location"
                                                 target="_blank"
                                                 aria-label="Location"
@@ -655,7 +652,7 @@
                                                     class="fa fa fa-map-marker fa-fw fa-2x"
                                                 />
                                                 <div
-                                                    class="o_stat_text"
+                                                    class="o_stat_text d-none d-md-block"
                                                     style="font-size: smaller; white-space: nowrap;"
                                                 >Location</div>
                                             </a>
@@ -671,13 +668,13 @@
                                                     class="fa fa-exclamation-triangle fa-fw fa-2x"
                                                 />
                                                 <div
-                                                    class="o_stat_text"
+                                                    class="o_stat_text d-none d-md-block"
                                                     style="font-size: smaller; white-space: nowrap;"
                                                 >Issue</div>
                                             </button>
                                             <div
                                                 t-if="record.calendar_issue_type_id.raw_value "
-                                                class="text-center mt4"
+                                                class="d-none d-md-block text-center mt4"
                                             >
                                                 <field
                                                     class="text-center"
