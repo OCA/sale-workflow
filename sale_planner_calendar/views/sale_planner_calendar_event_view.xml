@@ -396,7 +396,9 @@
                     <t t-name="card">
                         <div t-attf-class="oe_kanban_card oe_kanban_global_click">
                             <div class="row align-items-center">
-                                <div class="col col-lg-2 col-xl-2 pe-0 text-center">
+                                <div
+                                    class="col-12 col-md col-lg-2 col-xl-2 pe-md-0 text-center o_planner_visit_time"
+                                >
                                     <div class="row" title="Clock">
                                         <div
                                             class="col text-center d-flex justify-content-center"
@@ -415,7 +417,15 @@
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <field name="start" class="fw-bold" />
+                                            <field
+                                                name="start"
+                                                class="fw-bold d-none d-md-inline"
+                                            />
+                                            <field
+                                                name="start"
+                                                class="fw-bold d-md-none"
+                                                options="{'show_seconds': false}"
+                                            />
                                         </div>
                                     </div>
                                     <div class="row">
@@ -450,7 +460,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col col-lg-4 col-xl-4 pe-0">
+                                <div class="col-12 col-md col-lg-4 col-xl-4 pe-0">
                                     <div class="row fw-bold">
                                         <div
                                             class="col-1 text-center p-0"
