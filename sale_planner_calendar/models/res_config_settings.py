@@ -32,6 +32,10 @@ class ResConfigSettings(models.TransientModel):
         related="company_id.sale_planner_done_on_sale_confirm",
         readonly=False,
     )
+    sale_planner_open_order_form = fields.Boolean(
+        related="company_id.sale_planner_open_order_form",
+        readonly=False,
+    )
 
 
 class ResCompany(models.Model):
@@ -49,4 +53,7 @@ class ResCompany(models.Model):
     sale_planner_order_cut_hour = fields.Float()
     sale_planner_done_on_sale_confirm = fields.Boolean(
         string="Event done when confirm sale"
+    )
+    sale_planner_open_order_form = fields.Boolean(
+        string="Open new orders in the order form"
     )
