@@ -6,7 +6,7 @@
             t-att-tabindex="props.record.data.display_qty_by_warehouse_widget ? '0' : '-1'"
             t-on-click="showPopup"
             t-att-class="!props.record.data.display_qty_by_warehouse_widget ? 'invisible' : ''"
-            t-attf-class="fa fa-industry cursor-pointer"
+            t-attf-class="fa fa-sort-numeric-asc cursor-pointer"
         />
     </t>
 
