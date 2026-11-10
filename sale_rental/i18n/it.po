@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-22 23:36+0000\n"
-"PO-Revision-Date: 2026-10-28 11:46+0000\n"
+"PO-Revision-Date: 2026-11-10 14:47+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -535,7 +535,7 @@ msgstr ""
 #: code:addons/sale_rental/rental.py:545
 #, python-format
 msgid "The Rental Output stock location is not set on the warehouse %s"
-msgstr "La locazione \"Noleggio Out\" non fa parte del magazzino %s"
+msgstr "L'ubicazione \"Noleggio Out\" non fa parte del magazzino %s"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:296
@@ -592,8 +592,9 @@ msgid ""
 "the stock location '%s' ! Make sure that you get some units back in the mean "
 "time or re-supply the stock location '%s'."
 msgstr ""
-"Si vuole noleggiare %.2f %s ma sono solo disponibili %.2f %s nella locazione "
-"'%s'. Assicurarsi prima il rientro o procedere alla riallocazione di '%s'"
+"Si vuole noleggiare %.2f %s ma sono solo disponibili %.2f %s nell'ubicazione "
+"'%s'. Assicurarsi prima il rientro di alcune unità o procedere al "
+"rifornimento dell'ubicazione '%s'"
 
 #. module: sale_rental
 #: view:sale.order:sale_rental.view_order_form_sale_stock
