@@ -10,6 +10,7 @@
     "author": "Akretion, Sodexis, Camptocamp, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale", "base_exception"],
+    "external_dependencies": {"python": ["decorator"]},
     "license": "AGPL-3",
     "data": [
         "security/ir.model.access.csv",
