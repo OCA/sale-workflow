@@ -34,7 +34,9 @@ class ProductPricelistItem(models.Model):
     def _get_triple_discounts_perc(self):
         """Return the list of discounts percentages to be applied."""
         self.ensure_one()
-        discount_fields = self.env["sale.order.line"]._discount_fields()
+        discount_fields = self.env[
+            "sale.order.line"
+        ]._get_multiple_discount_field_names()
         item_discount_field = COMPUTE_PRICE_TO_DISCOUNT_FIELD.get(self.compute_price)
         if item_discount_field is not None:
             discount_index = discount_fields.index("discount1")
@@ -73,6 +75,11 @@ class ProductPricelistItem(models.Model):
         triple_discount = 100 - triple_discount * 100
         return triple_discount
 
+    def _has_extra_discounts(self):
+        """Return whether the rule has discounts on top of the standard one."""
+        self.ensure_one()
+        return bool(self.discount2 or self.discount3)
+
     @contextlib.contextmanager
     def _patch_triple_discount(self):
         """Use the triple discount instead of the standard discount."""
@@ -82,21 +89,23 @@ class ProductPricelistItem(models.Model):
             item_discount_field = COMPUTE_PRICE_TO_DISCOUNT_FIELD.get(
                 item.compute_price
             )
-            if item_discount_field is not None:
+            if item_discount_field is not None and item._has_extra_discounts():
                 original_discount = item[item_discount_field]
+                triple_discount = item._get_triple_discount()
                 item_to_original_discount[item] = original_discount
-                item.sudo()[item_discount_field] = item._get_triple_discount()
+                item.sudo()[item_discount_field] = triple_discount
 
-        yield
+        try:
+            yield
+        finally:
+            # Restore the original discount in each updated rule
+            for item, original_discount in item_to_original_discount.items():
+                item_discount_field = COMPUTE_PRICE_TO_DISCOUNT_FIELD.get(
+                    item.compute_price
+                )
+                item.sudo()[item_discount_field] = original_discount
 
-        # Restore the original discount in each updated rule
-        for item, original_discount in item_to_original_discount.items():
-            item_discount_field = COMPUTE_PRICE_TO_DISCOUNT_FIELD.get(
-                item.compute_price
-            )
-            item.sudo()[item_discount_field] = original_discount
-
-    def _compute_price(self, product, quantity, uom, date, currency=None):
+    def _compute_price(self, product, quantity, uom, date, currency=None, **kwargs):
         with self._patch_triple_discount():
             return super()._compute_price(
                 product,
@@ -104,6 +113,7 @@ class ProductPricelistItem(models.Model):
                 uom,
                 date,
                 currency=currency,
+                **kwargs,
             )
 
     @api.depends(
@@ -118,6 +128,6 @@ class ProductPricelistItem(models.Model):
         "discount2",
         "discount3",
     )
-    def _compute_name_and_price(self):
+    def _compute_price_label(self):
         with self._patch_triple_discount():
-            return super()._compute_name_and_price()
+            return super()._compute_price_label()

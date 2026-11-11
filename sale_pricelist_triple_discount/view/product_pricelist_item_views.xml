@@ -13,19 +13,12 @@
                 <label
                     for="discount2"
                     string="Discount 2"
-                    attrs="{
-                        'invisible':[
-                            ('compute_price', '!=', 'percentage'),
-                        ],
-                    }"
+                    invisible="compute_price != 'percentage'"
                 />
                 <div
                     class="o_row"
-                    attrs="{
-                        'invisible':[
-                            ('compute_price', '!=', 'percentage'),
-                        ],
-                    }"
+                    invisible="compute_price != 'percentage'"
+                    style="width: 40% !important;"
                 >
                     <field name="discount2" class="oe_inline" />
                     <span>%</span>
@@ -33,19 +26,12 @@
                 <label
                     for="discount3"
                     string="Discount 3"
-                    attrs="{
-                        'invisible':[
-                            ('compute_price', '!=', 'percentage'),
-                        ],
-                    }"
+                    invisible="compute_price != 'percentage'"
                 />
                 <div
                     class="o_row"
-                    attrs="{
-                        'invisible':[
-                            ('compute_price', '!=', 'percentage'),
-                        ],
-                    }"
+                    invisible="compute_price != 'percentage'"
+                    style="width: 40% !important;"
                 >
                     <field name="discount3" class="oe_inline" />
                     <span>%</span>
@@ -55,19 +41,12 @@
                 <label
                     for="discount2"
                     string="Discount 2"
-                    attrs="{
-                        'invisible':[
-                            ('compute_price', '!=', 'formula'),
-                        ],
-                    }"
+                    invisible="compute_price != 'formula'"
                 />
                 <div
                     class="o_row"
-                    attrs="{
-                        'invisible':[
-                            ('compute_price', '!=', 'formula'),
-                        ],
-                    }"
+                    invisible="compute_price != 'formula'"
+                    style="width: 40% !important;"
                 >
                     <field name="discount2" class="oe_inline" />
                     <span>%</span>
@@ -75,19 +54,12 @@
                 <label
                     for="discount3"
                     string="Discount 3"
-                    attrs="{
-                        'invisible':[
-                            ('compute_price', '!=', 'formula'),
-                        ],
-                    }"
+                    invisible="compute_price != 'formula'"
                 />
                 <div
                     class="o_row"
-                    attrs="{
-                        'invisible':[
-                            ('compute_price', '!=', 'formula'),
-                        ],
-                    }"
+                    invisible="compute_price != 'formula'"
+                    style="width: 40% !important;"
                 >
                     <field name="discount3" class="oe_inline" />
                     <span>%</span>
