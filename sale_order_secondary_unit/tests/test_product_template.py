@@ -8,6 +8,11 @@ from odoo.addons.base.tests.common import BaseCommon
 
 @tagged("post_install", "-at_install")
 class TestProductTemplate(BaseCommon):
+    _test_user_groups = (
+        "product.group_product_manager",
+        "product.group_product_variant",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -72,7 +77,6 @@ class TestProductTemplate(BaseCommon):
         cls.secondary_uom_1 = cls.env["product.secondary.unit"].create(
             {
                 "name": "Unit 1",
-                "uom_id": cls.product_uom_unit.id,
                 "factor": 1,
                 "product_tmpl_id": cls.product_template_1.id,
             }
@@ -80,7 +84,6 @@ class TestProductTemplate(BaseCommon):
         cls.secondary_uom_2 = cls.env["product.secondary.unit"].create(
             {
                 "name": "Unit 2",
-                "uom_id": cls.product_uom_unit.id,
                 "factor": 1,
                 "product_tmpl_id": cls.product_template_1.id,
             }
@@ -88,7 +91,6 @@ class TestProductTemplate(BaseCommon):
         cls.secondary_uom_3 = cls.env["product.secondary.unit"].create(
             {
                 "name": "Unit 3",
-                "uom_id": cls.product_uom_unit.id,
                 "factor": 1,
                 "product_tmpl_id": cls.product_template_2.id,
             }
@@ -96,7 +98,6 @@ class TestProductTemplate(BaseCommon):
         cls.secondary_uom_4 = cls.env["product.secondary.unit"].create(
             {
                 "name": "Unit 4",
-                "uom_id": cls.product_uom_unit.id,
                 "factor": 1,
                 "product_tmpl_id": cls.product_template_2.id,
             }

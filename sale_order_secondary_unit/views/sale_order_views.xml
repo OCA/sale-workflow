@@ -32,7 +32,7 @@
                 </div>
             </xpath>
             <xpath
-                expr="//field[@name='order_line']/list//field[@name='product_uom_qty']"
+                expr="//field[@name='order_line']/list/column[@name='sol_qty']"
                 position="before"
             >
                 <field

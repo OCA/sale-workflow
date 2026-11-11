@@ -8,6 +8,12 @@ from odoo.addons.base.tests.common import BaseCommon
 
 @tagged("post_install", "-at_install")
 class TestSaleOrder(BaseCommon):
+    _test_user_groups = (
+        "sales_team.group_sale_salesman",
+        "product.group_product_manager",
+        "uom.group_uom",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -28,7 +34,6 @@ class TestSaleOrder(BaseCommon):
                     Command.create(
                         {
                             "name": "unit-500",
-                            "uom_id": cls.product_uom_unit.id,
                             "factor": 0.5,
                         },
                     )
@@ -42,6 +47,7 @@ class TestSaleOrder(BaseCommon):
         cls.partner = cls.env["res.partner"].create({"name": "test - partner"})
         with Form(cls.env["sale.order"]) as order_form:
             order_form.partner_id = cls.partner
+            order_form.user_id = cls._test_user
             with order_form.order_line.new() as line_form:
                 line_form.product_id = cls.product
                 line_form.product_uom_qty = 1
@@ -110,11 +116,11 @@ class TestSaleOrder(BaseCommon):
 
 @tagged("post_install", "-at_install")
 class TestSaleOrderLineDefaultQty(BaseCommon):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.env.user.group_ids += cls.env.ref("uom.group_uom")
-        cls.product_uom_unit = cls.env.ref("uom.product_uom_unit")
+    _test_user_groups = (
+        "sales_team.group_sale_salesman",
+        "product.group_product_manager",
+        "uom.group_uom",
+    )
 
     def _product_with_secondary_unit(self, factor, dependency_type="dependent"):
         product = self.env["product.product"].create(
@@ -129,7 +135,6 @@ class TestSaleOrderLineDefaultQty(BaseCommon):
                     Command.create(
                         {
                             "name": f"box-{factor}",
-                            "uom_id": self.product_uom_unit.id,
                             "factor": factor,
                             "dependency_type": dependency_type,
                         },

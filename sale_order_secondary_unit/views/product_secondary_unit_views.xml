@@ -20,11 +20,6 @@
                         context="{'group_by':'product_id'}"
                         groups="product.group_product_variant"
                     />
-                    <filter
-                        string="UoM"
-                        name="uom_id"
-                        context="{'group_by':'uom_id'}"
-                    />
                 </group>
             </search>
         </field>
@@ -42,7 +37,6 @@
                 />
                 <field name="code" />
                 <field name="name" />
-                <field name="uom_id" />
                 <field name="factor" />
             </list>
         </field>
@@ -56,7 +50,7 @@
         id="product_secondary_unit_menu"
         name="Secondary Units of Measure"
         action="product_secondary_unit_action"
-        parent="sale.prod_config_main"
+        parent="sale.menu_sale_config"
         sequence="36"
         groups="uom.group_uom"
     />
