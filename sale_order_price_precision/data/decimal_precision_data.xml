@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <!-- Decimal Precision for Product Price Sales -->
+    <record forcecreate="True" id="decimal_price_sales" model="decimal.precision">
+        <field name="name">Product Price Sales</field>
+        <field name="digits">2</field>
+    </record>
+</odoo>
