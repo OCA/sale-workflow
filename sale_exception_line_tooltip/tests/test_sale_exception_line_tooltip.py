@@ -1,6 +1,8 @@
 # Copyright 2026 Camptocamp SA (https://www.camptocamp.com).
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from odoo.addons.sale_exception.tests.common import assert_base_exception_error
+
 from .common import TestSaleExceptionLineTooltipCommon
 
 
@@ -16,7 +18,8 @@ class TestSaleExceptionLineTooltip(TestSaleExceptionLineTooltipCommon):
         order = line.order_id
         self.exception_rule.active = True
         self.product.sale_line_warn_msg = "tooltip"
-        order.detect_exceptions()
+        with assert_base_exception_error(self):
+            order.detect_exceptions()
         self.assertIn(self.exception_rule, line.exception_ids)
         self.assertTrue(line.is_exception_danger)
         self.assertEqual(line.exceptions_tooltip, self.exception_rule.name)
@@ -26,11 +29,14 @@ class TestSaleExceptionLineTooltip(TestSaleExceptionLineTooltipCommon):
         order = line.order_id
         self.exception_rule.active = True
         self.product.sale_line_warn_msg = "tooltip"
-        order.detect_exceptions()
+        with assert_base_exception_error(self):
+            order.detect_exceptions()
         self.assertTrue(line.is_exception_danger)
         self.assertTrue(line.exceptions_tooltip)
         self.product.sale_line_warn_msg = False
-        order.detect_exceptions()
+        # Re-detect from the line: the order still carries the exception, so
+        # detecting from it would raise before reaching its lines
+        line.detect_exceptions()
         self.assertNotIn(self.exception_rule, line.exception_ids)
         self.assertFalse(line.is_exception_danger)
         self.assertFalse(line.exceptions_tooltip)
@@ -50,7 +56,8 @@ class TestSaleExceptionLineTooltip(TestSaleExceptionLineTooltipCommon):
         )
         self.exception_rule.active = True
         self.product.sale_line_warn_msg = "tooltip"
-        order.detect_exceptions()
+        with assert_base_exception_error(self):
+            order.detect_exceptions()
         self.assertEqual(
             set(line.exceptions_tooltip.split("\n")),
             {self.exception_rule.name, other_rule.name},
@@ -63,7 +70,8 @@ class TestSaleExceptionLineTooltip(TestSaleExceptionLineTooltipCommon):
         self.exception_rule.active = True
         self.exception_rule.with_context(lang="fr_FR").name = "Avertissement produit"
         self.product.sale_line_warn_msg = "tooltip"
-        order.detect_exceptions()
+        with assert_base_exception_error(self):
+            order.detect_exceptions()
         self.assertEqual(
             line.with_context(lang="fr_FR").exceptions_tooltip,
             "Avertissement produit",
