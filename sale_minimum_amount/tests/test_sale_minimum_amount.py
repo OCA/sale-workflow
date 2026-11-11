@@ -1,4 +1,5 @@
 from odoo.addons.base.tests.common import BaseCommon
+from odoo.addons.sale_exception.tests.common import assert_base_exception_error
 
 
 class TestSoAmountBlock(BaseCommon):
@@ -85,7 +86,8 @@ class TestSoAmountBlock(BaseCommon):
             self.env.ref("sale_minimum_amount.minimum_amount_block_reason"),
         )
 
-        sale.with_user(self.user1_id).action_confirm()
+        with assert_base_exception_error(self):
+            sale.with_user(self.user1_id).action_confirm()
         self.assertEqual(sale.state, "draft")
 
         sale.with_user(self.user2_id).button_release_approval_block()
