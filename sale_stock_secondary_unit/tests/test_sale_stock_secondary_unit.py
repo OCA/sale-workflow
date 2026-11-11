@@ -90,3 +90,22 @@ class TestSaleStockOrderSecondaryUnit(TransactionCase):
         picking = self.order.picking_ids
         # Second qty on sml only manage done quantities
         self.assertEqual(picking.move_line_ids.secondary_uom_qty, 0.0)
+
+    def test_update_secondary_qty_on_pack_picking(self):
+        self.warehouse.delivery_steps = "pick_pack_ship"
+        self.order.order_line.write(
+            {"secondary_uom_id": self.secondary_unit.id, "secondary_uom_qty": 4}
+        )
+        self.order.action_confirm()
+        pack_picking = self.order.picking_ids.filtered(
+            lambda picking: picking.picking_type_id == self.warehouse.pack_type_id
+        )
+        self.assertEqual(pack_picking.move_lines.secondary_uom_qty, 4)
+
+        self.order.order_line.write({"secondary_uom_qty": 6})
+
+        self.assertEqual(pack_picking.move_lines.secondary_uom_qty, 6)
+
+        self.order.order_line.write({"secondary_uom_qty": 3})
+
+        self.assertEqual(pack_picking.move_lines.secondary_uom_qty, 3)
