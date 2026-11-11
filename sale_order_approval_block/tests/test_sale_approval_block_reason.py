@@ -1,6 +1,8 @@
 # Copyright 2026 ForgeFlow, S.L. (http://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+from odoo.addons.sale_exception.tests.common import assert_base_exception_error
+
 from .test_sale_order_approval_block import TestSaleOrderApprovalBlock
 
 
@@ -25,7 +27,8 @@ class TestSoApprovalBlockReason(TestSaleOrderApprovalBlock):
         )
 
         sale.approval_block_id = self.so_approval_block_reason.id
-        sale.with_user(self.user2_id).action_confirm()
+        with assert_base_exception_error(self):
+            sale.with_user(self.user2_id).action_confirm()
         self.assertEqual(sale.state, "draft")
 
         wizard = (
