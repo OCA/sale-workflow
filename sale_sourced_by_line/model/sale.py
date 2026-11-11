@@ -59,16 +59,31 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    warehouse_id = fields.Many2one(readonly=False)
+    warehouse_id = fields.Many2one(
+        inverse="_inverse_warehouse_id",
+        readonly=False,
+        check_company=True,
+    )
+    is_warehouse_id_following_order = fields.Boolean(
+        default=True,
+        help="True while the line warehouse follows the order warehouse.",
+    )
 
     @api.depends(
         "route_id", "order_id.warehouse_id", "product_packaging_id", "product_id"
     )
     def _compute_warehouse_id(self):
-        """compute the warehouse for the lines only
-        if it has not already been set."""
-        lines = self.filtered(lambda rec: not rec.warehouse_id)
+        # Only recompute lines still following the order.
+        lines = self.filtered("is_warehouse_id_following_order")
         return super(SaleOrderLine, lines)._compute_warehouse_id()
+
+    def _inverse_warehouse_id(self):
+        # Store "follows the order" at line write time. Needed because on an
+        # order warehouse change the compute would compare old line vs new order.
+        for line in self:
+            line.is_warehouse_id_following_order = (
+                not line.warehouse_id or line.warehouse_id == line.order_id.warehouse_id
+            )
 
     def _prepare_procurement_group_vals(self):
         vals = super()._prepare_procurement_group_vals()
