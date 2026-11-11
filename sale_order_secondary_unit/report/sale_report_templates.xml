@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template
         id="report_saleorder_document"
@@ -17,7 +17,7 @@
                 <t t-if="line.secondary_uom_id">
                     <span t-field="line.secondary_uom_qty" />
                     <span
-                        t-esc="' {}-{}-{}'.format(line.secondary_uom_id.name, line.secondary_uom_id.factor, line.secondary_uom_id.product_tmpl_id.uom_id.name)"
+                        t-out="' {}-{}-{}'.format(line.secondary_uom_id.name, line.secondary_uom_id.factor, line.secondary_uom_id.product_tmpl_id.uom_id.name)"
                     />
                 </t>
             </td>
