@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-27 03:52+0000\n"
-"PO-Revision-Date: 2018-01-27 03:52+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"PO-Revision-Date: 2026-11-11 12:46+0000\n"
+"Last-Translator: leszekszczepkowski <leszekszczepkowski@gmail.com>\n"
 "Language-Team: Polish (https://www.transifex.com/oca/teams/23907/pl/)\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
 "(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
 "n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: product_price_category
 #: model:ir.model.fields,field_description:product_price_category.field_product_pricelist_item__applied_on
@@ -28,17 +29,17 @@ msgstr ""
 #. module: product_price_category
 #: model:ir.model.fields,field_description:product_price_category.field_product_price_category__create_uid
 msgid "Created by"
-msgstr "Utworzone przez"
+msgstr "Utworzył(a)"
 
 #. module: product_price_category
 #: model:ir.model.fields,field_description:product_price_category.field_product_price_category__create_date
 msgid "Created on"
-msgstr "Utworzono"
+msgstr "Data utworzenia"
 
 #. module: product_price_category
 #: model:ir.model.fields,field_description:product_price_category.field_product_price_category__display_name
 msgid "Display Name"
-msgstr "Wyświetlana nazwa "
+msgstr "Nazwa wyświetlana"
 
 #. module: product_price_category
 #: model:ir.model.fields,field_description:product_price_category.field_product_price_category__id
@@ -48,17 +49,17 @@ msgstr "ID"
 #. module: product_price_category
 #: model:ir.model.fields,field_description:product_price_category.field_product_price_category____last_update
 msgid "Last Modified on"
-msgstr "Ostatnio modyfikowano"
+msgstr "Data ostatniej modyfikacji"
 
 #. module: product_price_category
 #: model:ir.model.fields,field_description:product_price_category.field_product_price_category__write_uid
 msgid "Last Updated by"
-msgstr "Ostatnio modyfikowane przez"
+msgstr "Ostatnio aktualizowane przez"
 
 #. module: product_price_category
 #: model:ir.model.fields,field_description:product_price_category.field_product_price_category__write_date
 msgid "Last Updated on"
-msgstr "Ostatnia zmiana"
+msgstr "Data ostatniej aktualizacji"
 
 #. module: product_price_category
 #: model:ir.model.fields,field_description:product_price_category.field_product_price_category__name
@@ -83,7 +84,7 @@ msgstr ""
 #. module: product_price_category
 #: model:ir.model,name:product_price_category.model_product_pricelist
 msgid "Pricelist"
-msgstr ""
+msgstr "Cennik"
 
 #. module: product_price_category
 #: model:ir.model.fields,help:product_price_category.field_product_pricelist_item__applied_on
@@ -93,12 +94,12 @@ msgstr ""
 #. module: product_price_category
 #: model:ir.model,name:product_price_category.model_product_pricelist_item
 msgid "Pricelist Rule"
-msgstr ""
+msgstr "Zasada cennika"
 
 #. module: product_price_category
 #: model:ir.model,name:product_price_category.model_product_template
 msgid "Product"
-msgstr ""
+msgstr "Produkt"
 
 #. module: product_price_category
 #: model:ir.model,name:product_price_category.model_product_price_category
