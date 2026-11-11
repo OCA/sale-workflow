@@ -65,6 +65,9 @@ Usage
    - if the lines use different warehouses, an advice message is
      displayed.
 
+A line whose warehouse differs from the sale order one is kept when the
+sale order warehouse changes.
+
 Bug Tracker
 ===========
 

@@ -3,6 +3,8 @@
 # © 2016 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+from odoo.tests import Form
+
 from odoo.addons.base.tests.common import BaseCommon
 
 
@@ -25,6 +27,9 @@ class TestSaleSourcedByLine(BaseCommon):
         cls.warehouse1 = cls.stock_warehouse_model.create(
             {"name": "Test Warehouse", "code": "TWH"}
         )
+        cls.warehouse2 = cls.stock_warehouse_model.create(
+            {"name": "Test Warehouse 2", "code": "TWH2"}
+        )
 
     def _create_order(self, warehouse=None):
         vals = {"partner_id": self.customer.id}
@@ -37,6 +42,21 @@ class TestSaleSourcedByLine(BaseCommon):
         if warehouse:
             vals["warehouse_id"] = warehouse.id
         return self.sale_order_line_model.create(vals)
+
+    def _create_order_form(self, warehouse, line_1_warehouse):
+        with Form(self.sale_order_model) as form:
+            form.partner_id = self.customer
+            form.warehouse_id = warehouse
+            for product in (self.product_1, self.product_2):
+                with form.order_line.new() as line:
+                    line.product_id = product
+                    if product == self.product_1 and line_1_warehouse:
+                        line.warehouse_id = line_1_warehouse
+        return form.record
+
+    def _change_order_warehouse_form(self, order, warehouse):
+        with Form(order) as form:
+            form.warehouse_id = warehouse
 
     def test_sales_order_multi_source(self):
         so = self._create_order()
@@ -97,6 +117,36 @@ class TestSaleSourcedByLine(BaseCommon):
         self._create_line(so_2, self.product_2, self.warehouse0)
         so_2.action_confirm()
         self.assertEqual(so_2.warehouse_id, self.warehouse0)
+
+    def test_form_lines_follow_order_warehouse(self):
+        # lines created from the form follow the order warehouse, and
+        # confirming keeps the new warehouse
+        so = self._create_order_form(self.warehouse0, line_1_warehouse=False)
+        self.assertTrue(all(so.order_line.mapped("is_warehouse_id_following_order")))
+        self._change_order_warehouse_form(so, self.warehouse1)
+        self.assertEqual(so.order_line.warehouse_id, self.warehouse1)
+        so.action_confirm()
+        self.assertEqual(so.warehouse_id, self.warehouse1)
+
+    def test_form_manual_line_warehouse_preserved(self):
+        # only the line with another warehouse is kept on order change
+        so = self._create_order_form(self.warehouse0, line_1_warehouse=self.warehouse1)
+        line_1, line_2 = so.order_line
+        self.assertFalse(line_1.is_warehouse_id_following_order)
+        self.assertTrue(line_2.is_warehouse_id_following_order)
+        self._change_order_warehouse_form(so, self.warehouse2)
+        self.assertEqual(line_1.warehouse_id, self.warehouse1)
+        self.assertEqual(line_2.warehouse_id, self.warehouse2)
+        so.action_confirm()
+        self.assertEqual(so.warehouse_id, self.warehouse2)
+
+    def test_line_set_to_order_warehouse_follows_order(self):
+        # a line explicitly set to the order's own warehouse keeps following
+        # the order warehouse like the other lines
+        so = self._create_order_form(self.warehouse0, line_1_warehouse=self.warehouse0)
+        self.assertTrue(all(so.order_line.mapped("is_warehouse_id_following_order")))
+        self._change_order_warehouse_form(so, self.warehouse1)
+        self.assertEqual(so.order_line.warehouse_id, self.warehouse1)
 
     def test_multiple_source_warehouses_message(self):
         so = self._create_order()
