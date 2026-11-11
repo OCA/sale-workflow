@@ -2,7 +2,7 @@
 <odoo noupdate="1">
     <record id="product_product_elaboration" model="product.product">
         <field name="name">Elaboration</field>
-        <field name="categ_id" ref="product.product_category_all" />
+        <field name="categ_id" ref="product.product_category_services" />
         <field name="type">service</field>
         <field name="default_code">ELAB</field>
     </record>
