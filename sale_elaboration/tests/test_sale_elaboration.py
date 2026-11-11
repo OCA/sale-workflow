@@ -1,6 +1,7 @@
 # Copyright 2018 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import Command
+from odoo.service.model import call_kw
 from odoo.tests import Form, tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
@@ -115,6 +116,24 @@ class TestSaleElaboration(AccountTestInvoicingCommon):
         self.assertEqual(len(elaboration), 2)
         elaboration = self.Elaboration.name_search("AA")
         self.assertEqual(len(elaboration), 1)
+
+    def test_search_elaboration_domain_keyword(self):
+        """The web client passes the domain by keyword (Search More, search bar)"""
+        elaborations = call_kw(
+            self.Elaboration,
+            "name_search",
+            [],
+            {
+                "name": "Elaboration",
+                "domain": [("id", "!=", self.elaboration_a.id)],
+                "operator": "ilike",
+                "limit": 8,
+            },
+        )
+        self.assertEqual(
+            [elaboration_id for elaboration_id, _name in elaborations],
+            self.elaboration_b.ids,
+        )
 
     def test_sale_elaboration_doesnt_change(self):
         self.order.order_line.elaboration_note = "Some details"
