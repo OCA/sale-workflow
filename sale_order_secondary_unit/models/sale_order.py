@@ -35,10 +35,22 @@ class SaleOrderLine(models.Model):
     @api.onchange("product_id")
     def _onchange_product_id_secondary_uom(self):
         if self.product_id and not self.env.context.get("skip_secondary_uom_default"):
+            # Read the quantity before setting the secondary unit: that write
+            # schedules _compute_product_uom_qty, which would derive it from a
+            # still empty secondary_uom_qty and leave the line at 0.
+            product_uom_qty = self.product_uom_qty
             self.secondary_uom_id = self.product_id.sale_secondary_uom_id
-            if self.product_uom_qty == 1.0:
-                self.secondary_uom_qty = 1.0
-                self._onchange_helper_product_uom_for_secondary()
+            if self.secondary_uom_id:
+                self.product_uom_qty = product_uom_qty
+                if self.secondary_uom_id.dependency_type != "independent":
+                    self._onchange_helper_product_uom_for_secondary()
+                elif product_uom_qty == 1.0:
+                    # Nothing derives an independent secondary quantity, so a
+                    # line left at the default quantity gets one secondary unit.
+                    self.secondary_uom_qty = 1.0
+                # The secondary quantity is rounded, so recomputing the line
+                # quantity back from it would drift away from what was asked.
+                self.env.remove_to_compute(self._fields["product_uom_qty"], self)
 
     @api.depends("secondary_uom_qty", "product_uom_qty", "price_unit")
     def _compute_secondary_uom_unit_price(self):
