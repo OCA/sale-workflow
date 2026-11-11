@@ -1,0 +1,3 @@
+# Temporary reference for OCA/server-tools#3729, which brings the
+# base_exception rollback to 19.0. Drop once that PR is merged.
+odoo-addon-base_exception @ git+https://github.com/OCA/server-tools.git@refs/pull/3729/head#subdirectory=base_exception
