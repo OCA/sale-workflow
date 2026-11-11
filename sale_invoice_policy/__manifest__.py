@@ -8,13 +8,11 @@
     "author": "ACSONE SA/NV, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales Management",
-    "version": "16.0.3.0.0",
+    "version": "16.0.2.0.0",
     "license": "AGPL-3",
-    "depends": ["sale_stock", "base_partition"],
-    "external_dependencies": {"python": ["openupgradelib"]},
+    "depends": ["sale_stock"],
     "data": [
         "views/res_config_settings_view.xml",
         "views/sale_view.xml",
     ],
-    "pre_init_hook": "pre_init_hook",
 }
