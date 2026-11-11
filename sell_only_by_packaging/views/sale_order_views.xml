@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Allow sales users without the Manage Product Packaging group
+     to select packaging on sale order lines, as it is required
+     for products that can only be sold by packaging. -->
+    <record id="sale_order_view_form" model="ir.ui.view">
+        <field name="name">sale.order.form.sell.only.by.packaging</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='product_packaging_qty']"
+                position="attributes"
+            >
+                <attribute name="groups" />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='product_packaging_id']"
+                position="attributes"
+            >
+                <attribute name="groups" />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='product_packaging_qty']"
+                position="attributes"
+            >
+                <attribute name="groups" />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='product_packaging_id']"
+                position="attributes"
+            >
+                <attribute name="groups" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
