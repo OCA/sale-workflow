@@ -1,0 +1,59 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_invoice_to_partner
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-07-09 07:37+0000\n"
+"Last-Translator: Laura V <laura.valls@forgeflow.com>\n"
+"Language-Team: none\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: sale_invoice_to_partner
+#: model:ir.model.fields,help:sale_invoice_to_partner.field_res_partner__invoice_to_partner_id
+#: model:ir.model.fields,help:sale_invoice_to_partner.field_res_users__invoice_to_partner_id
+msgid ""
+"Another customer that is in charge of receiving and paying the invoices of "
+"this partner. When set, sales orders for this partner use this partner as "
+"the invoice address, so the due amounts are owed by it instead of by this "
+"partner."
+msgstr ""
+"En anden kunde, der er ansvarlig for at modtage og betale denne kontakts "
+"fakturaer. Når dette er angivet, bruger salgsordrer for denne kontakt den "
+"anden kontakt som fakturaadresse, så de skyldige beløb skyldes af den i "
+"stedet for af denne kontakt."
+
+#. module: sale_invoice_to_partner
+#: model:ir.model,name:sale_invoice_to_partner.model_res_partner
+msgid "Contact"
+msgstr "Kontakt"
+
+#. module: sale_invoice_to_partner
+#: model:ir.model.fields,field_description:sale_invoice_to_partner.field_res_partner__display_name
+#: model:ir.model.fields,field_description:sale_invoice_to_partner.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Vis navn"
+
+#. module: sale_invoice_to_partner
+#: model:ir.model.fields,field_description:sale_invoice_to_partner.field_res_partner__id
+#: model:ir.model.fields,field_description:sale_invoice_to_partner.field_sale_order__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_invoice_to_partner
+#: model:ir.model.fields,field_description:sale_invoice_to_partner.field_res_partner__invoice_to_partner_id
+#: model:ir.model.fields,field_description:sale_invoice_to_partner.field_res_users__invoice_to_partner_id
+msgid "Invoice To"
+msgstr "Faktureres til"
+
+#. module: sale_invoice_to_partner
+#: model:ir.model,name:sale_invoice_to_partner.model_sale_order
+msgid "Sales Order"
+msgstr "Salgsordre"
