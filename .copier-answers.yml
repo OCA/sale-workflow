@@ -17,7 +17,9 @@ odoo_version: 19.0
 org_name: Odoo Community Association (OCA)
 org_slug: OCA
 postgres_image: ''
-rebel_module_groups: []
+rebel_module_groups:
+- sale_fixed_discount
+- sale_triple_discount
 repo_description: sale-workflow
 repo_name: sale-workflow
 repo_slug: sale-workflow
