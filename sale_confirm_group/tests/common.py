@@ -3,7 +3,6 @@
 
 from odoo.tests.common import new_test_user
 
-from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
 from odoo.addons.sale.tests.common import TestSaleCommon
 
 
@@ -11,9 +10,6 @@ class TestSaleConfirmGroupCommon(TestSaleCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        # Update context env
-        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
-
         # Prepare groups
         cls.group_sale_user_xmlid = "sales_team.group_sale_salesman"
         cls.group_sale_user = cls.env.ref(cls.group_sale_user_xmlid)
