@@ -13,12 +13,18 @@ def pre_init_hook(cr):
                 "sale_sourced_by_line_product_rule",
             ),
         ]
-        renamed_models = {
-            "sale.warehouse.rule": "sale.line.product.rule",
-        }
-        renamed_tables = {
-            "sale_warehouse_rule": "sale_line_product_rule",
-        }
+        renamed_models = [
+            (
+                "sale.warehouse.rule",
+                "sale.line.product.rule",
+            ),
+        ]
+        renamed_tables = [
+            (
+                "sale_warehouse_rule",
+                "sale_line_product_rule",
+            ),
+        ]
         openupgrade.rename_tables(cr, renamed_tables)
         openupgrade.rename_models(cr, renamed_models)
-        openupgrade.update_module_names(cr, renamed_modules, merge_modules=False)
+        openupgrade.update_module_names(cr, renamed_modules, merge_modules=True)
