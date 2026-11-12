@@ -10,5 +10,6 @@ def migrate(cr, version):
         UPDATE sale_order_type
         SET analytic_distribution = jsonb_build_object(analytic_account_id::text, 100.0)
         WHERE analytic_account_id IS NOT NULL
+        AND analytic_distribution IS NULL
         """
     )
