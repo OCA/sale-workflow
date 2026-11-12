@@ -1,0 +1,71 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_compute_commitment_date
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-30 10:07+0000\n"
+"PO-Revision-Date: 2026-06-30 10:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_compute_commitment_date
+#: model:ir.model.fields,field_description:sale_order_compute_commitment_date.field_product_product__attribute_extend_lead_time
+#: model:ir.model.fields,field_description:sale_order_compute_commitment_date.field_product_template__attribute_extend_lead_time
+msgid "Attribute Extend Lead Time"
+msgstr "Tiempo de Entrega Extendido Del Atributo"
+
+#. module: sale_order_compute_commitment_date
+#: model:ir.model,name:sale_order_compute_commitment_date.model_product_attribute_value
+msgid "Attribute Value"
+msgstr "Valor del atributo"
+
+#. module: sale_order_compute_commitment_date
+#: model:ir.model.fields,field_description:sale_order_compute_commitment_date.field_sale_order__commitment_date
+msgid "Delivery Date"
+msgstr "Fecha de entrega"
+
+#. module: sale_order_compute_commitment_date
+#: model:ir.model.fields,help:sale_order_compute_commitment_date.field_product_product__attribute_extend_lead_time
+#: model:ir.model.fields,help:sale_order_compute_commitment_date.field_product_template__attribute_extend_lead_time
+msgid ""
+"If checked, the attribute lead time will be taken into account to calculate "
+"the final lead time."
+msgstr "Si está marcado, el tiempo de entrega del atributo se tendrá " 
+"en cuenta para calcular el tiempo de entrega final."
+
+#. module: sale_order_compute_commitment_date
+#: model:ir.model.fields,field_description:sale_order_compute_commitment_date.field_product_attribute_value__lead_time
+msgid "Lead Time"
+msgstr "Tiempo de Entrega"
+
+#. module: sale_order_compute_commitment_date
+#: model:ir.model,name:sale_order_compute_commitment_date.model_product_template
+msgid "Product"
+msgstr "Producto"
+
+#. module: sale_order_compute_commitment_date
+#: model:ir.model,name:sale_order_compute_commitment_date.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_order_compute_commitment_date
+#: model:ir.model.fields,help:sale_order_compute_commitment_date.field_product_attribute_value__lead_time
+msgid "The number of days this attribute adds to the product's lead time."
+msgstr "El número de días que este atributo añade al tiempo de entrega del producto."
+
+#. module: sale_order_compute_commitment_date
+#: model:ir.model.fields,help:sale_order_compute_commitment_date.field_sale_order__commitment_date
+msgid ""
+"This is the delivery date promised to the customer. If set, the delivery "
+"order will be scheduled based on this date rather than product lead times."
+msgstr ""
+"Ésta es la fecha de entrega prometida al cliente. Si se establece, la orden "
+"de entrega se programará en función de esta fecha en lugar de los plazos de "
+"entrega del producto."
