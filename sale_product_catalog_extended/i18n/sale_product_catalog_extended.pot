@@ -242,6 +242,12 @@ msgid "Last sales"
 msgstr ""
 
 #. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_product_product__catalog_price_limit
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.product_view_search_catalog
+msgid "Max price"
+msgstr ""
+
+#. module: sale_product_catalog_extended
 #: model:ir.model.fields,help:sale_product_catalog_extended.field_res_config_settings__catalog_last_order_limit
 msgid ""
 "Maximum number of products shown by the last sales option. No limit when 0."
