@@ -17,6 +17,6 @@ class Partner(models.Model):
         param = (
             self.env["ir.config_parameter"]
             .sudo()
-            .get_param("sale_partner_selectable_option.default_sale_selectable")
+            .get_str("sale_partner_selectable_option.default_sale_selectable")
         )
-        return False if param == "0" else True
+        return param != "0"
