@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
+from odoo.osv.expression import FALSE_DOMAIN
 
 
 class SaleOrderLine(models.Model):
@@ -48,19 +49,29 @@ class SaleOrderLine(models.Model):
         for line in self:
             line.qty_to_procure = line.product_uom_qty - line.qty_procured
 
+    def _get_manual_delivery_procurement_group_domain(self):
+        """Returns the domain to search for the procurement group related
+        to the manual delivery.
+        """
+        manual_delivery = self.env.context.get("sale_manual_delivery")
+        if not manual_delivery:
+            return FALSE_DOMAIN
+        domain = [
+            ("sale_id", "=", self.order_id.id),
+            ("partner_id", "=", manual_delivery.partner_id.id),
+        ]
+        if manual_delivery.date_planned:
+            domain += [
+                ("date_planned", "=", manual_delivery.date_planned),
+            ]
+        return domain
+
     def _get_procurement_group(self):
         # Overload to get the procurement.group for the right date / partner
         # Note: sale_manual_delivery is expected to be a manual.delivery record
         manual_delivery = self.env.context.get("sale_manual_delivery")
         if manual_delivery:
-            domain = [
-                ("sale_id", "=", self.order_id.id),
-                ("partner_id", "=", manual_delivery.partner_id.id),
-            ]
-            if manual_delivery.date_planned:
-                domain += [
-                    ("date_planned", "=", manual_delivery.date_planned),
-                ]
+            domain = self._get_manual_delivery_procurement_group_domain()
             return self.env["procurement.group"].search(domain, limit=1)
         else:
             return super()._get_procurement_group()
