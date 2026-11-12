@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo noupdate="1">
     <!-- System Parameter for default sale_selectable -->
     <record id="param_deafault_sale_selectable" model="ir.config_parameter">
