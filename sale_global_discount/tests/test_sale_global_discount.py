@@ -271,3 +271,65 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
         self.assertAlmostEqual(
             self.get_taxes_widget_total_tax(self.sale), self.sale.amount_tax
         )
+
+    def _create_rounding_sale(self):
+        """Order whose per-line rounded subtotals (90.67) differ from the
+        globally rounded untaxed amount (90.66) with 3-decimal unit prices."""
+        self.env.ref("product.decimal_price").digits = 3
+        self.sale.company_id.tax_calculation_rounding_method = "round_globally"
+        sale_form = Form(self.env["sale.order"])
+        sale_form.partner_id = self.partner_1
+        for qty, price in [(3, 3.460), (1, 25.000), (6, 4.713), (6, 4.501)]:
+            with sale_form.order_line.new() as order_line:
+                order_line.product_id = self.product_1
+                order_line.tax_id.clear()
+                order_line.tax_id.add(self.tax_1)
+                order_line.product_uom_qty = qty
+                order_line.price_unit = price
+        return sale_form.save()
+
+    def test_09_no_phantom_discount_round_globally(self):
+        """Without global discounts the core totals must stay untouched."""
+        sale = self._create_rounding_sale()
+        self.assertFalse(sale.global_discount_ids)
+        self.assertAlmostEqual(sale.amount_global_discount, 0.0)
+        self.assertAlmostEqual(sale.amount_untaxed, 90.66)
+        self.assertAlmostEqual(sale.amount_untaxed_before_global_discounts, 90.66)
+        self.assertAlmostEqual(sale.tax_totals["base_amount_currency"], 90.66)
+
+    def test_10_zero_discount_round_globally(self):
+        """A 0% global discount must behave like no discount at all."""
+        zero_discount = self.global_discount_obj.create(
+            {
+                "name": "Zero Discount",
+                "discount_scope": "sale",
+                "discount": 0,
+                "account_id": self.account.id,
+            }
+        )
+        sale = self._create_rounding_sale()
+        sale.global_discount_ids = zero_discount
+        sale._compute_amounts()
+        sale._compute_tax_totals()
+        self.assertAlmostEqual(sale.amount_global_discount, 0.0)
+        self.assertAlmostEqual(sale.amount_untaxed, 90.66)
+        self.assertAlmostEqual(sale.amount_untaxed_before_global_discounts, 90.66)
+        self.assertAlmostEqual(sale.tax_totals["base_amount_currency"], 90.66)
+
+    def test_11_real_discount_round_globally_consistency(self):
+        """With a real discount the shown triplet must be coherent:
+        before - discount == untaxed, all built from per-line amounts."""
+        sale = self._create_rounding_sale()
+        sale.global_discount_ids = self.global_discount_1  # 20%
+        sale._compute_amounts()
+        self.assertAlmostEqual(sale.amount_untaxed_before_global_discounts, 90.67)
+        self.assertAlmostEqual(sale.amount_global_discount, 18.13)
+        self.assertAlmostEqual(sale.amount_untaxed, 72.54)
+        self.assertAlmostEqual(
+            sale.amount_untaxed_before_global_discounts - sale.amount_global_discount,
+            sale.amount_untaxed,
+        )
+        self.assertAlmostEqual(
+            sale.amount_total_before_global_discounts,
+            sum(sale.order_line.mapped("price_total")),
+        )
