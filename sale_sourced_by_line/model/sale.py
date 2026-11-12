@@ -11,25 +11,79 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     warehouse_id = fields.Many2one(
-        "stock.warehouse",
         string="Default Warehouse",
-        readonly=True,
         help="If no source warehouse is selected on line, "
-        "this warehouse is used as default. ",
+        "this warehouse is used as default.",
     )
+
+    show_sale_line_warehouse_column = fields.Boolean(
+        related="company_id.show_sale_line_warehouse_column"
+    )
+
+    multiple_source_warehouses_message = fields.Char(
+        compute="_compute_multiple_source_warehouses_message"
+    )
+
+    @api.depends(
+        "order_line.warehouse_id",
+        "order_line.display_type",
+        "order_line.product_id.type",
+    )
+    def _compute_multiple_source_warehouses_message(self):
+        for order in self:
+            warehouses = order._get_source_warehouses()
+            order.multiple_source_warehouses_message = (
+                self.env._(
+                    "The delivery is sent from multiple warehouses: %(warehouses)s",
+                    warehouses=", ".join(sorted(warehouses.mapped("name"))),
+                )
+                if len(warehouses) > 1
+                else False
+            )
+
+    def action_confirm(self):
+        for order in self:
+            warehouses = order._get_source_warehouses()
+            if len(warehouses) == 1 and warehouses != order.warehouse_id:
+                order.warehouse_id = warehouses
+        return super().action_confirm()
+
+    def _get_source_warehouses(self):
+        """Return the warehouses of the lines that carry goods to deliver."""
+        self.ensure_one()
+        return self.order_line.filtered(
+            lambda line: not line.display_type and line.product_id.type == "consu"
+        ).warehouse_id
 
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
+    warehouse_id = fields.Many2one(
+        inverse="_inverse_warehouse_id",
+        readonly=False,
+        check_company=True,
+    )
+    is_warehouse_id_following_order = fields.Boolean(
+        default=True,
+        help="True while the line warehouse follows the order warehouse.",
+    )
+
     @api.depends(
         "route_id", "order_id.warehouse_id", "product_packaging_id", "product_id"
     )
     def _compute_warehouse_id(self):
-        """compute the warehouse for the lines only
-        if it has not already been set."""
-        lines = self.filtered(lambda rec: not rec.warehouse_id)
+        # Only recompute lines still following the order.
+        lines = self.filtered("is_warehouse_id_following_order")
         return super(SaleOrderLine, lines)._compute_warehouse_id()
+
+    def _inverse_warehouse_id(self):
+        # Store "follows the order" at line write time. Needed because on an
+        # order warehouse change the compute would compare old line vs new order.
+        for line in self:
+            line.is_warehouse_id_following_order = (
+                not line.warehouse_id or line.warehouse_id == line.order_id.warehouse_id
+            )
 
     def _prepare_procurement_group_vals(self):
         vals = super()._prepare_procurement_group_vals()
@@ -38,19 +92,6 @@ class SaleOrderLine(models.Model):
             if self.warehouse_id:
                 vals["name"] += "/" + self.warehouse_id.name
         return vals
-
-    def _prepare_procurement_values(self, group_id=False):
-        """Prepare specific key for moves or other components
-        that will be created from a stock rule
-        comming from a sale order line. This method could be
-        override in order to add other custom key that could
-        be used in move/po creation.
-        """
-        values = super()._prepare_procurement_values(group_id)
-        self.ensure_one()
-        if self.warehouse_id:
-            values["warehouse_id"] = self.warehouse_id
-        return values
 
     def _get_procurement_group_key(self):
         """Return a key with priority to be used to regroup lines in multiple
