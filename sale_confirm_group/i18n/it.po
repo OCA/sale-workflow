@@ -1,0 +1,84 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_confirm_group
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-03-30 11:22+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: sale_confirm_group
+#: model:ir.model,name:sale_confirm_group.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: sale_confirm_group
+#: model:ir.model,name:sale_confirm_group.model_res_config_settings
+msgid "Config Settings"
+msgstr "Impostazioni configurazione"
+
+#. module: sale_confirm_group
+#: model:ir.model.fields,field_description:sale_confirm_group.field_res_company__display_name
+#: model:ir.model.fields,field_description:sale_confirm_group.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:sale_confirm_group.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: sale_confirm_group
+#: model:ir.model.fields,field_description:sale_confirm_group.field_res_company__id
+#: model:ir.model.fields,field_description:sale_confirm_group.field_res_config_settings__id
+#: model:ir.model.fields,field_description:sale_confirm_group.field_sale_order__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_confirm_group
+#: model_terms:ir.ui.view,arch_db:sale_confirm_group.sale_res_config_settings_view_form_inherit
+msgid ""
+"If the checkbox is flagged and at least 1 group is selected, SO confirmation"
+" will be allowed to such groups only. This is company-specific."
+msgstr ""
+"Se la casella di controllo è selezionata e viene selezionato almeno un "
+"gruppo, la conferma dell'ordine di vendita sarà consentita solo a tali "
+"gruppi. Questa impostazione è specifica per l'azienda."
+
+#. module: sale_confirm_group
+#: model:ir.model.fields,field_description:sale_confirm_group.field_res_company__sale_confirmation_group_ids
+#: model:ir.model.fields,field_description:sale_confirm_group.field_res_config_settings__sale_confirmation_group_ids
+msgid "Sale Confirmation Group"
+msgstr "Gruppo conferma vendite"
+
+#. module: sale_confirm_group
+#: model:ir.model,name:sale_confirm_group.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
+
+#. module: sale_confirm_group
+#: model_terms:ir.ui.view,arch_db:sale_confirm_group.sale_res_config_settings_view_form_inherit
+msgid "Use SO Confirmation Groups"
+msgstr "Utilizza gruppo conferma OV"
+
+#. module: sale_confirm_group
+#: model:ir.model.fields,field_description:sale_confirm_group.field_res_company__use_sale_confirmation_groups
+#: model:ir.model.fields,field_description:sale_confirm_group.field_res_config_settings__use_sale_confirmation_groups
+msgid "Use Sale Confirmation Groups"
+msgstr "Usa gruppi conferma vendite"
+
+#. module: sale_confirm_group
+#. odoo-python
+#: code:addons/sale_confirm_group/models/sale_order.py:0
+msgid "User %(user)s cannot confirm Sale(s) %(sales)s"
+msgstr "L'utente %(user)s non può confermare l'ordine %(sales)s"
+
+#. module: sale_confirm_group
+#: model:ir.model.fields,field_description:sale_confirm_group.field_sale_order__user_can_confirm
+msgid "User Can Confirm"
+msgstr "L'utente può confermare"
