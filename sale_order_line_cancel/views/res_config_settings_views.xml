@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <record id="res_config_settings_form_view" model="ir.ui.view">
+        <field name="name">res.config.settings.form.view</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//setting[@id='proforma_configuration']" position="after">
+                <setting
+                    id="line_cancel_decrease_qty_configuration"
+                    help="On canceling the remaining qty to deliver of an order line it decreases the initial quantity"
+                >
+                    <field name="on_sale_line_cancel_decrease_line_qty" />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
