@@ -1,0 +1,1 @@
+Adds a new flag on sale order to mark that the service sale order has been finished or delivered.
