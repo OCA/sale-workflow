@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_label_track_view_list" model="ir.ui.view">
+        <field name="model">product.label.track</field>
+        <field name="arch" type="xml">
+            <list create="0">
+                <header>
+                    <button
+                        name="action_print_labels"
+                        type="object"
+                        string="Print Labels"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="action_mark_printed"
+                        type="object"
+                        string="Mark as Printed"
+                    />
+                    <button name="action_cancel" type="object" string="Cancel" />
+                    <button
+                        name="action_reset_to_new"
+                        type="object"
+                        string="Reset to New"
+                    />
+                </header>
+                <field name="create_date" string="Date" optional="show" />
+                <field name="product_id" />
+                <field name="rule_id" optional="show" />
+                <field name="location_id" optional="show" />
+                <field
+                    name="pricelist_id"
+                    optional="show"
+                    groups="product.group_product_pricelist"
+                />
+                <field name="user_id" widget="many2one_avatar_user" optional="show" />
+                <field
+                    name="company_id"
+                    optional="show"
+                    groups="base.group_multi_company"
+                />
+                <field name="currency_id" column_invisible="1" />
+                <field name="previous_price" />
+                <field name="price" />
+                <field name="printed_price" optional="hide" />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-info="state == 'new'"
+                    decoration-warning="state == 'updated'"
+                    decoration-success="state == 'printed'"
+                    decoration-muted="state == 'cancelled'"
+                />
+            </list>
+        </field>
+    </record>
+
+    <record id="product_label_track_view_form" model="ir.ui.view">
+        <field name="model">product.label.track</field>
+        <field name="arch" type="xml">
+            <form create="0">
+                <header>
+                    <button
+                        name="action_print_labels"
+                        type="object"
+                        string="Print Labels"
+                        class="btn-primary"
+                        invisible="state not in ('new', 'updated')"
+                    />
+                    <button
+                        name="action_mark_printed"
+                        type="object"
+                        string="Mark as Printed"
+                        invisible="state not in ('new', 'updated')"
+                    />
+                    <button
+                        name="action_cancel"
+                        type="object"
+                        string="Cancel"
+                        invisible="state not in ('new', 'updated')"
+                    />
+                    <button
+                        name="action_reset_to_new"
+                        type="object"
+                        string="Reset to New"
+                        invisible="state not in ('printed', 'cancelled')"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="new,updated,printed"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="product_id" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="rule_id" />
+                            <field name="location_id" />
+                            <field
+                                name="pricelist_id"
+                                groups="product.group_product_pricelist"
+                            />
+                            <field name="user_id" widget="many2one_avatar_user" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                        <group>
+                            <field name="currency_id" invisible="1" />
+                            <field name="previous_price" />
+                            <field name="price" />
+                            <field
+                                name="printed_price"
+                                invisible="state != 'printed'"
+                            />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="product_label_track_view_search" model="ir.ui.view">
+        <field name="model">product.label.track</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="product_id" />
+                <field name="rule_id" />
+                <field name="location_id" />
+                <field name="pricelist_id" />
+                <field name="user_id" />
+                <filter
+                    name="my_tracks"
+                    string="My Tracks"
+                    domain="[('user_id', '=', uid)]"
+                />
+                <separator />
+                <filter name="new" string="New" domain="[('state', '=', 'new')]" />
+                <filter
+                    name="updated"
+                    string="Updated"
+                    domain="[('state', '=', 'updated')]"
+                />
+                <filter
+                    name="printed"
+                    string="Printed"
+                    domain="[('state', '=', 'printed')]"
+                />
+                <filter
+                    name="cancelled"
+                    string="Cancelled"
+                    domain="[('state', '=', 'cancelled')]"
+                />
+                <group>
+                    <filter
+                        name="group_location"
+                        string="Location"
+                        context="{'group_by': 'location_id'}"
+                    />
+                    <filter
+                        name="group_pricelist"
+                        string="Pricelist"
+                        context="{'group_by': 'pricelist_id'}"
+                    />
+                    <filter
+                        name="group_state"
+                        string="Status"
+                        context="{'group_by': 'state'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="product_label_track_action" model="ir.actions.act_window">
+        <field name="name">Label Tracks</field>
+        <field name="res_model">product.label.track</field>
+        <field name="view_mode">list,form</field>
+        <field
+            name="context"
+        >{'search_default_my_tracks': 1, 'search_default_new': 1, 'search_default_updated': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No labels to print</p>
+            <p>
+                Label tracks appear here when the price of a product followed by a
+                label tracking rule changes.
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="product_label_track_menu"
+        action="product_label_track_action"
+        parent="sale.menu_sale_report"
+        sequence="50"
+    />
+</odoo>
