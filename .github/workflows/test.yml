@@ -47,17 +47,17 @@ jobs:
             name: Fixed discount (OCB)
             makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.10-odoo19.0:latest
-            include: "sale_triple_discount"
+            include: "sale_triple_discount,sale_pricelist_triple_discount"
             name: Triple discount (Odoo)
           - container: ghcr.io/oca/oca-ci/py3.10-ocb19.0:latest
-            include: "sale_triple_discount"
+            include: "sale_triple_discount,sale_pricelist_triple_discount"
             name: Triple discount (OCB)
             makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.10-odoo19.0:latest
-            exclude: "sale_fixed_discount,sale_triple_discount"
+            exclude: "sale_fixed_discount,sale_triple_discount,sale_pricelist_triple_discount"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.10-ocb19.0:latest
-            exclude: "sale_fixed_discount,sale_triple_discount"
+            exclude: "sale_fixed_discount,sale_triple_discount,sale_pricelist_triple_discount"
             name: test with OCB
             makepot: "true"
     services:
