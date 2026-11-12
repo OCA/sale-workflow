@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="group_sale_readonly_security_admin" model="res.groups">
+        <field name="name">Sale orders edition</field>
+        <field name="user_ids" eval="[(4, ref('base.user_admin'))]" />
+    </record>
+</odoo>
