@@ -7,5 +7,7 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     # In core this a related field. We need to trigger its value on view, so we can
-    # have it even when we're in a NewId
-    order_partner_id = fields.Many2one(depends=["product_id"])
+    # have it even when we're in a NewId. The original dependency must be kept as
+    # well, otherwise the stored value isn't recomputed when the order partner
+    # changes (an explicit `depends` fully replaces the related one).
+    order_partner_id = fields.Many2one(depends=["order_id.partner_id", "product_id"])
