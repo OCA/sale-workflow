@@ -19,6 +19,7 @@ class SaleOrder(models.Model):
     )
 
     @api.depends("picking_validation_blocked", "state", "delivery_count")
+    @api.depends_context("uid")
     def _compute_hide_picking_validation_blocked(self):
         is_manager = self.env.user.has_group("sales_team.group_sale_manager")
         for rec in self:

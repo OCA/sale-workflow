@@ -3,10 +3,8 @@
 
 {
     "name": "Sale Stock Picking Validation Blocking",
-    "summary": """
-        This module adds the opportunity to prevent
-        the validation of delivery order from the SO.""",
-    "version": "18.0.1.0.0",
+    "summary": "Prevent the validation of delivery orders from the sale order",
+    "version": "20.0.1.0.0",
     "license": "AGPL-3",
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
