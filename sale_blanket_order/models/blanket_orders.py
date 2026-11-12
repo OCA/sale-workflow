@@ -629,22 +629,25 @@ class BlanketOrderLine(models.Model):
             "Product Unit of Measure"
         )
         if self.product_id:
-            name = self.product_id.name
+            product_id = self.product_id.with_context(
+                lang=self.order_id.partner_id.lang or self.env.lang
+            )
+            name = product_id.name
             if not self.product_uom:
-                self.product_uom = self.product_id.uom_id.id
+                self.product_uom = product_id.uom_id.id
             if self.order_id.partner_id and float_is_zero(
                 self.price_unit, precision_digits=precision
             ):
                 self.price_unit = self._get_display_price()
-            if self.product_id.code:
-                name = f"[{name}] {self.product_id.code}"
-            if self.product_id.description_sale:
-                name += "\n" + self.product_id.description_sale
+            if product_id.code:
+                name = f"[{name}] {product_id.code}"
+            if product_id.description_sale:
+                name += "\n" + product_id.description_sale
             self.name = name
 
             fpos = self.order_id.fiscal_position_id
             self.taxes_id = fpos.map_tax(
-                self.product_id.taxes_id._filter_taxes_by_company(self.company_id)
+                product_id.taxes_id._filter_taxes_by_company(self.company_id)
             )
 
     @api.depends(
