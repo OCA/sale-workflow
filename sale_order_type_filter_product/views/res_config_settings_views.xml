@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 Ángel Rivas <angel.rivas@sygel.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="res_config_settings_view_form_filter_product" model="ir.ui.view">
+        <field name="name">
+            res.config.settings.view.form.filter.product
+        </field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <setting id="order_warnings" position="after">
+                <setting
+                    id="sale_order_type_invalid_product_action"
+                    string="Invalid Products on Sale Order Type Change"
+                    help="Define what happens when changing the sale order type if the order contains products that are not allowed for the new type."
+                    company_dependent="1"
+                >
+                    <field
+                        name="sale_order_type_invalid_product_action"
+                        widget="radio"
+                    />
+                </setting>
+            </setting>
+        </field>
+    </record>
+</odoo>
