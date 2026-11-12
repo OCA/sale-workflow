@@ -12,6 +12,7 @@ class TestSaleDelivery(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        cls.env.company.sale_delivery_split_date = True
         customer = cls.env.ref("base.res_partner_3")
         p1 = cls.env.ref("product.product_product_16")
         p2 = cls.env.ref("product.product_product_25")
@@ -211,3 +212,19 @@ class TestSaleDelivery(TransactionCase):
             format_date(self.env, security_date_later.date()),
             self.so_line2.procurement_group_id.name,
         )
+
+    def test_setting_disabled(self):
+        self.so.company_id.sale_delivery_split_date = False
+        self.so_line2.commitment_date = self.dt2
+        self.so.action_confirm()
+        self.assertEqual(
+            len(self.so.picking_ids),
+            1,
+            "There must be only one picking when the option is disabled",
+        )
+        self.assertEqual(
+            self.so_line1.procurement_group_id,
+            self.so_line2.procurement_group_id,
+            "The procurement group must be the same",
+        )
+        self.assertEqual(self.so_line1.procurement_group_id.name, self.so.name)
