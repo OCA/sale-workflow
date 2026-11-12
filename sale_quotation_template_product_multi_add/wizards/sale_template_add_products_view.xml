@@ -27,6 +27,17 @@
         <field name="model">sale.template.add.products</field>
         <field name="arch" type="xml">
             <form string="Products">
+                <group>
+                    <label for="multi_quantity" />
+                    <div class="o_row">
+                        <field name="multi_quantity" class="oe_inline" />
+                        <button
+                            name="set_multi_quantity"
+                            string="Set quantity to all"
+                            type="object"
+                        />
+                    </div>
+                </group>
                 <field name="item_ids">
                     <tree create="0" editable="bottom">
                         <field name="product_id" readonly="1" />

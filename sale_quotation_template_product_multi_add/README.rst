@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 =========================================
 Sale Quotation Template Product Multi Add
 =========================================
@@ -13,7 +17,7 @@ Sale Quotation Template Product Multi Add
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
@@ -42,6 +46,8 @@ Usage
 This module adds a button on Quotation Template form to add multiple products into it.
 A wizard form is opened and user can search and select products.
 
+In the wizard, the button "Set quantity to all" sets the configured quantity in all the lines.
+
 Bug Tracker
 ===========
 
@@ -66,6 +72,9 @@ Contributors
 
 * Ooops404 <https://www.ooops404.com>
 * Ilyas <irazor147@gmail.com>
+* `PyTech <https://www.pytech.it>`_:
+
+  * Simone Rubino <simone.rubino@pytech.it>
 
 Maintainers
 ~~~~~~~~~~~
@@ -79,6 +88,14 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-francesco-ooops| image:: https://github.com/francesco-ooops.png?size=40px
+    :target: https://github.com/francesco-ooops
+    :alt: francesco-ooops
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-francesco-ooops| 
 
 This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/14.0/sale_quotation_template_product_multi_add>`_ project on GitHub.
 
