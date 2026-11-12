@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 ========================
 Sale Delivery Split Date
 ========================
@@ -13,7 +17,7 @@ Sale Delivery Split Date
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
@@ -28,8 +32,9 @@ Sale Delivery Split Date
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-When this module is installed, each sale order you confirm will generate
-one delivery order per requested date indicated in the sale order lines.
+When the *Split Deliveries by Date* option is enabled on the company,
+each sale order you confirm will generate one delivery order per
+requested date indicated in the sale order lines.
 
 Furthermore, the delivery orders can be searched by selecting the
 scheduled date, which is now displayed in the delivery tree view.
@@ -39,11 +44,18 @@ scheduled date, which is now displayed in the delivery tree view.
 .. contents::
    :local:
 
+Configuration
+=============
+
+Go to *Sales > Configuration > Settings* and, in the *Shipping* section,
+enable *Split Deliveries by Date*. The option is set per company.
+
 Known issues / Roadmap
 ======================
 
-- Incompatible with
-  `sale_procurement_group_by_commitment_date <https://github.com/OCA/sale-workflow/tree/12.0/sale_procurement_group_by_commitment_date>`__
+- When the option of ``sale_procurement_group_by_commitment_date`` is
+  also enabled on the company, this module takes precedence: deliveries
+  are split by commitment date minus the security lead time.
 
 Bug Tracker
 ===========
@@ -69,6 +81,9 @@ Contributors
 - Alex Comba <alex.comba@agilebg.com> (https://www.agilebg.com/)
 - Carmen Rondon Regalado <crondon@archeti.com>
   (https://odoo.archeti.com/)
+- `Binhex <https://www.binhex.cloud/>`__:
+
+  - Edilio Escalona Almira e.escalona@binhex.cloud
 
 Maintainers
 -----------
