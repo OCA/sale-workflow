@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 OBS Solutions B.V.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html) -->
+<odoo>
+    <record id="sale_order_tree" model="ir.ui.view">
+        <field name="name">sale.order.list - sale_order_payment_state</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_tree" />
+        <field name="arch" type="xml">
+            <field name="invoice_status" position="after">
+                <field
+                    name="invoice_payment_state"
+                    widget="badge"
+                    decoration-success="invoice_payment_state == 'paid'"
+                    decoration-info="invoice_payment_state == 'in_payment'"
+                    decoration-warning="invoice_payment_state == 'partial'"
+                    decoration-danger="invoice_payment_state == 'not_paid'"
+                    decoration-muted="invoice_payment_state == 'no_invoice'"
+                    optional="show"
+                />
+                <field
+                    name="invoice_amount_residual"
+                    widget="monetary"
+                    sum="Total Amount Due"
+                    groups="account.group_account_invoice,account.group_account_readonly"
+                    optional="show"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_quotation_tree" model="ir.ui.view">
+        <field name="name">sale.order.list (quotes) - sale_order_payment_state</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <field name="invoice_payment_state" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+            <field name="invoice_amount_residual" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form - sale_order_payment_state</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="journal_id" position="after">
+                <field name="invoice_payment_state" invisible="state != 'sale'" />
+                <field
+                    name="invoice_amount_residual"
+                    invisible="state != 'sale'"
+                    groups="account.group_account_invoice,account.group_account_readonly"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_sales_order_filter" model="ir.ui.view">
+        <field name="name">sale.order.search - sale_order_payment_state</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <filter name="my_sale_orders_filter" position="after">
+                <separator />
+                <filter
+                    name="invoiced_and_paid"
+                    string="Fully Invoiced &amp; Paid"
+                    domain="[('invoice_status', '=', 'invoiced'), ('invoice_payment_state', '=', 'paid'), '!', ('order_line.invoice_lines.parent_state', '=', 'draft')]"
+                    help="Orders that are fully invoiced, without draft invoices, and whose invoices are all paid"
+                />
+                <filter
+                    name="invoiced_unpaid"
+                    string="Invoiced but Unpaid"
+                    domain="[('invoice_payment_state', 'in', ('not_paid', 'partial'))]"
+                    help="Orders with posted invoices that still have an open amount"
+                />
+            </filter>
+            <filter name="customer" position="after">
+                <filter
+                    name="group_by_invoice_payment_state"
+                    string="Payment Status"
+                    context="{'group_by': 'invoice_payment_state'}"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
