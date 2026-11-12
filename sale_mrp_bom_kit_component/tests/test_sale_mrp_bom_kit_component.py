@@ -574,3 +574,55 @@ class TestSaleMrpBomKitComponent(TransactionCase):
         )
         self.assertEqual(comp.product_id, self.comp_cpu)
         self.assertEqual(comp.product_uom_id, self.comp_cpu.uom_id)
+
+    def test_multi_record_write_product_id_bom_isolation(self):
+        """Test multi-record write() updates bom_id independently per record."""
+        other_kit_tmpl = self.env["product.template"].create(
+            {"name": "Other Kit Template", "type": "consu"}
+        )
+        other_kit_product = other_kit_tmpl.product_variant_id
+        other_bom = self.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": other_kit_tmpl.id,
+                "product_id": other_kit_product.id,
+                "type": "phantom",
+                "product_qty": 1.0,
+                "bom_line_ids": [
+                    Command.create({"product_id": self.comp_cpu.id, "product_qty": 2.0})
+                ],
+            }
+        )
+
+        order = self._create_sale_order()
+        line1 = self.env["sale.order.line"].create(
+            {
+                "order_id": order.id,
+                "product_id": self.kit_product.id,
+                "product_uom_qty": 1.0,
+                "bom_id": self.kit_bom.id,
+            }
+        )
+        line2 = self.env["sale.order.line"].create(
+            {
+                "order_id": order.id,
+                "product_id": other_kit_product.id,
+                "product_uom_qty": 1.0,
+                "bom_id": other_bom.id,
+            }
+        )
+        self.assertEqual(line1.bom_id, self.kit_bom)
+        self.assertEqual(line2.bom_id, other_bom)
+
+        # Batch write: change product_id on both lines to self.kit_product
+        # line1 already matches self.kit_bom, so its bom_id must be preserved
+        # line2 switches from other_kit_product, so other_bom must be cleared
+        (line1 | line2).write({"product_id": self.kit_product.id})
+
+        self.assertEqual(line1.product_id, self.kit_product)
+        self.assertEqual(line1.bom_id, self.kit_bom)
+        self.assertEqual(line2.product_id, self.kit_product)
+        self.assertFalse(line2.bom_id)
+        self.assertTrue(line1.is_kit)
+        self.assertTrue(line2.is_kit)
+        self.assertEqual(len(line1.kit_component_ids), 3)
+        self.assertEqual(len(line2.kit_component_ids), 3)

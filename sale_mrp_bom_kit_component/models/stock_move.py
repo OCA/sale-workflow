@@ -42,7 +42,6 @@ class StockMove(models.Model):
             return 0.0
 
         qty_ratios = []
-        kit_qty = kit_qty / (kit_bom.product_qty or 1.0)
 
         def get_qty(move):
             if move.picked:

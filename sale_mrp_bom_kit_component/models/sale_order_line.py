@@ -93,15 +93,18 @@ class SaleOrderLine(models.Model):
     def write(self, vals):
         if "product_id" in vals and "bom_id" not in vals:
             new_product = self.env["product.product"].browse(vals["product_id"])
-            for line in self:
-                if line.bom_id:
-                    bom = line.bom_id
-                    match = (bom.product_id and bom.product_id == new_product) or (
-                        not bom.product_id
-                        and bom.product_tmpl_id == new_product.product_tmpl_id
+            mismatched_lines = self.filtered(
+                lambda line: line.bom_id
+                and not (
+                    (line.bom_id.product_id and line.bom_id.product_id == new_product)
+                    or (
+                        not line.bom_id.product_id
+                        and line.bom_id.product_tmpl_id == new_product.product_tmpl_id
                     )
-                    if not match:
-                        vals["bom_id"] = False
+                )
+            )
+            if mismatched_lines:
+                super(SaleOrderLine, mismatched_lines).write({"bom_id": False})
         res = super().write(vals)
         if "product_id" in vals or "bom_id" in vals:
             if "kit_component_ids" not in vals:

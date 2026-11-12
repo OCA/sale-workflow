@@ -31,11 +31,7 @@
                                 force_save="1"
                             />
                             <field name="product_qty" />
-                            <field
-                                name="product_uom_id"
-                                readonly="1"
-                                force_save="1"
-                            />
+                            <field name="product_uom_id" readonly="1" force_save="1" />
                             <field
                                 name="bom_line_id"
                                 column_invisible="True"
@@ -93,11 +89,7 @@
                                 force_save="1"
                             />
                             <field name="product_qty" />
-                            <field
-                                name="product_uom_id"
-                                readonly="1"
-                                force_save="1"
-                            />
+                            <field name="product_uom_id" readonly="1" force_save="1" />
                             <field
                                 name="bom_line_id"
                                 column_invisible="True"
