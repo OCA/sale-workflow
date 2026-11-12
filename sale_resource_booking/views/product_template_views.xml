@@ -5,12 +5,13 @@
     <record id="product_template_form_view" model="ir.ui.view">
         <field name="name">Display resource booking info in form</field>
         <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="inherit_id" ref="product.product_template_only_form_view" />
         <field name="arch" type="xml">
-            <group name="sale" position='inside'>
+            <group name="sale" position="inside">
                 <group
                     name="booking"
                     string="Resource Bookings"
+                    invisible="product_variant_count &gt; 1"
                     groups="resource_booking.group_user"
                 >
                     <field name="resource_booking_type_id" />
@@ -18,6 +19,30 @@
                         name="resource_booking_type_combination_rel_id"
                         invisible="not resource_booking_type_id"
                     />
+                </group>
+            </group>
+            <group name="sale" position="after">
+                <group
+                    name="variant_bookings"
+                    string="Resource Bookings per Variant"
+                    invisible="product_variant_count &lt;= 1"
+                    groups="resource_booking.group_user"
+                >
+                    <field name="product_variant_ids" nolabel="1" colspan="2">
+                        <list editable="bottom" create="0" delete="0">
+                            <field
+                                name="product_template_variant_value_ids"
+                                widget="many2many_tags"
+                                readonly="1"
+                                string="Variant"
+                            />
+                            <field name="resource_booking_type_id" />
+                            <field
+                                name="resource_booking_type_combination_rel_id"
+                                invisible="not resource_booking_type_id"
+                            />
+                        </list>
+                    </field>
                 </group>
             </group>
         </field>
