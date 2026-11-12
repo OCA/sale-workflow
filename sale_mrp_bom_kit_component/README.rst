@@ -1,4 +1,4 @@
-﻿.. image:: https://odoo-community.org/readme-banner-image
+.. image:: https://odoo-community.org/readme-banner-image
    :target: https://odoo-community.org/get-involved?utm_source=readme
    :alt: Odoo Community Association
 
@@ -32,13 +32,12 @@ Sale MRP BoM Kit Component
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Sale MRP BoM Kit Component
-==========================
-Allows sales representatives to view, select, include/exclude, and adjust individual
-kit components on sales quotation lines when selling kit products (products with a phantom
-Bill of Materials). The customized component list is stored on the sale order line and directly
-governs the stock moves generated in the resulting delivery picking upon order confirmation.
-
+Allows sales representatives to view, select, include/exclude, and
+adjust individual kit components on sales quotation lines when selling
+kit products (products with a phantom Bill of Materials). The customized
+component list is stored on the sale order line and directly governs the
+stock moves generated in the resulting delivery picking upon order
+confirmation.
 
 **Table of contents**
 
@@ -51,16 +50,21 @@ Usage
 1. Create a quotation with a kit product.
 2. Open the quotation line to view the "Kit Components" section.
 3. Select or deselect components, or modify quantities.
-4. Confirm the sale order; delivery moves will reflect the customized components.
+4. Confirm the sale order; delivery moves will reflect the customized
+   components.
 
 Known issues / Roadmap
 ======================
 
-Known Limitations
-~~~~~~~~~~~~~~~~~
+Known Limitations:
 
-* Kit component customization and delivered quantity computation currently apply to single-level phantom BoMs.
-* Multi-level phantom BoM delivered quantity computation is not currently supported. If a kit component has its own phantom BoM, downstream stock moves are created for the sub-kit components and do not match the parent kit component line, resulting in a delivered quantity computation of 0.0.
+- Kit component customization and delivered quantity computation
+  currently apply to single-level phantom BoMs.
+- Multi-level phantom BoM delivered quantity computation is not
+  currently supported. If a kit component has its own phantom BoM,
+  downstream stock moves are created for the sub-kit components and do
+  not match the parent kit component line, resulting in a delivered
+  quantity computation of 0.0.
 
 Bug Tracker
 ===========
@@ -73,15 +77,15 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 Do not contact contributors directly about support or help with technical issues.
 
 Credits
-~~~~~~~
+=======
 
 Authors
-~~~~~~~
+-------
 
 * Eshan Desle
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 

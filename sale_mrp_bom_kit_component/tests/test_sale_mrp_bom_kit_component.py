@@ -626,3 +626,177 @@ class TestSaleMrpBomKitComponent(TransactionCase):
         self.assertTrue(line2.is_kit)
         self.assertEqual(len(line1.kit_component_ids), 3)
         self.assertEqual(len(line2.kit_component_ids), 3)
+
+    def test_onchange_handlers(self):
+        """Test @api.onchange methods for sale order line and kit component."""
+        order = self._create_sale_order()
+        line = self._create_kit_order_line(order, qty=1.0)
+        # Test sale.order.line onchange for kit
+        line._onchange_kit_bom_populate_components()
+        self.assertTrue(line.kit_component_ids)
+
+        # Test sale.order.line onchange for non-kit
+        std_line = self.env["sale.order.line"].create(
+            {
+                "order_id": order.id,
+                "product_id": self.std_product.id,
+                "product_uom_qty": 1.0,
+            }
+        )
+        std_line._onchange_kit_bom_populate_components()
+        self.assertFalse(std_line.kit_component_ids)
+
+        # Test kit component onchange for product_id
+        comp = line.kit_component_ids[0]
+        comp.product_id = self.comp_ram
+        comp._onchange_product_id()
+        self.assertEqual(comp.product_uom_id, self.comp_ram.uom_id)
+
+    def test_sale_order_line_empty_product_fallbacks(self):
+        """Test defensive handling when product_id is not set or cleared."""
+        line = self.env["sale.order.line"].new()
+        line.product_id = False
+        line._compute_is_kit()
+        self.assertFalse(line.is_kit)
+        self.assertEqual(line._get_kit_bom(), self.env["mrp.bom"])
+
+        # _populate_kit_components on non-kit line
+        order = self._create_sale_order()
+        std_line = self.env["sale.order.line"].create(
+            {
+                "order_id": order.id,
+                "product_id": self.std_product.id,
+            }
+        )
+        std_line._populate_kit_components()
+        self.assertFalse(std_line.kit_component_ids)
+
+    def test_create_component_without_uom(self):
+        """Test creating component without product_uom_id falls back to product uom."""
+        order = self._create_sale_order()
+        line = self._create_kit_order_line(order, qty=1.0)
+        comp = self.env["sale.order.line.kit.component"].create(
+            {
+                "sale_line_id": line.id,
+                "product_id": self.comp_cpu.id,
+                "product_qty": 1.0,
+            }
+        )
+        self.assertEqual(comp.product_uom_id, self.comp_cpu.uom_id)
+
+    def test_compute_kit_quantities_fallback_super(self):
+        """Test fallback to standard _compute_kit_quantities when line is not kit."""
+        order = self._create_sale_order()
+        self.env["sale.order.line"].create(
+            {
+                "order_id": order.id,
+                "product_id": self.std_product.id,
+                "product_uom_qty": 1.0,
+            }
+        )
+        order.action_confirm()
+        picking = order.picking_ids
+        moves = picking.move_ids
+        filters = {
+            "incoming_moves": lambda m: m.location_dest_id.usage == "customer",
+            "outgoing_moves": lambda m: m.location_id.usage == "customer",
+        }
+        # Calling on non-kit move delegates to super()
+        qty = moves._compute_kit_quantities(
+            self.std_product, 1.0, self.kit_bom, filters
+        )
+        self.assertEqual(qty, 0.0)
+
+    def test_custom_component_without_bom_line_and_service_components(self):
+        """Test kit with custom component without bom_line_id, service, and 0-qty."""
+        service_prod = self.env["product.product"].create(
+            {"name": "Setup Service", "type": "service"}
+        )
+        extra_prod = self.env["product.product"].create(
+            {"name": "Extra Cable", "type": "consu"}
+        )
+        order = self._create_sale_order()
+        line = self._create_kit_order_line(order, qty=1.0)
+
+        # Add a service component and a custom component without bom_line_id
+        self.env["sale.order.line.kit.component"].create(
+            {
+                "sale_line_id": line.id,
+                "product_id": service_prod.id,
+                "product_qty": 1.0,
+                "is_selected": True,
+            }
+        )
+        self.env["sale.order.line.kit.component"].create(
+            {
+                "sale_line_id": line.id,
+                "product_id": extra_prod.id,
+                "product_qty": 2.0,
+                "is_selected": True,
+            }
+        )
+        # Set one existing component qty to 0
+        cpu_comp = line.kit_component_ids.filtered(
+            lambda c: c.product_id == self.comp_cpu
+        )
+        cpu_comp.product_qty = 0.0
+
+        order.action_confirm()
+
+        picking = order.picking_ids
+        extra_move = picking.move_ids.filtered(lambda m: m.product_id == extra_prod)
+        self.assertTrue(extra_move)
+        self.assertFalse(extra_move.bom_line_id)
+        self.assertEqual(extra_move.product_uom_qty, 2.0)
+
+        # Deliver the moves
+        for move in picking.move_ids:
+            move.quantity = move.product_uom_qty
+            move.picked = True
+        picking.button_validate()
+
+        line._compute_qty_delivered()
+        self.assertEqual(line.qty_delivered, 1.0)
+
+    def test_compute_kit_quantities_missing_moves_and_empty_ratios(self):
+        """Test delivered quantity when expected component move is missing or empty."""
+        order = self._create_sale_order()
+        line = self._create_kit_order_line(order, qty=1.0)
+        # Deselect all except CPU
+        for comp in line.kit_component_ids:
+            if comp.product_id != self.comp_cpu:
+                comp.is_selected = False
+
+        order.action_confirm()
+        picking = order.picking_ids
+        filters = {
+            "incoming_moves": lambda m: m.location_dest_id.usage == "customer",
+            "outgoing_moves": lambda m: m.location_id.usage == "customer",
+        }
+        # Call with empty move set for CPU
+        empty_moves = picking.move_ids.filtered(lambda m: m.product_id != self.comp_cpu)
+        qty = empty_moves._compute_kit_quantities(
+            self.kit_product, 1.0, self.kit_bom, filters
+        )
+        self.assertEqual(qty, 0.0)
+
+        # Test only service component selected (empty qty_ratios)
+        service_prod = self.env["product.product"].create(
+            {"name": "Warranty Service", "type": "service"}
+        )
+        order2 = self._create_sale_order()
+        line2 = self._create_kit_order_line(order2, qty=1.0)
+        line2.kit_component_ids.write({"is_selected": False})
+        self.env["sale.order.line.kit.component"].create(
+            {
+                "sale_line_id": line2.id,
+                "product_id": service_prod.id,
+                "product_qty": 1.0,
+                "is_selected": True,
+            }
+        )
+        line2_moves = self.env["stock.move"]
+        qty_service_only = line2_moves._compute_kit_quantities(
+            self.kit_product, 1.0, self.kit_bom, filters
+        )
+        self.assertEqual(qty_service_only, 0.0)
