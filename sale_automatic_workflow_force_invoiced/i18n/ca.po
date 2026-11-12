@@ -1,0 +1,85 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_automatic_workflow_force_invoiced
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-26 14:38+0000\n"
+"PO-Revision-Date: 2025-11-26 15:41+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ca_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.8\n"
+
+#. module: sale_automatic_workflow_force_invoiced
+#. odoo-python
+#: code:addons/sale_automatic_workflow_force_invoiced/models/sale_workflow_process.py:0
+#, fuzzy
+msgid "Create Invoice"
+msgstr "Forçar factura"
+
+#. module: sale_automatic_workflow_force_invoiced
+#: model:ir.model.fields,field_description:sale_automatic_workflow_force_invoiced.field_sale_workflow_process__force_invoice
+msgid "Force Invoice"
+msgstr "Forçar factura"
+
+#. module: sale_automatic_workflow_force_invoiced
+#: model:ir.model.fields,field_description:sale_automatic_workflow_force_invoiced.field_sale_workflow_process__force_invoice_order_filter_id
+msgid "Force Invoice Order Filter"
+msgstr "Filtre de comandes per forçar factura"
+
+#. module: sale_automatic_workflow_force_invoiced
+#: model:ir.model.fields,field_description:sale_automatic_workflow_force_invoiced.field_sale_workflow_process__force_invoice_order_filter_domain
+msgid "Force Invoice Order Filter Domain"
+msgstr "Domini del filtre de comandes per forçar factura"
+
+#. module: sale_automatic_workflow_force_invoiced
+#. odoo-python
+#: code:addons/sale_automatic_workflow_force_invoiced/models/sale_workflow_process.py:0
+msgid "Force invoice option is not compatible with: %s"
+msgstr ""
+
+#. module: sale_automatic_workflow_force_invoiced
+#. odoo-python
+#: code:addons/sale_automatic_workflow_force_invoiced/models/sale_workflow_process.py:0
+msgid "Register Payment"
+msgstr ""
+
+#. module: sale_automatic_workflow_force_invoiced
+#: model:ir.model,name:sale_automatic_workflow_force_invoiced.model_sale_workflow_process
+msgid "Sale Workflow Process"
+msgstr "Procés de flux de treball de venda"
+
+#. module: sale_automatic_workflow_force_invoiced
+#: model:ir.model,name:sale_automatic_workflow_force_invoiced.model_automatic_workflow_job
+msgid ""
+"Scheduler that will play automatically the validation of invoices, "
+"pickings..."
+msgstr ""
+"Programador que reproduirà automàticament la validació de factures, "
+"pickings ..."
+
+#. module: sale_automatic_workflow_force_invoiced
+#: model_terms:ir.ui.view,arch_db:sale_automatic_workflow_force_invoiced.sale_workflow_process_force_invoice_view_form
+msgid "Set selection based on a search filter:"
+msgstr "Selecciona segons un filtre de cerca:"
+
+#. module: sale_automatic_workflow_force_invoiced
+#. odoo-python
+#: code:addons/sale_automatic_workflow_force_invoiced/models/sale_workflow_process.py:0
+#, fuzzy
+msgid "Validate Invoice"
+msgstr "Forçar factura"
+
+#~ msgid ""
+#~ "Force invoice option is not compatible with Create Invoice, Validate "
+#~ "Invoice and Register Payment options."
+#~ msgstr ""
+#~ "L’opció “Forçar factura” no és compatible amb les opcions Crear factura, "
+#~ "Validar factura i Registrar pagament."
