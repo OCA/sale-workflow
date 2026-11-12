@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 =========================================
 Sale Procurement Group by Commitment Date
 =========================================
@@ -13,7 +17,7 @@ Sale Procurement Group by Commitment Date
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
@@ -84,6 +88,9 @@ Contributors
 - Darshan Patel <darshan.patel.serpentcs@gmail.com>
 - Pimolnat Suntian <pimolnats@ecosoft.co.th>
 - Juany Davila <juany.davila@forgeflow.com>
+- `Binhex <https://www.binhex.cloud/>`__:
+
+  - Edilio Escalona Almira e.escalona@binhex.cloud
 
 Maintainers
 -----------

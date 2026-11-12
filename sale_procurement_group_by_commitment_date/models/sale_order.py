@@ -16,19 +16,13 @@ class SaleOrderLine(models.Model):
             values["name"] = "/".join([values["name"], com_date])
         return values
 
-    def _prepare_procurement_values(self, group_id=False):
-        values = super()._prepare_procurement_values(group_id=group_id)
-        com_datetime = self.commitment_date
-        com_date = fields.Date.to_string(com_datetime)
-        if com_datetime:
-            values["date_planned"] = com_date
-        return values
-
     def _get_procurement_group_key(self):
         """Return a key with priority to be used to regroup lines in multiple
         procurement groups. The higher the priority number is the more
         preference the criteria has.
         """
+        if not self.order_id.company_id.sale_group_by_commitment_date:
+            return super()._get_procurement_group_key()
         priority = 12
         key = super()._get_procurement_group_key()
         # Check priority
