@@ -112,6 +112,7 @@ class TestProductTemplate(common.TransactionCase):
         self.assertEqual(product.sale_own_min_qty, 0.0)
 
         product.is_sale_own_restrict_min_qty_set = False
+        product._onchange_is_sale_restrict_min_qty_set()
         self.assertEqual(product.sale_restrict_min_qty, RESTRICTION_ENABLED)
         self.assertFalse(product.sale_own_restrict_min_qty)
 
@@ -121,6 +122,7 @@ class TestProductTemplate(common.TransactionCase):
         self.assertEqual(product.sale_own_max_qty, 0.0)
 
         product.is_sale_own_restrict_max_qty_set = False
+        product._onchange_is_sale_restrict_max_qty_set()
         self.assertEqual(product.sale_restrict_max_qty, RESTRICTION_ENABLED)
         self.assertFalse(product.sale_own_restrict_max_qty)
 
@@ -130,5 +132,36 @@ class TestProductTemplate(common.TransactionCase):
         self.assertEqual(product.sale_own_multiple_of_qty, 0.0)
 
         product.is_sale_own_restrict_multiple_of_qty_set = False
+        product._onchange_is_sale_restrict_multiple_of_qty_set()
         self.assertEqual(product.sale_restrict_multiple_of_qty, RESTRICTION_ENABLED)
         self.assertFalse(product.sale_own_restrict_multiple_of_qty)
+
+    def test_variant_restrict_inheritance_and_override(self):
+        """A variant inherits the template restrict, can override it, and
+        follows the template again once the override is removed."""
+        template = self.ProductTemplate.create(
+            {
+                "name": "Template",
+                "sale_min_qty": 10.0,
+                "sale_restrict_min_qty": RESTRICTION_DISABLED,  # Warning
+            }
+        )
+        product = template.product_variant_id
+
+        # Inherits, without an own override.
+        self.assertFalse(product.is_sale_own_restrict_min_qty_set)
+        self.assertEqual(product.sale_restrict_min_qty, RESTRICTION_DISABLED)
+
+        # Explicit variant override is honoured...
+        product.sale_restrict_min_qty = RESTRICTION_ENABLED
+        self.assertTrue(product.is_sale_own_restrict_min_qty_set)
+        self.assertEqual(product.sale_restrict_min_qty, RESTRICTION_ENABLED)
+
+        # ...and removing it re-inherits the template value.
+        product.is_sale_own_restrict_min_qty_set = False
+        product._onchange_is_sale_restrict_min_qty_set()
+        self.assertEqual(product.sale_restrict_min_qty, RESTRICTION_DISABLED)
+
+        # Changing the template now propagates to the variant.
+        template.sale_restrict_min_qty = RESTRICTION_ENABLED
+        self.assertEqual(product.sale_restrict_min_qty, RESTRICTION_ENABLED)
