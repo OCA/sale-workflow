@@ -26,9 +26,9 @@ class SaleOrder(models.Model):
     def _compute_user_can_confirm(self):
         user = self.env.user
         for company, sales in self.grouped("company_id").items():
-            if not company.use_sale_confirmation_groups:
-                sales.user_can_confirm = True
-            elif not (groups := company.sale_confirmation_group_ids):
+            if not company.use_sale_confirmation_groups or not (
+                groups := company.sale_confirmation_group_ids
+            ):
                 sales.user_can_confirm = True
             else:
                 sales.user_can_confirm = (
@@ -40,11 +40,10 @@ class SaleOrder(models.Model):
         # and raise a ``ValidationError`` instead
 
         # 1- check skipped: exit early
-        if self._skip_check_user_can_confirm():
-            return super().action_confirm()
-
-        # 2- all SO in ``self`` can be confirmed
-        elif (can_confirm := self._filter_user_can_confirm()) == self:
+        if (
+            self._skip_check_user_can_confirm()
+            or (can_confirm := self._filter_user_can_confirm()) == self
+        ):
             return super().action_confirm()
 
         # 3- at least 1 SO cannot be confirmed by the user
