@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026-TODAY NICO SOLUTIONS - ENGINEERING & IT(<https://www.nico-solutions.de>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_order_tree_inherit_effective_delivery_date" model="ir.ui.view">
+        <field name="name">sale.order.tree.effective.delivery.date</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_stock.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="delivery_status" position="after">
+                <field name="effective_date" optional="show" />
+            </field>
+        </field>
+    </record>
+
+    <record
+        id="sale_stock_sale_order_view_search_inherit_effective_delivery_date"
+        model="ir.ui.view"
+    >
+        <field name="name">sale.order.search.effective.delivery.date</field>
+        <field name="model">sale.order</field>
+        <field
+            name="inherit_id"
+            ref="sale_stock.sale_stock_sale_order_view_search_inherit"
+        />
+        <field name="arch" type="xml">
+            <filter name="late_availability" position="after">
+                <field name="effective_date" string="Effective Delivery Date" />
+                <separator />
+                <filter
+                    name="effective_delivery_date_set"
+                    string="Has Effective Delivery Date"
+                    domain="[('effective_date', '!=', False)]"
+                />
+                <filter
+                    name="effective_delivery_date_not_set"
+                    string="Has no Effective Delivery Date"
+                    domain="[('effective_date', '=', False)]"
+                />
+                <filter
+                    name="effective_delivery_date_period"
+                    string="Effective Delivery Date: Period"
+                    date="effective_date"
+                />
+                <separator />
+                <filter
+                    name="group_effective_delivery_date"
+                    string="Effective Delivery Date"
+                    context="{'group_by': 'effective_date'}"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
