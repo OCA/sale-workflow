@@ -139,12 +139,15 @@ class SaleOrderLine(models.Model):
         lines = self.filtered(
             lambda line: line.order_id.pricelist_id and discount_enabled
         )
-        with self.env.protecting(
-            [self.env["sale.order.line"]._fields["discount"]], lines
-        ):
+        discount_field = self.env["sale.order.line"]._fields["discount"]
+        # Assigning discount below marks it as computed, with the value that leaves
+        # out discount2 and discount3: put back the lines that were waiting for it.
+        pending = self.env.records_to_compute(discount_field) & lines
+        with self.env.protecting([discount_field], lines):
             lines.with_context(skip_triple_discount=True)._compute_discount()
             for line in lines:
                 line.discount1 = line.discount
+        self.env.add_to_compute(discount_field, pending)
 
     def _prepare_invoice_line(self, **kwargs):
         """

@@ -8,6 +8,7 @@ from unittest import skip
 
 from odoo import Command
 from odoo.exceptions import ValidationError
+from odoo.tests import Form
 
 from odoo.addons.base.tests.common import BaseCommon
 
@@ -346,6 +347,60 @@ class TestSaleOrder(SaleTripleDiscountCommon):
 
         self.assertAlmostEqual(self.so_line1.discount1, 10.0)
         self.assertAlmostEqual(self.so_line1.discount, 10.0)
+
+    def test_17_quantity_change_keeps_discount2_and_3(self) -> None:
+        """Changing the quantity recomputes discount1 and keeps discount2 and 3."""
+        pricelist = self.env["product.pricelist"].create(
+            {
+                "name": "Test Pricelist 10%",
+                "item_ids": [
+                    Command.create(
+                        {
+                            "applied_on": "3_global",
+                            "compute_price": "discount",
+                            "price_discount": 10,
+                        }
+                    )
+                ],
+            }
+        )
+        self.order.pricelist_id = pricelist
+        self.order._recompute_prices()
+        self.so_line1.discount2 = 5.0
+        self.so_line1.discount3 = 20.0
+        self.so_line1.product_uom_qty = 2
+
+        self.assertAlmostEqual(self.so_line1.discount1, 10.0)
+        self.assertAlmostEqual(self.so_line1.discount2, 5.0)
+        self.assertAlmostEqual(self.so_line1.discount3, 20.0)
+        self.assertAlmostEqual(self.so_line1.discount, 31.6)
+
+    def test_18_quantity_change_in_the_form_keeps_discount2(self) -> None:
+        """The form shows the total discount with discount2 after a quantity change."""
+        pricelist = self.env["product.pricelist"].create(
+            {
+                "name": "Test Pricelist 10%",
+                "item_ids": [
+                    Command.create(
+                        {
+                            "applied_on": "3_global",
+                            "compute_price": "discount",
+                            "price_discount": 10,
+                        }
+                    )
+                ],
+            }
+        )
+        self.order.pricelist_id = pricelist
+        self.order._recompute_prices()
+        self.so_line1.discount2 = 5.0
+        with (
+            Form(self.order) as order_form,
+            order_form.order_line.edit(0) as line_form,
+        ):
+            line_form.product_uom_qty = 2
+            self.assertAlmostEqual(line_form.discount, 14.5)
+        self.assertAlmostEqual(self.so_line1.discount, 14.5)
 
 
 class TestSaleOrderCombo(BaseCommon):
