@@ -5,3 +5,33 @@
 .o_kanban_renderer.o_sale_planner_calendar_kanban {
     --KanbanRecord-width: 100%;
 }
+
+// Separate white buttons to move the visit and change its hour, as in 15.0
+.o_sale_planner_calendar_kanban .o_planner_visit_time .btn-secondary {
+    --btn-bg: #{$white};
+    --btn-hover-bg: #{$gray-100};
+    --btn-active-bg: #{$gray-200};
+}
+
+// Phones: time controls, hour and state on a single line above the partner
+@include media-breakpoint-down(md) {
+    // The default gutters made the rows wider than the card
+    .o_sale_planner_calendar_kanban article .row {
+        --gutter-x: 0.5rem;
+    }
+    .o_sale_planner_calendar_kanban .o_planner_visit_time {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        > .row {
+            flex: 0 0 auto;
+            margin: 0;
+            > .col {
+                padding: 0;
+            }
+        }
+        .fa-2x {
+            font-size: 1.25em;
+        }
+    }
+}
