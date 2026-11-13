@@ -22,6 +22,9 @@ class SaleOrderLine(models.Model):
         """
         res = super()._compute_qty_to_invoice()
         for line in self:
+            # The quantity to invoice of a combo line follows its combo items
+            if line.product_id.type == "combo":
+                continue
             if line.state in ["sale", "done"] and not line.display_type:
                 if line.product_id.invoice_policy == "order":
                     line.qty_to_invoice = (
