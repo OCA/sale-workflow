@@ -41,17 +41,18 @@ class SaleOrder(models.Model):
             if not sale.pricelist_id:
                 sale.has_pricelist_global = False
                 continue
-            qty_data = self._get_cummulative_quantity()
+            qty_data = sale._get_cummulative_quantity()
             pricelist = sale.pricelist_id.with_context(
                 pricelist_global_cummulative_quantity=qty_data
             )
             suitable_rule = self.env["product.pricelist.item"]
-            for line in sale.order_line:
+            # Section and note lines have no product to get a rule for
+            for line in sale.order_line.filtered("product_id"):
                 suitable_rule = pricelist._get_product_rule(
                     line.product_id,
                     quantity=line.product_uom_qty or 1.0,
                     uom=line.product_uom,
-                    date=line.order_id.date_order,
+                    date=sale.date_order,
                 )
                 if suitable_rule:
                     break
