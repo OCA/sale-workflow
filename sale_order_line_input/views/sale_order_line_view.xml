@@ -180,6 +180,7 @@
                     name="company_price_amount"
                     invisible="is_downpayment"
                     string="Amount"
+                    optional="show"
                 />
                 <!-- Optional amounts -->
                 <!-- There are 2 "similar" fields (price_total + price_subtotal), and they are shown according to the option defined in the company in the account_price_include field, we don't want to show always 2 columns and only 1 has the right data, therefore, the new company_price_tax_incl_excl field reflects the right data of each row. !-->
