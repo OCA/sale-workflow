@@ -411,6 +411,13 @@ msgid ""
 msgstr ""
 
 #. module: sale_product_catalog_extended
+#: model:ir.model.fields,help:sale_product_catalog_extended.field_res_config_settings__catalog_show_price_mode
+msgid ""
+"Show the Price section in the product catalog search panel. When hidden, the"
+" price default still applies."
+msgstr ""
+
+#. module: sale_product_catalog_extended
 #: model:ir.model.fields,help:sale_product_catalog_extended.field_res_config_settings__catalog_show_sort
 msgid ""
 "Show the Sort section in the product catalog search panel. When hidden, the "
@@ -420,6 +427,11 @@ msgstr ""
 #. module: sale_product_catalog_extended
 #: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__catalog_show_history_partner
 msgid "Show the catalog history partner"
+msgstr ""
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__catalog_show_price_mode
+msgid "Show the catalog price"
 msgstr ""
 
 #. module: sale_product_catalog_extended
