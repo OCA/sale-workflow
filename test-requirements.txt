@@ -1,0 +1,1 @@
+odoo-addon-portal_account_personal_data_only @ git+https://github.com/OCA/account-invoicing.git@refs/pull/2499/head#subdirectory=portal_account_personal_data_only
