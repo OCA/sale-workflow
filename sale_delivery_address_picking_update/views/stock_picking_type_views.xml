@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ForgeFlow S.L. (https://www.forgeflow.com)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_picking_type_form" model="ir.ui.view">
+        <field
+            name="name"
+        >stock.picking.type.form - sale_delivery_address_picking_update</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.view_picking_type_form" />
+        <field name="arch" type="xml">
+            <field name="create_backorder" position="after">
+                <field
+                    name="sale_auto_update_delivery_address"
+                    invisible="code not in ('outgoing', 'internal')"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
