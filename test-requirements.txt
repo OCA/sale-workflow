@@ -1,1 +1,3 @@
 odoo-test-helper
+odoo-addon-sale-triple-discount @ git+https://github.com/OCA/sale-workflow.git@refs/pull/3889/head#subdirectory=sale_triple_discount
+odoo-addon-sale_pricelist_fixed_price_no_discount @ git+https://github.com/OCA/sale-workflow.git@refs/pull/4417/head#subdirectory=sale_pricelist_fixed_price_no_discount
