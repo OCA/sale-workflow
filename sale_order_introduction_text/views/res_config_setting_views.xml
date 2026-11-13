@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field
+            name="name"
+        >res.config.settings.view.form.inherit.sale.order.introduction.text</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="10" />
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='invoicing_setting_container']" position="after">
+                <h2 class="mt32">Sale Order Introduction Text</h2>
+                <div
+                    class="row mt16 o_settings_container"
+                    name="sale_order_introduction_text_setting_container"
+                >
+                    <div
+                        class="col-12 col-lg-6 o_setting_box"
+                        id="sale_order_introduction_text"
+                    >
+                        <div class="o_setting_left_pane" style="width: 100%;">
+                            <field name="sale_order_introduction_text" widget="html" />
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
