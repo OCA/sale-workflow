@@ -3,7 +3,7 @@
 
 {
     "name": "Sale Delivery Split Date",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.1.0",
     "summary": "Sale Deliveries split by date",
     "category": "Sales Management",
     "license": "AGPL-3",
@@ -15,6 +15,7 @@
     ],
     "data": [
         "views/stock_picking.xml",
+        "wizards/res_config_settings_views.xml",
     ],
     "installable": True,
 }
