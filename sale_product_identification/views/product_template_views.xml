@@ -13,11 +13,22 @@
                         invisible="not required_identification"
                         nolabel="1"
                     >
-                        <list editable="bottom">
+                        <list>
                             <field name="category_id" />
                             <field name="is_mandatory" />
-                            <field name="message" />
+                            <field name="value" optional="show" />
+                            <field name="message" optional="show" />
                         </list>
+                        <form string="Identification">
+                            <group>
+                                <field name="category_id" required="1" />
+                                <field name="is_mandatory" />
+                            </group>
+                            <group>
+                                <field name="message" />
+                            </group>
+                            <field name="value" widget="ace" />
+                        </form>
                     </field>
                 </group>
             </xpath>
