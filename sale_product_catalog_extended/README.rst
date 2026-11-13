@@ -131,7 +131,9 @@ opened:
 - **Last sales**: only show the products sold to the customer, most
   frequently sold first.
 - **Price**: empty shows the pricelist price, **Last sale** the price of
-  the last sale to the customer.
+  the last sale to the customer. Check **Show** to show this section in
+  the catalog search panel, hidden by default; the price chosen here
+  applies either way.
 - **History**: the partner the sale history is matched against. Empty
   matches the customer (commercial partner, including its child
   contacts), **Delivery address** the order delivery address. Check

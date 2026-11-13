@@ -334,6 +334,28 @@ class TestSaleProductCatalogExtended(TransactionCase):
             ]
         )
 
+    def test_settings_show_price_mode(self):
+        """The Price section is hidden unless it is enabled in the settings,
+        and its default preselects it anyway."""
+        context = self.order._get_action_add_from_catalog_extra_context()
+        self.assertFalse(context["catalog_show_price_mode"])
+        self.env["res.config.settings"].create(
+            {"default_catalog_price_mode": "last_price"}
+        ).execute()
+        context = self.order._get_action_add_from_catalog_extra_context()
+        self.assertFalse(context["catalog_show_price_mode"])
+        self.assertEqual(
+            context["searchpanel_default_catalog_price_mode"], "last_price"
+        )
+        self.env["res.config.settings"].create(
+            {"catalog_show_price_mode": True}
+        ).execute()
+        self.assertTrue(
+            self.order._get_action_add_from_catalog_extra_context()[
+                "catalog_show_price_mode"
+            ]
+        )
+
     def test_sort_by_name_in_the_language_of_the_user(self):
         """The Name sort orders the products by their name translated to the
         language of the user."""

@@ -295,6 +295,9 @@ class SaleOrder(models.Model):
             if value:
                 context[f"searchpanel_default_{field_name}"] = value
         params = self.env["ir.config_parameter"].sudo()
+        context["catalog_show_price_mode"] = bool(
+            params.get_param("sale_product_catalog_extended.catalog_show_price_mode")
+        )
         context["catalog_show_history_partner"] = bool(
             params.get_param(
                 "sale_product_catalog_extended.catalog_show_history_partner"
