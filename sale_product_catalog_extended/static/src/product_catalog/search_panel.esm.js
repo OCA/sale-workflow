@@ -13,6 +13,11 @@ patch(ProductCatalogSearchPanel.prototype, {
                     category.fieldName === fieldName && category.activeValueId === value
             );
         const hidden = [];
+        // The price is only shown when enabled in the settings (its default
+        // applies anyway).
+        if (!context.catalog_show_price_mode) {
+            hidden.push("catalog_price_mode");
+        }
         // The history partner is only shown when enabled in the settings (its
         // default applies anyway), and it only matters for the last sales and the
         // last sale price, so hide it while neither of them is active.
