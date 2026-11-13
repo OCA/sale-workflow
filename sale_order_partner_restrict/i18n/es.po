@@ -1,0 +1,197 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_partner_restrict
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-15 11:18+0000\n"
+"PO-Revision-Date: 2026-01-15 11:18+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields,field_description:sale_order_partner_restrict.field_sale_order_block_rule__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: sale_order_partner_restrict
+#: model_terms:ir.ui.view,arch_db:sale_order_partner_restrict.view_sale_order_block_rule_form
+msgid "Archived"
+msgstr "Archivado"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields,field_description:sale_order_partner_restrict.field_sale_order_block_rule__block_message
+msgid "Block Message"
+msgstr "Mensaje de bloqueo"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields,field_description:sale_order_partner_restrict.field_sale_order_block_rule__blocked_values
+msgid "Blocked Values"
+msgstr "Valores bloqueados"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields,help:sale_order_partner_restrict.field_sale_order_block_rule__blocked_values
+msgid "Blocked values (comma-separated list)"
+msgstr "Valores bloqueados (lista separada por comas)"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields.selection,name:sale_order_partner_restrict.selection__sale_order_block_rule__partner_field__city
+msgid "City"
+msgstr "Ciudad"
+
+#. module: sale_order_partner_restrict
+#: model_terms:ir.actions.act_window,help:sale_order_partner_restrict.action_sale_order_block_rule
+msgid ""
+"Configure rules to automatically block sale orders based on partner field "
+"values."
+msgstr ""
+"Configure reglas para bloquear automáticamente pedidos de venta basándose en "
+"valores de campos del contacto."
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields.selection,name:sale_order_partner_restrict.selection__sale_order_block_rule__partner_field__country_id
+msgid "Country"
+msgstr "País"
+
+#. module: sale_order_partner_restrict
+#: model_terms:ir.actions.act_window,help:sale_order_partner_restrict.action_sale_order_block_rule
+msgid "Create your first partner block rule"
+msgstr "Cree su primera regla de bloqueo de contacto"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields,field_description:sale_order_partner_restrict.field_sale_order_block_rule__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields,field_description:sale_order_partner_restrict.field_sale_order_block_rule__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields,help:sale_order_partner_restrict.field_sale_order_block_rule__block_message
+msgid "Custom message to display in chatter when order is canceled"
+msgstr "Mensaje personalizado para mostrar en el chat cuando se cancele el pedido"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields,field_description:sale_order_partner_restrict.field_sale_order_block_rule__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields.selection,name:sale_order_partner_restrict.selection__sale_order_block_rule__partner_field__email
+msgid "Email"
+msgstr "Correo electrónico"
+
+#. module: sale_order_partner_restrict
+#: model_terms:ir.ui.view,arch_db:sale_order_partner_restrict.view_sale_order_block_rule_form
+msgid "Enter the message to display when this rule blocks an order"
+msgstr "Introduzca el mensaje a mostrar cuando esta regla bloquee un pedido"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields,field_description:sale_order_partner_restrict.field_sale_order_block_rule__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields,field_description:sale_order_partner_restrict.field_sale_order_block_rule__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields,field_description:sale_order_partner_restrict.field_sale_order_block_rule__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields.selection,name:sale_order_partner_restrict.selection__sale_order_block_rule__partner_field__mobile
+msgid "Mobile"
+msgstr "Móvil"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields,field_description:sale_order_partner_restrict.field_sale_order_block_rule__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: sale_order_partner_restrict
+#: model:ir.actions.act_window,name:sale_order_partner_restrict.action_sale_order_block_rule
+#: model:ir.ui.menu,name:sale_order_partner_restrict.menu_sale_order_block_rule
+msgid "Partner Block Rules"
+msgstr "Reglas de bloqueo de contactos"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields,field_description:sale_order_partner_restrict.field_sale_order_block_rule__partner_field
+msgid "Partner Field"
+msgstr "Campo de contacto"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields,help:sale_order_partner_restrict.field_sale_order_block_rule__partner_field
+msgid "Partner field to validate"
+msgstr "Campo de contacto a validar"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields.selection,name:sale_order_partner_restrict.selection__sale_order_block_rule__partner_field__phone
+msgid "Phone"
+msgstr "Teléfono"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields,help:sale_order_partner_restrict.field_sale_order_block_rule__name
+msgid "Rule name for identification"
+msgstr "Nombre de la regla para identificación"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model,name:sale_order_partner_restrict.model_sale_order_block_rule
+#: model_terms:ir.ui.view,arch_db:sale_order_partner_restrict.view_sale_order_block_rule_form
+msgid "Sale Order Block Rule"
+msgstr "Regla de bloqueo de pedido de venta"
+
+#. module: sale_order_partner_restrict
+#: model_terms:ir.ui.view,arch_db:sale_order_partner_restrict.view_sale_order_block_rule_tree
+msgid "Sale Order Block Rules"
+msgstr "Reglas de bloqueo de pedidos de venta"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model,name:sale_order_partner_restrict.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields.selection,name:sale_order_partner_restrict.selection__sale_order_block_rule__partner_field__state_id
+msgid "State"
+msgstr "Provincia"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields.selection,name:sale_order_partner_restrict.selection__sale_order_block_rule__partner_field__street
+msgid "Street"
+msgstr "Calle"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields.selection,name:sale_order_partner_restrict.selection__sale_order_block_rule__partner_field__vat
+msgid "VAT"
+msgstr "NIF/CIF"
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields.selection,name:sale_order_partner_restrict.selection__sale_order_block_rule__partner_field__zip
+msgid "ZIP Code"
+msgstr "Código postal"
+
+#. module: sale_order_partner_restrict
+#: model_terms:ir.ui.view,arch_db:sale_order_partner_restrict.view_sale_order_block_rule_form
+msgid "e.g. Block Spam Emails"
+msgstr "ej. Bloquear correos spam"
+
+#. module: sale_order_partner_restrict
+#: model_terms:ir.ui.view,arch_db:sale_order_partner_restrict.view_sale_order_block_rule_form
+msgid "e.g. spam@test.com, blocked@mail.com"
+msgstr "ej. spam@test.com, bloqueado@mail.com"
+
+#. module: sale_order_partner_restrict
+#: model:ir.ui.menu,name:sale_order_partner_restrict.menu_sale_order_separator
+msgid "menu_sale_order_separator"
+msgstr "menu_sale_order_separator"
