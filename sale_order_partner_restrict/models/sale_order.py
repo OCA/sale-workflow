@@ -63,6 +63,12 @@ class SaleOrder(models.Model):
                 expression.AND([[("id", "=", order.partner_id.id)], domain])
             ):
                 raise ValidationError(
-                    _("The Customer %s is not available for this company (%s).")
-                    % (order.partner_id.name, order.company_id.name)
+                    _(
+                        "The Customer %(partner)s is not available for this "
+                        "company (%(company)s)."
+                    )
+                    % {
+                        "partner": order.partner_id.name,
+                        "company": order.company_id.name,
+                    }
                 )
