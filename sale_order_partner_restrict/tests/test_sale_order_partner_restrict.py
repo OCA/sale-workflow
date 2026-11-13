@@ -1,10 +1,10 @@
 from odoo.exceptions import ValidationError
 from odoo.tests import tagged
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
 @tagged("post_install", "-at_install")
-class TestSaleOrderPartnerRestrict(SavepointCase):
+class TestSaleOrderPartnerRestrict(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -48,7 +48,7 @@ class TestSaleOrderPartnerRestrict(SavepointCase):
 
     def _create_sale_order(self, partner):
         so = self.env["sale.order"].create(
-            {"partner_id": partner.id, "name": "/", "company_id": self.main_company.id}
+            {"partner_id": partner.id, "company_id": self.main_company.id}
         )
         return so
 
