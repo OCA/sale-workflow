@@ -1,0 +1,1 @@
+This module extends sale_order_line_final_price in other to take into account if the line is a delivery to always match price_final to price_unit, as it will not make sense to have a discount on delivery.
