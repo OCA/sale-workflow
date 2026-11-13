@@ -62,6 +62,7 @@ setuptools.setup(
         'odoo-addon-sale_order_end_user>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_general_discount>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_general_discount_triple>=16.0dev,<16.1dev',
+        'odoo-addon-sale_order_introduction_text>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_invoice_amount>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_invoicing_finished_task>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_invoicing_picking_filter>=16.0dev,<16.1dev',
