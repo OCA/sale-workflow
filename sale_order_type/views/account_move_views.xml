@@ -45,4 +45,16 @@
             </field>
         </field>
     </record>
+
+    <record id="sot_in_invoice_list" model="ir.ui.view">
+        <field name="name">account.in.invoice.list.sot</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_in_invoice_tree" />
+        <field name="arch" type="xml">
+            <!-- The sale type only applies to customer invoices -->
+            <field name="sale_type_id" position="attributes">
+                <attribute name="column_invisible">True</attribute>
+            </field>
+        </field>
+    </record>
 </odoo>
