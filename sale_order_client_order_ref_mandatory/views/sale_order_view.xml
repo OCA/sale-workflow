@@ -1,0 +1,70 @@
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field
+            name="name"
+        >sale.order.form (in sale_order_client_order_ref_mandatory)</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='client_order_ref']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//group[@name='sale_header']" position="before">
+                <group>
+                    <h2>
+                        <field
+                            name="client_order_ref"
+                            nolabel="1"
+                            placeholder="Enter the customer reference here"
+                        />
+                    </h2>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sales_order_filter" model="ir.ui.view">
+        <field
+            name="name"
+        >sale.order.list.select (in sale_order_client_order_ref_mandatory)</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="client_order_ref" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_quotation_tree" model="ir.ui.view">
+        <field
+            name="name"
+        >sale.order.list (in sale_order_client_order_ref_mandatory)</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='client_order_ref']" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="client_order_ref" optional="show" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_tree" model="ir.ui.view">
+        <field
+            name="name"
+        >sale.order.list (orders) (in sale_order_client_order_ref_mandatory)</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='client_order_ref']" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="client_order_ref" optional="show" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
