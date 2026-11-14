@@ -378,3 +378,17 @@ class TestSaleOrderType(BaseCommon):
         with Form(order) as sale_form:
             sale_form.type_id = sale_type_no_policy
         self.assertEqual(order.picking_policy, "one")
+
+    def test_vendor_bill_partner_keeps_accounting_date(self):
+        """Selecting the partner of a vendor bill keeps its accounting date"""
+        bill_form = Form(
+            self.env["account.move"].with_context(default_move_type="in_invoice")
+        )
+        bill_form.invoice_date = fields.Date.from_string("2019-01-01")
+        bill_form.date = fields.Date.from_string("2019-01-15")
+        bill_form.partner_id = self.partner
+        with bill_form.invoice_line_ids.new() as line_form:
+            line_form.product_id = self.product
+            line_form.price_unit = 10.0
+        bill = bill_form.save()
+        self.assertEqual(bill.date, fields.Date.from_string("2019-01-15"))
