@@ -47,6 +47,26 @@ class TestSaleOrder(BaseCommon):
                 line_form.product_uom_qty = 1
         cls.order = order_form.save()
 
+    def test_line_subtotal_with_discount(self):
+        """The subtotal of a line entered with a discount includes it, also for
+        users who do not see the units of measure"""
+        self.env.user.group_ids += self.env.ref(
+            "sale.group_discount_per_so_line"
+        ) + self.env.ref("product.group_product_pricelist")
+        self.assertFalse(self.env.user.has_group("uom.group_uom"))
+        pricelist = self.env["product.pricelist"].create({"name": "Pricelist"})
+        with Form(self.env["sale.order"]) as order_form:
+            order_form.partner_id = self.partner
+            order_form.pricelist_id = pricelist
+            with order_form.order_line.new() as line_form:
+                line_form.product_id = self.product
+                line_form.product_uom_qty = 10
+                line_form.price_unit = 100
+                line_form.discount = 10
+        order = order_form.save()
+        self.assertEqual(order.order_line.price_subtotal, 900)
+        self.assertEqual(order.amount_untaxed, 900)
+
     def test_onchange_secondary_uom(self):
         self.order.order_line.write(
             {"secondary_uom_id": self.secondary_unit.id, "secondary_uom_qty": 5}
