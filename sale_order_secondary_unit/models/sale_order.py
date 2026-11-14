@@ -22,13 +22,13 @@ class SaleOrderLine(models.Model):
     @api.depends("secondary_uom_qty", "secondary_uom_id")
     def _compute_product_uom_qty(self):
         res = super()._compute_product_uom_qty()
-        for line in self:
+        for line in self.filtered("secondary_uom_id"):
             line._compute_helper_target_field_qty()
         return res
 
     def _compute_product_uom_id(self):
         res = super()._compute_product_uom_id()
-        for line in self:
+        for line in self.filtered("secondary_uom_id"):
             line._onchange_helper_product_uom_for_secondary()
         return res
 
