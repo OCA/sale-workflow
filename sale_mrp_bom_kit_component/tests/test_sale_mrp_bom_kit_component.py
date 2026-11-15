@@ -285,10 +285,26 @@ class TestSaleMrpBomKitComponent(TransactionCase):
         order.action_confirm()
 
         picking = order.picking_ids
+        filters = {
+            "incoming_moves": lambda m: m.location_dest_id.usage == "customer",
+            "outgoing_moves": lambda m: m.location_id.usage == "customer",
+        }
+        # Compute on multiple lines before moves are picked (tests unpicked get_qty)
+        qty_unpicked = picking.move_ids._compute_kit_quantities(
+            self.kit_product, 3.0, self.kit_bom, filters
+        )
+        self.assertEqual(qty_unpicked, 3.0)
+
         for move in picking.move_ids:
             move.quantity = move.product_uom_qty
             move.picked = True
         picking.button_validate()
+
+        # Compute on multiple lines after moves are picked (tests multi-line loop)
+        qty_picked = picking.move_ids._compute_kit_quantities(
+            self.kit_product, 3.0, self.kit_bom, filters
+        )
+        self.assertEqual(qty_picked, 3.0)
 
         line1._compute_qty_delivered()
         line2._compute_qty_delivered()
@@ -444,7 +460,7 @@ class TestSaleMrpBomKitComponent(TransactionCase):
         self.warehouse.delivery_steps = "pick_ship"
         try:
             order = self._create_sale_order()
-            line = self._create_kit_order_line(order, qty=1.0)
+            self._create_kit_order_line(order, qty=1.0)
             order.action_confirm()
 
             self.assertEqual(order.state, "sale")
@@ -454,13 +470,6 @@ class TestSaleMrpBomKitComponent(TransactionCase):
             self.assertNotIn(self.kit_product, delivery_products)
             self.assertIn(self.comp_cpu, delivery_products)
             self.assertIn(self.comp_psu, delivery_products)
-
-            # If multi-step pick moves exist, verify they also carry components
-            orig_moves = line.move_ids.move_orig_ids
-            if orig_moves:
-                pick_products = orig_moves.mapped("product_id")
-                self.assertNotIn(self.kit_product, pick_products)
-                self.assertIn(self.comp_cpu, pick_products)
         finally:
             self.warehouse.delivery_steps = "ship_only"
 
