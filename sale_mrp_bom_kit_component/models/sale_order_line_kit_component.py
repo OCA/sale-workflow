@@ -24,7 +24,6 @@ class SaleOrderLineKitComponent(models.Model):
     )
     product_id = fields.Many2one(
         comodel_name="product.product",
-        string="Product",
         domain="[('type', '=', 'consu')]",
         required=True,
     )
