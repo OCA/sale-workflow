@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="sales_po_sale_order_custom" model="ir.ui.view">
         <field name="name">sale.order.sales.po.custom</field>

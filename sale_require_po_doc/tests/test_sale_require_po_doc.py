@@ -6,6 +6,12 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestSaleRequirePODoc(BaseCommon):
+    _test_user_groups = (
+        "sales_team.group_sale_manager",
+        "base.group_partner_manager",
+        "base.group_system",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
