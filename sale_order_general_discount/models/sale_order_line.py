@@ -1,16 +1,10 @@
 # Copyright 2018 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import api, fields, models
+from odoo import api, models
 
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
-
-    discount = fields.Float(
-        compute="_compute_discount",
-        store=True,
-        readonly=False,
-    )
 
     @api.depends("order_id", "order_id.general_discount")
     def _compute_discount(self):
