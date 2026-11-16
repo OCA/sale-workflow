@@ -93,6 +93,20 @@ writing the new count on the line does two things:
   none of them is left with a stale count and the sum still adds up
   exactly.
 
+Stock in secondary unit in the sales order catalog
+--------------------------------------------------
+
+The product catalog of a sale order also shows the stock on hand in the
+product's default sales secondary unit. It is only displayed when all of
+the following conditions are met:
+
+- The product has a default sales secondary unit defined.
+- That secondary unit is different from the product's inventory
+  secondary unit.
+- That secondary unit is of dependent type (independent units are
+  excluded).
+- The available quantity in secondary units is greater than zero.
+
 **Table of contents**
 
 .. contents::
@@ -178,6 +192,8 @@ Contributors
 - Carlos Dauden <carlos.dauden@tecnativa.com>
 - Sergio Teruel <sergio.teruel@tecnativa.com>
 - Tony Gu <tony@openerp.cn>
+- David Alonso <david.alonso@solvos.es>
+- Carlos García <carlos.garcia@solvos.es>
 
 Maintainers
 -----------

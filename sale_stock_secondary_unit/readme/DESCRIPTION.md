@@ -51,3 +51,14 @@ writing the new count on the line does two things:
   the corrected total is distributed across all of them proportionally to
   each move's current secondary-quantity share, so none of them is left with
   a stale count and the sum still adds up exactly.
+
+## Stock in secondary unit in the sales order catalog
+
+The product catalog of a sale order also shows the stock on hand in the
+product's default sales secondary unit. It is only displayed when all of the
+following conditions are met:
+- The product has a default sales secondary unit defined.
+- That secondary unit is different from the product's inventory secondary
+  unit.
+- That secondary unit is of dependent type (independent units are excluded).
+- The available quantity in secondary units is greater than zero.

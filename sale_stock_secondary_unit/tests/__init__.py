@@ -1,2 +1,3 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+from . import test_product_product
 from . import test_sale_stock_secondary_unit
