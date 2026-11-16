@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record model="ir.ui.view" id="view_sale_terms_template_search">
+    <record id="view_sale_terms_template_search" model="ir.ui.view">
         <field name="name">sale.terms_template.search</field>
         <field name="model">sale.terms_template</field>
         <field name="arch" type="xml">
@@ -10,7 +10,7 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="view_sale_terms_template_form">
+    <record id="view_sale_terms_template_form" model="ir.ui.view">
         <field name="name">sale.terms_template.form</field>
         <field name="model">sale.terms_template</field>
         <field name="arch" type="xml">
@@ -37,7 +37,7 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="view_sale_terms_template_tree">
+    <record id="view_sale_terms_template_tree" model="ir.ui.view">
         <field name="name">sale.terms_template.list</field>
         <field name="model">sale.terms_template</field>
         <field name="priority" eval="6" />
@@ -48,7 +48,7 @@
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="action_sale_terms_template">
+    <record id="action_sale_terms_template" model="ir.actions.act_window">
         <field name="name">Terms and conditions template</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.terms_template</field>
