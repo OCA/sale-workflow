@@ -21,13 +21,13 @@ Product customer info sale
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/19.0/product_customerinfo_sale
+    :target: https://github.com/OCA/sale-workflow/tree/20.0/product_customerinfo_sale
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-19-0/sale-workflow-19-0-product_customerinfo_sale
+    :target: https://translation.odoo-community.org/projects/sale-workflow-20-0/sale-workflow-20-0-product_customerinfo_sale
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=19.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=20.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -36,10 +36,10 @@ Based on product_customerinfo, this module loads in every sale order the
 customer code defined in the product and allows use the product codes
 and product name configured in each products in sale orders.
 
-If you use Advanced price rules with formulas to define your pricing,
-and choose that the price should be calculated from the partner prices
-in the product form, the quantity in the sales order will be proposed
-from the minimum quantity defined in the customerinfo.
+If a pricelist rule (Discount or Surcharge) computes the price from the
+partner prices in the product form, the sale order line takes the price
+of the customer. The quantity in the sales order will be proposed from
+the minimum quantity defined in the customerinfo.
 
 **Table of contents**
 
@@ -59,7 +59,7 @@ To use this module, you need:
 - When add order lines in sale quotation for a customer that has an
   specific name and code in the product, you can search that product
   with that customer name or code. Then, this values will be displayed
-  in product description.
+  as the product of the order line.
 
 |image2|
 
@@ -72,11 +72,11 @@ To use this module, you need:
 
 |image5|
 
-.. |image1| image:: https://raw.githubusercontent.com/OCA/sale-workflow/19.0/product_customerinfo_sale/static/description/configuration_customer.png
-.. |image2| image:: https://raw.githubusercontent.com/OCA/sale-workflow/19.0/product_customerinfo_sale/static/description/search_code.png
-.. |image3| image:: https://raw.githubusercontent.com/OCA/sale-workflow/19.0/product_customerinfo_sale/static/description/description_code.png
-.. |image4| image:: https://raw.githubusercontent.com/OCA/sale-workflow/19.0/product_customerinfo_sale/static/description/search_code_2.png
-.. |image5| image:: https://raw.githubusercontent.com/OCA/sale-workflow/19.0/product_customerinfo_sale/static/description/description_code_2.png
+.. |image1| image:: https://raw.githubusercontent.com/OCA/sale-workflow/20.0/product_customerinfo_sale/static/description/configuration_customer.png
+.. |image2| image:: https://raw.githubusercontent.com/OCA/sale-workflow/20.0/product_customerinfo_sale/static/description/search_code.png
+.. |image3| image:: https://raw.githubusercontent.com/OCA/sale-workflow/20.0/product_customerinfo_sale/static/description/description_code.png
+.. |image4| image:: https://raw.githubusercontent.com/OCA/sale-workflow/20.0/product_customerinfo_sale/static/description/search_code_2.png
+.. |image5| image:: https://raw.githubusercontent.com/OCA/sale-workflow/20.0/product_customerinfo_sale/static/description/description_code_2.png
 
 Known issues / Roadmap
 ======================
@@ -90,7 +90,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20product_customerinfo_sale%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20product_customerinfo_sale%0Aversion:%2020.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -130,6 +130,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/19.0/product_customerinfo_sale>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/20.0/product_customerinfo_sale>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

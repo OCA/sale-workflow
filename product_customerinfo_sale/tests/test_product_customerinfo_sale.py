@@ -8,6 +8,11 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestProductCustomerInfoSale(BaseCommon):
+    _test_user_groups = (
+        "sales_team.group_sale_salesman",
+        "product.group_product_pricelist",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -82,7 +87,6 @@ class TestProductCustomerInfoSale(BaseCommon):
         cls.pricelist_template = cls._create_pricelist(
             "Test Pricelist Template", cls.product_template.product_variant_ids[:1]
         )
-        cls.env.user.group_ids |= cls.env.ref("product.group_product_pricelist")
 
     @classmethod
     def _create_customer(cls, name):
@@ -121,7 +125,7 @@ class TestProductCustomerInfoSale(BaseCommon):
                 "pricelist_id": pricelist.id,
                 "applied_on": "0_product_variant",
                 "product_id": product.id,
-                "compute_price": "formula",
+                "compute_price": "discount",
                 "base": "partner",
             }
         )
@@ -134,7 +138,7 @@ class TestProductCustomerInfoSale(BaseCommon):
             line_form.product_id = self.product
         order = order_form.save()
         line = order.order_line
-        self.assertIn("00001", order.order_line.name)
+        self.assertIn("00001", order.order_line.label)
         self.assertEqual(
             line.product_customer_code,
             self.customerinfo.product_code,
@@ -210,4 +214,76 @@ class TestProductCustomerInfoSale(BaseCommon):
             line.product_customer_code,
             customerinfo.product_code,
             "Error: Customer product code was not passed to sale order line",
+        )
+
+    def _new_line_label(self, product):
+        order_form = Form(self.env["sale.order"])
+        order_form.partner_id = self.customer
+        with order_form.order_line.new() as line_form:
+            line_form.product_id = product
+        return order_form.save().order_line.label
+
+    def test_product_display_name_without_customerinfo(self):
+        product = (
+            self.env["product.product"]
+            .sudo()
+            .create({"name": "Product without customerinfo", "default_code": "INT-01"})
+        )
+        # A vendor price of the same partner does not count as customer info
+        self.supplierinfo_model.sudo().create(
+            {
+                "partner_id": self.customer.id,
+                "product_id": product.id,
+                "product_code": "V-01",
+            }
+        )
+        self.assertEqual(
+            self._new_line_label(product), "[INT-01] Product without customerinfo"
+        )
+
+    def test_product_display_name_with_customerinfo(self):
+        self.product.sudo().default_code = "INT-01"
+        self.supplierinfo_model.sudo().create(
+            {
+                "partner_id": self.customer.id,
+                "product_id": self.product.id,
+                "product_code": "V-01",
+            }
+        )
+        expected = "[00001] Test Product (Value 1)"
+        self.assertEqual(self._new_line_label(self.product), expected)
+        self.product.sudo().purchase_ok = False
+        self.assertEqual(self._new_line_label(self.product), expected)
+
+    def test_invoice_line_keeps_customer_code(self):
+        self.product.sudo().write({"default_code": "INT-01", "invoice_policy": "order"})
+        order_form = Form(self.env["sale.order"])
+        order_form.partner_id = self.customer
+        with order_form.order_line.new() as line_form:
+            line_form.product_id = self.product
+            line_form.name = "Blue widget"
+        order = order_form.save()
+        order.action_confirm()
+        invoice = order.sudo()._create_invoices()
+        self.assertEqual(
+            invoice.invoice_line_ids.label,
+            "[00001] Test Product\n[00001] Test Product (Value 1)\nBlue widget",
+        )
+        # Editing the label keeps the customer product out of the stored name
+        line = invoice.invoice_line_ids
+        line.label = line.label + " (edited)"
+        self.assertEqual(
+            line.name, "[00001] Test Product (Value 1)\nBlue widget (edited)"
+        )
+        # Only the customer product: nothing else is stored
+        line.label = "[00001] Test Product"
+        self.assertFalse(line.name)
+        self.assertEqual(line.label, "[00001] Test Product")
+        # A name that already starts with the customer product is kept as is
+        line.name = "[00001] Test Product\nNote"
+        self.assertEqual(line.label, "[00001] Test Product\nNote")
+        # Another partner without customer info gets the internal reference
+        invoice.partner_id = self._create_customer("customer2")
+        self.assertEqual(
+            line.label, "[INT-01] Test Product (Value 1)\n[00001] Test Product\nNote"
         )

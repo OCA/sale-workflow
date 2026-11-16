@@ -27,21 +27,25 @@ class SaleOrderLine(models.Model):
                 code = ""
             line.product_customer_code = code
 
-    def _compute_name(self):
-        """We need to override the method with product_id is set so that the product
-        code is not added and add custom code of customerinfo."""
-        empty_lines = self.filtered(lambda x: not x.product_id)
-        res = super(SaleOrderLine, empty_lines)._compute_name()
-        for item in self - empty_lines:
-            customerinfo = item.product_id._select_customerinfo(
-                partner=item.order_partner_id
-            )
-            if customerinfo.product_code:
-                # Avoid to put the standard internal reference
-                item = item.with_context(display_default_code=False)
-            super(SaleOrderLine, item)._compute_name()
-            if customerinfo.product_code:
-                item.name = f"[{customerinfo.product_code}] {item.name}"
+    def _get_product_display_name(self):
+        """Show the customer product code instead of the internal reference."""
+        self.ensure_one()
+        # Without partner_id the core does not show vendor codes and names
+        line = self.with_context(partner_id=False)
+        if not line.product_customer_code:
+            return super(SaleOrderLine, line)._get_product_display_name()
+        product = line.product_id.with_context(display_default_code=False)
+        return f"[{line.product_customer_code}] {product.display_name}"
+
+    def _prepare_invoice_line(self, **optional_values):
+        res = super()._prepare_invoice_line(**optional_values)
+        # The invoice label uses the plain product name: keep the customer code
+        if (
+            self.product_customer_code
+            and res.get("display_type") == "product"
+            and "name" not in optional_values
+        ):
+            res["name"] = self.label
         return res
 
     @api.onchange("product_id")

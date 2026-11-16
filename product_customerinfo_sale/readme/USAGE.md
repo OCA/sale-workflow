@@ -8,7 +8,7 @@ To use this module, you need:
 - When add order lines in sale quotation for a customer that has an
   specific name and code in the product, you can search that product
   with that customer name or code. Then, this values will be displayed
-  in product description.
+  as the product of the order line.
 
 ![](../static/description/search_code.png)
 

@@ -15,7 +15,7 @@
         <field name="priority" eval="16" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='order_line']/list//field[@name='product_template_id']"
+                expr="//field[@name='order_line']/list/column[@name='product_and_description']"
                 position="after"
             >
                 <field name="product_customer_code" optional="show" />
