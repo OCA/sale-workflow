@@ -13,12 +13,17 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   unreleased-deps:
     runs-on: ubuntu-latest
     name: Detect unreleased dependencies
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - run: |
           for reqfile in requirements.txt test-requirements.txt ; do
               if [ -f ${reqfile} ] ; then
@@ -33,19 +38,12 @@ jobs:
           done
   test:
     runs-on: ubuntu-22.04
-    container: ${{ matrix.container }}
+    container: ${{ matrix.container }} # zizmor: ignore[unpinned-images]
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false
       matrix:
         include:
-          - container: ghcr.io/oca/oca-ci/py3.10-odoo19.0:latest
-            include: "sale_fixed_discount"
-            name: Fixed discount (Odoo)
-          - container: ghcr.io/oca/oca-ci/py3.10-ocb19.0:latest
-            include: "sale_fixed_discount"
-            name: Fixed discount (OCB)
-            makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.10-odoo19.0:latest
             include: "sale_triple_discount"
             name: Triple discount (Odoo)
@@ -54,10 +52,10 @@ jobs:
             name: Triple discount (OCB)
             makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.10-odoo19.0:latest
-            exclude: "sale_fixed_discount,sale_triple_discount"
+            exclude: "sale_triple_discount"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.10-ocb19.0:latest
-            exclude: "sale_fixed_discount,sale_triple_discount"
+            exclude: "sale_triple_discount"
             name: test with OCB
             makepot: "true"
     services:
@@ -70,9 +68,9 @@ jobs:
         ports:
           - 5432:5432
     env:
-      INCLUDE: "${{ matrix.include }}"
-      EXCLUDE: "${{ matrix.exclude }}"
-      OCA_ENABLE_CHECKLOG_ODOO: "1"
+      "INCLUDE": "${{ matrix.include }}"
+      "EXCLUDE": "${{ matrix.exclude }}"
+      "OCA_ENABLE_CHECKLOG_ODOO": "1"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -98,5 +96,8 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
       - name: Update .pot files
-        run: oca_export_and_push_pot https://x-access-token:${{ secrets.GIT_PUSH_TOKEN }}@github.com/${{ github.repository }}
-        if: ${{ matrix.makepot == 'true' && github.event_name == 'push' && github.repository_owner == 'OCA' }}
+        run: oca_export_and_push_pot "https://x-access-token:${GIT_PUSH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
+        env:
+          GIT_PUSH_TOKEN: ${{ secrets.GIT_PUSH_TOKEN }}
+        if: matrix.makepot == 'true' && github.event_name == 'push' && github.repository_owner == 'OCA'
+
