@@ -13,12 +13,17 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   unreleased-deps:
     runs-on: ubuntu-latest
     name: Detect unreleased dependencies
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - run: |
           for reqfile in requirements.txt test-requirements.txt ; do
               if [ -f ${reqfile} ] ; then
@@ -33,7 +38,7 @@ jobs:
           done
   test:
     runs-on: ubuntu-22.04
-    container: ${{ matrix.container }}
+    container: ${{ matrix.container }} # zizmor: ignore[unpinned-images]
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false
@@ -47,7 +52,7 @@ jobs:
             name: Packaging group (OCB)
             makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.10-odoo18.0:latest
-            exclude: "sale_packaging_default,sale_order_product_recommendation_packaging_default,sale_order_line_final_price,sale_fixed_discount,sale_triple_discount,sale_order_general_discount_triple,account_invoice_fixed_discount,account_invoice_triple_discount"
+            exclude: "sale_packaging_default,sale_order_product_recommendation_packaging_default,sale_order_line_final_price,sale_triple_discount,sale_order_general_discount_triple,account_invoice_fixed_discount,account_invoice_triple_discount"
             name: Remaining without packaging (Odoo)
           - container: ghcr.io/oca/oca-ci/py3.10-ocb18.0:latest
             exclude: "sale_packaging_default,sale_order_product_recommendation_packaging_default,sale_order_line_final_price"
@@ -59,13 +64,6 @@ jobs:
           - container: ghcr.io/oca/oca-ci/py3.10-ocb18.0:latest
             include: "sale_packaging_default"
             name: Packaging default (OCB)
-            makepot: "true"
-          - container: ghcr.io/oca/oca-ci/py3.10-odoo18.0:latest
-            include: "sale_fixed_discount"
-            name: Fixed discount (Odoo)
-          - container: ghcr.io/oca/oca-ci/py3.10-ocb18.0:latest
-            include: "sale_fixed_discount"
-            name: Fixed discount (OCB)
             makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.10-odoo18.0:latest
             include: "sale_triple_discount"
@@ -82,11 +80,11 @@ jobs:
             name: General triple discount (OCB)
             makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.10-odoo18.0:latest
-            exclude: "sale_packaging_default,sale_order_product_recommendation_packaging_default,sale_order_line_final_price,sale_fixed_discount,sale_triple_discount,sale_order_general_discount_triple,account_invoice_fixed_discount,account_invoice_triple_discount"
-            name: Remaining without discounts (Odoo)
+            exclude: "sale_packaging_default,sale_order_product_recommendation_packaging_default,sale_order_line_final_price,sale_packaging_default,sale_triple_discount,sale_order_general_discount_triple"
+            name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.10-ocb18.0:latest
-            exclude: "sale_packaging_default,sale_order_product_recommendation_packaging_default,sale_order_line_final_price,sale_fixed_discount,sale_triple_discount,sale_order_general_discount_triple,account_invoice_fixed_discount,account_invoice_triple_discount"
-            name: Remaining without discounts (OCB)
+            exclude: "sale_packaging_default,sale_order_product_recommendation_packaging_default,sale_order_line_final_price,sale_packaging_default,sale_triple_discount,sale_order_general_discount_triple"
+            name: test with OCB
             makepot: "true"
     services:
       postgres:
@@ -98,11 +96,11 @@ jobs:
         ports:
           - 5432:5432
     env:
-      INCLUDE: "${{ matrix.include }}"
-      EXCLUDE: "${{ matrix.exclude }}"
-      OCA_ENABLE_CHECKLOG_ODOO: "1"
+      "INCLUDE": "${{ matrix.include }}"
+      "EXCLUDE": "${{ matrix.exclude }}"
+      "OCA_ENABLE_CHECKLOG_ODOO": "1"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - name: Install addons and dependencies
@@ -116,15 +114,18 @@ jobs:
       - name: Run tests
         run: oca_run_tests
       - name: Upload screenshots from JS tests
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: ${{ failure() }}
         with:
           name: Screenshots of failed JS tests - ${{ matrix.name }}${{ join(matrix.include) }}
           path: /tmp/odoo_tests/${{ env.PGDATABASE }}
           if-no-files-found: ignore
-      - uses: codecov/codecov-action@v4
+      - uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
       - name: Update .pot files
-        run: oca_export_and_push_pot https://x-access-token:${{ secrets.GIT_PUSH_TOKEN }}@github.com/${{ github.repository }}
-        if: ${{ matrix.makepot == 'true' && github.event_name == 'push' && github.repository_owner == 'OCA' }}
+        run: oca_export_and_push_pot "https://x-access-token:${GIT_PUSH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
+        env:
+          GIT_PUSH_TOKEN: ${{ secrets.GIT_PUSH_TOKEN }}
+        if: matrix.makepot == 'true' && github.event_name == 'push' && github.repository_owner == 'OCA'
+
