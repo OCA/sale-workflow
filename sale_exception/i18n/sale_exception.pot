@@ -252,6 +252,12 @@ msgid "The customer has a sale warning in his form"
 msgstr ""
 
 #. module: sale_exception
+#. odoo-python
+#: code:addons/sale_exception/models/sale_order.py:0
+msgid "The order was not confirmed because of these exceptions:"
+msgstr ""
+
+#. module: sale_exception
 #: model:exception.rule,description:sale_exception.exception_product_sale_warning
 msgid "The product has a warning in his form"
 msgstr ""
