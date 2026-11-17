@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-03 15:18+0000\n"
-"PO-Revision-Date: 2025-12-03 15:18+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,7 +15,6 @@ msgstr ""
 
 #. module: sale_product_identification
 #. odoo-python
-#: code:addons/sale_product_identification/models/product_template.py:0
 #: code:addons/sale_product_identification/models/res_partner_id_number.py:0
 msgid ""
 "\n"
@@ -43,12 +40,6 @@ msgid ""
 "              # result = order.amount_total < 500.0  # approve only when\n"
 "              #                                      # amount is below 500\n"
 "          "
-msgstr ""
-
-#. module: sale_product_identification
-#. odoo-python
-#: code:addons/sale_product_identification/models/sale_order.py:0
-msgid "%(order)s%(message)s"
 msgstr ""
 
 #. module: sale_product_identification
@@ -90,12 +81,6 @@ msgstr ""
 #. module: sale_product_identification
 #: model:ir.model,name:sale_product_identification.model_confirm_identification
 msgid "Confirm Identification Wizard"
-msgstr ""
-
-#. module: sale_product_identification
-#. odoo-python
-#: code:addons/sale_product_identification/models/sale_order.py:0
-msgid "Confirm identification"
 msgstr ""
 
 #. module: sale_product_identification
@@ -218,36 +203,6 @@ msgstr ""
 #. odoo-python
 #: code:addons/sale_product_identification/models/product_template.py:0
 msgid ""
-"Some identifications were detected that could not be validated. \n"
-"We recommend reviewing your settings and the data you entered to correct the problem. %(details)s"
-msgstr ""
-
-#. module: sale_product_identification
-#. odoo-python
-#: code:addons/sale_product_identification/models/sale_order.py:0
-msgid ""
-"The following identifications are required for partner, please verify.\n"
-" %(identifications)s"
-msgstr ""
-
-#. module: sale_product_identification
-#. odoo-python
-#: code:addons/sale_product_identification/models/sale_order.py:0
-msgid ""
-"The following identifications require verification, please validate before continuing:\n"
-" %(identifications)s"
-msgstr ""
-
-#. module: sale_product_identification
-#. odoo-python
-#: code:addons/sale_product_identification/models/product_template.py:0
-msgid ""
 "There are repeated categories in the identifications configuration, the quantities are shown below.\n"
 "%(categories)s"
-msgstr ""
-
-#. module: sale_product_identification
-#. odoo-python
-#: code:addons/sale_product_identification/models/product_template.py:0
-msgid " • %(category)s%(details)s"
 msgstr ""
