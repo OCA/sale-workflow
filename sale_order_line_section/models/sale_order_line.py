@@ -13,7 +13,6 @@ class SaleOrderLine(models.Model):
     # justified.
     section_id = fields.Many2one(
         comodel_name="sale.order.line",
-        string="Section",
         compute="_compute_section_id",
         compute_sudo=True,
         store=True,

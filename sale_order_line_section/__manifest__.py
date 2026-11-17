@@ -5,7 +5,7 @@
 {
     "name": "sale_order_line_section",
     "summary": "Section on sale order line",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Sale",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Camptocamp, Odoo Community Association (OCA)",

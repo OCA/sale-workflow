@@ -15,7 +15,8 @@ def pre_init_hook(env):
         return
 
     _logger.info("Create and initialize sale_order_line.section_id")
-    create_column(cr, "sale_order_line", "section_id", "INTEGER")
+    # create_column(cr, "sale_order_line", "section_id", "INTEGER")
+    create_column(cr, "sale_order_line", "section_id", "int4")
     cr.execute(
         """
         WITH ordered_lines AS (
