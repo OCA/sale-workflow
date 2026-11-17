@@ -835,6 +835,11 @@ msgid "Rating"
 msgstr "Valutazione"
 
 #. module: sale_planner_calendar
+#: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__reassign_wiz_id
 msgid "Reassign Wiz"
 msgstr "Procedura gudata riassegnazione"

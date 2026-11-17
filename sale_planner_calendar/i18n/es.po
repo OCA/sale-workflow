@@ -477,11 +477,15 @@ msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
 msgid ""
-"If the new end field is set, in addition to creating the recurring event assigned to the new commercial,\n"
-"                                a new recurring event will be created from the end date associated with the current commercial."
+"If the new end field is set, in addition to creating the recurring event "
+"assigned to the new commercial,\n"
+"                                a new recurring event will be created from "
+"the end date associated with the current commercial."
 msgstr ""
-"Si el campo nuevo fin esta establecido, ademas de crear el evento recurrente asignado al nuevo comercial,\n"
-"                                se creara un nuevo evento recurrente a partir de la fecha fin asociado al comercial actual."
+"Si el campo nuevo fin esta establecido, ademas de crear el evento recurrente "
+"asignado al nuevo comercial,\n"
+"                                se creara un nuevo evento recurrente a "
+"partir de la fecha fin asociado al comercial actual."
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
@@ -721,8 +725,8 @@ msgid ""
 "Open the form of a sale order created from a planner event instead of the "
 "product catalog."
 msgstr ""
-"Abrir el formulario del pedido de venta creado desde un evento del rutero en"
-" lugar del catálogo de productos."
+"Abrir el formulario del pedido de venta creado desde un evento del rutero en "
+"lugar del catálogo de productos."
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
@@ -834,6 +838,11 @@ msgstr "Productos"
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
 msgid "Rating"
 msgstr "Valoración"
+
+#. module: sale_planner_calendar
+#: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__rating_ids
+msgid "Ratings"
+msgstr ""
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__reassign_wiz_id
@@ -1000,8 +1009,7 @@ msgstr "Rutero: Desuscripción de documentos"
 #. module: sale_planner_calendar
 #: model:ir.actions.server,name:sale_planner_calendar.cron_update_dynamic_final_date_ir_actions_server
 msgid "Sale planner calendar: Update dynamic event final date"
-msgstr ""
-"Sale planner calendar: Actualizar fecha final de los eventos dinámicos"
+msgstr "Sale planner calendar: Actualizar fecha final de los eventos dinámicos"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__target_partner_id
@@ -1086,8 +1094,8 @@ msgstr "Establecer evento de rutero"
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.res_config_settings_view_form
 msgid ""
-"Show a warning message when duration is more than this time."
-"                                 Set 00:00 to disable warning."
+"Show a warning message when duration is more than this "
+"time.                                 Set 00:00 to disable warning."
 msgstr ""
 "Mostrar un mensaje de aviso cuando la duración sea mayor que este tiempo. "
 "Establecer 00:00 para desactivar aviso."
@@ -1140,8 +1148,7 @@ msgstr "Etiquetas"
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
 msgid ""
-"The changes will be applied to event records with new commercial user "
-"filled."
+"The changes will be applied to event records with new commercial user filled."
 msgstr ""
 "Los cambios se aplicarán a los eventos con el campo \"Nuevo comercial\" "
 "rellenado."
@@ -1169,8 +1176,7 @@ msgstr "Jueves"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.res_config_settings_view_form
-msgid ""
-"Time of the next day until which orders of the current day are assigned"
+msgid "Time of the next day until which orders of the current day are assigned"
 msgstr ""
 "Hora del día siguiente hasta la cual los pedidos del día actual serán "
 "asignados"
