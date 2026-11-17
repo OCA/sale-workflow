@@ -99,6 +99,7 @@ setuptools.setup(
         'odoo14-addon-sale_order_product_assortment',
         'odoo14-addon-sale_order_product_assortment_quick',
         'odoo14-addon-sale_order_qty_change_no_recompute',
+        'odoo14-addon-sale_order_qty_to_invoice_cancelled',
         'odoo14-addon-sale_order_report_without_price',
         'odoo14-addon-sale_order_revision',
         'odoo14-addon-sale_order_secondary_unit',

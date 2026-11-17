@@ -6,7 +6,7 @@
     "summary": "This module sets the sale order quantity to invoice to "
     "the quantity invoiced when the sale order is cancelled on lines with "
     "order as invoice_policy.",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale"],
