@@ -15,7 +15,6 @@ class SaleOrderBookingConfirm(models.TransientModel):
 
     order_id = fields.Many2one(
         "sale.order",
-        string="Order",
         index=True,
         required=True,
         readonly=True,
@@ -36,11 +35,11 @@ class SaleOrderBookingConfirm(models.TransientModel):
         portal_share = self.env["portal.share"]
 
         for booking in self.resource_booking_ids:
-            rec_ctx = dict(
-                active_id=booking.id,
-                active_ids=[booking.id],
-                active_model="resource.booking",
-            )
+            rec_ctx = {
+                "active_id": booking.id,
+                "active_ids": [booking.id],
+                "active_model": "resource.booking",
+            }
             fields_to_get = list(portal_share._fields)
             vals = portal_share.with_context(**rec_ctx).default_get(fields_to_get)
             vals.update(

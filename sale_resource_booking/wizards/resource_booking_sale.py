@@ -20,7 +20,6 @@ class ResourceBookingSale(models.TransientModel):
     )
     product_id = fields.Many2one(
         "product.product",
-        "Product",
         domain="[('resource_booking_type_id', '=', type_id)]",
         ondelete="cascade",
         required=True,
