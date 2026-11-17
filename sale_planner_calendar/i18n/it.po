@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-10-28 12:04+0000\n"
-"PO-Revision-Date: 2024-11-25 11:06+0000\n"
+"PO-Revision-Date: 2026-11-17 12:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 2026.11.2\n"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_kanban
@@ -174,7 +174,7 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
 msgid "Change hour"
-msgstr ""
+msgstr "Modifica ora"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__partner_city
@@ -309,7 +309,7 @@ msgstr "Scadenza"
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__invoice_date_due
 msgid "Due Date"
-msgstr ""
+msgstr "Data scadenza"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event_type__duration
@@ -355,7 +355,7 @@ msgstr "Conteggio totale eventi"
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_res_company__sale_planner_done_on_sale_confirm
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_res_config_settings__sale_planner_done_on_sale_confirm
 msgid "Event done when confirm sale"
-msgstr ""
+msgstr "Evento eseguito alla conferma della vendita"
 
 #. module: sale_planner_calendar
 #: model:ir.actions.server,name:sale_planner_calendar.action_sale_planner_calendar_summary_today
@@ -714,7 +714,7 @@ msgstr "Non pianificato"
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_res_company__sale_planner_open_order_form
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_res_config_settings__sale_planner_open_order_form
 msgid "Open new orders in the order form"
-msgstr ""
+msgstr "Apri nuovi ordini nella maschera dell'ordine"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.res_config_settings_view_form
@@ -722,6 +722,8 @@ msgid ""
 "Open the form of a sale order created from a planner event instead of the "
 "product catalog."
 msgstr ""
+"Apri il modulo di un ordine di vendita creato da un evento pianificato "
+"anziché dal catalogo prodotti."
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
@@ -822,12 +824,12 @@ msgstr "Venditore pianificatore"
 #. module: sale_planner_calendar
 #: model:ir.ui.menu,name:sale_planner_calendar.menu_sale_planner_calendar_product_variant
 msgid "Product Variants"
-msgstr ""
+msgstr "Varianti prodotto"
 
 #. module: sale_planner_calendar
 #: model:ir.ui.menu,name:sale_planner_calendar.menu_sale_planner_calendar_product_template
 msgid "Products"
-msgstr ""
+msgstr "Prodotti"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
@@ -837,7 +839,7 @@ msgstr "Valutazione"
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__rating_ids
 msgid "Ratings"
-msgstr ""
+msgstr "Valutazioni"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__reassign_wiz_id
@@ -937,7 +939,7 @@ msgstr "Procedura guidata calendario pianificatore vendite"
 #. module: sale_planner_calendar
 #: model:ir.actions.act_window,name:sale_planner_calendar.action_sale_planner_calendar_change_hour
 msgid "Sale planner calendar change hour"
-msgstr ""
+msgstr "Modifica ora calendario pianificazione vendite"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_change_hour_form
@@ -1078,6 +1080,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.res_config_settings_view_form
 msgid "Set event as done when related sale order is confirmed."
 msgstr ""
+"Imposta l'evento a concluso quando l'ordine di vendita relativo è confermato."
 
 #. module: sale_planner_calendar
 #: model:ir.actions.server,name:sale_planner_calendar.action_set_planner_calendar_event
@@ -1090,6 +1093,9 @@ msgid ""
 "Show a warning message when duration is more than this "
 "time.                                 Set 00:00 to disable warning."
 msgstr ""
+"Visualizza un messaggio di avviso quando la durata è superiore a questo "
+"tempo.                                Impostare 00:00 per disabilitare "
+"l'avviso."
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
