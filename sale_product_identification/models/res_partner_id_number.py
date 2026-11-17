@@ -5,7 +5,7 @@ from datetime import datetime
 
 import pytz
 
-from odoo import _, api, models
+from odoo import api, models
 from odoo.exceptions import ValidationError
 
 
@@ -32,16 +32,17 @@ class ResPartnerIdNumber(models.Model):
                 and x.category_id.id in diff_identification_ids
             )
             if identifications:
-                message += _("\n%(product)s\n%(categories)s") % {
-                    "product": product.name,
-                    "categories": "\n".join(
+                message += self.env._(
+                    "\n%(product)s\n%(categories)s",
+                    product=product.name,
+                    categories="\n".join(
                         identifications.mapped(
                             lambda x: f"\u2003\u2022\u2009"
                             f"{x.category_id.name}\u2009"
                             f"{f'({x.message})' if x.message else ''}"
                         )
                     ),
-                }
+                )
         return message
 
     def _identification_domain(self, **params):
@@ -96,7 +97,9 @@ class ResPartnerIdNumber(models.Model):
         identification_ids = params.get("compare_identification_ids", set())
         partner_id = params.get("partner_id", False)
         if not partner_id:
-            raise ValidationError(_("A client is required to verify identifications."))
+            raise ValidationError(
+                self.env._("A client is required to verify identifications.")
+            )
         domain = self._identification_domain(**{"partner_id": partner_id})
         partner_identification_ids = self.env["res.partner.id_category"]
         for id_number in self.env["res.partner.id_number"].search(domain):
