@@ -30,9 +30,24 @@ msgstr ""
 
 #. module: sale_product_identification
 #. odoo-python
-#: code:addons/sale_product_identification/models/sale_order.py:0
-msgid "%(order)s%(message)s"
-msgstr "%(order)s%(message)s"
+#: code:addons/sale_product_identification/models/product_template_id_category.py:0
+msgid ""
+"# Extra validation executed during identification checks.\n"
+"              # Leave this field empty or commented to skip the extra "
+"validation.\n"
+"              # Available variables:\n"
+"              # env: environment on which the action is triggered\n"
+"              # order: Current record of the sale.order\n"
+"              # time, datetime, dateutil, timezone: useful Python libraries\n"
+"              # float_compare: utility function to compare\n"
+"              #                floats based on specific precision\n"
+"              # result (bool): Set to True to approve the validation,\n"
+"              #                keep False to fail it.\n"
+"              # Example:\n"
+"              # result = order.amount_total < 500.0  # approve only when\n"
+"              #                                      # amount is below 500\n"
+"          "
+msgstr ""
 
 #. module: sale_product_identification
 #. odoo-python
@@ -43,12 +58,22 @@ msgstr "Il cliente è tenuto a verificare i documenti d'identità."
 #. module: sale_product_identification
 #: model:ir.model.fields,help:sale_product_identification.field_product_template_id_category__message
 msgid ""
-"Allows you to define a description of why this identification is being added.\n"
+"Allows you to define a description of why this identification is being "
+"added.\n"
 "Example: Asking the customer for identification"
 msgstr ""
 "Consente di definire una descrizione del motivo per cui viene aggiunto "
 "questo identificativo.\n"
 "Esempio: richiesta di identificazione al cliente"
+
+#. module: sale_product_identification
+#. odoo-python
+#: code:addons/sale_product_identification/models/product_template_id_category.py:0
+msgid ""
+"An error occurred while evaluating the expression for product %(product)s "
+"and identification category %(category)s: \n"
+"\n"
+msgstr ""
 
 #. module: sale_product_identification
 #: model_terms:ir.ui.view,arch_db:sale_product_identification.confirm_identification_view
@@ -71,12 +96,6 @@ msgid "Confirm Identification Wizard"
 msgstr "Procedura guidata conferma identificazione"
 
 #. module: sale_product_identification
-#. odoo-python
-#: code:addons/sale_product_identification/models/sale_order.py:0
-msgid "Confirm identification"
-msgstr "Conferma identificazione"
-
-#. module: sale_product_identification
 #: model_terms:ir.ui.view,arch_db:sale_product_identification.confirm_identification_view
 msgid "Confirm identifications"
 msgstr "Conferma identificazioni"
@@ -94,6 +113,13 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: sale_product_identification
+#: model:ir.model.fields,help:sale_product_identification.field_product_template_id_category__value
+msgid ""
+"Define the Python expression to perform an extra check. Leave this field "
+"blank if you do not want this check. Note that it will always be evaluated."
+msgstr ""
+
+#. module: sale_product_identification
 #: model:ir.model.fields,help:sale_product_identification.field_product_template_id_category__is_mandatory
 msgid "Defines whether identification is mandatory."
 msgstr "Definisce quando è obbligatoria l'identificazione."
@@ -103,6 +129,11 @@ msgstr "Definisce quando è obbligatoria l'identificazione."
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
+
+#. module: sale_product_identification
+#: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__value
+msgid "Extra validation"
+msgstr ""
 
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__id
@@ -182,32 +213,34 @@ msgstr "Ordine di vendita"
 
 #. module: sale_product_identification
 #. odoo-python
-#: code:addons/sale_product_identification/models/sale_order.py:0
-msgid ""
-"The following identifications are required for partner, please verify.\n"
-" %(identifications)s"
-msgstr ""
-"L'identificazione seguente è richiesta per il partner, verificare.\n"
-" %(identifications)s"
-
-#. module: sale_product_identification
-#. odoo-python
-#: code:addons/sale_product_identification/models/sale_order.py:0
-msgid ""
-"The following identifications require verification, please validate before continuing:\n"
-" %(identifications)s"
-msgstr ""
-"L'identificazione seguente richiede la verifica, verificare prima di "
-"continuare:\n"
-" %(identifications)s"
-
-#. module: sale_product_identification
-#. odoo-python
 #: code:addons/sale_product_identification/models/product_template.py:0
 msgid ""
-"There are repeated categories in the identifications configuration, the quantities are shown below.\n"
+"There are repeated categories in the identifications configuration, the "
+"quantities are shown below.\n"
 "%(categories)s"
 msgstr ""
 "Ci sono delle categorie ripetute nella configurazione delle identificazioni, "
 "le quantità sono visualizzate in calce.\n"
 "%(categories)s"
+
+#~ msgid "%(order)s%(message)s"
+#~ msgstr "%(order)s%(message)s"
+
+#~ msgid "Confirm identification"
+#~ msgstr "Conferma identificazione"
+
+#~ msgid ""
+#~ "The following identifications are required for partner, please verify.\n"
+#~ " %(identifications)s"
+#~ msgstr ""
+#~ "L'identificazione seguente è richiesta per il partner, verificare.\n"
+#~ " %(identifications)s"
+
+#~ msgid ""
+#~ "The following identifications require verification, please validate "
+#~ "before continuing:\n"
+#~ " %(identifications)s"
+#~ msgstr ""
+#~ "L'identificazione seguente richiede la verifica, verificare prima di "
+#~ "continuare:\n"
+#~ " %(identifications)s"
