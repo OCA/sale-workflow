@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_line_smartbutton_list_view" model="ir.ui.view">
+        <field name="name">sale.order.line.smartbutton.list</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <list
+                string="Sale Order Lines"
+                editable="bottom"
+                decoration-muted="display_type"
+            >
+                <field name="currency_id" column_invisible="True" />
+                <field name="display_type" column_invisible="True" />
+                <field name="state" column_invisible="True" />
+                <field name="order_locked" column_invisible="True" />
+                <field name="order_id" readonly="1" />
+                <field name="order_partner_id" string="Customer" readonly="1" />
+                <field
+                    name="product_id"
+                    readonly="not product_updatable"
+                    required="not display_type and not is_downpayment"
+                />
+                <field name="name" readonly="state == 'cancel' or order_locked" />
+                <field
+                    name="product_uom_qty"
+                    readonly="is_downpayment or state == 'cancel' or order_locked"
+                />
+                <field
+                    name="product_uom_id"
+                    groups="uom.group_uom"
+                    readonly="product_uom_readonly or order_locked"
+                />
+                <field
+                    name="price_unit"
+                    readonly="qty_invoiced &gt; 0 or order_locked"
+                />
+                <field
+                    name="discount"
+                    groups="sale.group_discount_per_so_line"
+                    readonly="qty_invoiced &gt; 0 or order_locked"
+                />
+                <field
+                    name="tax_ids"
+                    widget="many2many_tags"
+                    readonly="qty_invoiced &gt; 0 or is_downpayment or order_locked"
+                />
+                <field name="price_subtotal" sum="Total" readonly="1" />
+            </list>
+        </field>
+    </record>
+
+    <record id="sale_order_line_smartbutton_form_view" model="ir.ui.view">
+        <field name="name">sale.order.line.smartbutton.form</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <form string="Sale Order Line">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="order_id" readonly="1" />
+                            <field
+                                name="order_partner_id"
+                                string="Customer"
+                                readonly="1"
+                            />
+                            <field name="state" invisible="1" />
+                            <field name="order_locked" invisible="1" />
+                            <field name="currency_id" invisible="1" />
+                            <field
+                                name="product_id"
+                                readonly="not product_updatable"
+                                required="not display_type and not is_downpayment"
+                            />
+                            <field
+                                name="name"
+                                readonly="state == 'cancel' or order_locked"
+                            />
+                        </group>
+                        <group>
+                            <field
+                                name="product_uom_qty"
+                                readonly="is_downpayment or state == 'cancel' or order_locked"
+                            />
+                            <field
+                                name="product_uom_id"
+                                groups="uom.group_uom"
+                                readonly="product_uom_readonly or order_locked"
+                            />
+                            <field
+                                name="price_unit"
+                                readonly="qty_invoiced &gt; 0 or order_locked"
+                            />
+                            <field
+                                name="discount"
+                                groups="sale.group_discount_per_so_line"
+                                readonly="qty_invoiced &gt; 0 or order_locked"
+                            />
+                            <field
+                                name="tax_ids"
+                                widget="many2many_tags"
+                                readonly="qty_invoiced &gt; 0 or is_downpayment or order_locked"
+                            />
+                            <field name="price_subtotal" readonly="1" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_order_line_smartbutton_search_view" model="ir.ui.view">
+        <field name="name">sale.order.line.smartbutton.search</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <search string="Sale Order Lines">
+                <field name="order_id" />
+                <field name="order_partner_id" string="Customer" />
+                <field name="product_id" />
+                <filter
+                    string="Sections/Notes"
+                    name="filter_display_type"
+                    domain="[('display_type', '!=', False)]"
+                />
+                <separator />
+                <filter
+                    string="Draft/Sent"
+                    name="filter_draft_sent"
+                    domain="[('state', 'in', ('draft', 'sent'))]"
+                />
+                <filter
+                    string="Sales Order"
+                    name="filter_sale"
+                    domain="[('state', '=', 'sale')]"
+                />
+                <filter
+                    string="Cancelled"
+                    name="filter_cancel"
+                    domain="[('state', '=', 'cancel')]"
+                />
+                <group name="group_by">
+                    <filter
+                        string="Order"
+                        name="groupby_order_id"
+                        context="{'group_by': 'order_id'}"
+                    />
+                    <filter
+                        string="Customer"
+                        name="groupby_order_partner_id"
+                        context="{'group_by': 'order_partner_id'}"
+                    />
+                    <filter
+                        string="Product"
+                        name="groupby_product_id"
+                        context="{'group_by': 'product_id'}"
+                    />
+                    <filter
+                        string="Status"
+                        name="groupby_state"
+                        context="{'group_by': 'state'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="sale_order_line_action" model="ir.actions.act_window">
+        <field name="name">Order Lines</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('display_type', '=', False)]</field>
+        <field name="context">{'search_default_filter_display_type': 0}</field>
+        <field name="search_view_id" ref="sale_order_line_smartbutton_search_view" />
+        <field
+            name="view_ids"
+            eval="[(5, 0, 0),
+                      (0, 0, {'view_mode': 'list', 'view_id': ref('sale_order_line_smartbutton_list_view')}),
+                      (0, 0, {'view_mode': 'form', 'view_id': ref('sale_order_line_smartbutton_form_view')})]"
+        />
+    </record>
+</odoo>
