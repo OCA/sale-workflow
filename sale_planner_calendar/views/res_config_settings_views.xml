@@ -46,6 +46,12 @@
                     >
                         <field name="sale_planner_done_on_sale_confirm" />
                     </setting>
+                    <setting
+                        id="sale_planner_open_order_form"
+                        help="Open the form of a sale order created from a planner event instead of the product catalog."
+                    >
+                        <field name="sale_planner_open_order_form" />
+                    </setting>
                 </block>
             </app>
         </field>

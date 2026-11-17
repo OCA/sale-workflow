@@ -341,3 +341,21 @@ class TestSalePlannerCalendar(AccountTestInvoicingCommon):
         so_action = sale_planned_event.action_open_sale_order()
         order = self.SaleOrder.browse(so_action["context"]["order_id"])
         self.assertEqual(order.partner_id, self.partner_3.commercial_partner_id)
+
+    def test_open_new_sale_order_form(self):
+        """A new order from an event opens in the catalog by default, or in
+        the order form when the company setting asks for it.
+        """
+        event = self.planned_events.filtered(
+            lambda p: p.target_partner_id == self.partner_3
+        )[:1]
+        action = event.action_open_sale_order()
+        self.assertEqual(action["res_model"], "product.product")
+        self.assertEqual(action["context"]["order_id"], event.sale_ids.id)
+        event.sale_ids.unlink()
+        self.env.company.sale_planner_open_order_form = True
+        action = event.action_open_sale_order()
+        self.assertEqual(action["res_model"], "sale.order")
+        self.assertEqual(action["res_id"], event.sale_ids.id)
+        self.assertEqual([view[1] for view in action["views"]], ["form"])
+        self.assertEqual(event.sale_ids.partner_id, self.partner_3)
