@@ -20,7 +20,9 @@ class TestSaleStockReferenceByLine(TestSaleStockCommon):
         cls.sale_model = cls.env["sale.order"]
         cls.order_line_model = cls.env["sale.order.line"]
         # Warehouse
-        cls.warehouse_id = cls.env.ref("stock.warehouse0")
+        cls.warehouse_id = cls.env["stock.warehouse"].search(
+            [("company_id", "=", cls.env.company.id)], limit=1
+        )
         # Create product category
         cls.product_ctg = cls._create_product_category()
         # Create Products
