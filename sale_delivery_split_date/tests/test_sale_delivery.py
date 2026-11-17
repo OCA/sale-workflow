@@ -3,6 +3,7 @@
 
 import datetime
 
+from odoo import fields
 from odoo.tools import format_date
 
 from odoo.addons.sale_stock.tests.common import TestSaleStockCommon
@@ -22,7 +23,7 @@ class TestSaleDelivery(TestSaleStockCommon):
             name="test_product2",
             is_storable=True,
         )
-        today = datetime.datetime(2020, 1, 1)
+        today = fields.Datetime.to_datetime("2020-01-01 00:00:00")
         cls.dt1 = today + datetime.timedelta(days=9)
         cls.dt2 = today + datetime.timedelta(days=10)
         cls.date_sooner = cls.dt1
