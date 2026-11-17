@@ -46,6 +46,14 @@ class TestSaleOrderType(BaseCommon):
         cls.journal = cls.env["account.journal"].search(
             [("type", "=", "sale")], limit=1
         )
+        if not cls.journal:
+            cls.journal = cls.env["account.journal"].create(
+                {
+                    "name": "Customer Invoices",
+                    "code": "INV",
+                    "type": "sale",
+                }
+            )
         cls.default_sale_type_id = cls.env["sale.order.type"].search([], limit=1)
         cls.default_sale_type_id.sequence_id = False
         cls.warehouse = cls.env["stock.warehouse"].create(
@@ -54,6 +62,17 @@ class TestSaleOrderType(BaseCommon):
         cls.product = cls.env["product.product"].create(
             {"type": "service", "invoice_policy": "order", "name": "Test product"}
         )
+        # Fresh test databases have no chart of accounts: provide the minimum
+        # accounts required to create invoices.
+        cls.env.company.income_account_id = cls.account
+        cls.a_receivable = cls.account_model.create(
+            {
+                "code": "RECV",
+                "name": "Receivable",
+                "account_type": "asset_receivable",
+            }
+        )
+        cls.partner.property_account_receivable_id = cls.a_receivable
         cls.immediate_payment = cls.env.ref("account.account_payment_term_immediate")
         cls.sale_pricelist = cls.env["product.pricelist"].create(
             {"name": "Public Pricelist", "sequence": 1}
