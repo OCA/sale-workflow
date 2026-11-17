@@ -83,19 +83,20 @@ class TestSaleFixedDiscount(BaseCommon):
                 self.assertEqual(line2.discount, 5.0)
                 self.assertEqual(line2.price_subtotal, 95.0)
 
-        #
         self.assertEqual(self.sale.amount_total, 224.25)
 
     def test_02_fixed_discount_mismatch(self):
         """Tests fixed discount mismatch."""
-        with self.assertRaisesRegex(
-            ValidationError,
-            "Please correct one of the discounts",
+        with (
+            self.assertRaisesRegex(
+                ValidationError,
+                "Please correct one of the discounts",
+            ),
+            Form(self.sale) as sale_order,
+            sale_order.order_line.edit(0) as line,
         ):
-            with Form(self.sale) as sale_order:
-                with sale_order.order_line.edit(0) as line:
-                    line.discount_fixed = 20.0
-                    line.discount = 5.0
+            line.discount_fixed = 20.0
+            line.discount = 5.0
 
     def test_03_fixed_discount_invoice(self):
         """Test discount_fixed value propagation to account.move.
