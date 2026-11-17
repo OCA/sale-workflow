@@ -1,3 +1,4 @@
+from odoo import Command
 from odoo.tests.common import TransactionCase
 
 
@@ -30,18 +31,14 @@ class TestSaleOrder(TransactionCase):
                 "company_id": cls.company.id,
                 "currency_id": cls.currency_usd.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": cls.product1.id,
                             "product_uom_qty": 2,
                             "price_unit": 50.0,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": cls.product2.id,
                             "product_uom_qty": 1,
