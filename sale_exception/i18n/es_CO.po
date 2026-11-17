@@ -11,8 +11,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
 "PO-Revision-Date: 2018-03-02 10:22+0000\n"
-"Last-Translator: JOSE ALEJANDRO ECHEVERRI VALENCIA <josealejandroeche@gmail."
-"com>, 2018\n"
+"Last-Translator: JOSE ALEJANDRO ECHEVERRI VALENCIA "
+"<josealejandroeche@gmail.com>, 2018\n"
 "Language-Team: Spanish (Colombia) (https://www.transifex.com/oca/teams/23907/"
 "es_CO/)\n"
 "Language: es_CO\n"
@@ -257,6 +257,12 @@ msgstr ""
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.exception_partner_sale_warning
 msgid "The customer has a sale warning in his form"
+msgstr ""
+
+#. module: sale_exception
+#. odoo-python
+#: code:addons/sale_exception/models/sale_order.py:0
+msgid "The order was not confirmed because of these exceptions:"
 msgstr ""
 
 #. module: sale_exception
