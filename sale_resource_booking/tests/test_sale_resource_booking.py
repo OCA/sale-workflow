@@ -190,7 +190,9 @@ class SaleResourceBookingsCase(BaseCommon):
         self.assertEqual(booking.state, "pending")
         # Schedule it
         with Form(booking) as booking_f:
-            booking_f.start = datetime(2021, 3, 1, 10)
+            # Odoo stocke les dates en UTC naïf : un fuseau ici décalerait
+            # la valeur écrite et fausserait le test.
+            booking_f.start = datetime(2021, 3, 1, 10)  # noqa: DTZ001
         self.assertEqual(booking.state, "scheduled")
         # Try to confirm it, but it still gets as scheduled
         booking.action_confirm()
