@@ -58,6 +58,12 @@ class ResConfigSettings(models.TransientModel):
         help="Show the Sort section in the product catalog search panel. When "
         "hidden, the sort default still applies.",
     )
+    catalog_show_price_mode = fields.Boolean(
+        string="Show the catalog price",
+        config_parameter="sale_product_catalog_extended.catalog_show_price_mode",
+        help="Show the Price section in the product catalog search panel. When "
+        "hidden, the price default still applies.",
+    )
     catalog_show_history_partner = fields.Boolean(
         string="Show the catalog history partner",
         config_parameter="sale_product_catalog_extended.catalog_show_history_partner",
