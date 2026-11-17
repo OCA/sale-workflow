@@ -2,6 +2,7 @@
 #   (http://www.forgeflow.com)
 # Copyright 2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+from odoo.fields import Command
 from odoo.tests import Form
 
 from odoo.addons.base.tests.common import BaseCommon
@@ -150,6 +151,23 @@ class TestProductCustomerInfoSale(BaseCommon):
             100.0,
             "Error: Unit price was not passed to the sale order line",
         )
+
+    def test_product_customerinfo_display_customer_code_disabled(self):
+        self.product.default_code = "INTERNAL"
+        order = (
+            self.env["sale.order"]
+            .with_context(display_customer_code=False)
+            .create(
+                {
+                    "partner_id": self.customer.id,
+                    "order_line": [Command.create({"product_id": self.product.id})],
+                }
+            )
+        )
+        line = order.order_line
+        self.assertTrue(line.name.startswith("[INTERNAL] "))
+        self.assertNotIn("[00001]", line.name)
+        self.assertEqual(line.product_customer_code, "00001")
 
     def test_product_customerinfo_variant(self):
         order_form = Form(self.env["sale.order"])

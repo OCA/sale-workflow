@@ -72,6 +72,11 @@ To use this module, you need:
 
 |image5|
 
+- To keep the standard description, with the product's internal
+  reference, set the ``display_customer_code`` context key to False when
+  computing the sale order line description. The customer product code
+  stays available on the line.
+
 .. |image1| image:: https://raw.githubusercontent.com/OCA/sale-workflow/19.0/product_customerinfo_sale/static/description/configuration_customer.png
 .. |image2| image:: https://raw.githubusercontent.com/OCA/sale-workflow/19.0/product_customerinfo_sale/static/description/search_code.png
 .. |image3| image:: https://raw.githubusercontent.com/OCA/sale-workflow/19.0/product_customerinfo_sale/static/description/description_code.png

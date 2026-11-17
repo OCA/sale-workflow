@@ -29,7 +29,12 @@ class SaleOrderLine(models.Model):
 
     def _compute_name(self):
         """We need to override the method with product_id is set so that the product
-        code is not added and add custom code of customerinfo."""
+        code is not added and add custom code of customerinfo.
+
+        Set the ``display_customer_code`` context key to False to keep the
+        standard description, with the internal reference."""
+        if not self.env.context.get("display_customer_code", True):
+            return super()._compute_name()
         empty_lines = self.filtered(lambda x: not x.product_id)
         res = super(SaleOrderLine, empty_lines)._compute_name()
         for item in self - empty_lines:
