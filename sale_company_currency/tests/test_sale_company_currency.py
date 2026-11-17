@@ -1,3 +1,4 @@
+from odoo import Command
 from odoo.tests.common import TransactionCase
 
 
@@ -30,18 +31,14 @@ class TestSaleOrder(TransactionCase):
                 "company_id": cls.company.id,
                 "currency_id": cls.currency_usd.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": cls.product1.id,
                             "product_uom_qty": 2,
                             "price_unit": 50.0,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": cls.product2.id,
                             "product_uom_qty": 1,
@@ -70,7 +67,7 @@ class TestSaleOrder(TransactionCase):
         self.sale_order._compute_amount_company()
         amount_total_curr_rounded = round(self.sale_order.amount_total_curr, 2)
         amount_total_converted_rounded = round(
-            self.sale_order.amount_total * self.sale_order.currency_rate, 2
+            self.sale_order.amount_total / self.sale_order.currency_rate, 2
         )
         self.assertEqual(
             amount_total_curr_rounded,

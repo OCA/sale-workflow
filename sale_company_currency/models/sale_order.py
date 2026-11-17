@@ -8,7 +8,7 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     company_currency_id = fields.Many2one(
-        "res.currency",
+        comodel_name="res.currency",
         related="company_id.currency_id",
         string="Company Currency",
         readonly=True,
@@ -25,9 +25,8 @@ class SaleOrder(models.Model):
 
     @api.depends("amount_total", "currency_rate")
     def _compute_amount_company(self):
-        for order in self:
-            if order.currency_id.id == order.company_id.currency_id.id:
-                to_amount = order.amount_total
-            else:
-                to_amount = order.amount_total * order.currency_rate
-            order.amount_total_curr = to_amount
+        for rec in self:
+            to_amount = (
+                rec.amount_total / rec.currency_rate if rec.currency_rate else 0.0
+            )
+            rec.amount_total_curr = to_amount
