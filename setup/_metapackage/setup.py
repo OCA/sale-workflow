@@ -158,6 +158,7 @@ setuptools.setup(
         'odoo-addon-sale_timesheet_project_manual>=16.0dev,<16.1dev',
         'odoo-addon-sale_transaction_form_link>=16.0dev,<16.1dev',
         'odoo-addon-sale_triple_discount>=16.0dev,<16.1dev',
+        'odoo-addon-sale_validity>=16.0dev,<16.1dev',
         'odoo-addon-sale_validity_auto_cancel>=16.0dev,<16.1dev',
         'odoo-addon-sale_wishlist>=16.0dev,<16.1dev',
         'odoo-addon-sales_team_security>=16.0dev,<16.1dev',
