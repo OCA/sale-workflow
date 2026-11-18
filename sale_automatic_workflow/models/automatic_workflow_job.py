@@ -173,6 +173,7 @@ class AutomaticWorkflowJob(models.Model):
         return
 
     def _register_payment_invoice(self, invoice):
+        self = self.with_company(invoice.company_id)
         # Never create a payment that settles nothing. Such a payment leaves
         # the invoice exactly as it found it, so the invoice keeps matching
         # the payment filter and a new payment is created on every run of the
