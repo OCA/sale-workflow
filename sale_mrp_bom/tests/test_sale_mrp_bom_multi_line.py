@@ -38,6 +38,7 @@ class TestSalePhantomBomProcurementMultiLine(TransactionCase):
         )
         if not cls.mto_route.active:
             cls.mto_route.action_unarchive()
+        cls.mto_route.product_selectable = True
 
         # Products
         cls.categ = cls.env["product.category"].create({"name": "Test Category"})

@@ -16,6 +16,9 @@ class TestSaleMrpLink(TransactionCase):
         route_manufacture = cls.warehouse.manufacture_pull_id.route_id.id
         cls.warehouse.mto_pull_id.route_id.active = True
         route_mto = cls.warehouse.mto_pull_id.route_id.id
+        cls.env["stock.route"].browse(
+            [route_manufacture, route_mto]
+        ).product_selectable = True
         cls.product_a = cls._create_product(
             "Product A", route_ids=[(6, 0, [route_manufacture, route_mto])]
         )
