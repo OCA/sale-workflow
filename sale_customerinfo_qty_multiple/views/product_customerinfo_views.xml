@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Aures Tic Consultors S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="product_customerinfo_form_view" model="ir.ui.view">
+        <field name="model">product.customerinfo</field>
+        <field
+            name="inherit_id"
+            ref="product_customerinfo.product_customerinfo_form_view"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='min_qty']/.." position="after">
+                <label for="sale_qty_multiple" />
+                <div class="o_row">
+                    <field name="sale_qty_multiple" class="oe_inline" />
+                    <field
+                        name="sale_qty_multiple_policy"
+                        class="oe_inline"
+                        invisible="not sale_qty_multiple"
+                    />
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_customerinfo_tree_view" model="ir.ui.view">
+        <field name="model">product.customerinfo</field>
+        <field
+            name="inherit_id"
+            ref="product_customerinfo.product_customerinfo_tree_view"
+        />
+        <field name="arch" type="xml">
+            <field name="min_qty" position="after">
+                <field name="sale_qty_multiple" optional="show" />
+                <field
+                    name="sale_qty_multiple_policy"
+                    optional="hide"
+                    invisible="not sale_qty_multiple"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

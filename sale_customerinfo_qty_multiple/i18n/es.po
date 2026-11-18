@@ -1,0 +1,132 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_customerinfo_qty_multiple
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 11:33+0000\n"
+"PO-Revision-Date: 2026-11-18 11:33+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: sale_customerinfo_qty_multiple
+#. odoo-python
+#: code:addons/sale_customerinfo_qty_multiple/models/sale_order_line.py:0
+msgid ""
+"%(product)s: the customer buys it in multiples of %(multiple)s %(uom)s."
+msgstr "%(product)s: el cliente lo compra en múltiplos de %(multiple)s %(uom)s."
+
+#. module: sale_customerinfo_qty_multiple
+#. odoo-python
+#: code:addons/sale_customerinfo_qty_multiple/models/sale_order_line.py:0
+msgid ""
+"%(product)s: the customer buys it in multiples of %(multiple)s %(uom)s; "
+"%(ordered)s ordered, %(adjusted)s set."
+msgstr "%(product)s: el cliente lo compra en múltiplos de %(multiple)s %(uom)s; pedido %(ordered)s, se deja en %(adjusted)s."
+
+#. module: sale_customerinfo_qty_multiple
+#: model:ir.model.fields,field_description:sale_customerinfo_qty_multiple.field_sale_order_line__customer_qty_multiple
+msgid "Customer Multiple"
+msgstr "Múltiplo del cliente"
+
+#. module: sale_customerinfo_qty_multiple
+#: model:ir.model,name:sale_customerinfo_qty_multiple.model_product_customerinfo
+msgid "Customer Pricelist"
+msgstr "Tarifa de cliente"
+
+#. module: sale_customerinfo_qty_multiple
+#: model:ir.model.fields,field_description:sale_customerinfo_qty_multiple.field_sale_order_line__customer_qty_multiple_policy
+msgid "Customer Qty Multiple Policy"
+msgstr "Política de múltiplo del cliente"
+
+#. module: sale_customerinfo_qty_multiple
+#: model:ir.model.fields,field_description:sale_customerinfo_qty_multiple.field_sale_order_line__is_not_customer_qty_multiple
+msgid "Is Not Customer Qty Multiple"
+msgstr "No es múltiplo del cliente"
+
+#. module: sale_customerinfo_qty_multiple
+#: model:ir.model.fields.selection,name:sale_customerinfo_qty_multiple.selection__product_customerinfo__sale_qty_multiple_policy__warning
+#: model:ir.model.fields.selection,name:sale_customerinfo_qty_multiple.selection__sale_order_line__customer_qty_multiple_policy__warning
+msgid "Only warn"
+msgstr "Solo avisar"
+
+#. module: sale_customerinfo_qty_multiple
+#: model:ir.model.fields,help:sale_customerinfo_qty_multiple.field_product_customerinfo__sale_qty_multiple
+msgid ""
+"Quantities sold to this customer must be a multiple of this one, in the unit"
+" of measure of the product. Leave it at 0 for no restriction."
+msgstr "Las cantidades que se venden a este cliente tienen que ser múltiplo de esta, en la unidad de medida del artículo. Con 0 no hay restricción."
+
+#. module: sale_customerinfo_qty_multiple
+#. odoo-python
+#: code:addons/sale_customerinfo_qty_multiple/models/sale_order_line.py:0
+msgid "Quantity adjusted"
+msgstr "Cantidad ajustada"
+
+#. module: sale_customerinfo_qty_multiple
+#. odoo-python
+#: code:addons/sale_customerinfo_qty_multiple/models/sale_order_line.py:0
+msgid "Quantity not a multiple"
+msgstr "Cantidad no múltiplo"
+
+#. module: sale_customerinfo_qty_multiple
+#: model:ir.model.fields.selection,name:sale_customerinfo_qty_multiple.selection__product_customerinfo__sale_qty_multiple_policy__down
+#: model:ir.model.fields.selection,name:sale_customerinfo_qty_multiple.selection__sale_order_line__customer_qty_multiple_policy__down
+msgid "Round down"
+msgstr "Redondear hacia abajo"
+
+#. module: sale_customerinfo_qty_multiple
+#: model:ir.model.fields.selection,name:sale_customerinfo_qty_multiple.selection__product_customerinfo__sale_qty_multiple_policy__nearest
+#: model:ir.model.fields.selection,name:sale_customerinfo_qty_multiple.selection__sale_order_line__customer_qty_multiple_policy__nearest
+msgid "Round to the nearest"
+msgstr "Redondear al más próximo"
+
+#. module: sale_customerinfo_qty_multiple
+#: model:ir.model.fields.selection,name:sale_customerinfo_qty_multiple.selection__product_customerinfo__sale_qty_multiple_policy__up
+#: model:ir.model.fields.selection,name:sale_customerinfo_qty_multiple.selection__sale_order_line__customer_qty_multiple_policy__up
+msgid "Round up"
+msgstr "Redondear hacia arriba"
+
+#. module: sale_customerinfo_qty_multiple
+#: model:ir.model.fields,field_description:sale_customerinfo_qty_multiple.field_product_customerinfo__sale_qty_multiple
+msgid "Sale Multiple"
+msgstr "Múltiplo de venta"
+
+#. module: sale_customerinfo_qty_multiple
+#: model:ir.model,name:sale_customerinfo_qty_multiple.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_customerinfo_qty_multiple
+#: model:ir.model.fields,help:sale_customerinfo_qty_multiple.field_sale_order_line__customer_qty_multiple
+msgid ""
+"The customer buys this product in multiples of this quantity, in the unit of"
+" measure of the product."
+msgstr "El cliente compra este artículo en múltiplos de esta cantidad, en la unidad de medida del artículo."
+
+#. module: sale_customerinfo_qty_multiple
+#: model:ir.model.fields,help:sale_customerinfo_qty_multiple.field_product_customerinfo__sale_qty_multiple_policy
+msgid ""
+"What to do with a sale order line whose quantity is not a multiple: round it"
+" down (e.g. 63 with a multiple of 50 becomes 50), round it up (it becomes "
+"100), round it to the nearest multiple (halves go up: 74 becomes 50 and 75 "
+"becomes 100; never below one multiple: 20 becomes 50) or keep it and warn "
+"the user."
+msgstr ""
+"Qué hacer con una línea de pedido cuya cantidad no es múltiplo: redondear "
+"hacia abajo (63 con un múltiplo de 50 pasa a 50), redondear hacia arriba "
+"(pasa a 100), redondear al más próximo (las mitades suben: 74 pasa a 50 y 75"
+" a 100; nunca por debajo de un múltiplo: 20 pasa a 50) o dejarla y avisar al"
+" usuario."
+
+#. module: sale_customerinfo_qty_multiple
+#: model:ir.model.fields,field_description:sale_customerinfo_qty_multiple.field_product_customerinfo__sale_qty_multiple_policy
+msgid "When Not a Multiple"
+msgstr "Si no es múltiplo"
