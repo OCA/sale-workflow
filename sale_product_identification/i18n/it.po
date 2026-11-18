@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-10-02 17:04+0000\n"
+"PO-Revision-Date: 2026-11-18 12:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 2026.11.2\n"
 
 #. module: sale_product_identification
 #. odoo-python
@@ -48,6 +48,24 @@ msgid ""
 "              #                                      # amount is below 500\n"
 "          "
 msgstr ""
+"# Validazione aggiuntiva eseguita durante i controlli di identificazione. \n"
+"              # Lasciare questo campo vuoto o commentato per saltare la "
+"validazione aggiuntiva. \n"
+"              # Variabili disponibili:\n"
+"              # env: ambiente in cui viene attivata l'azione\n"
+"              # order: record corrente di sale.order\n"
+"              # time, datetime, dateutil, timezone: librerie Python utili\n"
+"              # float_compare: funzione di utilità per confrontare\n"
+"              #                valori in virgola mobile (float) basandosi su "
+"una precisione specifica\n"
+"              # result (bool): impostare su True per approvare la "
+"validazione,\n"
+"              #                mantenere False per non approvarla. \n"
+"              # Esempio:\n"
+"              # result = order.amount_total < 500.0  # approva solo quando\n"
+"              #                                      # l'importo è inferiore "
+"a 500\n"
+"          "
 
 #. module: sale_product_identification
 #. odoo-python
@@ -74,6 +92,9 @@ msgid ""
 "and identification category %(category)s: \n"
 "\n"
 msgstr ""
+"Si è verificato un errore durante la valutazione dell'espressione per il "
+"prodotto %(product)s e la categoria di identificazione %(category)s: \n"
+"\n"
 
 #. module: sale_product_identification
 #: model_terms:ir.ui.view,arch_db:sale_product_identification.confirm_identification_view
@@ -118,6 +139,9 @@ msgid ""
 "Define the Python expression to perform an extra check. Leave this field "
 "blank if you do not want this check. Note that it will always be evaluated."
 msgstr ""
+"Definire l'espressione Python per eseguire un controllo aggiuntivo. Lasciare "
+"vuoto questo campo se si desidera effettuare tale controllo. Tenere presente "
+"che l'espressione verrà sempre valutata."
 
 #. module: sale_product_identification
 #: model:ir.model.fields,help:sale_product_identification.field_product_template_id_category__is_mandatory
@@ -133,7 +157,7 @@ msgstr "Nome visualizzato"
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__value
 msgid "Extra validation"
-msgstr ""
+msgstr "Validazione aggiuntiva"
 
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__id
