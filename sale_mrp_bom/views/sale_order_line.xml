@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="sale_order_line_tree" model="ir.ui.view">
         <field name="name">sale_mrp_bom.sale.order.line.tree</field>

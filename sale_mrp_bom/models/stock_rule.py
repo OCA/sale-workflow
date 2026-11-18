@@ -41,15 +41,17 @@ class StockRule(models.Model):
 
             bom_kit = (
                 sale_line.bom_id.filtered(
-                    lambda bm, pr=procurement: bm.type == "phantom"
-                    and (
-                        # If BoM has product_id, match the procurement's product_id
-                        (bm.product_id and bm.product_id == pr.product_id)
-                        or
-                        # Otherwise (if BoM has no product_id), match the template_id
-                        (
-                            not bm.product_id
-                            and bm.product_tmpl_id == pr.product_id.product_tmpl_id
+                    lambda bm, pr=procurement: (
+                        bm.type == "phantom"
+                        and (
+                            # If BoM has product_id, match the procurement's product_id
+                            (bm.product_id and bm.product_id == pr.product_id)
+                            or
+                            # Otherwise (if BoM has no product_id), match the template_id
+                            (
+                                not bm.product_id
+                                and bm.product_tmpl_id == pr.product_id.product_tmpl_id
+                            )
                         )
                     )
                 )
