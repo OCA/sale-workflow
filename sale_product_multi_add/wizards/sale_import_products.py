@@ -40,7 +40,6 @@ class SaleImportProducts(models.TransientModel):
                 "product_id": item.product_id.id,
                 "product_uom_qty": item.quantity,
                 "product_uom_id": item.product_id.uom_id.id,
-                "price_unit": item.product_id.list_price,
             }
         )
         line_values = sale_line._convert_to_write(sale_line._cache)
