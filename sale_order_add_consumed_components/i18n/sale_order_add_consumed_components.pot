@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_add_consumed_components
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_add_consumed_components
+#: model:ir.model.fields,field_description:sale_order_add_consumed_components.field_sale_order_line__is_mrp_component_line
+msgid "Added from MO Component"
+msgstr ""
+
+#. module: sale_order_add_consumed_components
+#: model:product.template,name:sale_order_add_consumed_components.product_product_component_1_product_template
+msgid "Component 1"
+msgstr ""
+
+#. module: sale_order_add_consumed_components
+#: model:product.template,name:sale_order_add_consumed_components.product_product_component_2_product_template
+msgid "Component 2"
+msgstr ""
+
+#. module: sale_order_add_consumed_components
+#: model:product.template,name:sale_order_add_consumed_components.product_product_finished_product_template
+msgid "Finished Product"
+msgstr ""
+
+#. module: sale_order_add_consumed_components
+#: model:ir.model,name:sale_order_add_consumed_components.model_mrp_production
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: sale_order_add_consumed_components
+#: model:ir.model,name:sale_order_add_consumed_components.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
