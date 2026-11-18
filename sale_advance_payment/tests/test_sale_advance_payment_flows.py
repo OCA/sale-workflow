@@ -121,3 +121,58 @@ class TestSaleAdvancePaymentFlows(AccountTestInvoicingCommon):
             lambda p: p.payment_type == "outbound"
         )
         self.assertEqual(refund.payment_method_line_id.payment_type, "outbound")
+
+    def _reconciled_payment_moves(self, invoice):
+        term_lines = invoice.line_ids.filtered(
+            lambda line: line.display_type == "payment_term"
+        )
+        return term_lines.matched_credit_ids.credit_move_id.move_id
+
+    def _create_two_invoices(self):
+        order_1, order_2 = self._create_order(), self._create_order()
+        pay_1, pay_2 = self._advance(order_1), self._advance(order_2)
+        return (
+            (order_1._create_invoices(), pay_1),
+            (order_2._create_invoices(), pay_2),
+        )
+
+    def _assert_own_advance(self, invoice, payment):
+        self.assertEqual(self._reconciled_payment_moves(invoice), payment.move_id)
+        self.assertAlmostEqual(invoice.amount_residual, 50.0)
+
+    def test_batch_post_from_list_reconciles_own_advance(self):
+        (inv_1, pay_1), (inv_2, pay_2) = self._create_two_invoices()
+        self.env["validate.account.move"].with_context(
+            active_model="account.move", active_ids=(inv_1 | inv_2).ids
+        ).create({}).validate_move()
+        self._assert_own_advance(inv_1, pay_1)
+        self._assert_own_advance(inv_2, pay_2)
+
+    def test_action_post_on_several_invoices(self):
+        (inv_1, pay_1), (inv_2, pay_2) = self._create_two_invoices()
+        (inv_1 | inv_2).action_post()
+        self._assert_own_advance(inv_1, pay_1)
+        self._assert_own_advance(inv_2, pay_2)
+
+    def test_grouped_invoice_reconciles_all_advances(self):
+        order_1, order_2 = self._create_order(), self._create_order()
+        pay_1, pay_2 = self._advance(order_1), self._advance(order_2)
+        invoice = (order_1 | order_2)._create_invoices()
+        self.assertEqual(len(invoice), 1)
+        invoice.action_post()
+        self.assertEqual(
+            self._reconciled_payment_moves(invoice), pay_1.move_id | pay_2.move_id
+        )
+        self.assertAlmostEqual(invoice.amount_residual, 100.0)
+
+    def test_advance_bigger_than_invoice(self):
+        order = self._create_order()
+        payment = self._advance(order)
+        invoice = order._create_invoices()
+        invoice.invoice_line_ids.price_unit = 40.0
+        invoice.action_post()
+        self.assertTrue(invoice.currency_id.is_zero(invoice.amount_residual))
+        payment_line = payment.move_id.line_ids.filtered(
+            lambda line: line.account_id.account_type == "asset_receivable"
+        )
+        self.assertAlmostEqual(payment_line.amount_residual, -10.0)
