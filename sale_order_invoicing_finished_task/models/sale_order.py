@@ -1,0 +1,67 @@
+# Copyright 2017 Tecnativa - Sergio Teruel
+# Copyright 2017 Tecnativa - Carlos Dauden
+# Copyright 2025 Tecnativa - Víctor Martínez
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+from odoo import api, fields, models
+
+
+class SaleOrderLine(models.Model):
+    _inherit = "sale.order.line"
+
+    task_ids = fields.One2many(
+        comodel_name="project.task",
+        inverse_name="sale_line_id",
+        string="Tasks",
+    )
+
+    @api.depends("task_ids.invoiceable")
+    def _compute_invoice_status(self):
+        res = super()._compute_invoice_status()
+        for item in self.filtered(lambda x: x.task_ids and x.invoice_status != "no"):
+            if not all(
+                t.invoiceable for t in item.task_ids if t.invoicing_finished_task
+            ):
+                item.invoice_status = "no"
+        return res
+
+    @api.depends("task_ids.invoiceable")
+    def _compute_qty_to_invoice(self):
+        lines = self.filtered(
+            lambda x: (
+                x.product_id.type == "service"
+                and x.product_id.invoicing_finished_task
+                and x.product_id.service_tracking
+                in ["task_global_project", "task_in_project"]
+                and not all(x.task_ids.mapped("invoiceable"))
+            )
+        )
+        if lines:
+            lines.update({"qty_to_invoice": 0.0})
+        return super(SaleOrderLine, self - lines)._compute_qty_to_invoice()
+
+    def _timesheet_compute_delivered_quantity_domain(self):
+        vals = super()._timesheet_compute_delivered_quantity_domain()
+        vals = (
+            ["|", ("amount", "<=", 0.0)]
+            + vals
+            + [
+                # don't update the qty on sale order lines which are not
+                # with a product invoiced on ordered qty +
+                # invoice_finished task = True
+                "|",
+                ("so_line.product_id.invoice_policy", "=", "delivery"),
+                ("so_line.product_id.invoicing_finished_task", "=", False),
+            ]
+        )
+        return vals
+
+    @api.depends(
+        "qty_delivered_method",
+        "analytic_line_ids.so_line",
+        "analytic_line_ids.unit_amount",
+        "analytic_line_ids.product_uom_id",
+        "task_ids.invoiceable",
+    )
+    def _compute_qty_delivered(self):
+        return super()._compute_qty_delivered()
