@@ -54,6 +54,25 @@ class SaleOrder(models.Model):
             return self._popup_exceptions()
         return super().action_confirm()
 
+    def _register_hook(self):
+        ModelClass = self.env.registry["sale.order"]
+
+        original_action_confirm = ModelClass.action_confirm
+
+        def patched_action_confirm(self):
+            if self.detect_exceptions():
+                if not self.env.company.sale_exception_show_popup:
+                    return
+                return self._popup_exceptions()
+            original_func = patched_action_confirm.origin
+            return original_func(self)
+
+        patched_action_confirm.origin = original_action_confirm
+
+        ModelClass.action_confirm = patched_action_confirm
+
+        return super()._register_hook()
+
     def action_draft(self):
         res = super().action_draft()
         orders = self.filtered("ignore_exception")
