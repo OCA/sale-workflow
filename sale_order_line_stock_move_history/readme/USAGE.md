@@ -1,0 +1,3 @@
+- Navigate to Sales.
+- Create or open a sale order.
+- On each sale order line, next to the 'Delivered' field, you will find a button to view the stock moves history for the product in that sale order.

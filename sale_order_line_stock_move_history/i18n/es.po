@@ -1,0 +1,57 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_line_stock_move_history
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-08 09:17+0000\n"
+"PO-Revision-Date: 2025-07-08 09:17+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_line_stock_move_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_stock_move_history.stock_move_line_history
+msgid "Done By"
+msgstr "Realizado por"
+
+#. module: sale_order_line_stock_move_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_stock_move_history.stock_move_line_history
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: sale_order_line_stock_move_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_stock_move_history.stock_move_line_history
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: sale_order_line_stock_move_history
+#: model:ir.model,name:sale_order_line_stock_move_history.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_order_line_stock_move_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_stock_move_history.stock_move_line_history
+msgid "Stock Move History"
+msgstr "Historial de movimientos de stock"
+
+#. module: sale_order_line_stock_move_history
+#. odoo-python
+#: code:addons/sale_order_line_stock_move_history/models/sale_order_line.py:0
+msgid "Stock Moves History for %s"
+msgstr "Historial de movimientos de stock para %s"
+
+#. module: sale_order_line_stock_move_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_stock_move_history.stock_move_line_history
+msgid "Unit"
+msgstr "Unidad"
+
+#. module: sale_order_line_stock_move_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_stock_move_history.view_order_form_inherit_stock_moves
+msgid "View Stock Moves History"
+msgstr "Ver historial de movimientos de stock"
