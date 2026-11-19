@@ -399,3 +399,31 @@ class TestSaleStock(SaleCommon, DeliveryCommon, TestStockCommon):
             2,
             "The first picking should be re-used",
         )
+
+    def test_06_manual_deliveries_to_other_address_share_picking(self):
+        """Test deliveries to the same other address and date share a picking.
+
+        The address chosen in the wizard is set on the picking and on its
+        moves, so the second delivery finds the picking of the first one.
+        """
+        address = self.env["res.partner"].create(
+            {
+                "name": "Other delivery address",
+                "parent_id": self.partner.id,
+                "type": "delivery",
+            }
+        )
+        order = self._create_order(qty=10)
+        order.action_confirm()
+        today = datetime.now().date()
+        for _i in range(2):
+            wizard = self._manual_delivery_wizard(
+                order, {"partner_id": address.id, "date_planned": today}
+            )
+            wizard.line_ids.write({"quantity": 2.0})
+            wizard.confirm()
+        picking = order.picking_ids
+        self.assertEqual(len(picking), 1)
+        self.assertEqual(picking.partner_id, address)
+        self.assertEqual(picking.move_ids.partner_id, address)
+        self.assertEqual(sum(picking.move_ids.mapped("product_uom_qty")), 4.0)

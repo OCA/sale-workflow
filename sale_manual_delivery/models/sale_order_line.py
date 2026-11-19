@@ -88,12 +88,17 @@ class SaleOrderLine(models.Model):
         return res
 
     def _prepare_procurement_values(self):
-        # Overload to handle manual delivery date planned and route
+        # Overload to handle manual delivery address, date planned and route
         # This method ultimately prepares stock.move vals as its result is sent
         # to StockRule._get_stock_move_values.
         # Note: sale_manual_delivery is expected to be a manual.delivery record
         res = super()._prepare_procurement_values()
         if manual_delivery := self.env.context.get("sale_manual_delivery"):
+            if partner := manual_delivery.partner_id:
+                # The moves take their address from these values and the
+                # picking search filters on it: without this, a second
+                # delivery to the same address would get a new picking.
+                res["partner_id"] = partner.id
             if date := manual_delivery.date_planned:
                 res["date_planned"] = date
             if route := manual_delivery.route_id:
