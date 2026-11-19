@@ -1,0 +1,1 @@
+This module adds a company-level option to automatically cancel purchase orders generated from sales orders (through Dropship or MTO rules) when the corresponding sales order is canceled.

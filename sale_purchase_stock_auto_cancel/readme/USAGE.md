@@ -1,0 +1,6 @@
+- Go to `Sales > Configuration > Settings`.
+- Search and enable the option `POs Auto Cancelation`.
+- Create a sale order and add a line with a product that uses the MTO or Dropship route.
+- Confirm the sale order.
+- A new purchase order is created.
+- Cancel the sales order. The purchase order will be canceled automatically as well.
