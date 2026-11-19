@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Jarsa
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <template id="report_delivery_document" inherit_id="stock.report_delivery_document">
+        <xpath expr="//div[@name='div_outgoing_address']" position="inside">
+            <div t-if="o.delivery_address_text" name="delivery_address_text">
+                <strong>Delivery Address (Free Text)</strong>
+                <div t-field="o.delivery_address_text" />
+            </div>
+        </xpath>
+    </template>
+    <template id="report_picking" inherit_id="stock.report_picking">
+        <xpath expr="//div[@name='div_outgoing_address']" position="inside">
+            <div t-if="o.delivery_address_text" name="delivery_address_text">
+                <strong>Delivery Address (Free Text)</strong>
+                <div t-field="o.delivery_address_text" />
+            </div>
+        </xpath>
+    </template>
+</odoo>
