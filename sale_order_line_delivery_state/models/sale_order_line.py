@@ -33,9 +33,7 @@ class SaleOrderLine(models.Model):
         :returns: boolean
         """
         self.ensure_one()
-        precision = self.env["decimal.precision"].precision_get(
-            "Product Unit of Measure"
-        )
+        precision = self.env["decimal.precision"].precision_get("Product Unit")
         return (
             float_compare(
                 self.qty_delivered, self.product_uom_qty, precision_digits=precision
@@ -51,9 +49,7 @@ class SaleOrderLine(models.Model):
         :returns: boolean
         """
         self.ensure_one()
-        precision = self.env["decimal.precision"].precision_get(
-            "Product Unit of Measure"
-        )
+        precision = self.env["decimal.precision"].precision_get("Product Unit")
         return not float_is_zero(self.qty_delivered, precision_digits=precision)
 
     @api.depends("qty_delivered", "state", "force_delivery_state")
