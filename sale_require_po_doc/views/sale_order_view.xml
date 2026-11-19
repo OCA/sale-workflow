@@ -4,7 +4,10 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <field name="client_order_ref" position="after">
+            <xpath
+                expr="//group[@name='sales_person']/field[@name='client_order_ref']"
+                position="after"
+            >
                 <field name="customer_need_po" readonly="1" />
                 <field name="sale_doc" readonly="1" />
                 <field
@@ -15,7 +18,7 @@
                     invisible="not sale_doc and not sale_document_option"
                     name="sale_document_note"
                 />
-            </field>
+            </xpath>
         </field>
     </record>
 </odoo>
