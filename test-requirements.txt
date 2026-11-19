@@ -1,0 +1,1 @@
+odoo-addon-account_invoice_start_end_dates @ git+https://github.com/OCA/account-closing@refs/pull/400/head#subdirectory=account_invoice_start_end_dates
