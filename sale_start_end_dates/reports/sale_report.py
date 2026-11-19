@@ -12,14 +12,16 @@ class SaleReport(models.Model):
     end_date = fields.Date(readonly=True)
     number_of_days = fields.Integer(readonly=True)
 
-    def _select_additional_fields(self):
-        res = super()._select_additional_fields()
-        res["start_date"] = "l.start_date"
-        res["end_date"] = "l.end_date"
-        res["number_of_days"] = "l.number_of_days"
-        return res
+    def _select_dict(self, table):
+        return super()._select_dict(table) | {
+            "start_date": table.start_date,
+            "end_date": table.end_date,
+            "number_of_days": table.number_of_days,
+        }
 
-    def _group_by_sale(self):
-        sql = super()._group_by_sale()
-        sql = f"{sql}, l.start_date, l.end_date, l.number_of_days"
-        return sql
+    def _groupby_list(self, table):
+        return super()._groupby_list(table) + [
+            table.start_date,
+            table.end_date,
+            table.number_of_days,
+        ]

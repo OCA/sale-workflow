@@ -3,6 +3,7 @@
 
 import datetime
 
+from odoo import fields
 from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
 
@@ -29,7 +30,7 @@ class TestSaleStartEndDates(TransactionCase):
                 "list_price": 2400,
             }
         )
-        cls.default_start_date = datetime.datetime.now()
+        cls.default_start_date = fields.Date.today()
         cls.default_end_date = cls.default_start_date + datetime.timedelta(days=9)
         cls.so = cls.env["sale.order"].create(
             {
@@ -84,6 +85,15 @@ class TestSaleStartEndDates(TransactionCase):
         )
         self.assertFalse(new_line.start_date)
         self.assertFalse(new_line.end_date)
+
+    def test_sale_report_dates(self):
+        self.env.flush_all()
+        report = self.env["sale.report"].search(
+            [("order_reference", "=", f"sale.order,{self.so.id}")]
+        )
+        self.assertEqual(report.start_date, self.default_start_date)
+        self.assertEqual(report.end_date, self.default_end_date)
+        self.assertEqual(report.number_of_days, 10)
 
     def test_compute_number_of_days(self):
         self.assertEqual(self.order_line.number_of_days, 10)

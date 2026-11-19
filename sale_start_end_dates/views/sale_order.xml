@@ -33,7 +33,7 @@
                 <field name="must_have_dates" invisible="1" />
             </xpath>
             <xpath
-                expr="//field[@name='order_line']/list/field[@name='name']"
+                expr="//field[@name='order_line']/list/column[@name='product_and_description']"
                 position="after"
             >
                 <field
