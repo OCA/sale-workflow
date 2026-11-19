@@ -20,7 +20,7 @@ class SaleOrderLine(models.Model):
         readonly=True,
     )
     discount1 = fields.Float(
-        string="Discount 1 (%)",
+        string="Disc1 %",
         digits="Discount",
         compute="_compute_discount1",
         store=True,
