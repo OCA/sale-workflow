@@ -1,0 +1,118 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_payment_state
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-03 16:06+0000\n"
+"PO-Revision-Date: 2026-11-03 16:06+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: sale_order_payment_state
+#: model:ir.model.fields,field_description:sale_order_payment_state.field_sale_order__invoice_amount_residual
+msgid "Amount Due"
+msgstr "Verschuldigd bedrag"
+
+#. module: sale_order_payment_state
+#: model:ir.model.fields,field_description:sale_order_payment_state.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Schermnaam"
+
+#. module: sale_order_payment_state
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_state.view_sales_order_filter
+msgid "Fully Invoiced & Paid"
+msgstr "Volledig gefactureerd & betaald"
+
+#. module: sale_order_payment_state
+#: model:ir.model.fields,field_description:sale_order_payment_state.field_sale_order__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_order_payment_state
+#: model:ir.model.fields.selection,name:sale_order_payment_state.selection__sale_order__invoice_payment_state__in_payment
+msgid "In Payment"
+msgstr "In betaling"
+
+#. module: sale_order_payment_state
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_state.view_sales_order_filter
+msgid "Invoiced but Unpaid"
+msgstr "Gefactureerd maar onbetaald"
+
+#. module: sale_order_payment_state
+#: model:ir.model.fields.selection,name:sale_order_payment_state.selection__sale_order__invoice_payment_state__no_invoice
+msgid "No Invoice"
+msgstr "Geen factuur"
+
+#. module: sale_order_payment_state
+#: model:ir.model.fields.selection,name:sale_order_payment_state.selection__sale_order__invoice_payment_state__not_paid
+msgid "Not Paid"
+msgstr "Niet betaald"
+
+#. module: sale_order_payment_state
+#: model:ir.model.fields,help:sale_order_payment_state.field_sale_order__invoice_amount_residual
+msgid ""
+"Open amount of the posted customer invoices minus the open amount of the "
+"posted credit notes of this order."
+msgstr ""
+"Openstaand bedrag van de geboekte klantfacturen min het openstaande bedrag "
+"van de geboekte creditnota's van deze order."
+
+#. module: sale_order_payment_state
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_state.view_sales_order_filter
+msgid ""
+"Orders that are fully invoiced, without draft invoices, and whose invoices "
+"are all paid"
+msgstr ""
+"Orders die volledig gefactureerd zijn, zonder conceptfacturen, en waarvan "
+"alle facturen betaald zijn"
+
+#. module: sale_order_payment_state
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_state.view_sales_order_filter
+msgid "Orders with posted invoices that still have an open amount"
+msgstr "Orders met geboekte facturen die nog een openstaand bedrag hebben"
+
+#. module: sale_order_payment_state
+#: model:ir.model.fields.selection,name:sale_order_payment_state.selection__sale_order__invoice_payment_state__paid
+msgid "Paid"
+msgstr "Betaald"
+
+#. module: sale_order_payment_state
+#: model:ir.model.fields.selection,name:sale_order_payment_state.selection__sale_order__invoice_payment_state__partial
+msgid "Partially Paid"
+msgstr "Gedeeltelijk betaald"
+
+#. module: sale_order_payment_state
+#: model:ir.model.fields,field_description:sale_order_payment_state.field_sale_order__invoice_payment_state
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_state.view_sales_order_filter
+msgid "Payment Status"
+msgstr "Status betaling"
+
+#. module: sale_order_payment_state
+#: model:ir.model.fields,help:sale_order_payment_state.field_sale_order__invoice_payment_state
+msgid ""
+"Payment status of the posted customer invoices and credit notes of this "
+"order. Draft invoices and fully reversed invoices are ignored. It does not "
+"tell whether the order is fully invoiced: check the Invoice Status for that."
+msgstr ""
+"Betaalstatus van de geboekte klantfacturen en creditnota's van deze order. "
+"Conceptfacturen en volledig gecrediteerde facturen worden genegeerd. Dit "
+"zegt niet of de order volledig gefactureerd is: kijk daarvoor naar de "
+"factuurstatus."
+
+#. module: sale_order_payment_state
+#: model:ir.model,name:sale_order_payment_state.model_sale_order
+msgid "Sales Order"
+msgstr "Verkooporder"
+
+#. module: sale_order_payment_state
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_state.sale_order_tree
+msgid "Total Amount Due"
+msgstr "Totaal verschuldigd bedrag"

@@ -1,0 +1,109 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_payment_state
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-03 16:06+0000\n"
+"PO-Revision-Date: 2026-11-03 16:06+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_payment_state
+#: model:ir.model.fields,field_description:sale_order_payment_state.field_sale_order__invoice_amount_residual
+msgid "Amount Due"
+msgstr ""
+
+#. module: sale_order_payment_state
+#: model:ir.model.fields,field_description:sale_order_payment_state.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_order_payment_state
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_state.view_sales_order_filter
+msgid "Fully Invoiced & Paid"
+msgstr ""
+
+#. module: sale_order_payment_state
+#: model:ir.model.fields,field_description:sale_order_payment_state.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_payment_state
+#: model:ir.model.fields.selection,name:sale_order_payment_state.selection__sale_order__invoice_payment_state__in_payment
+msgid "In Payment"
+msgstr ""
+
+#. module: sale_order_payment_state
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_state.view_sales_order_filter
+msgid "Invoiced but Unpaid"
+msgstr ""
+
+#. module: sale_order_payment_state
+#: model:ir.model.fields.selection,name:sale_order_payment_state.selection__sale_order__invoice_payment_state__no_invoice
+msgid "No Invoice"
+msgstr ""
+
+#. module: sale_order_payment_state
+#: model:ir.model.fields.selection,name:sale_order_payment_state.selection__sale_order__invoice_payment_state__not_paid
+msgid "Not Paid"
+msgstr ""
+
+#. module: sale_order_payment_state
+#: model:ir.model.fields,help:sale_order_payment_state.field_sale_order__invoice_amount_residual
+msgid ""
+"Open amount of the posted customer invoices minus the open amount of the "
+"posted credit notes of this order."
+msgstr ""
+
+#. module: sale_order_payment_state
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_state.view_sales_order_filter
+msgid ""
+"Orders that are fully invoiced, without draft invoices, and whose invoices "
+"are all paid"
+msgstr ""
+
+#. module: sale_order_payment_state
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_state.view_sales_order_filter
+msgid "Orders with posted invoices that still have an open amount"
+msgstr ""
+
+#. module: sale_order_payment_state
+#: model:ir.model.fields.selection,name:sale_order_payment_state.selection__sale_order__invoice_payment_state__paid
+msgid "Paid"
+msgstr ""
+
+#. module: sale_order_payment_state
+#: model:ir.model.fields.selection,name:sale_order_payment_state.selection__sale_order__invoice_payment_state__partial
+msgid "Partially Paid"
+msgstr ""
+
+#. module: sale_order_payment_state
+#: model:ir.model.fields,field_description:sale_order_payment_state.field_sale_order__invoice_payment_state
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_state.view_sales_order_filter
+msgid "Payment Status"
+msgstr ""
+
+#. module: sale_order_payment_state
+#: model:ir.model.fields,help:sale_order_payment_state.field_sale_order__invoice_payment_state
+msgid ""
+"Payment status of the posted customer invoices and credit notes of this "
+"order. Draft invoices and fully reversed invoices are ignored. It does not "
+"tell whether the order is fully invoiced: check the Invoice Status for that."
+msgstr ""
+
+#. module: sale_order_payment_state
+#: model:ir.model,name:sale_order_payment_state.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_payment_state
+#: model_terms:ir.ui.view,arch_db:sale_order_payment_state.sale_order_tree
+msgid "Total Amount Due"
+msgstr ""
