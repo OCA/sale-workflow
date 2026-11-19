@@ -19,6 +19,9 @@ class TestSaleStockReferenceByLine(TestSaleStockCommon):
         cls.proc_group_model = cls.env["stock.reference"]
         cls.sale_model = cls.env["sale.order"]
         cls.order_line_model = cls.env["sale.order.line"]
+        cls.location_model = cls.env["stock.location"]
+        cls.route_model = cls.env["stock.route"]
+        cls.rule_model = cls.env["stock.rule"]
         # Warehouse
         cls.warehouse_id = cls.env.ref("stock.warehouse0")
         # Create product category
@@ -33,6 +36,48 @@ class TestSaleStockReferenceByLine(TestSaleStockCommon):
             name="test_product2",
             categ_id=cls.product_ctg.id,
             is_storable=True,
+        )
+        # Create internal destination location
+        cls.internal_dest = cls.location_model.create(
+            {
+                "name": "Internal Consumed-in-Testing",
+                "usage": "internal",
+                "location_id": cls.warehouse_id.view_location_id.id,
+            }
+        )
+        # Create route to pull stock
+        # from the warehouse to internal location
+        cls.internal_route = cls.route_model.create(
+            {
+                "name": "Stock -> Internal Test Dest",
+                "product_selectable": True,
+                "sequence": 1,
+            }
+        )
+        cls.rule_model.create(
+            {
+                "name": "Stock -> Internal Consumed-in-Testing",
+                "route_id": cls.internal_route.id,
+                "location_src_id": cls.warehouse_id.lot_stock_id.id,
+                "location_dest_id": cls.internal_dest.id,
+                "action": "pull",
+                "procure_method": "make_to_stock",
+                "picking_type_id": cls.warehouse_id.out_type_id.id,
+                "warehouse_id": cls.warehouse_id.id,
+            }
+        )
+        # Create product with internal destination route
+        cls.product_internal_dest = cls.product_model.create(
+            {
+                "name": "test_product_internal_dest",
+                "categ_id": cls.product_ctg.id,
+                "is_storable": True,
+                "route_ids": [(6, 0, [cls.internal_route.id])],
+            }
+        )
+        # Create customer pointing to internal delivery location
+        cls.customer_internal = cls.partner_a.copy(
+            {"property_stock_customer": cls.internal_dest.id}
         )
         cls.sale = cls._create_sale_order()
 
@@ -181,3 +226,30 @@ class TestSaleStockReferenceByLine(TestSaleStockCommon):
         kit_moves = sale.order_line[1].move_ids
         self.assertEqual(kit_moves.product_id, self.new_product2)
         self.assertEqual(sum(kit_moves.mapped("product_uom_qty")), 6)
+
+    def test_08_no_duplicate_procurement_final_location_is_internal(self):
+        """
+        Ensure we don't create duplicate stock moves when SO line is delivered
+        to an internal location instead of a customer location
+        """
+        sale = self.sale_model.create(
+            {
+                "partner_id": self.customer_internal.id,
+                "warehouse_id": self.warehouse_id.id,
+                "picking_policy": "direct",
+            }
+        )
+        line = self.order_line_model.create(
+            {
+                "order_id": sale.id,
+                "product_id": self.product_internal_dest.id,
+                "product_uom_qty": 3.0,
+                "name": "Internal Dest Line",
+            }
+        )
+        sale.action_confirm()
+        moves = line.move_ids.filtered(lambda m: m.state != "cancel")
+        # Check that only ONE move was created
+        self.assertEqual(len(moves), 1)
+        self.assertEqual(moves.product_uom_qty, 3.0)
+        self.assertEqual(moves.location_final_id, self.internal_dest)
