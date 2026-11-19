@@ -1,1 +1,2 @@
 odoo-test-helper
+odoo-addon-account_fiscal_position_product_domain @ git+https://github.com/OCA/account-fiscal-rule.git@refs/pull/600/head#subdirectory=account_fiscal_position_product_domain
