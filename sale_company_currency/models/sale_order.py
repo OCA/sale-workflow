@@ -29,5 +29,11 @@ class SaleOrder(models.Model):
             if order.currency_id.id == order.company_id.currency_id.id:
                 to_amount = order.amount_total
             else:
-                to_amount = order.amount_total * order.currency_rate
+                # currency_rate is the amount of order currency per unit of company
+                # currency, so the company currency total is a division
+                to_amount = (
+                    order.amount_total / order.currency_rate
+                    if order.currency_rate
+                    else 0.0
+                )
             order.amount_total_curr = to_amount

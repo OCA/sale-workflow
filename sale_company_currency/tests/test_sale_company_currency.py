@@ -62,7 +62,7 @@ class TestSaleOrder(TransactionCase):
         self.sale_order._compute_amount_company()
         amount_total_curr_rounded = round(self.sale_order.amount_total_curr, 2)
         amount_total_converted_rounded = round(
-            self.sale_order.amount_total * self.sale_order.currency_rate, 2
+            self.sale_order.amount_total / self.sale_order.currency_rate, 2
         )
         self.assertEqual(
             amount_total_curr_rounded,
