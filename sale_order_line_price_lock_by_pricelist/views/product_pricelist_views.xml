@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_pricelist_view" model="ir.ui.view">
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//group/group/field[@name='country_group_ids']"
+                position="after"
+            >
+                <field name="lock_product_prices_applied_on" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
