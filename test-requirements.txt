@@ -1,0 +1,2 @@
+odoo-addon-sales_team_readonly @ git+https://github.com/OCA/crm.git@refs/pull/772/head#subdirectory=sales_team_readonly
+odoo-addon-stock_readonly @ git+https://github.com/OCA/stock-logistics-workflow.git@refs/pull/2500/head#subdirectory=stock_readonly
