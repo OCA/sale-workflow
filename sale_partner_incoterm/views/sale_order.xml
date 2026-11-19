@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="sale_stock_sale_order_form_inherit" model="ir.ui.view">
         <field name="name">sale.stock.sale.order.form.inherit</field>
