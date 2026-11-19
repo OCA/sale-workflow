@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils: https://docutils.sourceforge.io/" />
-<title>README.rst</title>
+<title>Default sales incoterm per partner</title>
 <style type="text/css">
 
 /*
@@ -374,13 +374,18 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:27b03c59c223dfbd7306d7bb187298f0170ee988f8f04479c320f62876d6f833
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/sale-workflow/tree/19.0/sale_partner_incoterm"><img alt="OCA/sale-workflow" src="https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/sale-workflow-19-0/sale-workflow-19-0-sale_partner_incoterm"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&amp;target_branch=19.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>This module adds a field on the Sales &amp; Purchases tab of the partner
-form where you can register the default incoterms for new sales orders
-for this customer.</p>
-<p>A different incoterm can be set per contact within the same company.</p>
-<p>When the partner is selected on a new quotation, the incoterm is
-retrieved from the partner record.</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/sale-workflow/tree/20.0/sale_partner_incoterm"><img alt="OCA/sale-workflow" src="https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/sale-workflow-20-0/sale-workflow-20-0-sale_partner_incoterm"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&amp;target_branch=20.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>This module adds a default incoterm address field on the Sales tab of
+the partner form, next to the incoterm provided by Odoo.</p>
+<p>A different incoterm address can be set per contact within the same
+company.</p>
+<p>When the partner is selected on a new quotation, or a quotation is
+created by code, the incoterm address is retrieved from the partner
+record. It can still be changed on the quotation.</p>
+<p>Since Odoo 20.0, the default sales incoterm per customer is provided by
+the standard <tt class="docutils literal">sale</tt> module (<tt class="docutils literal">Incoterm</tt> field on the partner). This
+module no longer adds its own default incoterm field; existing values
+are moved to the standard field on upgrade.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -398,7 +403,7 @@ retrieved from the partner record.</p>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/sale-workflow/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_partner_incoterm%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_partner_incoterm%0Aversion:%2020.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -417,6 +422,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <li>Reed Hayashikawa &lt;<a class="reference external" href="mailto:rhayashikawa&#64;opensourceintegrators.com">rhayashikawa&#64;opensourceintegrators.com</a>&gt;</li>
 <li>Alejandro Padron &lt;<a class="reference external" href="mailto:alejandro.padron&#64;braintec.com">alejandro.padron&#64;braintec.com</a>&gt;</li>
 <li>Heliconia Solutions Pvt. Ltd. &lt;<a class="reference external" href="https://www.heliconia.io">https://www.heliconia.io</a>&gt;</li>
+<li>Jasmin Solanki &lt;<a class="reference external" href="mailto:jasmin.solanki&#64;forgeflow.com">jasmin.solanki&#64;forgeflow.com</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
@@ -428,7 +434,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/sale-workflow/tree/19.0/sale_partner_incoterm">OCA/sale-workflow</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/sale-workflow/tree/20.0/sale_partner_incoterm">OCA/sale-workflow</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>

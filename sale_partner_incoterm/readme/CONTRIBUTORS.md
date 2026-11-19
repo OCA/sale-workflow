@@ -3,3 +3,4 @@
 - Reed Hayashikawa \<<rhayashikawa@opensourceintegrators.com>\>
 - Alejandro Padron \<<alejandro.padron@braintec.com>\>
 - Heliconia Solutions Pvt. Ltd. \<<https://www.heliconia.io>\>
+- Jasmin Solanki \<<jasmin.solanki@forgeflow.com>\>
