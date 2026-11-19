@@ -8,3 +8,5 @@
 - Laurent Mignon \<<laurent.mignon@acsone.eu>\>
 - Marie Lejeune \<<marie.lejeune@acsone.eu>\>
 - Jacques-Etienne Baudoux (BCIM) \<<je.bcim.be>\>
+- [Studio73](https://www.studio73.es):
+  - Pablo Cortés
