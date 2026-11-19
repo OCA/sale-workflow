@@ -20,3 +20,8 @@ To use this module, you need:
 ![](../static/description/search_code_2.png)
 
 ![](../static/description/description_code_2.png)
+
+- To keep the standard description, with the product's internal
+  reference, set the `display_customer_code` context key to False when
+  computing the sale order line description. The customer product code
+  stays available on the line.
