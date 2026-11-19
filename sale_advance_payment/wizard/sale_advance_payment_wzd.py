@@ -17,6 +17,30 @@ class AccountVoucherWizard(models.TransientModel):
         required=True,
         domain=[("type", "in", ("bank", "cash"))],
     )
+    payment_method_line_id = fields.Many2one(
+        "account.payment.method.line",
+        string="Payment Method",
+        readonly=False,
+        store=True,
+        copy=False,
+        compute="_compute_payment_method_line_id",
+        domain="[('id', 'in', available_payment_method_line_ids)]",
+        help="Manual: Pay or Get paid by any method outside of Odoo.\n"
+        "Payment Providers: Each payment provider has its own Payment Method. "
+        "Request a transaction on/to a card thanks to a payment token saved "
+        "by the partner when buying or subscribing online.\n"
+        "Check: Pay bills by check and print it from Odoo.\n"
+        "Batch Deposit: Collect several customer checks at once generating and "
+        "submitting a batch deposit to your bank. Module account_batch_payment "
+        "is necessary.\n"
+        "SEPA Credit Transfer: Pay in the SEPA zone by submitting a SEPA "
+        "Credit Transfer file to your bank. Module account_sepa is necessary.\n"
+        "SEPA Direct Debit: Get paid in the SEPA zone thanks to a mandate your "
+        "partner will have granted to you. Module account_sepa is necessary.\n",
+    )
+    available_payment_method_line_ids = fields.Many2many(
+        "account.payment.method.line", compute="_compute_payment_method_line_fields"
+    )
     journal_currency_id = fields.Many2one(
         "res.currency",
         store=True,
@@ -41,6 +65,63 @@ class AccountVoucherWizard(models.TransientModel):
         default="inbound",
         required=True,
     )
+
+    @api.depends("available_payment_method_line_ids", "order_id")
+    def _compute_payment_method_line_id(self):
+        """Compute the 'payment_method_line_id' field.
+        This field is not computed in '_compute_payment_method_line_fields'
+        because it's a stored editable one.
+        """
+        for pay in self:
+            available_payment_method_lines = pay.available_payment_method_line_ids
+            preferred = pay._get_partner_preferred_payment_method_line()
+
+            if pay.payment_method_line_id in available_payment_method_lines:
+                pay.payment_method_line_id = pay.payment_method_line_id
+            elif preferred and preferred in available_payment_method_lines:
+                pay.payment_method_line_id = preferred
+            elif available_payment_method_lines:
+                # Select the first available one by default.
+                pay.payment_method_line_id = available_payment_method_lines[0]._origin
+            else:
+                pay.payment_method_line_id = False
+
+    def _get_partner_preferred_payment_method_line(self):
+        self.ensure_one()
+        partner = self.order_id.partner_invoice_id.commercial_partner_id
+        if self.payment_type == "inbound":
+            return partner.property_inbound_payment_method_line_id
+        return partner.property_outbound_payment_method_line_id
+
+    @api.depends("payment_type", "journal_id", "currency_id")
+    def _compute_payment_method_line_fields(self):
+        for pay in self:
+            pay.available_payment_method_line_ids = (
+                pay.journal_id._get_available_payment_method_lines(pay.payment_type)
+            )
+            to_exclude = pay._get_payment_method_codes_to_exclude()
+            if to_exclude:
+                pay.available_payment_method_line_ids = (
+                    pay.available_payment_method_line_ids.filtered(
+                        lambda line, to_exclude=to_exclude: line.code not in to_exclude
+                    )
+                )
+            pay.available_payment_method_line_ids = (
+                pay.available_payment_method_line_ids.filtered(
+                    pay._payment_method_line_generates_move
+                )
+            )
+
+    def _get_payment_method_codes_to_exclude(self):
+        return []
+
+    def _payment_method_line_generates_move(self, method_line):
+        if method_line.payment_account_id:
+            return True
+        accounting_installed = (
+            self.env["account.move"]._get_invoice_in_payment_state() == "in_payment"
+        )
+        return not accounting_installed
 
     @api.depends("journal_id")
     def _compute_get_journal_currency(self):
@@ -146,9 +227,7 @@ class AccountVoucherWizard(models.TransientModel):
             "journal_id": self.journal_id.id,
             "currency_id": self.journal_currency_id.id,
             "partner_id": partner_id,
-            "payment_method_id": self.env.ref(
-                "account.account_payment_method_manual_in"
-            ).id,
+            "payment_method_line_id": self.payment_method_line_id.id,
         }
 
     def make_advance_payment(self):
@@ -160,6 +239,15 @@ class AccountVoucherWizard(models.TransientModel):
         if sale_ids:
             sale_id = next(iter(sale_ids), None)
             sale = sale_obj.browse(sale_id)
+            if not self.payment_method_line_id:
+                raise UserError(
+                    self.env._(
+                        "No payment method of journal %(journal)s can be used "
+                        "for an advance payment: configure an outstanding "
+                        "account on at least one of its payment methods.",
+                        journal=self.journal_id.display_name,
+                    )
+                )
             payment_vals = self._prepare_payment_vals(sale)
             payment = payment_obj.create(payment_vals)
             sale.account_payment_ids |= payment
