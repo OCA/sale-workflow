@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_workflow_process_view_form" model="ir.ui.view">
+        <field name="name">sale.order.form.automatic.delay.inherit</field>
+        <field name="model">sale.workflow.process</field>
+        <field
+            name="inherit_id"
+            ref="sale_automatic_workflow.sale_workflow_process_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='sale_order_confirm']" position="before">
+                <div class="container" name="sale_order_confirm">
+                    <h3>
+                        <bold>Workflow execution periodicity</bold>
+                    </h3>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label for="periodicity" class="o_light_label" />
+                        </div>
+                        <div class="col-sm-8">
+                            <field name="periodicity" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label for="next_execution" class="o_light_label" />
+                        </div>
+                        <div class="col-sm-8">
+                            <field name="next_execution" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label
+                                for="periodicity_check_create_date"
+                                class="o_light_label"
+                            />
+                        </div>
+                        <div class="col-sm-8">
+                            <field name="periodicity_check_create_date" />
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </xpath>
+        </field>
+    </record>
+</odoo>
