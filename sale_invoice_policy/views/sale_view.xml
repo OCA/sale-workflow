@@ -4,7 +4,7 @@
         <field name="name">sale.order.form (abi_sale_invoice_policy)</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
-        <field name="priority">50</field>
+        <field name="priority" eval="50" />
         <field name="arch" type="xml">
             <field name="payment_term_id" position="after">
                 <field name="invoice_policy" />

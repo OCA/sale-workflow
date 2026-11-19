@@ -38,10 +38,12 @@ class SaleOrderLine(models.Model):
         Exclude lines that have their order invoice policy filled in
         """
         other_lines = self.filtered(
-            lambda line: line.display_type
-            or line.state != "sale"
-            or line.product_id.type in ("service", "combo")
-            or line.order_id.invoice_policy == "product"
+            lambda line: (
+                line.display_type
+                or line.state != "sale"
+                or line.product_id.type in ("service", "combo")
+                or line.order_id.invoice_policy == "product"
+            )
         )
         policy_lines = self - other_lines
         for line in policy_lines:
@@ -57,14 +59,15 @@ class SaleOrderLine(models.Model):
     @api.depends("order_id.invoice_policy")
     def _compute_untaxed_amount_to_invoice(self) -> None:
         other_lines = self.filtered(
-            lambda line: line.display_type
-            or line.state != "sale"
-            or line.product_id.type in ("service", "combo")
-            or line.order_id.invoice_policy == "product"
-            or line.order_id.invoice_policy == line.product_id.invoice_policy
+            lambda line: (
+                line.display_type
+                or line.state != "sale"
+                or line.product_id.type in ("service", "combo")
+                or line.order_id.invoice_policy == "product"
+                or line.order_id.invoice_policy == line.product_id.invoice_policy
+            )
         )
         super(SaleOrderLine, other_lines)._compute_untaxed_amount_to_invoice()
         for lines in (self - other_lines).partition("order_id.invoice_policy").values():
             with self._sale_invoice_policy(lines):
                 super(SaleOrderLine, lines)._compute_untaxed_amount_to_invoice()
-        return
