@@ -88,3 +88,40 @@ class TestSale(BaseCommon):
                 self.assertEqual(line.product_uom_qty, 3)
             elif line.product_id.id == self.product_11.id:
                 self.assertEqual(line.product_uom_qty, 5)
+
+    def test_select_products_applies_pricelist(self):
+        """The order's pricelist sets the price of the imported line"""
+        product = self.env["product.product"].create(
+            {"name": "Test Product Priced", "type": "consu", "list_price": 100.0}
+        )
+        pricelist = self.env["product.pricelist"].create(
+            {
+                "name": "Test Pricelist with 10% Discount",
+                "currency_id": self.env.company.currency_id.id,
+                "item_ids": [
+                    Command.create(
+                        {
+                            "applied_on": "3_global",
+                            "compute_price": "percentage",
+                            "percent_price": 10.0,
+                        }
+                    )
+                ],
+            }
+        )
+        sale = self.env["sale.order"].create(
+            {
+                "partner_id": self.env.ref("base.res_partner_2").id,
+                "pricelist_id": pricelist.id,
+            }
+        )
+        wizard = (
+            self.env["sale.import.products"]
+            .with_context(active_id=sale.id, active_model="sale.order")
+            .create({"products": [Command.set(product.ids)]})
+        )
+        wizard.create_items()
+        wizard.items.quantity = 2
+        wizard.select_products()
+        self.assertEqual(sale.order_line.product_uom_qty, 2)
+        self.assertAlmostEqual(sale.order_line.price_unit, 90.0)
