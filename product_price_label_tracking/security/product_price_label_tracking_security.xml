@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="product_label_tracking_rule_company_rule" model="ir.rule">
+        <field name="name">Label Tracking Rule: multi-company</field>
+        <field name="model_id" ref="model_product_label_tracking_rule" />
+        <field name="domain_force">[("company_id", "in", company_ids)]</field>
+    </record>
+    <record id="product_label_track_company_rule" model="ir.rule">
+        <field name="name">Label Track: multi-company</field>
+        <field name="model_id" ref="model_product_label_track" />
+        <field name="domain_force">[("company_id", "in", company_ids)]</field>
+    </record>
+</odoo>
