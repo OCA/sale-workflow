@@ -19,8 +19,8 @@ class SaleOrderLine(models.Model):
         precompute=True,
         readonly=True,
     )
+    # Redeclare discount1 as writable computed field
     discount1 = fields.Float(
-        string="Discount 1 (%)",
         digits="Discount",
         compute="_compute_discount1",
         store=True,
