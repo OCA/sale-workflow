@@ -1,0 +1,4 @@
+id,name,model_id,group_id/id,operation,domain
+sale_order_team_rule,Team Orders,sale.order,sales_team_security.group_sale_team_manager,cru,"['|', ('user_id', 'in', [user.id, False]), ('team_id', 'in', user.crm_team_ids.ids + [False])]"
+sale_order_report_team_rule,Team Orders Analysis,sale.report,sales_team_security.group_sale_team_manager,r,"['|', ('user_id', 'in', [user.id, False]), ('team_id', 'in', user.crm_team_ids.ids + [False])]"
+sale_order_line_team_rule,Team Order Lines,sale.order.line,sales_team_security.group_sale_team_manager,crud,"['|', ('salesman_id', 'in', [user.id, False]), ('order_id.team_id', 'in', user.crm_team_ids.ids + [False])]"
