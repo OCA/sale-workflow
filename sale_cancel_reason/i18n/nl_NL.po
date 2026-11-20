@@ -1,0 +1,148 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_cancel_reason
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-24 07:36+0000\n"
+"PO-Revision-Date: 2026-02-24 07:36+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_cancel_reason
+#: model_terms:ir.ui.view,arch_db:sale_cancel_reason.sale_order_cancel_wizard_view_form
+msgid ""
+"Are you sure you want to cancel this order? This may affect related "
+"documents or processes."
+msgstr ""
+"Weet je zeker dat je deze bestelling wilt annuleren? Dit kan invloed hebben "
+"op gerelateerde documenten of processen."
+
+#. module: sale_cancel_reason
+#: model_terms:ir.ui.view,arch_db:sale_cancel_reason.sale_order_cancel_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_order_form
+msgid "Cancel"
+msgstr "Annuleren"
+
+#. module: sale_cancel_reason
+#: model:ir.model,name:sale_cancel_reason.model_sale_mass_cancel_orders
+msgid "Cancel multiple quotations"
+msgstr "Meerdere offertes annuleren"
+
+#. module: sale_cancel_reason
+#: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_order_form
+msgid "Cancellation reason:"
+msgstr "Reden voor annulering:"
+
+#. module: sale_cancel_reason
+#: model_terms:ir.ui.view,arch_db:sale_cancel_reason.sale_order_cancel_wizard_view_form
+msgid ""
+"Choose the reason for the cancellation of the\n"
+"                        sale order."
+msgstr ""
+"Kies de reden voor de annulering van de verkooporder."
+
+#. module: sale_cancel_reason
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason__create_uid
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_wizard__create_uid
+msgid "Created by"
+msgstr "Aangemaakt door"
+
+#. module: sale_cancel_reason
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason__create_date
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_wizard__create_date
+msgid "Created on"
+msgstr "Aangemaakt op"
+
+#. module: sale_cancel_reason
+#: model_terms:ir.ui.view,arch_db:sale_cancel_reason.sale_order_cancel_wizard_view_form
+msgid "Discard"
+msgstr "Negeren"
+
+#. module: sale_cancel_reason
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_mass_cancel_orders__display_name
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason__display_name
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_wizard__display_name
+msgid "Display Name"
+msgstr "Schermnaam"
+
+#. module: sale_cancel_reason
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_mass_cancel_orders__id
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason__id
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_cancel_reason
+#: model:sale.order.cancel.reason,name:sale_cancel_reason.cancel_reason_only_quotation
+msgid "Just for Quotation"
+msgstr "Verloren op prijs"
+
+#. module: sale_cancel_reason
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason__write_uid
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Laatst aangepast door"
+
+#. module: sale_cancel_reason
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason__write_date
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_wizard__write_date
+msgid "Last Updated on"
+msgstr "Laatst aangepast op"
+
+#. module: sale_cancel_reason
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_wizard__order_id
+msgid "Order"
+msgstr ""
+
+#. module: sale_cancel_reason
+#: model:sale.order.cancel.reason,name:sale_cancel_reason.cancel_reason_other_provider
+msgid "Other Service Provider selected"
+msgstr "Verloren op concurrent: Heering"
+
+#. module: sale_cancel_reason
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_mass_cancel_orders__reason_id
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason__name
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_wizard__reason_id
+msgid "Reason"
+msgstr "Reden"
+
+#. module: sale_cancel_reason
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order__cancel_reason_id
+msgid "Reason for cancellation"
+msgstr "Reden voor annulering"
+
+#. module: sale_cancel_reason
+#: model:ir.actions.act_window,name:sale_cancel_reason.action_sale_order_cancel_reason
+#: model:ir.model,name:sale_cancel_reason.model_sale_order_cancel_reason
+msgid "Sale Order Cancel Reason"
+msgstr "Verkooporder annuleer reden"
+
+#. module: sale_cancel_reason
+#: model:ir.ui.menu,name:sale_cancel_reason.menu_sale_order_cancel_reason
+#: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel_reason_form
+msgid "Sale Order Cancel Reasons"
+msgstr "Verkooporder annuleer redenen"
+
+#. module: sale_cancel_reason
+#: model:ir.model,name:sale_cancel_reason.model_sale_order_cancel_wizard
+msgid "Sale Order Cancel Wizard"
+msgstr "Wizard voor het annuleren van verkooporders"
+
+#. module: sale_cancel_reason
+#: model:ir.model,name:sale_cancel_reason.model_sale_order
+msgid "Sales Order"
+msgstr "Verkooporder"
+
+#. module: sale_cancel_reason
+#: model:sale.order.cancel.reason,name:sale_cancel_reason.cancel_reason_no_service_needed
+msgid "Service no longer needed"
+msgstr "Verloren op concurrent: Wiggers"
