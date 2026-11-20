@@ -1,0 +1,85 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_shipping_info_helper
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2024-04-23 08:39+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__item_amount_tax
+msgid "Item Amount Tax"
+msgstr "Artículo Importe Impuesto"
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__item_amount_total
+msgid "Item Amount Total"
+msgstr "Artículo Importe Total"
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__item_amount_untaxed
+msgid "Item Amount Untaxed"
+msgstr "Artículo Importe Sin Impuestos"
+
+#. module: sale_shipping_info_helper
+#: model:ir.model,name:sale_shipping_info_helper.model_sale_order
+msgid "Sales Order"
+msgstr "Órdenes de venta"
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__shipping_amount_tax
+msgid "Shipping Amount Tax"
+msgstr "Impuesto del importe del envío"
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__shipping_amount_total
+msgid "Shipping Amount Total"
+msgstr "Importe total del envío"
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__shipping_amount_untaxed
+msgid "Shipping Amount Untaxed"
+msgstr "Importe sin impuestos del envío"
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,help:sale_shipping_info_helper.field_sale_order__item_amount_tax
+msgid "Tax portion of the item amount"
+msgstr "Parte impositiva del importe de la partida"
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,help:sale_shipping_info_helper.field_sale_order__shipping_amount_tax
+msgid "Tax portion of the shipping amount"
+msgstr "Parte impositiva del importe del envío"
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,help:sale_shipping_info_helper.field_sale_order__item_amount_total
+msgid "Total amount for items excluding shipping"
+msgstr "Importe total de los artículos sin incluir los gastos de envío"
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,help:sale_shipping_info_helper.field_sale_order__shipping_amount_total
+msgid "Total shipping amount including taxes"
+msgstr "Importe total del envío, impuestos incluidos"
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,help:sale_shipping_info_helper.field_sale_order__item_amount_untaxed
+msgid "Untaxed portion of the item amount"
+msgstr "Parte no gravada del importe de la partida"
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,help:sale_shipping_info_helper.field_sale_order__shipping_amount_untaxed
+msgid "Untaxed portion of the shipping amount"
+msgstr "Parte no gravada del importe del envío"
