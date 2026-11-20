@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_list_invoiced_amount" model="ir.ui.view">
+        <field name="name">sale.order.list.amount_invoiced</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_status']" position="after">
+                <field name="amount_invoiced" sum="Invoiced Amount" optional="hide" />
+                <field
+                    name="amount_to_invoice"
+                    sum="Amount to invoice"
+                    optional="hide"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_quotation_list_with_onboarding_invoiced_amount" model="ir.ui.view">
+        <field name="name">quotation.list.with.onboarding.invoiced_amount</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_status']" position="after">
+                <field name="amount_invoiced" sum="Invoiced Amount" optional="hide" />
+                <field
+                    name="amount_to_invoice"
+                    sum="Amount to Invoice"
+                    optional="hide"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
