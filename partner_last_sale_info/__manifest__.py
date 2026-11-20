@@ -12,9 +12,9 @@
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale"],
     "data": [
-        "views/res_partner.xml",
+        "views/res_partner_views.xml",
     ],
-    # Uncomment in large databases to skip automatically populating the data
-    # "pre_init_hook": "pre_init_hook",
+    "pre_init_hook": "pre_init_hook",
+    "post_init_hook": "post_init_hook",
     "installable": True,
 }

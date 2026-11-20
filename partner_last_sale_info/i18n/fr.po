@@ -24,8 +24,8 @@ msgstr "Contact"
 #. module: partner_last_sale_info
 #: model:ir.model.fields,help:partner_last_sale_info.field_res_partner__last_sale_order_date
 #: model:ir.model.fields,help:partner_last_sale_info.field_res_users__last_sale_order_date
-msgid "Date of the last sale order for this customer"
-msgstr "Date de la dernière commande de vente pour ce client"
+msgid "Date of the last confirmed sale order for this customer"
+msgstr "Date de la dernière commande de vente confirmée pour ce client"
 
 #. module: partner_last_sale_info
 #: model:ir.model.fields,field_description:partner_last_sale_info.field_res_partner__last_sale_order_id
@@ -42,8 +42,8 @@ msgstr "Date de la dernière commande de vente"
 #. module: partner_last_sale_info
 #: model:ir.model.fields,help:partner_last_sale_info.field_res_partner__last_sale_order_id
 #: model:ir.model.fields,help:partner_last_sale_info.field_res_users__last_sale_order_id
-msgid "Last sale order for this customer"
-msgstr "Dernière commande de vente pour ce client"
+msgid "Last confirmed sale order for this customer"
+msgstr "Dernière commande de vente confirmée pour ce client"
 
 #. module: partner_last_sale_info
 #: model_terms:ir.ui.view,arch_db:partner_last_sale_info.view_partner_form_last_sale_order

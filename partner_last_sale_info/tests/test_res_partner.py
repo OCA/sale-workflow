@@ -27,71 +27,45 @@ class TestResPartner(TransactionCase):
             }
         )
 
-    def test_last_sale_order_date_computation(self):
-        """Test that last sale order date is computed correctly"""
+    def _create_order(self, date_order, price_unit):
+        return self.sale_order_model.create(
+            {
+                "partner_id": self.customer.id,
+                "date_order": date_order,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "product_uom_qty": 1,
+                            "price_unit": price_unit,
+                        },
+                    )
+                ],
+            }
+        )
+
+    def test_last_sale_order_tracking(self):
+        """The customer shows its most recent confirmed sale order"""
         # Initially, no sale orders
         self.assertFalse(self.customer.last_sale_order_date)
         self.assertFalse(self.customer.last_sale_order_id)
 
-        # Create a sale order
-        sale_order1 = self.sale_order_model.create(
-            {
-                "partner_id": self.customer.id,
-                "date_order": "2025-01-01 10:00:00",
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "product_id": self.product.id,
-                            "product_uom_qty": 1,
-                            "price_unit": 100,
-                        },
-                    )
-                ],
-            }
-        )
+        # A quotation alone does not count as a sale
+        quotation = self._create_order("2025-01-01 10:00:00", 100)
+        self.assertFalse(self.customer.last_sale_order_id)
 
-        # Confirm the order to make it visible to the computation
-        sale_order1.action_confirm()
+        # Confirming the order makes it the last sale
+        quotation.action_confirm()
+        self.assertEqual(self.customer.last_sale_order_id, quotation)
+        self.assertEqual(self.customer.last_sale_order_date, quotation.date_order)
 
-        # Check that last sale order date is updated
-        self.customer._compute_last_sale_order_date()
-        self.assertTrue(self.customer.last_sale_order_date)
-        self.assertEqual(self.customer.last_sale_order_id, sale_order1.id)
+        # A newer confirmed order replaces it
+        newer_order = self._create_order("2025-01-15 10:00:00", 200)
+        newer_order.action_confirm()
+        self.assertEqual(self.customer.last_sale_order_id, newer_order)
 
-        # Create another sale order with later date
-        sale_order2 = self.sale_order_model.create(
-            {
-                "partner_id": self.customer.id,
-                "date_order": "2025-01-15 10:00:00",
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "product_id": self.product.id,
-                            "product_uom_qty": 1,
-                            "price_unit": 200,
-                        },
-                    )
-                ],
-            }
-        )
-
-        # Confirm the second order
-        sale_order2.action_confirm()
-
-        # Check that last sale order date is updated to the newer one
-        self.customer._compute_last_sale_order_date()
-        self.assertEqual(self.customer.last_sale_order_id, sale_order2.id)
-
-        # Cancel the latest order and check it's not counted
-        sale_order2.action_cancel()
-        self.customer._compute_last_sale_order_date()
-        self.assertEqual(self.customer.last_sale_order_id, sale_order1.id)
-
-        # Confirm the first order and verify it's tracked
-        sale_order1.action_confirm()
-        self.customer._compute_last_sale_order_date()
-        self.assertEqual(self.customer.last_sale_order_id, sale_order1.id)
+        # Cancelling the latest order falls back to the previous one
+        newer_order.with_context(disable_cancel_warning=True).action_cancel()
+        self.assertEqual(self.customer.last_sale_order_id, quotation)

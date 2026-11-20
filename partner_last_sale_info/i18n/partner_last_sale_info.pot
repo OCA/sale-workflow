@@ -23,7 +23,7 @@ msgstr ""
 #. module: partner_last_sale_info
 #: model:ir.model.fields,help:partner_last_sale_info.field_res_partner__last_sale_order_date
 #: model:ir.model.fields,help:partner_last_sale_info.field_res_users__last_sale_order_date
-msgid "Date of the last sale order for this customer"
+msgid "Date of the last confirmed sale order for this customer"
 msgstr ""
 
 #. module: partner_last_sale_info
@@ -41,7 +41,7 @@ msgstr ""
 #. module: partner_last_sale_info
 #: model:ir.model.fields,help:partner_last_sale_info.field_res_partner__last_sale_order_id
 #: model:ir.model.fields,help:partner_last_sale_info.field_res_users__last_sale_order_id
-msgid "Last sale order for this customer"
+msgid "Last confirmed sale order for this customer"
 msgstr ""
 
 #. module: partner_last_sale_info
