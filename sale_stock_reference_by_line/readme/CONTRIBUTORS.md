@@ -1,0 +1,7 @@
+- Guewen Baconnier \<<guewen.baconnier@camptocamp.com>\>
+- Yannick Vaucher \<<yannick.vaucher@camptocamp.com>\>
+- Jordi Ballester \<<jordi.ballester@forgeflow.com>\>
+- Serpent Consulting Services Pvt. Ltd. \<<support@serpentcs.com>\>
+- Carmen Rondon Regalado \<<crondon@archeti.com>\>
+- Tatiana Deribina \<<tatiana.deribina@sprintit.fi>\>
+- Jasmin Solanki \<<jasmin.solanki@forgeflow.com>\>
