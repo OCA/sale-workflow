@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2023 Tecnativa - Carlos Roca
+     Copyright 2024 Moduon Team S.L. <info@moduon.team>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html). -->
+<templates xml:space="preserve">
+    <t t-name="sale_order_line_price_history.price_to_line_history_widget">
+        <div>
+            <a
+                tabindex="0"
+                t-on-click="this.setPriceHistory"
+                class="oi p-1"
+                data-icon="check"
+                title="Set Historic Price"
+            />
+        </div>
+    </t>
+</templates>
