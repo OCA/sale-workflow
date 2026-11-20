@@ -1,0 +1,302 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_automatic_workflow
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-22 23:46+0000\n"
+"PO-Revision-Date: 2026-07-01 14:46+0000\n"
+"Last-Translator: Laura V <laura.valls@forgeflow.com>\n"
+"Language-Team: Danish (https://www.transifex.com/oca/teams/23907/da/)\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_order__all_qty_delivered
+msgid "All quantities delivered"
+msgstr "Alle mængder leveret"
+
+#. module: sale_automatic_workflow
+#: model:ir.actions.act_window,name:sale_automatic_workflow.act_sale_workflow_process_form
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_order__workflow_process_id
+#: model:ir.ui.menu,name:sale_automatic_workflow.menu_act_sale_workflow_process_form
+#: model:ir.ui.menu,name:sale_automatic_workflow.menu_sale_workflow_parent
+#: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
+msgid "Automatic Workflow"
+msgstr "Automatisk arbejdsgang"
+
+#. module: sale_automatic_workflow
+#: model:ir.actions.server,name:sale_automatic_workflow.ir_cron_automatic_workflow_job_ir_actions_server
+msgid "Automatic Workflow Job"
+msgstr "Automatisk arbejdsgangsjob"
+
+#. module: sale_automatic_workflow
+#: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_order_view_form
+msgid "Automation Information"
+msgstr "Automatiseringsoplysninger"
+
+#. module: sale_automatic_workflow
+#: model:sale.workflow.process,warning:sale_automatic_workflow.automatic_validation
+msgid ""
+"Be careful, if you save the order with this setting, it could be auto-"
+"confirmed, even if you are editing it."
+msgstr ""
+"Vær opmærksom: Hvis du gemmer ordren med denne indstilling, kan den blive "
+"automatisk bekræftet, selv om du er i gang med at redigere den."
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__create_invoice
+msgid "Create Invoice"
+msgstr "Opret faktura"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__create_invoice_filter_id
+msgid "Create Invoice Filter"
+msgstr "Opret fakturafilter"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__create_invoice_filter_domain
+msgid "Create Invoice Filter Domain"
+msgstr "Domæne for opret fakturafilter"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job__create_uid
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__create_uid
+msgid "Created by"
+msgstr "Oprettet af"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job__create_date
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__create_date
+msgid "Created on"
+msgstr "Oprettet den"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_move__display_name
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job__display_name
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__display_name
+msgid "Display Name"
+msgstr "Vist navn"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__payment_filter_domain
+msgid "Domain"
+msgstr "Domæne"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__invoice_date_is_order_date
+msgid "Force Invoice Date"
+msgstr "Tving fakturadato"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_move__id
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job__id
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__id
+msgid "ID"
+msgstr "Id"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__warning
+msgid ""
+"If set, displays the message when an userselects the process on a sale order"
+msgstr ""
+"Hvis angivet, vises meddelelsen, når en bruger vælger processen på en "
+"salgsordre"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__invoice_service_delivery
+msgid ""
+"If this box is checked, when the first invoice is created The service sale "
+"order lines will be included and will be marked as delivered"
+msgstr ""
+"Hvis dette felt er markeret, vil serviceordrelinjer blive medtaget, når den "
+"første faktura oprettes, og de vil blive markeret som leveret"
+
+#. module: sale_automatic_workflow
+#: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
+msgid "Invoice Options"
+msgstr "Faktureringsindstillinger"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__invoice_service_delivery
+msgid "Invoice Service on delivery"
+msgstr "Fakturer service ved levering"
+
+#. module: sale_automatic_workflow
+#: model:ir.model,name:sale_automatic_workflow.model_account_move
+msgid "Journal Entry"
+msgstr "Kladdeposteringer"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job__write_uid
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__write_uid
+msgid "Last Updated by"
+msgstr "Sidst opdateret af"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job__write_date
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__write_date
+msgid "Last Updated on"
+msgstr "Sidst opdateret den"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__name
+msgid "Name"
+msgstr "Navn"
+
+#. module: sale_automatic_workflow
+#: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
+msgid "Order Configuration"
+msgstr "Ordrekonfiguration"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__order_filter_id
+msgid "Order Filter"
+msgstr "Ordrefilter"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__order_filter_domain
+msgid "Order Filter Domain"
+msgstr "Domæne for ordrefilter"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__property_payment_journal_id
+msgid "Payment Journal"
+msgstr "Betalingsdagbog"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__register_payment
+msgid "Register Payment"
+msgstr "Registrer betaling"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__payment_filter_id
+msgid "Register Payment Invoice Filter"
+msgstr "Fakturafilter for registrering af betaling"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__sale_done
+msgid "Sale Done"
+msgstr "Salg gennemført"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__sale_done_filter_id
+msgid "Sale Done Filter"
+msgstr "Filter for gennemført salg"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__sale_done_filter_domain
+msgid "Sale Done Filter Domain"
+msgstr "Domæne for filter for gennemført salg"
+
+#. module: sale_automatic_workflow
+#: model:ir.model,name:sale_automatic_workflow.model_sale_workflow_process
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_bank_statement_line__workflow_process_id
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_move__workflow_process_id
+msgid "Sale Workflow Process"
+msgstr "Salgsarbejdsgangsproces"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__property_journal_id
+msgid "Sales Journal"
+msgstr "Salgsdagbog"
+
+#. module: sale_automatic_workflow
+#: model:ir.model,name:sale_automatic_workflow.model_sale_order
+msgid "Sales Order"
+msgstr "Salgsordre"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__team_id
+msgid "Sales Team"
+msgstr "Salgsteam"
+
+#. module: sale_automatic_workflow
+#: model:ir.model,name:sale_automatic_workflow.model_automatic_workflow_job
+msgid ""
+"Scheduler that will play automatically the validation of invoices, "
+"pickings..."
+msgstr "Planlagt job, der automatisk kører validering af fakturaer, pluk osv."
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__send_order_confirmation_mail
+msgid "Send Order Confirmation Mail"
+msgstr "Send ordrebekræftelses-e-mail"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__property_journal_id
+msgid "Set default journal to use on invoice"
+msgstr "Angiv standarddagbog til brug på faktura"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__property_payment_journal_id
+msgid "Set default journal to use on payment"
+msgstr "Angiv standarddagbog til brug ved betaling"
+
+#. module: sale_automatic_workflow
+#: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
+msgid "Set selection based on a search filter:"
+msgstr "Angiv valg baseret på et søgefilter:"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__validate_invoice
+msgid "Validate Invoice"
+msgstr "Valider faktura"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__validate_invoice_filter_id
+msgid "Validate Invoice Filter"
+msgstr "Valider fakturafilter"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__validate_invoice_filter_domain
+msgid "Validate Invoice Filter Domain"
+msgstr "Domæne for validering af fakturafilter"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__validate_order
+msgid "Validate Order"
+msgstr "Valider ordre"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__warning
+msgid "Warning Message"
+msgstr "Advarselsmeddelelse"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__send_order_confirmation_mail
+msgid ""
+"When checked, after order confirmation, a confirmation email will be sent "
+"(if not already sent)."
+msgstr ""
+"Når markeret, sendes en bekræftelses-e-mail efter ordrebekræftelse (hvis den "
+"ikke allerede er sendt)."
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__invoice_date_is_order_date
+msgid "When checked, the invoice date will be the same than the order's date"
+msgstr "Når markeret, vil fakturadatoen være den samme som ordredatoen"
+
+#. module: sale_automatic_workflow
+#: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
+msgid "Workflow Options"
+msgstr "Arbejdsgangsindstillinger"
+
+#. module: sale_automatic_workflow
+#. odoo-python
+#: code:addons/sale_automatic_workflow/models/sale_order.py:0
+msgid "Workflow Warning"
+msgstr "Arbejdsgangsadvarsel"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Sidst ændret den"
