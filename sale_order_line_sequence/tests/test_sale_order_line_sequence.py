@@ -1,6 +1,7 @@
 # Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
+from odoo import Command
 from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
 
@@ -124,3 +125,55 @@ class TestSaleOrderLineSequence(TransactionCase):
         self.assertEqual(
             invoice.line_ids[0].related_so_sequence, f"{so.name}/1, {so2.name}/2"
         )
+
+    def _assert_visible_sequence(self, lines):
+        self.assertEqual(
+            lines.mapped("visible_sequence"), list(range(1, len(lines) + 1))
+        )
+
+    def test_sequence_does_not_trigger_line_onchange(self):
+        """Reordering lines must not send one onchange per line."""
+        lines = self.sale_order_line
+        self.assertFalse(
+            lines._has_onchange(
+                lines._fields["sequence"], [lines._fields["visible_sequence"]]
+            )
+        )
+
+    def test_reorder_lines(self):
+        so = self._create_sale_order()
+        line_1, line_2 = so.order_line
+        line_2.sequence = line_1.sequence - 1
+        self._assert_visible_sequence(line_2 + line_1)
+
+    def test_reorder_lines_from_order(self):
+        """Resequence all lines at once, as the web client does on save."""
+        so = self._create_sale_order()
+        section = self.sale_order_line.create(
+            {"name": "Section", "order_id": so.id, "display_type": "line_section"}
+        )
+        lines = so.order_line - section
+        so.write(
+            {
+                "order_line": [
+                    Command.update(line.id, {"sequence": seq})
+                    for seq, line in enumerate(reversed(lines + section))
+                ]
+            }
+        )
+        self._assert_visible_sequence(lines.sorted("sequence"))
+        self.assertFalse(section.visible_sequence)
+
+    def test_add_and_remove_lines(self):
+        so = self._create_sale_order()
+        line_1, line_2 = so.order_line
+        new_line = self.sale_order_line.create(
+            {
+                "order_id": so.id,
+                "product_id": self.product.id,
+                "sequence": line_1.sequence - 1,
+            }
+        )
+        self._assert_visible_sequence(new_line + line_1 + line_2)
+        line_1.unlink()
+        self._assert_visible_sequence(new_line + line_2)
