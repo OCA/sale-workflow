@@ -13,3 +13,4 @@
 - Tri Doan \<<tridm@trobz.com>\>
 - Chau Le \<<chaulb@trobz.com>\>
 - Kevin Khao \<<kevinkhao@gmail.com>\>
+- Erwin van der Ploeg \<<erwin@odooexperts.nl>\>

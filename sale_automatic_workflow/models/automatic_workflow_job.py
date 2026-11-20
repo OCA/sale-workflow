@@ -5,6 +5,7 @@
 
 import logging
 from contextlib import contextmanager
+from zoneinfo import ZoneInfo
 
 from odoo import api, fields, models, tools
 from odoo.tools.safe_eval import safe_eval
@@ -216,7 +217,7 @@ class AutomaticWorkflowJob(models.Model):
             "time": tools.safe_eval.time,
             "datetime": tools.safe_eval.datetime,
             "dateutil": tools.safe_eval.dateutil,
-            "timezone": tools.safe_eval.pytz.timezone,
+            "timezone": ZoneInfo,
             "context_today": lambda: fields.Date.context_today(self),
         }
 

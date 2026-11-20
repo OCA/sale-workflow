@@ -258,6 +258,11 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
             workflow.payment_filter_id.domain, job._get_eval_context()
         ) + job._sale_workflow_domain(workflow)
 
+    def test_filter_domain_with_timezone(self):
+        job = self.env["automatic.workflow.job"]
+        timezone = safe_eval("timezone('Europe/Amsterdam')", job._get_eval_context())
+        self.assertEqual(timezone.key, "Europe/Amsterdam")
+
     def _create_zero_amount_invoice(self, workflow):
         """Return a posted invoice whose residual amount is zero.
 
@@ -278,7 +283,7 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         """No payment is created when there is nothing left to pay."""
         workflow = self.create_full_automatic()
         workflow.register_payment = True
-        dummy, invoice = self._create_zero_amount_invoice(workflow)
+        _dummy, invoice = self._create_zero_amount_invoice(workflow)
         payment_obj = self.env["account.payment"]
         payments_before = payment_obj.search_count([])
         payment = self.env["automatic.workflow.job"]._register_payment_invoice(invoice)
@@ -294,7 +299,7 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         """
         workflow = self.create_full_automatic()
         workflow.register_payment = True
-        sale, dummy = self._create_zero_amount_invoice(workflow)
+        sale, _dummy = self._create_zero_amount_invoice(workflow)
         # The partner is created by create_sale_order, so it is only used by
         # this order and we can count its payments safely.
         domain = [("partner_id", "=", sale.partner_id.id)]
@@ -318,7 +323,7 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         """
         workflow = self.create_full_automatic()
         workflow.register_payment = True
-        sale, dummy = self._create_zero_amount_invoice(workflow)
+        sale, _dummy = self._create_zero_amount_invoice(workflow)
         job = self.env["automatic.workflow.job"]
         domain = [
             ("state", "=", "posted"),
