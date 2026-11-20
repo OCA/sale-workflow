@@ -151,7 +151,6 @@ class AutomaticWorkflowJob(models.Model):
         for invoice in invoices:
             with savepoint(self.env.cr):
                 self._register_payment_invoice(invoice)
-        return
 
     def _register_payment_invoice(self, invoice):
         payment = self.env["account.payment"].create(
