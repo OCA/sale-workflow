@@ -4,7 +4,7 @@
 {
     "name": "Sale Partner Address Filter",
     "summary": "Filter sale order addresses to the customer's contacts",
-    "version": "17.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Sales",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
