@@ -14,6 +14,8 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
         cls.customerinfo_model = cls.env["product.customerinfo"]
         cls.pricelist_item_model = cls.env["product.pricelist.item"]
         cls.pricelist_model = cls.env["product.pricelist"]
+        cls.sale_order_model = cls.env["sale.order"]
+        cls.sale_order_line_model = cls.env["sale.order.line"]
         cls.customer = cls._create_customer("customer1")
         cls.product = cls.env.ref("product.product_product_4")
         cls.product_variant_1 = cls.env.ref("product.product_product_4b")
@@ -41,6 +43,27 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
         )
         cls.pricelist_template = cls._create_pricelist(
             "Test Pricelist Template", cls.product_template.product_variant_ids[:1]
+        )
+        cls.pricelist_customer = cls.pricelist_model.create(
+            {
+                "name": "Test Pricelist Customer",
+                "currency_id": cls.env.ref("base.USD").id,
+            }
+        )
+        cls.pricelist_item_customer = cls.pricelist_item_model.create(
+            {
+                "applied_on": "3_global",
+                "base": "partner",
+                "name": "Test Pricelist Item",
+                "pricelist_id": cls.pricelist_customer.id,
+                "compute_price": "formula",
+            }
+        )
+        cls.sale_order_customer = cls.sale_order_model.create(
+            {
+                "partner_id": cls.customer.id,
+                "pricelist_id": cls.pricelist_customer.id,
+            }
         )
         cls.env.user.groups_id |= cls.env.ref("product.group_product_pricelist")
 
@@ -166,3 +189,57 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
             customerinfo.product_code,
             "Error: Customer product code was not passed to sale order line",
         )
+
+    def test_product_supplierinfo_sale_price_with_context_passed(self):
+        """Test normal behaviour when context is passed from view."""
+        # GIVEN / WHEN
+        self.sale_order_line_w_ctx = self.sale_order_line_model.with_context(
+            partner_id=self.customer.id
+        ).create(
+            {
+                "order_id": self.sale_order_customer.id,
+                "product_id": self.product.id,
+                "product_uom_qty": 1.0,
+            }
+        )
+        # THEN
+        self.assertEqual(self.sale_order_line_w_ctx.price_unit, 100.0)
+
+    def test_product_supplierinfo_sale_price_without_context_passed(self):
+        """Test case when context is not passed during price computation.
+
+        The context should be created in the method _get_product_price_context.
+        """
+        # GIVEN / WHEN
+        self.sale_order_line_wo_ctx = self.sale_order_line_model.create(
+            {
+                "order_id": self.sale_order_customer.id,
+                "product_id": self.product.id,
+                "product_uom_qty": 1.0,
+            }
+        )
+        # THEN
+        self.assertEqual(
+            self.sale_order_line_wo_ctx.price_unit,
+            100.0,
+        )
+
+    def test_product_supplierinfo_sale_price_after_qty_update(self):
+        """Test the price is kept when the recomputation is triggered.
+
+        Updating the quantity retriggers _compute_price_unit from the backend,
+        where the view context with the partner is no longer available.
+        """
+        # GIVEN
+        line = self.sale_order_line_model.create(
+            {
+                "order_id": self.sale_order_customer.id,
+                "product_id": self.product.id,
+                "product_uom_qty": 1.0,
+            }
+        )
+        self.assertEqual(line.price_unit, 100.0)
+        # WHEN
+        line.product_uom_qty = 5.0
+        # THEN
+        self.assertEqual(line.price_unit, 100.0)
