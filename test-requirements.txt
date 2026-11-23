@@ -1,0 +1,1 @@
+odoo-addon-account_invoice_line_product_name_visibility @ git+https://github.com/OCA/account-invoicing.git@refs/pull/2538/head#subdirectory=account_invoice_line_product_name_visibility
