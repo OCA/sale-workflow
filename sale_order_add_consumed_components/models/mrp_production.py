@@ -38,10 +38,15 @@ class MrpProduction(models.Model):
         return SaleOrder
 
     def _get_sibling_mrp_productions(self, sale_order):
-        """Return all MOs (including self) linked to the given sale order.
+        """Return all MOs contributing to the given sale order (including self).
 
-        Used to aggregate consumption across multiple MOs that share the
-        same sale origin, ensuring idempotent updates to the SO.
+        Collects the MOs linked directly to the sale order, then walks *down*
+        the production tree to include the sub-MOs that manufactured their
+        consumed components (multi-level BoM). A sub-MO is linked to its parent
+        MO, not to the sale order, so a component consumed only in that sub-MO
+        (e.g. a per-package handling service) would otherwise never be synced
+        back. Consumption is aggregated across the whole tree, ensuring
+        idempotent updates to the SO.
         """
         self.ensure_one()
         MrpProduction = self.env["mrp.production"]
@@ -55,7 +60,19 @@ class MrpProduction(models.Model):
         if sale_order.name:
             siblings |= MrpProduction.search([("origin", "=", sale_order.name)])
         # Always include self in case neither lookup finds it.
-        return siblings | self
+        siblings |= self
+        # Walk down the production tree: each raw move may be supplied by a
+        # sub-MO's finished move (move_orig_ids -> production_id). Collect those
+        # sub-MOs recursively so their consumption is synced too.
+        result = siblings
+        frontier = siblings
+        while frontier:
+            children = frontier.move_raw_ids.move_orig_ids.production_id - result
+            if not children:
+                break
+            result |= children
+            frontier = children
+        return result
 
     @staticmethod
     def _get_move_qty_in_product_uom(move):

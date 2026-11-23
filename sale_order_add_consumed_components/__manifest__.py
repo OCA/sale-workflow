@@ -1,6 +1,6 @@
 {
     "name": "Sale Order add consumed components",
-    "version": "18.0.2.0.0",
+    "version": "18.0.2.1.0",
     "category": "Sales Management",
     "summary": "Add consumed components from Manufacturing Order "
     "to the originating Sales Order as invoiceable lines.",
