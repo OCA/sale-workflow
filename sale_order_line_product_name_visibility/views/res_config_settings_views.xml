@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.account</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="40" />
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <setting id="uom_settings" position="after">
+                <setting
+                    id="invoice_hide_product_name"
+                    company_dependent="1"
+                    help="Hide the product name in sale order line descriptions"
+                >
+                    <field name="hide_product_name" />
+                </setting>
+            </setting>
+        </field>
+    </record>
+</odoo>

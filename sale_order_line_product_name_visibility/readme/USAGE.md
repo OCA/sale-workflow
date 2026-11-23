@@ -1,0 +1,3 @@
+- Go to the **Sale \> Orders **, create new o select existing and add a new line.
+- The product label must be displayed just after the product name.
+- Click the toggle button to show or hide the product name.
