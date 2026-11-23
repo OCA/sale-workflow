@@ -40,6 +40,7 @@ class ManualDelivery(models.TransientModel):
                         "qty_ordered": line.product_uom_qty,
                         "qty_procured": line.qty_procured,
                         "quantity": line.qty_to_procure,
+                        "packaging_uom_id": line.product_uom_id.id,
                     },
                 )
                 for line in sale_lines
@@ -79,6 +80,10 @@ class ManualDelivery(models.TransientModel):
         string="Lines to validate",
     )
     date_planned = fields.Date()
+    date_deadline = fields.Datetime(
+        string="Deadline",
+        help="Leave it blank to use the deadline of the sale order",
+    )
 
     def confirm(self):
         """Creates the manual procurements"""

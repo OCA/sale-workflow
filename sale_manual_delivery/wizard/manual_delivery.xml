@@ -15,6 +15,7 @@
                             />
                             <field name="partner_id" />
                             <field name="date_planned" />
+                            <field name="date_deadline" />
                         </group>
                         <group>
                             <field name="carrier_id" />
@@ -33,6 +34,8 @@
                             <field name="qty_ordered" string="Ordered" />
                             <field name="qty_procured" string="Procured" />
                             <field name="quantity" />
+                            <field name="allowed_uom_ids" column_invisible="1" />
+                            <field name="packaging_uom_id" groups="uom.group_uom" />
                         </list>
                     </field>
                 </sheet>

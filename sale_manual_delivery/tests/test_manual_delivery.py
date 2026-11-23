@@ -427,3 +427,31 @@ class TestSaleStock(SaleCommon, DeliveryCommon, TestStockCommon):
         self.assertEqual(picking.partner_id, address)
         self.assertEqual(picking.move_ids.partner_id, address)
         self.assertEqual(sum(picking.move_ids.mapped("product_uom_qty")), 4.0)
+
+    def test_07_manual_delivery_deadline_and_packaging(self):
+        """Test the deadline and the packaging of the wizard reach the delivery.
+
+        The deadline is set on the moves. The packaging is given to the stock
+        rule search, which takes the routes of its package type: it starts as
+        the unit of measure of the sale order line.
+        """
+        pack = self.env["uom.uom"].create(
+            {
+                "name": "Test Pack of 2",
+                "relative_factor": 2,
+                "relative_uom_id": self.product.uom_id.id,
+            }
+        )
+        self.product.uom_ids = pack
+        order = self._create_order(qty=10)
+        order.action_confirm()
+        deadline = datetime(2026, 12, 24, 10, 0)
+        wizard = self._manual_delivery_wizard(order, {"date_deadline": deadline})
+        self.assertEqual(wizard.line_ids.packaging_uom_id, self.product.uom_id)
+        wizard.line_ids.write({"quantity": 2.0, "packaging_uom_id": pack.id})
+        values = order.order_line.with_context(
+            sale_manual_delivery=wizard
+        )._prepare_procurement_values()
+        self.assertEqual(values["packaging_uom_id"], pack)
+        wizard.confirm()
+        self.assertEqual(order.picking_ids.move_ids.date_deadline, deadline)
