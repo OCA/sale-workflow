@@ -4,6 +4,56 @@
 from odoo import api, fields, models, _
 import odoo.addons.decimal_precision as dp
 from odoo.exceptions import ValidationError
+from functools import partial
+from odoo.tools.misc import formatLang
+
+
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
+
+    @api.depends('order_line.price_total')
+    def _amount_by_group(self):
+        """Override to consider fixed discount in tax calculations."""
+        super(SaleOrder, self)._amount_by_group()
+
+        for order in self:
+            # Check if any line has a fixed discount
+            if not any(line.discount_fixed for line in order.order_line):
+                continue
+
+            # Recompute considering fixed discounts
+            currency = order.currency_id or order.company_id.currency_id
+            fmt = partial(formatLang, self.with_context(lang=order.partner_id.lang).env, currency_obj=currency)
+            res = {}
+
+            for line in order.order_line:
+                # Calculate price_reduce considering both percentage and fixed discounts
+                price_reduce = line.price_unit * (1.0 - line.discount / 100.0)
+                # Subtract fixed discount if present
+                if line.discount_fixed:
+                    price_reduce -= line.discount_fixed
+
+                taxes = line.tax_id.compute_all(
+                    price_reduce,
+                    quantity=line.product_uom_qty,
+                    product=line.product_id,
+                    partner=order.partner_shipping_id
+                )['taxes']
+
+                for tax in line.tax_id:
+                    group = tax.tax_group_id
+                    res.setdefault(group, {'amount': 0.0, 'base': 0.0})
+                    for t in taxes:
+                        if t['id'] == tax.id or t['id'] in tax.children_tax_ids.ids:
+                            res[group]['amount'] += t['amount']
+                            res[group]['base'] += t['base']
+
+            res = sorted(res.items(), key=lambda l: l[0].sequence)
+            order.amount_by_group = [(
+                l[0].name, l[1]['amount'], l[1]['base'],
+                fmt(l[1]['amount']), fmt(l[1]['base']),
+                len(res),
+            ) for l in res]
 
 
 class SaleOrderLine(models.Model):
