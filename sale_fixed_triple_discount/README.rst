@@ -21,19 +21,23 @@ Sale Fixed Triple Discount
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_fixed_triple_discount
+    :target: https://github.com/OCA/sale-workflow/tree/19.0/sale_fixed_triple_discount
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_fixed_triple_discount
+    :target: https://translation.odoo-community.org/projects/sale-workflow-19-0/sale-workflow-19-0-sale_fixed_triple_discount
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Glue module between `sale_fixed_discount` and `sale_triple_discount`.
-When both are used on the same line a warning will appear to alert the user that the fixed discount will take priority and it's recommended to only use one.
+Glue module between ``sale_fixed_discount`` and
+``sale_triple_discount``.
+
+When both are used on the same line a warning will appear to alert the
+user that the fixed discount will take priority and it's recommended to
+only use one.
 
 **Table of contents**
 
@@ -46,7 +50,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_fixed_triple_discount%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_fixed_triple_discount%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -54,12 +58,12 @@ Credits
 =======
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Ethan Hildick <hildickethan@gmail.com>
+-  Ethan Hildick <hildickethan@gmail.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -71,6 +75,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_fixed_triple_discount>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/19.0/sale_fixed_triple_discount>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
