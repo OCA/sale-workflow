@@ -6,8 +6,12 @@ the options of the catalog opened from a sale order.
 The options of the catalog search panel preselected when the catalog is
 opened:
 
-- **Origin**: the cards shown. Empty shows the products; other modules add
-  further origins (e.g. **Suppliers** in `sale_product_catalog_supplierinfo`).
+- **Products**: the cards shown. Empty shows all the products, **Available**
+  only the goods with a positive forecasted quantity in the order warehouse;
+  other modules add further options (e.g. **Suppliers** in
+  `sale_product_catalog_supplierinfo`). Check **Show** to show this section in
+  the catalog search panel, hidden by default; the option chosen here applies
+  either way.
 - **Last sales**: only show the products sold to the customer, most frequently
   sold first.
 - **Price**: empty shows the pricelist price, **Last sale** the price of the
