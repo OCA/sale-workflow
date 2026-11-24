@@ -10,12 +10,12 @@
             <field name="partner_invoice_id" position="attributes">
                 <attribute
                     name="context"
-                >{'default_type': 'invoice', 'show_address': 1, 'show_vat': False, 'default_parent_id': partner_id}</attribute>
+                >{'default_type': 'invoice', 'show_address': 1, 'show_identifier': False, 'default_parent_id': partner_id}</attribute>
             </field>
             <field name="partner_shipping_id" position="attributes">
                 <attribute
                     name="context"
-                >{'default_type': 'delivery', 'show_address': 1, 'show_vat': False, 'default_parent_id': partner_id}</attribute>
+                >{'default_type': 'delivery', 'show_address': 1, 'show_identifier': False, 'default_parent_id': partner_id}</attribute>
             </field>
         </field>
     </record>

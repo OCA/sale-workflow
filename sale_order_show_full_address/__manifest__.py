@@ -4,7 +4,7 @@
 {
     "name": "Sale Order Show Full Address",
     "summary": "Show the complete invoice and delivery addresses on sales orders",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Sale",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
