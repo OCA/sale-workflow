@@ -456,3 +456,49 @@ class TestSaleOrderLotSelection(BaseCommon):
         self._update_stock_quantity(self.prd_cable, lot_cable_extra, 1)
         sale_extra.action_confirm()
         self.assertEqual(sale_extra.state, "sale")
+
+    def test_05_sale_order_lot_selection_confirm_multi_lines_serial(self):
+        self.prd_cable.tracking = "serial"
+        self._update_stock_quantity(self.prd_cable, self.lot_cable, 1)
+        sale = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.prd_cable.id,
+                            "product_uom_qty": 1.0,
+                            "lot_id": self.lot_cable.id,
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "product_id": self.prd_cable.id,
+                            "product_uom_qty": 1.0,
+                            "lot_id": self.lot_cable.id,
+                        }
+                    ),
+                ],
+            }
+        )
+        with self.assertRaisesRegex(
+            UserError,
+            "The serial number cable test lot is not available",
+        ):
+            sale.action_confirm()
+        lot_cable_extra = self.env["stock.lot"].create(
+            {
+                "name": "cable test lot extra",
+                "product_id": self.prd_cable.id,
+            }
+        )
+        line_1 = sale.order_line[1]
+        line_1.lot_id = lot_cable_extra
+        with self.assertRaisesRegex(
+            UserError,
+            "The serial number cable test lot extra is not available",
+        ):
+            sale.action_confirm()
+        self._update_stock_quantity(self.prd_cable, lot_cable_extra, 1)
+        sale.action_confirm()
+        self.assertEqual(sale.state, "sale")
