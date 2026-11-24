@@ -335,8 +335,7 @@ class TestSaleException(TransactionCase):
         product.standard_price = 10.0
         sale_order = self._create_sale_order(partner=partner, product=product)
         sale_order.order_line.price_unit = 5.0
-        self.registry.enter_test_mode(self.cr)
-        self.addCleanup(self.registry.leave_test_mode)
+        self.registry_enter_test_mode()
         with (
             self.registry.cursor() as new_cr,
         ):
