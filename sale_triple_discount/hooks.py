@@ -22,3 +22,22 @@ def post_load():
         )
         _logger.error(msg)
         raise Exception(msg)
+
+
+def pre_init_hook(cr):
+    _logger.info("Initializing column discount1 on table sale_order_line")
+    cr.execute(
+        """
+            ALTER TABLE sale_order_line
+            ADD COLUMN IF NOT EXISTS discount1 numeric DEFAULT 0.0;
+            ALTER TABLE sale_order_line
+            ALTER COLUMN discount1 DROP DEFAULT;
+        """
+    )
+    cr.execute(
+        """
+            UPDATE sale_order_line
+            SET discount1 = discount
+            WHERE discount != 0
+        """
+    )
