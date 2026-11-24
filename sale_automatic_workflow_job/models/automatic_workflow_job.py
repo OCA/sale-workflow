@@ -5,9 +5,28 @@ import logging
 
 from odoo import api, models
 
-from odoo.addons.queue_job.job import identity_exact
+from odoo.addons.queue_job.job import Job, identity_exact
+from odoo.addons.queue_job.utils import must_run_without_delay
 
 _logger = logging.getLogger(__name__)
+
+
+def _skip_on_failed_job(patched, method_name, context_key):
+    def wrapper(self, *args, **kwargs):
+        if (
+            self.env.context.get(context_key)
+            and not self.env.context.get("job_uuid")
+            and not must_run_without_delay(self.env)
+            and self._has_failed_job(method_name, *args, **kwargs)
+        ):
+            _logger.info(
+                "%s not enqueued: the same job failed and waits to be requeued",
+                method_name,
+            )
+            return None
+        return patched(self, *args, **kwargs)
+
+    return wrapper
 
 
 class AutomaticWorkflowJob(models.Model):
@@ -106,17 +125,40 @@ class AutomaticWorkflowJob(models.Model):
     def _register_hook(self):
         mapping = self._get_register_hook_mapping()
         for method_name, context_key in mapping.items():
+            origin = getattr(type(self), method_name)
             patched = self._patch_job_auto_delay(method_name, context_key=context_key)
             setattr(
                 type(self),
                 method_name,
                 functools.update_wrapper(
-                    patched,
-                    getattr(type(self), method_name),
+                    _skip_on_failed_job(patched, method_name, context_key),
+                    origin,
                 ),
             )
 
         return super()._register_hook()
+
+    def _has_failed_job(self, method_name, *args, **kwargs):
+        options_method = getattr(self, f"{method_name}_job_options", None)
+        identity_key = options_method and options_method(*args, **kwargs).get(
+            "identity_key"
+        )
+        if not identity_key:
+            return False
+        job = Job(
+            getattr(self, method_name),
+            args=args,
+            kwargs=kwargs,
+            identity_key=identity_key,
+        )
+        return bool(
+            self.env["queue.job"]
+            .sudo()
+            .search_count(
+                [("identity_key", "=", job.identity_key), ("state", "=", "failed")],
+                limit=1,
+            )
+        )
 
     def _get_register_hook_mapping(self) -> dict[str, str]:
         return {
