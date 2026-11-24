@@ -4,12 +4,17 @@
 from unittest.mock import patch
 
 from odoo import fields
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 
 from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestSaleAdvancePayment(BaseCommon):
+    _test_user_groups = (
+        "sales_team.group_sale_salesman",
+        "account.group_account_invoice",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -381,13 +386,16 @@ class TestSaleAdvancePayment(BaseCommon):
         self.assertEqual(self.sale_order_1.invoice_status, "to invoice")
         # Adjust invoice_policy method to then do a partial invoice with a total amount
         # smaller than the pre-payment.
-        self.product_1.invoice_policy = "delivery"
+        (
+            self.product_1 | self.product_2 | self.product_3
+        ).sudo().invoice_policy = "delivery"
+        # The order line's invoice_policy is computed from the product without
+        # depends, drop its cached value.
+        self.sale_order_1.order_line.invalidate_recordset(["invoice_policy"])
         self.order_line_1.qty_delivered = 10.0
         self.assertEqual(self.order_line_1.qty_to_invoice, 10.0)
-        self.product_2.invoice_policy = "delivery"
         self.order_line_2.qty_delivered = 0.0
         self.assertEqual(self.order_line_2.qty_to_invoice, 0.0)
-        self.product_3.invoice_policy = "delivery"
         self.order_line_3.qty_delivered = 0.0
         self.assertEqual(self.order_line_3.qty_to_invoice, 0.0)
         self.sale_order_1._create_invoices()
@@ -557,3 +565,43 @@ class TestSaleAdvancePayment(BaseCommon):
             res = invoice.action_post()
             self.assertEqual(res, fake_wizard_action)
             self.assertNotEqual(invoice.state, "posted")
+
+    def test_08_full_advance_payment(self):
+        order = self.sale_order_1
+        order.prepayment_percent = 1.0
+        self.assertTrue(order._has_to_be_paid())
+        journal = (
+            self.env["account.journal"]
+            .sudo()
+            .create({"name": "Company Currency Bank", "type": "bank", "code": "555"})
+        )
+        self.env["account.voucher.wizard"].with_context(
+            active_ids=order.ids, active_id=order.id
+        ).create(
+            {
+                "journal_id": journal.id,
+                "amount_advance": order.amount_total,
+                "order_id": order.id,
+            }
+        ).make_advance_payment()
+        self.assertEqual(order.advance_payment_status, "paid")
+        self.assertFalse(order.amount_residual)
+        self.assertFalse(order._has_to_be_paid())
+
+    def test_09_wizard_amount_checks(self):
+        Wizard = self.env["account.voucher.wizard"]
+        vals = {
+            "journal_id": self.journal_eur_bank.id,
+            "order_id": self.sale_order_1.id,
+        }
+        with self.assertRaises(ValidationError):
+            Wizard.create(dict(vals, amount_advance=0))
+        with self.assertRaises(UserError):
+            Wizard.new(dict(vals, amount_advance=-10))._prepare_payment_vals(
+                self.sale_order_1
+            )
+        self.assertNotIn("order_id", Wizard.default_get(["amount_total"]))
+        self.assertNotIn(
+            "order_id",
+            Wizard.with_context(active_ids=[False]).default_get(["amount_total"]),
+        )

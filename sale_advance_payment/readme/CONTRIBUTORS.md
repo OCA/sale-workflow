@@ -5,3 +5,4 @@
 - Urvisha Desai \<<udesai@opensourceintegrators.com>\>
 - [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
   - Bhavesh Heliconia
+- Ayush Patel \<<patelayush2021@gmail.com>\>

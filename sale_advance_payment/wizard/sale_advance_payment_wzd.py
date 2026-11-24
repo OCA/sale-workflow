@@ -90,8 +90,8 @@ class AccountVoucherWizard(models.TransientModel):
                     )
 
     @api.model
-    def default_get(self, fields_list):
-        res = super().default_get(fields_list)
+    def default_get(self, fields):
+        res = super().default_get(fields)
         sale_ids = self.env.context.get("active_ids", [])
         if not sale_ids:
             return res
@@ -99,7 +99,7 @@ class AccountVoucherWizard(models.TransientModel):
         if not sale_id:
             return res
         sale = self.env["sale.order"].browse(sale_id)
-        if "amount_total" in fields_list:
+        if "amount_total" in fields:
             res.update(
                 {
                     "order_id": sale.id,
