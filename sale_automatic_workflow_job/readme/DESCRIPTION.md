@@ -13,3 +13,8 @@ per operation to do.
 
 It uses an identity key on the jobs so it will not create the same job
 for the same record and same operation twice.
+
+When a job fails, the scheduled action does not enqueue the same job
+again for that record and operation. Fix the cause, then requeue the
+failed job, or cancel it so that the next run of the scheduled action
+creates a new one.
