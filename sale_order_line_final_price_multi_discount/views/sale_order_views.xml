@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Innovyou
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- sale_multi_discount (priority 99) replaces the discount field, which
+         sale_order_line_final_price locks, with the distribution widget:
+         lock the widget too. -->
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form.final.price.multi.discount</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/list/field[@name='discount_distribution']"
+                position="attributes"
+            >
+                <attribute
+                    name="readonly"
+                    separator="or"
+                    add="not price_edit_allowed"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='discount_distribution']"
+                position="attributes"
+            >
+                <attribute
+                    name="readonly"
+                    separator="or"
+                    add="not price_edit_allowed"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
