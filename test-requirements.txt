@@ -1,0 +1,3 @@
+odoo-addon-account_invoice_fixed_discount @ git+https://github.com/OCA/account-invoicing.git@refs/pull/2555/head#subdirectory=account_invoice_fixed_discount
+odoo-addon-account_invoice_triple_discount @ git+https://github.com/OCA/account-invoicing.git@refs/pull/2555/head#subdirectory=account_invoice_triple_discount
+odoo-addon-account_invoice_fixed_triple_discount @ git+https://github.com/OCA/account-invoicing.git@refs/pull/2555/head#subdirectory=account_invoice_fixed_triple_discount
