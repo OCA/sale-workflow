@@ -91,6 +91,17 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
+.. |maintainer-sergio-teruel| image:: https://github.com/sergio-teruel.png?size=40px
+    :target: https://github.com/sergio-teruel
+    :alt: sergio-teruel
+.. |maintainer-carlosdauden| image:: https://github.com/carlosdauden.png?size=40px
+    :target: https://github.com/carlosdauden
+    :alt: carlosdauden
+
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-sergio-teruel| |maintainer-carlosdauden| 
+
 This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/15.0/sale_stock_secondary_unit>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
