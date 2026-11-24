@@ -5,7 +5,7 @@ from unittest import mock
 
 from odoo.tests import tagged
 
-from odoo.addons.queue_job.job import identity_exact
+from odoo.addons.queue_job.job import Job, identity_exact
 from odoo.addons.queue_job.tests.common import trap_jobs
 from odoo.addons.sale_automatic_workflow.tests.common import (
     TestAutomaticWorkflowMixin,
@@ -244,3 +244,56 @@ class TestAutoWorkflowJob(TestCommon, TestAutomaticWorkflowMixin):
 
         self.assertEqual(sale_done_options["identity_key"], identity_exact)
         self.assertIn(sale.display_name, sale_done_options["description"])
+
+    def test_failed_job_not_enqueued_again(self):
+        workflow = self.create_full_automatic()
+        sale = self.create_sale_order(workflow)
+        sale.action_confirm()
+        sale._create_invoices()
+        invoice = sale.invoice_ids
+        domain = [
+            ("state", "=", "draft"),
+            ("posted_before", "=", False),
+            ("workflow_process_id", "=", sale.workflow_process_id.id),
+        ]
+        job_model = self.env["automatic.workflow.job"]
+        failed = Job(
+            job_model._do_validate_invoice,
+            args=(invoice, domain),
+            identity_key=identity_exact,
+        )
+        failed.store()
+        failed.db_record().write({"state": "failed"})
+        with trap_jobs() as trap:
+            self.run_job()
+            trap.assert_jobs_count(0, only=job_model._do_validate_invoice)
+        failed.db_record().write({"state": "cancelled"})
+        with trap_jobs() as trap:
+            self.run_job()
+            trap.assert_jobs_count(1, only=job_model._do_validate_invoice)
+
+    def test_failed_job_of_another_record_does_not_block(self):
+        workflow = self.create_full_automatic()
+        sale = self.create_sale_order(workflow)
+        other = self.create_sale_order(workflow)
+        job_model = self.env["automatic.workflow.job"]
+        domain = [
+            ("state", "=", "draft"),
+            ("workflow_process_id", "=", workflow.id),
+        ]
+        failed = Job(
+            job_model._do_validate_sale_order,
+            args=(other, domain),
+            identity_key=identity_exact,
+        )
+        failed.store()
+        failed.db_record().write({"state": "failed"})
+        with trap_jobs() as trap:
+            self.run_job()
+            trap.assert_jobs_count(1, only=job_model._do_validate_sale_order)
+            trap.assert_enqueued_job(
+                job_model._do_validate_sale_order,
+                args=(sale, domain),
+                kwargs={},
+                properties={"identity_key": identity_exact},
+            )
