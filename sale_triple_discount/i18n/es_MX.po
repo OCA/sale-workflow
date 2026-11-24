@@ -38,17 +38,17 @@ msgstr "Aditivo"
 
 #. module: sale_triple_discount
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discount1
-msgid "Discount 1 (%)"
+msgid "Disc1 %"
 msgstr ""
 
 #. module: sale_triple_discount
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discount2
-msgid "Discount 2 (%)"
+msgid "Disc2 %"
 msgstr ""
 
 #. module: sale_triple_discount
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discount3
-msgid "Discount 3 (%)"
+msgid "Disc3 %"
 msgstr ""
 
 #. module: sale_triple_discount
