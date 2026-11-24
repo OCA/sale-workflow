@@ -1,0 +1,607 @@
+# Copyright (C) 2021 ForgeFlow S.L.
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
+
+from unittest.mock import patch
+
+from odoo import fields
+from odoo.exceptions import UserError, ValidationError
+
+from odoo.addons.base.tests.common import BaseCommon
+
+
+class TestSaleAdvancePayment(BaseCommon):
+    _test_user_groups = (
+        "sales_team.group_sale_salesman",
+        "account.group_account_invoice",
+    )
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+
+        # Partners
+        cls.res_partner_1 = cls.env["res.partner"].create({"name": "Wood Corner"})
+        cls.res_partner_address_1 = cls.env["res.partner"].create(
+            {"name": "Willie Burke", "parent_id": cls.res_partner_1.id}
+        )
+        cls.res_partner_2 = cls.env["res.partner"].create({"name": "Partner 12"})
+
+        # Products
+        cls.product_1 = cls.env["product.product"].create(
+            {"name": "Desk Combination", "invoice_policy": "order"}
+        )
+        cls.product_2 = cls.env["product.product"].create(
+            {"name": "Conference Chair", "invoice_policy": "order"}
+        )
+        cls.product_3 = cls.env["product.product"].create(
+            {"name": "Repair Services", "invoice_policy": "order"}
+        )
+
+        cls.tax = cls.env["account.tax"].create(
+            {
+                "name": "Tax 15",
+                "type_tax_use": "sale",
+                "amount": 20,
+            }
+        )
+
+        # Sale Order
+        cls.sale_order_1 = cls.env["sale.order"].create(
+            {"partner_id": cls.res_partner_1.id}
+        )
+        cls.order_line_1 = cls.env["sale.order.line"].create(
+            {
+                "order_id": cls.sale_order_1.id,
+                "product_id": cls.product_1.id,
+                "product_uom_id": cls.product_1.uom_id.id,
+                "product_uom_qty": 10.0,
+                "price_unit": 100.0,
+                "tax_ids": cls.tax,
+            }
+        )
+        cls.order_line_2 = cls.env["sale.order.line"].create(
+            {
+                "order_id": cls.sale_order_1.id,
+                "product_id": cls.product_2.id,
+                "product_uom_id": cls.product_2.uom_id.id,
+                "product_uom_qty": 25.0,
+                "price_unit": 40.0,
+                "tax_ids": cls.tax,
+            }
+        )
+        cls.order_line_3 = cls.env["sale.order.line"].create(
+            {
+                "order_id": cls.sale_order_1.id,
+                "product_id": cls.product_3.id,
+                "product_uom_id": cls.product_3.uom_id.id,
+                "product_uom_qty": 20.0,
+                "price_unit": 50.0,
+                "tax_ids": cls.tax,
+            }
+        )
+
+        cls.active_euro = False
+        cls.currency_euro = (
+            cls.env["res.currency"]
+            .with_context(active_test=False)
+            .search([("name", "=", "EUR")])
+        )
+        # active euro currency if inactive for test
+        if not cls.currency_euro.active:
+            cls.currency_euro.active = True
+            cls.active_euro = True
+        cls.currency_usd = cls.env["res.currency"].search([("name", "=", "USD")])
+        cls.currency_rate = cls.env["res.currency.rate"].search(
+            [
+                ("currency_id", "=", cls.currency_usd.id),
+                ("name", "=", fields.Date.today()),
+            ]
+        )
+        if cls.currency_rate:
+            cls.currency_rate.write({"inverse_company_rate": 1.20})
+        else:
+            cls.currency_rate = cls.env["res.currency.rate"].create(
+                {
+                    "inverse_company_rate": 1.20,
+                    "currency_id": cls.currency_euro.id,
+                    "name": fields.Date.today(),
+                }
+            )
+
+        cls.journal_eur_bank = cls.env["account.journal"].create(
+            {
+                "name": "Journal Euro Bank",
+                "type": "bank",
+                "code": "111",
+                "currency_id": cls.currency_euro.id,
+            }
+        )
+
+        cls.journal_usd_bank = cls.env["account.journal"].create(
+            {
+                "name": "Journal USD Bank",
+                "type": "bank",
+                "code": "222",
+                "currency_id": cls.currency_usd.id,
+            }
+        )
+        cls.journal_eur_cash = cls.env["account.journal"].create(
+            {
+                "name": "Journal Euro Cash",
+                "type": "cash",
+                "code": "333",
+                "currency_id": cls.currency_euro.id,
+            }
+        )
+
+        cls.journal_usd_cash = cls.env["account.journal"].create(
+            {
+                "name": "Journal USD Cash",
+                "type": "cash",
+                "code": "444",
+                "currency_id": cls.currency_usd.id,
+            }
+        )
+
+    def test_01_sale_advance_payment(self):
+        self.assertEqual(
+            self.sale_order_1.amount_residual,
+            3600,
+        )
+        self.assertEqual(
+            self.sale_order_1.amount_residual,
+            self.sale_order_1.amount_total,
+            "Amounts should match",
+        )
+
+        context_payment = {
+            "active_ids": [self.sale_order_1.id],
+            "active_id": self.sale_order_1.id,
+        }
+
+        # Check residual > advance payment and the comparison takes
+        # into account the currency. 3001*1.2 > 3600
+        with self.assertRaises(ValidationError):
+            advance_payment_0 = (
+                self.env["account.voucher.wizard"]
+                .with_context(**context_payment)
+                .create(
+                    {
+                        "journal_id": self.journal_eur_bank.id,
+                        "payment_type": "inbound",
+                        "amount_advance": 3001,
+                        "order_id": self.sale_order_1.id,
+                    }
+                )
+            )
+            advance_payment_0.make_advance_payment()
+
+        # Create Advance Payment 1 - EUR - bank
+        advance_payment_1 = (
+            self.env["account.voucher.wizard"]
+            .with_context(**context_payment)
+            .create(
+                {
+                    "journal_id": self.journal_eur_bank.id,
+                    "payment_type": "inbound",
+                    "amount_advance": 100,
+                    "order_id": self.sale_order_1.id,
+                }
+            )
+        )
+        advance_payment_1.make_advance_payment()
+
+        self.assertEqual(self.sale_order_1.amount_residual, 3480)
+
+        # Create Advance Payment 2 - USD - cash
+        advance_payment_2 = (
+            self.env["account.voucher.wizard"]
+            .with_context(**context_payment)
+            .create(
+                {
+                    "journal_id": self.journal_usd_cash.id,
+                    "payment_type": "inbound",
+                    "amount_advance": 200,
+                    "order_id": self.sale_order_1.id,
+                }
+            )
+        )
+        advance_payment_2.make_advance_payment()
+
+        self.assertEqual(self.sale_order_1.amount_residual, 3280)
+
+        # Confirm Sale Order
+        self.sale_order_1.action_confirm()
+
+        # Create Advance Payment 3 - EUR - cash
+        advance_payment_3 = (
+            self.env["account.voucher.wizard"]
+            .with_context(**context_payment)
+            .create(
+                {
+                    "journal_id": self.journal_eur_cash.id,
+                    "payment_type": "inbound",
+                    "amount_advance": 250,
+                    "order_id": self.sale_order_1.id,
+                }
+            )
+        )
+        advance_payment_3.make_advance_payment()
+        self.assertEqual(self.sale_order_1.amount_residual, 2980)
+
+        # Create Advance Payment 4 - USD - bank
+        advance_payment_4 = (
+            self.env["account.voucher.wizard"]
+            .with_context(**context_payment)
+            .create(
+                {
+                    "journal_id": self.journal_usd_bank.id,
+                    "payment_type": "inbound",
+                    "amount_advance": 400,
+                    "order_id": self.sale_order_1.id,
+                }
+            )
+        )
+        advance_payment_4.make_advance_payment()
+        self.assertEqual(self.sale_order_1.amount_residual, 2580)
+
+        # Check that the outbound amount is not greated than the
+        # amount paid in advanced (in EUR)
+        with self.assertRaises(ValidationError):
+            advance_payment_5 = (
+                self.env["account.voucher.wizard"]
+                .with_context(**context_payment)
+                .create(
+                    {
+                        "journal_id": self.journal_eur_bank.id,
+                        "payment_type": "outbound",
+                        "amount_advance": 850.01,
+                        "order_id": self.sale_order_1.id,
+                    }
+                )
+            )
+            advance_payment_5.make_advance_payment()
+        # Create Invoice
+        invoice = self.sale_order_1._create_invoices()
+        invoice.action_post()
+
+        # Verify that advance payments are reconciled with the invoice
+        rate = self.currency_rate.inverse_company_rate
+        expected_payment_amounts = [100 * rate, 200, 250 * rate, 400]
+
+        # Get all payment lines that should have been reconciled
+        payment_lines = self.env["account.move.line"].search(
+            [
+                ("move_id", "in", self.sale_order_1.account_payment_ids.move_id.ids),
+                (
+                    "account_id.account_type",
+                    "in",
+                    ("asset_receivable", "liability_payable"),
+                ),
+                ("parent_state", "=", "posted"),
+            ]
+        )
+
+        # Check that all payments are reconciled
+        self.assertTrue(all(line.reconciled for line in payment_lines))
+
+        # Verify the payment amounts match
+        actual_payment_amounts = []
+        for line in payment_lines:
+            actual_payment_amounts.append(abs(line.balance))
+
+        actual_payment_amounts_sorted = sorted(actual_payment_amounts)
+        expected_payment_amounts_sorted = sorted(expected_payment_amounts)
+        self.assertEqual(actual_payment_amounts_sorted, expected_payment_amounts_sorted)
+
+    def test_02_residual_amount_with_invoice(self):
+        self.assertEqual(
+            self.sale_order_1.amount_residual,
+            3600,
+        )
+        self.assertEqual(
+            self.sale_order_1.amount_residual,
+            self.sale_order_1.amount_total,
+        )
+        # Create Advance Payment 1 - EUR - bank
+        context_payment = {
+            "active_ids": [self.sale_order_1.id],
+            "active_id": self.sale_order_1.id,
+        }
+        # Create Advance Payment 2 - USD - cash
+        advance_payment_2 = (
+            self.env["account.voucher.wizard"]
+            .with_context(**context_payment)
+            .create(
+                {
+                    "journal_id": self.journal_usd_cash.id,
+                    "payment_type": "inbound",
+                    "amount_advance": 200,
+                    "order_id": self.sale_order_1.id,
+                }
+            )
+        )
+        advance_payment_2.make_advance_payment()
+        pre_payment = self.sale_order_1.account_payment_ids
+        self.assertEqual(len(pre_payment), 1)
+        self.assertEqual(self.sale_order_1.amount_residual, 3400)
+        # generate invoice, pay invoice, check amount residual.
+        self.sale_order_1.action_confirm()
+        self.assertEqual(self.sale_order_1.invoice_status, "to invoice")
+        self.sale_order_1._create_invoices()
+        self.assertEqual(self.sale_order_1.invoice_status, "invoiced")
+        self.assertEqual(self.sale_order_1.amount_residual, 3400)
+        invoice = self.sale_order_1.invoice_ids
+        invoice.invoice_date = fields.Date.today()
+        invoice.action_post()
+        active_ids = invoice.ids
+        self.env["account.payment.register"].with_context(
+            active_model="account.move", active_ids=active_ids
+        ).create(
+            {
+                "amount": 1200.0,
+                "group_payment": True,
+                "payment_difference_handling": "open",
+            }
+        )._create_payments()
+        self.assertEqual(self.sale_order_1.amount_residual, 2200)
+        # Cancel invoice and check residual amount
+        invoice.button_draft()
+        invoice.button_cancel()
+        self.assertEqual(self.sale_order_1.amount_residual, 3400)
+
+    def test_03_residual_amount_big_pre_payment(self):
+        self.assertEqual(
+            self.sale_order_1.amount_residual,
+            3600,
+        )
+        self.assertEqual(
+            self.sale_order_1.amount_residual,
+            self.sale_order_1.amount_total,
+        )
+        # Create Advance Payment 1 - EUR - bank
+        context_payment = {
+            "active_ids": [self.sale_order_1.id],
+            "active_id": self.sale_order_1.id,
+        }
+        # Create Advance Payment 2 - USD - cash
+        advance_payment_2 = (
+            self.env["account.voucher.wizard"]
+            .with_context(**context_payment)
+            .create(
+                {
+                    "journal_id": self.journal_usd_cash.id,
+                    "payment_type": "inbound",
+                    "amount_advance": 2000,
+                    "order_id": self.sale_order_1.id,
+                }
+            )
+        )
+        advance_payment_2.make_advance_payment()
+        pre_payment = self.sale_order_1.account_payment_ids
+        self.assertEqual(len(pre_payment), 1)
+        self.assertEqual(self.sale_order_1.amount_residual, 1600)
+        # generate a partial invoice, reconcile with pre payment, check amount residual.
+        self.sale_order_1.action_confirm()
+        self.assertEqual(self.sale_order_1.invoice_status, "to invoice")
+        # Adjust invoice_policy method to then do a partial invoice with a total amount
+        # smaller than the pre-payment.
+        (
+            self.product_1 | self.product_2 | self.product_3
+        ).sudo().invoice_policy = "delivery"
+        # The order line's invoice_policy is computed from the product without
+        # depends, drop its cached value.
+        self.sale_order_1.order_line.invalidate_recordset(["invoice_policy"])
+        self.order_line_1.qty_delivered = 10.0
+        self.assertEqual(self.order_line_1.qty_to_invoice, 10.0)
+        self.order_line_2.qty_delivered = 0.0
+        self.assertEqual(self.order_line_2.qty_to_invoice, 0.0)
+        self.order_line_3.qty_delivered = 0.0
+        self.assertEqual(self.order_line_3.qty_to_invoice, 0.0)
+        self.sale_order_1._create_invoices()
+        self.assertEqual(self.sale_order_1.invoice_status, "no")
+        self.assertEqual(self.sale_order_1.amount_residual, 1600)
+        invoice = self.sale_order_1.invoice_ids
+        invoice.invoice_date = fields.Date.today()
+        invoice.action_post()
+        self.assertEqual(invoice.amount_total, 1200)
+        self.assertEqual(invoice.amount_residual, 0.0)
+        self.assertEqual(self.sale_order_1.amount_residual, 1600)
+        self.assertEqual(invoice.amount_residual, 0)
+
+    def test_04_refunds(self):
+        self.assertEqual(
+            self.sale_order_1.amount_residual,
+            3600,
+        )
+        self.sale_order_1.action_confirm()
+        invoice = self.sale_order_1._create_invoices()
+        invoice.action_post()
+        self.assertEqual(invoice.amount_total, 3600)
+        self.assertEqual(
+            self.sale_order_1.amount_residual,
+            3600,
+        )
+        self.env["account.move.reversal"].with_context(
+            active_model="account.move", active_ids=invoice.ids
+        ).create({"journal_id": invoice.journal_id.id}).reverse_moves()
+        self.assertEqual(len(self.sale_order_1.invoice_ids), 2)
+        invoice = self.sale_order_1.invoice_ids.filtered(lambda x: x.state == "draft")
+        invoice.action_post()
+        self.assertEqual(
+            self.sale_order_1.amount_residual,
+            3600,
+        )
+        invoice = self.sale_order_1._create_invoices()
+        invoice.action_post()
+        self.assertEqual(
+            self.sale_order_1.amount_residual,
+            3600,
+        )
+
+    def test_05_residual_amount_credit_note(self):
+        self.sale_order_1.action_confirm()
+        self.sale_order_1._create_invoices()
+        invoice = self.sale_order_1.invoice_ids[0]
+        invoice.invoice_date = fields.Date.today()
+        invoice.action_post()
+        self.env["account.payment.register"].with_context(
+            active_model="account.move", active_ids=invoice.ids
+        ).create(
+            {
+                "amount": 3600.0,
+                "group_payment": True,
+                "payment_difference_handling": "open",
+            }
+        )._create_payments()
+        self.assertEqual(self.sale_order_1.amount_residual, 0)
+        credit_note = invoice._reverse_moves()
+        credit_note.invoice_date = fields.Date.today()
+        credit_note.action_post()
+        self.env["account.payment.register"].with_context(
+            active_model="account.move", active_ids=credit_note.ids
+        ).create(
+            {
+                "amount": 3600.0,
+                "group_payment": True,
+                "payment_difference_handling": "open",
+            }
+        )._create_payments()
+        self.assertEqual(self.sale_order_1.amount_residual, 3600)
+
+    def test_06_multicurrency_residual_amount(self):
+        sale_order_usd = self.env["sale.order"].create(
+            {
+                "partner_id": self.res_partner_1.id,
+                "currency_id": self.currency_usd.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product_1.id,
+                            "product_uom_qty": 1.0,
+                            "price_unit": 100.0,
+                        },
+                    )
+                ],
+            }
+        )
+
+        total_amount = sale_order_usd.amount_total
+        self.assertEqual(sale_order_usd.amount_residual, total_amount)
+
+        sale_order_usd.action_confirm()
+
+        context_payment = {
+            "active_ids": [sale_order_usd.id],
+            "active_id": sale_order_usd.id,
+        }
+        advance_payment = (
+            self.env["account.voucher.wizard"]
+            .with_context(**context_payment)
+            .create(
+                {
+                    "journal_id": self.journal_usd_bank.id,
+                    "payment_type": "inbound",
+                    "amount_advance": 40.0,
+                    "order_id": sale_order_usd.id,
+                }
+            )
+        )
+        advance_payment.make_advance_payment()
+
+        self.assertEqual(sale_order_usd.amount_residual, total_amount - 40.0)
+
+        invoice = sale_order_usd._create_invoices()
+        invoice.invoice_date = fields.Date.today()
+        invoice.action_post()
+
+        self.assertEqual(sale_order_usd.amount_residual, total_amount - 40.0)
+
+        credit_note = invoice._reverse_moves()
+        credit_note.invoice_date = fields.Date.today()
+        credit_note.action_post()
+
+        self.assertEqual(sale_order_usd.amount_residual, total_amount - 40.0)
+
+        dummy_invoice = self.env["account.move"].create(
+            {
+                "move_type": "out_invoice",
+                "partner_id": self.res_partner_1.id,
+                "currency_id": self.currency_euro.id,
+                "invoice_date": fields.Date.today(),
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Dummy for coverage",
+                            "price_unit": 0.0,
+                            "quantity": 1.0,
+                            "sale_line_ids": [(6, 0, sale_order_usd.order_line.ids)],
+                        },
+                    )
+                ],
+            }
+        )
+        dummy_invoice.action_post()
+
+        _ = sale_order_usd.amount_residual
+
+    def test_07_action_post_interrupted_by_wizard(self):
+        self.sale_order_1.action_confirm()
+        invoice = self.sale_order_1._create_invoices()
+        fake_wizard_action = {
+            "type": "ir.actions.act_window",
+            "name": "Simulated Wizard",
+            "res_model": "test.wizard",
+            "view_mode": "form",
+        }
+        with patch(
+            "odoo.addons.account.models.account_move.AccountMove.action_post",
+            return_value=fake_wizard_action,
+        ):
+            res = invoice.action_post()
+            self.assertEqual(res, fake_wizard_action)
+            self.assertNotEqual(invoice.state, "posted")
+
+    def test_08_full_advance_payment(self):
+        order = self.sale_order_1
+        order.prepayment_percent = 1.0
+        self.assertTrue(order._has_to_be_paid())
+        journal = (
+            self.env["account.journal"]
+            .sudo()
+            .create({"name": "Company Currency Bank", "type": "bank", "code": "555"})
+        )
+        self.env["account.voucher.wizard"].with_context(
+            active_ids=order.ids, active_id=order.id
+        ).create(
+            {
+                "journal_id": journal.id,
+                "amount_advance": order.amount_total,
+                "order_id": order.id,
+            }
+        ).make_advance_payment()
+        self.assertEqual(order.advance_payment_status, "paid")
+        self.assertFalse(order.amount_residual)
+        self.assertFalse(order._has_to_be_paid())
+
+    def test_09_wizard_amount_checks(self):
+        Wizard = self.env["account.voucher.wizard"]
+        vals = {
+            "journal_id": self.journal_eur_bank.id,
+            "order_id": self.sale_order_1.id,
+        }
+        with self.assertRaises(ValidationError):
+            Wizard.create(dict(vals, amount_advance=0))
+        with self.assertRaises(UserError):
+            Wizard.new(dict(vals, amount_advance=-10))._prepare_payment_vals(
+                self.sale_order_1
+            )
+        self.assertNotIn("order_id", Wizard.default_get(["amount_total"]))
+        self.assertNotIn(
+            "order_id",
+            Wizard.with_context(active_ids=[False]).default_get(["amount_total"]),
+        )
