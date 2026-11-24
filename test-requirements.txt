@@ -1,1 +1,3 @@
 odoo-test-helper
+odoo-addon-sale_multi_discount @ git+https://github.com/OCA/sale-workflow.git@refs/pull/4364/head#subdirectory=sale_multi_discount
+odoo-addon-account_multi_discount @ git+https://github.com/OCA/account-invoicing.git@refs/pull/2364/head#subdirectory=account_multi_discount
