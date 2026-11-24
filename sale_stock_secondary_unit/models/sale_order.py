@@ -17,16 +17,25 @@ class SaleOrderLine(models.Model):
         return values
 
     def write(self, vals):
+        lines = self.env["sale.order.line"]
+        previous_product_uom_qty = {}
+        procure_secondary_uom_qty = {}
         if "secondary_uom_qty" in vals:
             lines = self.filtered(lambda r: r.state == "sale" and not r.is_expense)
+            previous_product_uom_qty = {line.id: line.product_uom_qty for line in lines}
             procure_secondary_uom_qty = {
                 line.id: float_round(
                     vals["secondary_uom_qty"] - line.secondary_uom_qty,
-                    precision_rounding=self.secondary_uom_id.uom_id.rounding or 0.01,
+                    precision_rounding=line.secondary_uom_id.uom_id.rounding or 0.01,
                 )
                 for line in lines
             }
             self = self.with_context(
                 procure_secondary_uom_qty=procure_secondary_uom_qty
             )
-        return super().write(vals)
+        res = super().write(vals)
+        if lines and "product_uom_qty" not in vals:
+            lines.with_context(
+                procure_secondary_uom_qty=procure_secondary_uom_qty
+            )._action_launch_stock_rule(previous_product_uom_qty)
+        return res
