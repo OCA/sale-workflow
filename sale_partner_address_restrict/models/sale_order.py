@@ -21,7 +21,11 @@ class SaleOrder(models.Model):
             for company, sales in activated_sales.partition("company_id").items():
                 for sale in sales:
                     sale.partner_address_restriction_domain = [
-                        ("commercial_partner_id", "=", sale.partner_id.id),
+                        (
+                            "commercial_partner_id",
+                            "=",
+                            sale.partner_id.commercial_partner_id.id,
+                        ),
                         "|",
                         ("company_id", "=", False),
                         ("company_id", "=", company.id),
@@ -34,10 +38,13 @@ class SaleOrder(models.Model):
                 order.company_id.sale_partner_address_restriction
                 and order.partner_id
                 and (
-                    (order.partner_invoice_id.commercial_partner_id != order.partner_id)
+                    (
+                        order.partner_invoice_id.commercial_partner_id
+                        != order.partner_id.commercial_partner_id
+                    )
                     or (
                         order.partner_shipping_id.commercial_partner_id
-                        != order.partner_id
+                        != order.partner_id.commercial_partner_id
                     )
                 )
             ):
