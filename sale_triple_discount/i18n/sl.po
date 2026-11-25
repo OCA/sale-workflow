@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:52+0000\n"
-"PO-Revision-Date: 2026-11-12 05:46+0000\n"
+"PO-Revision-Date: 2026-11-25 13:46+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 2026.11.2\n"
 
 #. module: sale_triple_discount
 #: model_terms:ir.ui.view,arch_db:sale_triple_discount.report_saleorder_document_triple_discount
@@ -33,7 +33,7 @@ msgstr "<span>Pop. 3 %</span>"
 #. module: sale_triple_discount
 #: model:ir.model.fields.selection,name:sale_triple_discount.selection__sale_order_line__discounting_type__additive
 msgid "Additive"
-msgstr ""
+msgstr "Seštevalni"
 
 #. module: sale_triple_discount
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discount2
@@ -48,22 +48,22 @@ msgstr "Pop. 3(%)"
 #. module: sale_triple_discount
 #: model:ir.model.constraint,message:sale_triple_discount.constraint_sale_order_line_discount2_limit
 msgid "Discount 2 must be lower or equal than 100%."
-msgstr ""
+msgstr "Popust 2 ne sme presegati 100 %."
 
 #. module: sale_triple_discount
 #: model:ir.model.constraint,message:sale_triple_discount.constraint_sale_order_line_discount3_limit
 msgid "Discount 3 must be lower or equal than 100%."
-msgstr ""
+msgstr "Popust 3 ne sme presegati 100%."
 
 #. module: sale_triple_discount
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discounting_type
 msgid "Discounting Type"
-msgstr ""
+msgstr "Tip popusta"
 
 #. module: sale_triple_discount
 #: model:ir.model.fields.selection,name:sale_triple_discount.selection__sale_order_line__discounting_type__multiplicative
 msgid "Multiplicative"
-msgstr ""
+msgstr "Množilni"
 
 #. module: sale_triple_discount
 #. odoo-python
@@ -71,6 +71,8 @@ msgstr ""
 #, python-format
 msgid "Sale order line %(name)s has unknown discounting type %(dic_type)s"
 msgstr ""
+"Na postavki prodajnega naročila %(name)s je neznan način obračuna popusta %"
+"(dic_type)s"
 
 #. module: sale_triple_discount
 #: model:ir.model,name:sale_triple_discount.model_sale_order_line
@@ -85,6 +87,11 @@ msgid ""
 "Multiplicative discounts are applied sequentially.\n"
 "Multiplicative discounts are default"
 msgstr ""
+"Določa, ali se popusti obračunajo na seštevalni ali množilni način. \n"
+"Pri seštevalnem načinu se popusti najprej seštejejo, nato pa se uporabi "
+"skupni popust. \n"
+"Pri množilnem načinu se popusti uporabijo zaporedoma. \n"
+"Privzeto se uporablja množilni način"
 
 #, fuzzy
 #~ msgid "Sale Order"
