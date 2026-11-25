@@ -1,0 +1,10 @@
+- [Tecnativa](https://www.tecnativa.com):
+  - Sergio Teruel
+  - Pedro M. Baeza
+  - David Vidal
+  - César A. Sánchez
+  - Carlos Lopez
+- [Solvos](https://www.solvos.es):
+  - David Alonso
+- [APSL-Nagarro](https://www.apsl.tech):
+  - Vicent Cubells \<<vicent.cubells@nagarro.com>\>
