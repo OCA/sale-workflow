@@ -74,6 +74,21 @@ class AutomaticWorkflowJob(models.Model):
             [("id", "=", sale.id)] + domain_filter
         ):
             return f"{sale.display_name} {sale} job bypassed"
+        # Skip if a posted invoice already exists or has been refunded
+        posted_invoices = sale.invoice_ids.filtered(
+            lambda move: move.state == "posted" and move.move_type == "out_invoice"
+        )
+        if posted_invoices:
+            refunds = self.env["account.move"].search(
+                [
+                    ("reversed_entry_id", "in", posted_invoices.ids),
+                    ("move_type", "=", "out_refund"),
+                    ("state", "=", "posted"),
+                ]
+            )
+            if refunds:
+                return f"{sale.display_name} {sale} skipped (invoice already refunded)"
+            return f"{sale.display_name} {sale} skipped (posted invoice already exists)"
         payment = self.env["sale.advance.payment.inv"].create(
             {"sale_order_ids": sale.ids}
         )
