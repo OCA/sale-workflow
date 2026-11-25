@@ -469,3 +469,56 @@ class TestSaleOrderLotSelection(BaseCommon):
         self._update_stock_quantity(self.prd_cable, lot_cable_extra, 1)
         sale_extra.action_confirm()
         self.assertEqual(sale_extra.state, "sale")
+
+    @mute_logger("odoo.models.unlink")
+    def test_sale_order_line_change_lot_qty_delivered(self):
+        self._update_stock_quantity(self.prd_cable, self.lot_cable, 1)
+        sale = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.prd_cable.id,
+                            "product_uom_qty": 1.0,
+                            "lot_id": self.lot_cable.id,
+                        }
+                    ),
+                ],
+            }
+        )
+        sol = sale.order_line
+        sale.action_confirm()
+        picking = sale.picking_ids
+        picking.button_validate()
+        self.assertEqual(picking.state, "done")
+        self.assertEqual(sol.qty_delivered, 1)
+        wizard = (
+            self.env["stock.return.picking"]
+            .with_context(
+                active_model=picking._name,
+                active_id=picking.id,
+            )
+            .create({})
+        )
+        res = wizard.action_create_returns_all()
+        picking_return = self.env[res["res_model"]].browse([res["res_id"]])
+        self.assertEqual(picking_return.state, "assigned")
+        self.assertEqual(sol.qty_delivered, 1)
+        lot_exta = self.env["stock.lot"].create(
+            {
+                "name": "cable test lot extra",
+                "product_id": self.prd_cable.id,
+            }
+        )
+        self._update_stock_quantity(self.prd_cable, lot_exta, 2)
+        sol.write({"lot_id": lot_exta.id, "product_uom_qty": 2})
+        self.assertEqual(sol.qty_delivered, 0)
+        extra_picking = sale.picking_ids - picking - picking_return
+        sol.write({"product_uom_qty": 1})
+        picking_return.button_validate()
+        self.assertEqual(picking_return.state, "done")
+        self.assertEqual(sol.qty_delivered, 0)
+        extra_picking.button_validate()
+        self.assertEqual(extra_picking.state, "done")
+        self.assertEqual(sol.qty_delivered, 1)

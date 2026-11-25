@@ -34,6 +34,13 @@ class SaleOrderLine(models.Model):
             vals["restrict_lot_id"] = self.lot_id.id
         return vals
 
+    @api.depends("lot_id")
+    def _compute_qty_delivered(self):
+        # Although the lot_id field is not strictly necessary in the depends, it is
+        # consistent to include it in accordance with the _get_outgoing_incoming_moves()
+        # method
+        return super()._compute_qty_delivered()
+
     @api.depends("product_id")
     def _compute_product_tracking(self):
         for sol in self:
@@ -131,3 +138,16 @@ class SaleOrderLine(models.Model):
             pending_moves -= moves_to_exclude
             if pending_moves:
                 pending_moves._set_restrict_lot_id_from_sol(item.lot_id)
+
+    def _get_outgoing_incoming_moves(self, strict=True):
+        outgoing_moves, incoming_moves = super()._get_outgoing_incoming_moves(
+            strict=strict
+        )
+        lot = self.lot_id
+        if lot:
+            # It is important to filter moves that have been retrieved, as they may
+            # refer to a previously used lot and could result in incorrect values
+            # (for example, delivered quantity)
+            outgoing_moves = outgoing_moves.filtered(lambda x: lot in x.lot_ids)
+            incoming_moves = incoming_moves.filtered(lambda x: lot in x.lot_ids)
+        return outgoing_moves, incoming_moves
