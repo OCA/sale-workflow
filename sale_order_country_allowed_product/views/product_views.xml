@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Manuel Regidor <manuel.regidor@sygel.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record
+        model="ir.ui.view"
+        id="sale_order_country_allowed_product_template_form_view"
+    >
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <group name="sale" position="inside">
+                <group string="Country Availability" name="sale_country_availability">
+                    <field
+                        name="sale_allowed_country_ids"
+                        widget="many2many_tags"
+                        options="{'no_create': True}"
+                    />
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>
