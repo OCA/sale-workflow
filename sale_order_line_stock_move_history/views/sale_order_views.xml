@@ -1,0 +1,25 @@
+<odoo>
+    <!-- Copyright 2025 Patryk Pyczko (APSL-Nagarro)<ppyczko@apsl.net>
+       License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+    <record id="view_order_form_inherit_stock_moves" model="ir.ui.view">
+        <field name="name">sale.order.form.stock.move.button</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/list/field[@name='qty_delivered']"
+                position="after"
+            >
+                <button
+                    name="action_view_stock_moves"
+                    type="object"
+                    class="btn btn-sm o_icon_button"
+                    icon="fa-history"
+                    title="View Stock Moves History"
+                    width="20"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
