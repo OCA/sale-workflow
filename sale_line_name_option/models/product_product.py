@@ -8,6 +8,9 @@ class ProductProduct(models.Model):
     _inherit = "product.product"
 
     def get_product_multiline_description_sale(self):
-        if self.env.company.no_product_code_in_sale_line_name:
-            self = self.with_context(display_default_code=False)
-        return super().get_product_multiline_description_sale()
+        product = (
+            self.with_context(display_default_code=False)
+            if self.env.company.no_product_code_in_sale_line_name
+            else self
+        )
+        return super(ProductProduct, product).get_product_multiline_description_sale()
