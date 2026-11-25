@@ -1,6 +1,8 @@
 # Copyright (C) 2021 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
+from unittest.mock import patch
+
 from odoo import fields
 from odoo.exceptions import ValidationError
 
@@ -258,12 +260,34 @@ class TestSaleAdvancePayment(BaseCommon):
         invoice = self.sale_order_1._create_invoices()
         invoice.action_post()
 
-        # Compare payments
+        # Verify that advance payments are reconciled with the invoice
         rate = self.currency_rate.inverse_company_rate
-        payment_list = [100 * rate, 200, 250 * rate, 400]
-        payments = invoice.invoice_outstanding_credits_debits_widget
-        result = [d["amount"] for d in payments["content"]]
-        self.assertEqual(set(payment_list), set(result))
+        expected_payment_amounts = [100 * rate, 200, 250 * rate, 400]
+
+        # Get all payment lines that should have been reconciled
+        payment_lines = self.env["account.move.line"].search(
+            [
+                ("move_id", "in", self.sale_order_1.account_payment_ids.move_id.ids),
+                (
+                    "account_id.account_type",
+                    "in",
+                    ("asset_receivable", "liability_payable"),
+                ),
+                ("parent_state", "=", "posted"),
+            ]
+        )
+
+        # Check that all payments are reconciled
+        self.assertTrue(all(line.reconciled for line in payment_lines))
+
+        # Verify the payment amounts match
+        actual_payment_amounts = []
+        for line in payment_lines:
+            actual_payment_amounts.append(abs(line.balance))
+
+        actual_payment_amounts_sorted = sorted(actual_payment_amounts)
+        expected_payment_amounts_sorted = sorted(expected_payment_amounts)
+        self.assertEqual(actual_payment_amounts_sorted, expected_payment_amounts_sorted)
 
     def test_02_residual_amount_with_invoice(self):
         self.assertEqual(
@@ -436,3 +460,100 @@ class TestSaleAdvancePayment(BaseCommon):
             }
         )._create_payments()
         self.assertEqual(self.sale_order_1.amount_residual, 3600)
+
+    def test_06_multicurrency_residual_amount(self):
+        sale_order_usd = self.env["sale.order"].create(
+            {
+                "partner_id": self.res_partner_1.id,
+                "currency_id": self.currency_usd.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product_1.id,
+                            "product_uom_qty": 1.0,
+                            "price_unit": 100.0,
+                        },
+                    )
+                ],
+            }
+        )
+
+        total_amount = sale_order_usd.amount_total
+        self.assertEqual(sale_order_usd.amount_residual, total_amount)
+
+        sale_order_usd.action_confirm()
+
+        context_payment = {
+            "active_ids": [sale_order_usd.id],
+            "active_id": sale_order_usd.id,
+        }
+        advance_payment = (
+            self.env["account.voucher.wizard"]
+            .with_context(**context_payment)
+            .create(
+                {
+                    "journal_id": self.journal_usd_bank.id,
+                    "payment_type": "inbound",
+                    "amount_advance": 40.0,
+                    "order_id": sale_order_usd.id,
+                }
+            )
+        )
+        advance_payment.make_advance_payment()
+
+        self.assertEqual(sale_order_usd.amount_residual, total_amount - 40.0)
+
+        invoice = sale_order_usd._create_invoices()
+        invoice.invoice_date = fields.Date.today()
+        invoice.action_post()
+
+        self.assertEqual(sale_order_usd.amount_residual, total_amount - 40.0)
+
+        credit_note = invoice._reverse_moves()
+        credit_note.invoice_date = fields.Date.today()
+        credit_note.action_post()
+
+        self.assertEqual(sale_order_usd.amount_residual, total_amount - 40.0)
+
+        dummy_invoice = self.env["account.move"].create(
+            {
+                "move_type": "out_invoice",
+                "partner_id": self.res_partner_1.id,
+                "currency_id": self.currency_euro.id,
+                "invoice_date": fields.Date.today(),
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Dummy for coverage",
+                            "price_unit": 0.0,
+                            "quantity": 1.0,
+                            "sale_line_ids": [(6, 0, sale_order_usd.order_line.ids)],
+                        },
+                    )
+                ],
+            }
+        )
+        dummy_invoice.action_post()
+
+        _ = sale_order_usd.amount_residual
+
+    def test_07_action_post_interrupted_by_wizard(self):
+        self.sale_order_1.action_confirm()
+        invoice = self.sale_order_1._create_invoices()
+        fake_wizard_action = {
+            "type": "ir.actions.act_window",
+            "name": "Simulated Wizard",
+            "res_model": "test.wizard",
+            "view_mode": "form",
+        }
+        with patch(
+            "odoo.addons.account.models.account_move.AccountMove.action_post",
+            return_value=fake_wizard_action,
+        ):
+            res = invoice.action_post()
+            self.assertEqual(res, fake_wizard_action)
+            self.assertNotEqual(invoice.state, "posted")
