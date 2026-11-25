@@ -41,9 +41,11 @@ usually on picking/handling phase. It doesn't modify too much the
 product for needing an specific product, but it adds a surcharge on the
 final price.
 
-If the elaboration has a defined route, selecting the elaboration, it is
-set on the order line, which will result in the generation of multiple
-delivery notes depending on the established route.
+If the elaborations have routes, selecting them sets all their routes on
+the order line, which will result in the generation of multiple delivery
+notes depending on the established routes. For each step, procurement
+takes the first of those routes by sequence with a rule for it, so the
+routes of several elaborations can complement each other.
 
 **Table of contents**
 
@@ -65,8 +67,8 @@ To configure this module you need to:
 1. Go to *Sale > Configuration > Elaborations > Sale Elaboration*.
 2. Create a new record.
 3. Set a product linked to the elaboration.
-4. If you use Multi-Step Routes, you can also select a route to procure
-   this elaboration.
+4. If you use Multi-Step Routes, you can also select the routes to
+   procure this elaboration.
 5. Go to *Settings > Inventory > Traceability* and select *Display
    Elaboration notes on Delivery Slips* if you want to show elaborations
    on Delivery Slips or *Display Elaboration notes on Picking
@@ -137,6 +139,7 @@ Contributors
   - Pedro M. Baeza
   - Carlos Roca
   - Ernesto Tejeda
+  - Carlos Dauden
 
 - Eduardo de Miguel (`Moduon <https://www.moduon.team/>`__)
 - Jairo Llopis (`Moduon <https://www.moduon.team/>`__)
@@ -157,9 +160,9 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-.. |maintainer-CarlosRoca13| image:: https://github.com/CarlosRoca13.png?size=40px
-    :target: https://github.com/CarlosRoca13
-    :alt: CarlosRoca13
+.. |maintainer-carlosdauden| image:: https://github.com/carlosdauden.png?size=40px
+    :target: https://github.com/carlosdauden
+    :alt: carlosdauden
 .. |maintainer-rafaelbn| image:: https://github.com/rafaelbn.png?size=40px
     :target: https://github.com/rafaelbn
     :alt: rafaelbn
@@ -172,7 +175,7 @@ promote its widespread use.
 
 Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-CarlosRoca13| |maintainer-rafaelbn| |maintainer-sergio-teruel| |maintainer-yajo| 
+|maintainer-carlosdauden| |maintainer-rafaelbn| |maintainer-sergio-teruel| |maintainer-yajo| 
 
 This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/19.0/sale_elaboration>`_ project on GitHub.
 
