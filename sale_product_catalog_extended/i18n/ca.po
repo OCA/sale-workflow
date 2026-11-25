@@ -1,0 +1,472 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_product_catalog_extended
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_product_catalog_extended
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
+msgid "All"
+msgstr "Tots"
+
+#. module: sale_product_catalog_extended
+#. odoo-javascript
+#: code:addons/sale_product_catalog_extended/static/src/product_catalog/kanban_controller.esm.js:0
+msgid "Back to Order"
+msgstr "Tornar a la comanda"
+
+#. module: sale_product_catalog_extended
+#. odoo-javascript
+#: code:addons/sale_product_catalog_extended/static/src/product_catalog/kanban_controller.esm.js:0
+msgid "Back to Quotation"
+msgstr "Tornar al pressupost"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,help:sale_product_catalog_extended.field_res_config_settings__default_catalog_origin_data
+msgid ""
+"Cards shown by default in the product catalog of sale orders. Products when "
+"empty."
+msgstr ""
+"Targetes mostrades per defecte al catàleg de productes de les comandes de "
+"venda. Productes si és buit."
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_product_product__catalog_history_partner
+msgid "Catalog History Partner"
+msgstr "Contacte de l'historial del catàleg"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_product_product__catalog_last_sales
+msgid "Catalog Last Sales"
+msgstr "Últimes vendes del catàleg"
+
+#. module: sale_product_catalog_extended
+#: model:ir.actions.act_window,name:sale_product_catalog_extended.sale_catalog_product_exclusion_action
+#: model:ir.ui.menu,name:sale_product_catalog_extended.sale_catalog_product_exclusion_menu
+msgid "Catalog Last Sales Exclusions"
+msgstr "Exclusions d'últimes vendes del catàleg"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_product_product__catalog_origin_data
+msgid "Catalog Origin Data"
+msgstr "Dades d'origen del catàleg"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_product_product__catalog_price_mode
+msgid "Catalog Price Mode"
+msgstr "Mode de preus del catàleg"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_product_product__catalog_sort
+msgid "Catalog Sort"
+msgstr "Ordre del catàleg"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__default_catalog_history_partner
+msgid "Catalog history partner"
+msgstr "Contacte de l'historial del catàleg"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__default_catalog_last_sales
+msgid "Catalog last sales"
+msgstr "Últimes vendes del catàleg"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__catalog_last_order_days
+msgid "Catalog last sales days"
+msgstr "Dies d'últimes vendes del catàleg"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__catalog_last_order_limit
+msgid "Catalog last sales limit"
+msgstr "Límit d'últimes vendes del catàleg"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__catalog_layout
+msgid "Catalog layout"
+msgstr "Disseny del catàleg"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__default_catalog_origin_data
+msgid "Catalog origin"
+msgstr "Origen del catàleg"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__default_catalog_price_mode
+msgid "Catalog price"
+msgstr "Preu del catàleg"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__default_catalog_sort
+msgid "Catalog sort"
+msgstr "Ordre del catàleg"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields.selection,name:sale_product_catalog_extended.selection__product_product__catalog_sort__category
+msgid "Category"
+msgstr "Categoria"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model,name:sale_product_catalog_extended.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paràmetres de configuració"
+
+#. module: sale_product_catalog_extended
+#. odoo-javascript
+#: code:addons/sale_product_catalog_extended/static/src/product_catalog/kanban_controller.xml:0
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_sale_catalog_product_exclusion__create_uid
+msgid "Created by"
+msgstr "Creat per"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_sale_catalog_product_exclusion__create_date
+msgid "Created on"
+msgstr "Creat el"
+
+#. module: sale_product_catalog_extended
+#. odoo-javascript
+#: code:addons/sale_product_catalog_extended/static/src/product_catalog/search_panel.esm.js:0
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
+msgid "Customer"
+msgstr "Client/a"
+
+#. module: sale_product_catalog_extended
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
+msgid "Days"
+msgstr "Dies"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,help:sale_product_catalog_extended.field_res_config_settings__catalog_last_order_days
+msgid ""
+"Days of sale history used by the last sales option and the last sale price."
+msgstr ""
+"Dies de l'historial de vendes que fan servir l'opció d'últimes vendes i el "
+"preu de l'última venda."
+
+#. module: sale_product_catalog_extended
+#. odoo-javascript
+#: code:addons/sale_product_catalog_extended/static/src/product_catalog/search_panel.esm.js:0
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
+msgid "Default"
+msgstr "Per defecte"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields.selection,name:sale_product_catalog_extended.selection__product_product__catalog_history_partner__delivery_address
+msgid "Delivery address"
+msgstr "Adreça de lliurament"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_sale_catalog_product_exclusion__display_name
+msgid "Display Name"
+msgstr "Nom mostrat"
+
+#. module: sale_product_catalog_extended
+#. odoo-javascript
+#: code:addons/sale_product_catalog_extended/static/src/product_catalog/order_line/order_line.xml:0
+msgid "Edit"
+msgstr "Modificar"
+
+#. module: sale_product_catalog_extended
+#. odoo-javascript
+#: code:addons/sale_product_catalog_extended/static/src/product_catalog/kanban_record.xml:0
+msgid "Exclude from last sales"
+msgstr "Excloure de les últimes vendes"
+
+#. module: sale_product_catalog_extended
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.sale_catalog_product_exclusion_view_list
+msgid "Excluded by"
+msgstr "Exclòs per"
+
+#. module: sale_product_catalog_extended
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.sale_catalog_product_exclusion_view_list
+msgid "Excluded on"
+msgstr "Exclòs el"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields.selection,name:sale_product_catalog_extended.selection__res_config_settings__catalog_layout__grid
+msgid "Grid"
+msgstr "Quadrícula"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,help:sale_product_catalog_extended.field_res_config_settings__catalog_layout
+msgid ""
+"Grid shows several product cards per row. Rows shows one card per row, with "
+"the image, the product data and the quantity side by side."
+msgstr ""
+"Quadrícula mostra diverses targetes de producte per fila. Files mostra una "
+"targeta per fila, amb la imatge, les dades del producte i la quantitat una "
+"al costat de l'altra."
+
+#. module: sale_product_catalog_extended
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.product_view_search_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
+msgid "History"
+msgstr "Historial"
+
+#. module: sale_product_catalog_extended
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
+msgid "How the product cards are laid out in the catalog of a sale order"
+msgstr ""
+"Com es distribueixen les targetes de producte al catàleg d'una comanda de "
+"venda"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_sale_catalog_product_exclusion__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_sale_catalog_product_exclusion__write_uid
+msgid "Last Updated by"
+msgstr "Última actualització per"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_sale_catalog_product_exclusion__write_date
+msgid "Last Updated on"
+msgstr "Última actualització el"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields.selection,name:sale_product_catalog_extended.selection__product_product__catalog_price_mode__last_price
+msgid "Last sale"
+msgstr "Última venda"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields.selection,name:sale_product_catalog_extended.selection__product_product__catalog_last_sales__last_sales
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.product_view_search_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
+msgid "Last sales"
+msgstr "Últimes vendes"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,help:sale_product_catalog_extended.field_res_config_settings__catalog_last_order_limit
+msgid ""
+"Maximum number of products shown by the last sales option. No limit when 0."
+msgstr ""
+"Nombre màxim de productes que mostra l'opció d'últimes vendes. Sense límit "
+"si és 0."
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields.selection,name:sale_product_catalog_extended.selection__product_product__catalog_sort__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: sale_product_catalog_extended
+#. odoo-javascript
+#: code:addons/sale_product_catalog_extended/static/src/product_catalog/order_line/order_line.xml:0
+msgid "New line"
+msgstr "Nova línia"
+
+#. module: sale_product_catalog_extended
+#: model_terms:ir.actions.act_window,help:sale_product_catalog_extended.sale_catalog_product_exclusion_action
+msgid "No product excluded"
+msgstr "Cap producte exclòs"
+
+#. module: sale_product_catalog_extended
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
+msgid "Options preselected when the product catalog of a sale order is opened"
+msgstr ""
+"Opcions preseleccionades en obrir el catàleg de productes d'una comanda de "
+"venda"
+
+#. module: sale_product_catalog_extended
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
+msgid "Order catalog last sales"
+msgstr "Últimes vendes del catàleg de comandes"
+
+#. module: sale_product_catalog_extended
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
+msgid "Order catalog layout"
+msgstr "Disseny del catàleg de comandes"
+
+#. module: sale_product_catalog_extended
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
+msgid "Order catalog options"
+msgstr "Opcions del catàleg de comandes"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,help:sale_product_catalog_extended.field_res_config_settings__default_catalog_sort
+msgid ""
+"Order of the products in the catalog by default. The order of the origin "
+"when empty (e.g. the most sold first for the last sales)."
+msgstr ""
+"Ordre dels productes al catàleg per defecte. L'ordre de l'origen si és buit "
+"(p. ex. primer els més venuts a les últimes vendes)."
+
+#. module: sale_product_catalog_extended
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.product_view_search_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
+msgid "Origin"
+msgstr "Origen"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_sale_catalog_product_exclusion__partner_id
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.sale_catalog_product_exclusion_view_search
+msgid "Partner"
+msgstr "Contacte"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,help:sale_product_catalog_extended.field_res_config_settings__default_catalog_history_partner
+msgid ""
+"Partner the sale history is matched against by default. The customer "
+"(commercial partner) when empty."
+msgstr ""
+"Contacte amb què es compara per defecte l'historial de vendes. El client "
+"(entitat comercial) si és buit."
+
+#. module: sale_product_catalog_extended
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.product_view_search_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
+msgid "Price"
+msgstr "Preu"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,help:sale_product_catalog_extended.field_res_config_settings__default_catalog_price_mode
+msgid ""
+"Price shown by default in the product catalog. The pricelist price when "
+"empty."
+msgstr ""
+"Preu mostrat per defecte al catàleg de productes. El preu de tarifa si és "
+"buit."
+
+#. module: sale_product_catalog_extended
+#. odoo-javascript
+#: code:addons/sale_product_catalog_extended/static/src/product_catalog/search_panel.esm.js:0
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
+msgid "Pricelist"
+msgstr "Tarifa"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_sale_catalog_product_exclusion__product_id
+msgid "Product"
+msgstr "Producte"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model,name:sale_product_catalog_extended.model_product_product
+msgid "Product Variant"
+msgstr "Variant de producte"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model,name:sale_product_catalog_extended.model_sale_catalog_product_exclusion
+msgid "Product excluded from the catalog last sales"
+msgstr "Producte exclòs de les últimes vendes del catàleg"
+
+#. module: sale_product_catalog_extended
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
+msgid "Product limit"
+msgstr "Límit de productes"
+
+#. module: sale_product_catalog_extended
+#. odoo-javascript
+#: code:addons/sale_product_catalog_extended/static/src/product_catalog/search_panel.esm.js:0
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
+msgid "Products"
+msgstr "Productes"
+
+#. module: sale_product_catalog_extended
+#: model_terms:ir.actions.act_window,help:sale_product_catalog_extended.sale_catalog_product_exclusion_action
+msgid ""
+"Products are excluded from the last sales of a customer from the\n"
+"                product catalog of a sale order. Delete an exclusion to offer the\n"
+"                product again."
+msgstr ""
+"Els productes s'exclouen de les últimes vendes d'un client des del\n"
+"                catàleg de productes d'una comanda de venda. Elimineu una exclusió per\n"
+"                tornar a oferir el producte."
+
+#. module: sale_product_catalog_extended
+#. odoo-javascript
+#: code:addons/sale_product_catalog_extended/static/src/product_catalog/order_line/order_line.xml:0
+msgid "Remove"
+msgstr "Eliminar"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields.selection,name:sale_product_catalog_extended.selection__res_config_settings__catalog_layout__rows
+msgid "Rows"
+msgstr "Files"
+
+#. module: sale_product_catalog_extended
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
+msgid "Sale history used by the last sales option and the last sale price"
+msgstr ""
+"Historial de vendes que fan servir l'opció d'últimes vendes i el preu de "
+"l'última venda"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model,name:sale_product_catalog_extended.model_sale_order
+msgid "Sales Order"
+msgstr "Comanda"
+
+#. module: sale_product_catalog_extended
+#: model:ir.actions.act_window,name:sale_product_catalog_extended.action_open_editable_sale_order_line
+#: model:ir.model,name:sale_product_catalog_extended.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línia comanda de venda"
+
+#. module: sale_product_catalog_extended
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
+msgid "Show"
+msgstr "Mostrar"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,help:sale_product_catalog_extended.field_res_config_settings__default_catalog_last_sales
+msgid ""
+"Show by default only the products sold to the customer, most frequently sold"
+" first."
+msgstr ""
+"Mostrar per defecte només els productes venuts al client, primer els venuts "
+"amb més freqüència."
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,help:sale_product_catalog_extended.field_res_config_settings__catalog_show_history_partner
+msgid ""
+"Show the History section in the product catalog search panel. When hidden, "
+"the history partner default still applies."
+msgstr ""
+"Mostrar la secció Historial al panell lateral del catàleg de productes. Si "
+"està oculta, es continua aplicant el contacte de l'historial per defecte."
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,help:sale_product_catalog_extended.field_res_config_settings__catalog_show_sort
+msgid ""
+"Show the Sort section in the product catalog search panel. When hidden, the "
+"sort default still applies."
+msgstr ""
+"Mostrar la secció Ordenar al panell lateral del catàleg de productes. Si "
+"està oculta, es continua aplicant l'ordre per defecte."
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__catalog_show_history_partner
+msgid "Show the catalog history partner"
+msgstr "Mostrar el contacte de l'historial del catàleg"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_res_config_settings__catalog_show_sort
+msgid "Show the catalog sort"
+msgstr "Mostrar l'ordre del catàleg"
+
+#. module: sale_product_catalog_extended
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.product_view_search_catalog
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.res_config_settings_view_form
+msgid "Sort"
+msgstr "Ordenar"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.constraint,message:sale_product_catalog_extended.constraint_sale_catalog_product_exclusion_partner_product_uniq
+msgid "This product is already excluded from the last sales of this partner."
+msgstr ""
+"Aquest producte ja està exclòs de les últimes vendes d'aquest contacte."
