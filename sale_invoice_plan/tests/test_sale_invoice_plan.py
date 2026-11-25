@@ -328,3 +328,151 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         self.so_service.invoice_plan_ids._compute_amount()
         self.assertEqual(first_install.amount, 280.0)
         self.assertEqual(first_install.percent, 9.090909)
+
+    def test_amount_invoiced_before_plan_via_manual_invoice(self):
+        """Full flow: invoice part of the order manually (outside any plan)
+        before creating the invoice plan. The wizard snapshots the invoiced
+        quantity, the plan covers only the remaining amount, and the plan tab
+        reconciles: Untaxed Amount = Already Invoiced (before plan) + Plan Total.
+        """
+        # Service invoiced on delivered quantity, so a partial delivery can be
+        # invoiced manually before any plan exists.
+        product = self.env["product.product"].create(
+            {
+                "name": "Service delivered",
+                "type": "service",
+                "service_type": "manual",
+                "invoice_policy": "delivery",
+                "taxes_id": False,
+                "categ_id": self.product_category.id,
+            }
+        )
+        so = (
+            self.env["sale.order"]
+            .with_user(self.company_data["default_user_salesman"])
+            .create(
+                {
+                    "partner_id": self.partner_customer_usd.id,
+                    "partner_invoice_id": self.partner_customer_usd.id,
+                    "partner_shipping_id": self.partner_customer_usd.id,
+                    "use_invoice_plan": False,
+                    "order_line": [
+                        (
+                            0,
+                            0,
+                            {
+                                "name": product.name,
+                                "product_id": product.id,
+                                "product_uom_qty": 10,
+                                "product_uom": product.uom_id.id,
+                                "price_unit": 1000,
+                            },
+                        )
+                    ],
+                    "pricelist_id": self.env.ref("product.list0").id,
+                }
+            )
+        )
+        self.assertEqual(so.amount_untaxed, 10000)
+        self.assertEqual(so.amount_invoiced_before_plan, 0)
+        # Confirm without an invoice plan, then invoice part of it manually
+        so.action_confirm()
+        self.assertEqual(so.state, "sale")
+        so.order_line.qty_delivered = 4.0
+        so._create_invoices()  # native invoice, outside any plan
+        self.assertEqual(so.order_line.qty_invoiced, 4)
+        # Now plan the remaining amount
+        so.use_invoice_plan = True
+        ctx = {
+            "active_id": so.id,
+            "active_ids": [so.id],
+            "all_remain_invoices": True,
+        }
+        f = Form(self.env["sale.create.invoice.plan"])
+        f.num_installment = 4
+        f.save().with_context(**ctx).sale_create_invoice_plan()
+        # The wizard snapshots the already-invoiced quantity
+        self.assertEqual(so.order_line.qty_invoiced_before_plan, 4)
+        self.assertEqual(so.amount_invoiced_before_plan, 4000)
+        # Installments cover only the remaining 6000
+        self.assertEqual(so.invoice_plan_total_amount, 6000)
+        self.assertEqual(
+            so.amount_untaxed,
+            so.amount_invoiced_before_plan + so.invoice_plan_total_amount,
+        )
+
+    def test_amount_invoiced_before_plan_with_discount(self):
+        """Regression for the residual miscalculation with discounted lines.
+
+        The already-invoiced-before-plan amount must be net of the line
+        discount, consistent with amount_untaxed. Before the fix it used the
+        gross price_unit, overstating the invoiced part and understating the
+        residual (real case: a 20% line billed 50% up-front showed 5000/3000
+        instead of 4000/4000).
+        """
+        product = self.env["product.product"].create(
+            {
+                "name": "Service delivered (discounted)",
+                "type": "service",
+                "service_type": "manual",
+                "invoice_policy": "delivery",
+                "taxes_id": False,
+                "categ_id": self.product_category.id,
+            }
+        )
+        so = (
+            self.env["sale.order"]
+            .with_user(self.company_data["default_user_salesman"])
+            .create(
+                {
+                    "partner_id": self.partner_customer_usd.id,
+                    "partner_invoice_id": self.partner_customer_usd.id,
+                    "partner_shipping_id": self.partner_customer_usd.id,
+                    "use_invoice_plan": False,
+                    "order_line": [
+                        (
+                            0,
+                            0,
+                            {
+                                "name": product.name,
+                                "product_id": product.id,
+                                "product_uom_qty": 10,
+                                "product_uom": product.uom_id.id,
+                                "price_unit": 1000,
+                                "discount": 20,  # gross 10000 -> net 8000
+                            },
+                        )
+                    ],
+                    "pricelist_id": self.env.ref("product.list0").id,
+                }
+            )
+        )
+        # amount_untaxed is net of discount; nothing invoiced yet
+        self.assertEqual(so.amount_untaxed, 8000)
+        self.assertEqual(so.amount_invoiced_before_plan, 0)
+        # Confirm without a plan, then invoice half of it manually
+        so.action_confirm()
+        self.assertEqual(so.state, "sale")
+        so.order_line.qty_delivered = 5.0
+        so._create_invoices()  # native invoice, outside any plan
+        self.assertEqual(so.order_line.qty_invoiced, 5)
+        # Now plan the remaining amount
+        so.use_invoice_plan = True
+        ctx = {
+            "active_id": so.id,
+            "active_ids": [so.id],
+            "all_remain_invoices": True,
+        }
+        f = Form(self.env["sale.create.invoice.plan"])
+        f.num_installment = 4
+        f.save().with_context(**ctx).sale_create_invoice_plan()
+        # The wizard snapshots the already-invoiced quantity
+        self.assertEqual(so.order_line.qty_invoiced_before_plan, 5)
+        # Already invoiced must be net of the 20% discount: 5 * 1000 * 0.8
+        self.assertEqual(so.amount_invoiced_before_plan, 4000)
+        # Installments cover only the remaining 4000, not 3000
+        self.assertEqual(so.invoice_plan_total_amount, 4000)
+        self.assertEqual(
+            so.amount_untaxed,
+            so.amount_invoiced_before_plan + so.invoice_plan_total_amount,
+        )
