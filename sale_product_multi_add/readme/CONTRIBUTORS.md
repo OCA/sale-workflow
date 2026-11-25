@@ -6,3 +6,5 @@
 - Jacques-Etienne Baudoux (BCIM) \<<je@bcim.be>\>
 - Anaïs López \<<anais.lopez@forgeflow.com>\>
 - Heliconia Solutions Pvt. Ltd. \<<https://www.heliconia.io>\>
+- Sudhir Arya \<<sudhir@erpharbor.com>\>
+  

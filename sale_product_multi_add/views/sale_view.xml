@@ -11,7 +11,7 @@
                     class="btn-primary"
                     style="margin:12px 0px 12px 0px;"
                     string="Add multiple products"
-                    icon="fa-plus-circle"
+                    icon="add_circle"
                     help="Select Products to Import"
                     type="action"
                     invisible="state not in ['draft', 'sent']"
