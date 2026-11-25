@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Moduon Team S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+    <record id="sale_report_view_tree" model="ir.ui.view">
+        <field name="name">sale.report.view.pcl.list</field>
+        <field name="model">sale.report</field>
+        <field name="inherit_id" ref="sale.sale_report_view_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date']" position="before">
+                <field name="price_compliance_tier" string="PCL" optional="show" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_product_search" model="ir.ui.view">
+        <field name="name">sale.report.pcl.search</field>
+        <field name="model">sale.report</field>
+        <field name="inherit_id" ref="sale.view_order_product_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='sales_channel']" position="after">
+                <filter
+                    string="Price Compliance Tier"
+                    name="flt_price_compliance_tier"
+                    domain="[]"
+                    context="{'group_by':'price_compliance_tier'}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

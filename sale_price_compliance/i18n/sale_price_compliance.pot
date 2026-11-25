@@ -1,0 +1,320 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_price_compliance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_price_compliance
+#: model_terms:ir.ui.view,arch_db:sale_price_compliance.res_config_settings_view_form
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" aria-label=\"Values set here are company-specific.\" "
+"groups=\"base.group_multi_company\" role=\"img\"/>"
+msgstr ""
+
+#. module: sale_price_compliance
+#: model_terms:ir.ui.view,arch_db:sale_price_compliance.res_config_settings_view_form
+msgid ""
+"<span class=\"text-muted fst-italic ml16\">(High-yield: Fully "
+"compliant)</span>"
+msgstr ""
+
+#. module: sale_price_compliance
+#: model_terms:ir.ui.view,arch_db:sale_price_compliance.res_config_settings_view_form
+msgid ""
+"<span class=\"text-muted fst-italic ml16\">(Low-yield: Low compliant)</span>"
+msgstr ""
+
+#. module: sale_price_compliance
+#: model_terms:ir.ui.view,arch_db:sale_price_compliance.res_config_settings_view_form
+msgid ""
+"<span class=\"text-muted fst-italic ml16\">(Medium-yield: Moderately "
+"compliant)</span>"
+msgstr ""
+
+#. module: sale_price_compliance
+#: model:ir.model,name:sale_price_compliance.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_price_compliance
+#: model:ir.model,name:sale_price_compliance.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_price_compliance
+#. odoo-javascript
+#: code:addons/sale_price_compliance/static/src/widgets/price_compliance_level_widget.xml:0
+#, python-format
+msgid "Discount"
+msgstr ""
+
+#. module: sale_price_compliance
+#: model_terms:ir.ui.view,arch_db:sale_price_compliance.res_config_settings_view_form
+msgid ""
+"Enable Default Price Compliance Thresholds for the Company.\n"
+"                            Prices under last filled Tier are considered non-compliant and will be blocked."
+msgstr ""
+
+#. module: sale_price_compliance
+#: model:ir.model.fields,help:sale_price_compliance.field_sale_order_line__price_compliance_data
+msgid "Holds additional data related to price compliance calculations."
+msgstr ""
+
+#. module: sale_price_compliance
+#: model:ir.model.fields,help:sale_price_compliance.field_product_price_compliance_threshold_tier_mixin__price_compliance_tier
+#: model:ir.model.fields,help:sale_price_compliance.field_sale_order_line__price_compliance_tier
+#: model:ir.model.fields,help:sale_price_compliance.field_sale_report__price_compliance_tier
+msgid ""
+"Indicates the Tier of Price Compliance based on the unit price and applied "
+"discount compared to defined thresholds."
+msgstr ""
+
+#. module: sale_price_compliance
+#: model:res.groups,name:sale_price_compliance.price_compliance_threshold_manager
+msgid "Manage Price Compliance"
+msgstr ""
+
+#. module: sale_price_compliance
+#. odoo-python
+#: code:addons/sale_price_compliance/models/price_compliance_threshold_tier_mixin.py:0
+#, python-format
+msgid "Non Compliant"
+msgstr ""
+
+#. module: sale_price_compliance
+#. odoo-python
+#: code:addons/sale_price_compliance/models/sale_order.py:0
+#, python-format
+msgid "Order confirmed with Non Compliant prices by %s."
+msgstr ""
+
+#. module: sale_price_compliance
+#: model_terms:ir.ui.view,arch_db:sale_price_compliance.sale_report_view_tree
+msgid "PCL"
+msgstr ""
+
+#. module: sale_price_compliance
+#: model:ir.model.fields,field_description:sale_price_compliance.field_sale_order_line__price_compliance_data
+msgid "Price Compliance Data"
+msgstr ""
+
+#. module: sale_price_compliance
+#. odoo-javascript
+#: code:addons/sale_price_compliance/static/src/widgets/price_compliance_level_widget.xml:0
+#, python-format
+msgid "Price Compliance Thresholds"
+msgstr ""
+
+#. module: sale_price_compliance
+#: model:ir.model.constraint,message:sale_price_compliance.constraint_product_category_check_price_compliance_le_1
+#: model:ir.model.constraint,message:sale_price_compliance.constraint_product_price_compliance_threshold_config_mixin_check_price_compliance_le_1
+#: model:ir.model.constraint,message:sale_price_compliance.constraint_product_product_check_price_compliance_le_1
+#: model:ir.model.constraint,message:sale_price_compliance.constraint_product_template_check_price_compliance_le_1
+#: model:ir.model.constraint,message:sale_price_compliance.constraint_res_company_check_price_compliance_le_1
+msgid ""
+"Price Compliance Thresholds Percentage should be lower or equal to 100%."
+msgstr ""
+
+#. module: sale_price_compliance
+#: model:ir.model.constraint,message:sale_price_compliance.constraint_product_category_check_price_compliance_positive
+#: model:ir.model.constraint,message:sale_price_compliance.constraint_product_price_compliance_threshold_config_mixin_check_price_compliance_positive
+#: model:ir.model.constraint,message:sale_price_compliance.constraint_product_product_check_price_compliance_positive
+#: model:ir.model.constraint,message:sale_price_compliance.constraint_product_template_check_price_compliance_positive
+#: model:ir.model.constraint,message:sale_price_compliance.constraint_res_company_check_price_compliance_positive
+msgid "Price Compliance Thresholds Percentage should be positive."
+msgstr ""
+
+#. module: sale_price_compliance
+#: model:ir.model.constraint,message:sale_price_compliance.constraint_product_category_check_price_compliance_no_gaps
+#: model:ir.model.constraint,message:sale_price_compliance.constraint_product_price_compliance_threshold_config_mixin_check_price_compliance_no_gaps
+#: model:ir.model.constraint,message:sale_price_compliance.constraint_product_product_check_price_compliance_no_gaps
+#: model:ir.model.constraint,message:sale_price_compliance.constraint_product_template_check_price_compliance_no_gaps
+#: model:ir.model.constraint,message:sale_price_compliance.constraint_res_company_check_price_compliance_no_gaps
+msgid "Price Compliance Thresholds should not have gaps."
+msgstr ""
+
+#. module: sale_price_compliance
+#: model:ir.model.fields,field_description:sale_price_compliance.field_product_price_compliance_threshold_tier_mixin__price_compliance_tier
+#: model:ir.model.fields,field_description:sale_price_compliance.field_sale_order_line__price_compliance_tier
+#: model:ir.model.fields,field_description:sale_price_compliance.field_sale_report__price_compliance_tier
+#: model_terms:ir.ui.view,arch_db:sale_price_compliance.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_price_compliance.view_order_product_search
+#: model_terms:ir.ui.view,arch_db:sale_price_compliance.view_sales_order_line_filter
+msgid "Price Compliance Tier"
+msgstr ""
+
+#. module: sale_price_compliance
+#. odoo-python
+#: code:addons/sale_price_compliance/models/price_compliance_threshold_tier_mixin.py:0
+#, python-format
+msgid "Pricelist"
+msgstr ""
+
+#. module: sale_price_compliance
+#: model:ir.model,name:sale_price_compliance.model_product_template
+msgid "Product"
+msgstr ""
+
+#. module: sale_price_compliance
+#: model:ir.model,name:sale_price_compliance.model_product_category
+msgid "Product Category"
+msgstr ""
+
+#. module: sale_price_compliance
+#: model:ir.model,name:sale_price_compliance.model_product_price_compliance_threshold_config_mixin
+msgid "Product Price Compliance Threshold Config Mixin"
+msgstr ""
+
+#. module: sale_price_compliance
+#: model:ir.model,name:sale_price_compliance.model_product_price_compliance_threshold_tier_mixin
+msgid "Product Price Compliance Threshold Tier Mixin"
+msgstr ""
+
+#. module: sale_price_compliance
+#: model:ir.model,name:sale_price_compliance.model_product_product
+msgid "Product Variant"
+msgstr ""
+
+#. module: sale_price_compliance
+#: model_terms:ir.ui.view,arch_db:sale_price_compliance.product_category_form_view
+#: model_terms:ir.ui.view,arch_db:sale_price_compliance.product_template_form_view
+#: model_terms:ir.ui.view,arch_db:sale_price_compliance.product_variant_easy_edit_view
+msgid "Sale Price Compliance Thresholds"
+msgstr ""
+
+#. module: sale_price_compliance
+#: model:ir.model,name:sale_price_compliance.model_sale_report
+msgid "Sales Analysis Report"
+msgstr ""
+
+#. module: sale_price_compliance
+#: model:ir.model,name:sale_price_compliance.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_price_compliance
+#: model:ir.model,name:sale_price_compliance.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_price_compliance
+#. odoo-python
+#: code:addons/sale_price_compliance/models/sale_order.py:0
+#, python-format
+msgid ""
+"The order contains lines with non-compliant prices.\n"
+"Please review the prices before confirming the order or contact your sales manager for further assistance."
+msgstr ""
+
+#. module: sale_price_compliance
+#: model:res.groups,comment:sale_price_compliance.price_compliance_threshold_manager
+msgid "The user will be able to manage Price Compliance Thresholds."
+msgstr ""
+
+#. module: sale_price_compliance
+#: model:ir.model.fields,help:sale_price_compliance.field_res_config_settings__price_compliance_threshold_t1
+msgid ""
+"Threshold for Tier 1 Price Compliance (e.g., High-yield). Prices below this "
+"tier are considered fully compliant."
+msgstr ""
+
+#. module: sale_price_compliance
+#: model:ir.model.fields,help:sale_price_compliance.field_res_config_settings__price_compliance_threshold_t2
+msgid ""
+"Threshold for Tier 2 Price Compliance (e.g., Medium-yield). Prices between "
+"Tier 1 and Tier 2 are considered moderately compliant."
+msgstr ""
+
+#. module: sale_price_compliance
+#: model:ir.model.fields,help:sale_price_compliance.field_res_config_settings__price_compliance_threshold_t3
+msgid ""
+"Threshold for Tier 3 Price Compliance (e.g., Low-yield). Prices between Tier"
+" 2 and Tier 3 are considered low compliant."
+msgstr ""
+
+#. module: sale_price_compliance
+#. odoo-python
+#: code:addons/sale_price_compliance/models/price_compliance_threshold_tier_mixin.py:0
+#: model:ir.model.fields,field_description:sale_price_compliance.field_product_category__price_compliance_threshold_t1
+#: model:ir.model.fields,field_description:sale_price_compliance.field_product_price_compliance_threshold_config_mixin__price_compliance_threshold_t1
+#: model:ir.model.fields,field_description:sale_price_compliance.field_product_product__price_compliance_threshold_t1
+#: model:ir.model.fields,field_description:sale_price_compliance.field_product_template__price_compliance_threshold_t1
+#: model:ir.model.fields,field_description:sale_price_compliance.field_res_company__price_compliance_threshold_t1
+#: model:ir.model.fields,field_description:sale_price_compliance.field_res_config_settings__price_compliance_threshold_t1
+#, python-format
+msgid "Tier 1"
+msgstr ""
+
+#. module: sale_price_compliance
+#: model_terms:ir.ui.view,arch_db:sale_price_compliance.res_config_settings_view_form
+msgid "Tier 1 🟩"
+msgstr ""
+
+#. module: sale_price_compliance
+#. odoo-python
+#: code:addons/sale_price_compliance/models/price_compliance_threshold_tier_mixin.py:0
+#: model:ir.model.fields,field_description:sale_price_compliance.field_product_category__price_compliance_threshold_t2
+#: model:ir.model.fields,field_description:sale_price_compliance.field_product_price_compliance_threshold_config_mixin__price_compliance_threshold_t2
+#: model:ir.model.fields,field_description:sale_price_compliance.field_product_product__price_compliance_threshold_t2
+#: model:ir.model.fields,field_description:sale_price_compliance.field_product_template__price_compliance_threshold_t2
+#: model:ir.model.fields,field_description:sale_price_compliance.field_res_company__price_compliance_threshold_t2
+#: model:ir.model.fields,field_description:sale_price_compliance.field_res_config_settings__price_compliance_threshold_t2
+#, python-format
+msgid "Tier 2"
+msgstr ""
+
+#. module: sale_price_compliance
+#: model_terms:ir.ui.view,arch_db:sale_price_compliance.res_config_settings_view_form
+msgid "Tier 2 🟨"
+msgstr ""
+
+#. module: sale_price_compliance
+#. odoo-python
+#: code:addons/sale_price_compliance/models/price_compliance_threshold_tier_mixin.py:0
+#: model:ir.model.fields,field_description:sale_price_compliance.field_product_category__price_compliance_threshold_t3
+#: model:ir.model.fields,field_description:sale_price_compliance.field_product_price_compliance_threshold_config_mixin__price_compliance_threshold_t3
+#: model:ir.model.fields,field_description:sale_price_compliance.field_product_product__price_compliance_threshold_t3
+#: model:ir.model.fields,field_description:sale_price_compliance.field_product_template__price_compliance_threshold_t3
+#: model:ir.model.fields,field_description:sale_price_compliance.field_res_company__price_compliance_threshold_t3
+#: model:ir.model.fields,field_description:sale_price_compliance.field_res_config_settings__price_compliance_threshold_t3
+#, python-format
+msgid "Tier 3"
+msgstr ""
+
+#. module: sale_price_compliance
+#: model_terms:ir.ui.view,arch_db:sale_price_compliance.res_config_settings_view_form
+msgid "Tier 3 🟧"
+msgstr ""
+
+#. module: sale_price_compliance
+#. odoo-javascript
+#: code:addons/sale_price_compliance/static/src/widgets/price_compliance_level_widget.xml:0
+#, python-format
+msgid "Unit Price"
+msgstr ""
+
+#. module: sale_price_compliance
+#: model:ir.model.fields,field_description:sale_price_compliance.field_product_category__use_price_compliance_threshold
+#: model:ir.model.fields,field_description:sale_price_compliance.field_product_price_compliance_threshold_config_mixin__use_price_compliance_threshold
+#: model:ir.model.fields,field_description:sale_price_compliance.field_product_product__use_price_compliance_threshold
+#: model:ir.model.fields,field_description:sale_price_compliance.field_product_template__use_price_compliance_threshold
+#: model:ir.model.fields,field_description:sale_price_compliance.field_res_company__use_price_compliance_threshold
+#: model:ir.model.fields,field_description:sale_price_compliance.field_res_config_settings__use_price_compliance_threshold
+msgid "Use Price Compliance Thresholds"
+msgstr ""
+
+#. module: sale_price_compliance
+#: model_terms:ir.ui.view,arch_db:sale_price_compliance.product_category_search_view
+#: model_terms:ir.ui.view,arch_db:sale_price_compliance.product_template_search_view
+msgid "Uses Price Compliant Threshold"
+msgstr ""
