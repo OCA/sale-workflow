@@ -1,0 +1,5 @@
+- Simone Rubino \<<simone.rubino@agilebg.com>\>
+- [Aion Tech](https://aiontech.company/):
+  - Simone Rubino \<<simone.rubino@aion-tech.it>\>
+- [Agile Business Group](https://www.agilebg.com):
+  - Michele Rusticucci \<<michele.rusticucci@agilebg.com>\>
