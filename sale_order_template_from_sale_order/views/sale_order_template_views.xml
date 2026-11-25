@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_template_view_form" model="ir.ui.view">
+        <field name="name">sale.order.template.form.fixed.price</field>
+        <field name="model">sale.order.template</field>
+        <field name="inherit_id" ref="sale_management.sale_order_template_view_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='sale_order_template_line_ids']/form/group/group"
+                position="inside"
+            >
+                <field name="manual_price" invisible="display_type" />
+                <field name="price_unit" invisible="display_type" />
+                <field
+                    name="discount"
+                    invisible="display_type"
+                    groups="sale.group_discount_per_so_line"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='sale_order_template_line_ids']/list/field[@name='product_uom_id']"
+                position="after"
+            >
+                <field name="manual_price" invisible="display_type" />
+                <field name="price_unit" invisible="display_type" />
+                <field
+                    name="discount"
+                    invisible="display_type"
+                    groups="sale.group_discount_per_so_line"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='sale_order_template_option_ids']/list/field[@name='uom_id']"
+                position="after"
+            >
+                <field name="manual_price" />
+                <field name="price_unit" />
+                <field name="discount" groups="sale.group_discount_per_so_line" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

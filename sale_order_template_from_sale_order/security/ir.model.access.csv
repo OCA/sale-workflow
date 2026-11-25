@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_template_salesman_create,sale.order.template salesman write,sale_management.model_sale_order_template,sales_team.group_sale_salesman,1,1,0,0
+access_sale_order_template_from_order,sale.order.template from order,sale_management.model_sale_order_template,group_template_from_order,1,0,1,0
+access_sale_order_template_line_salesman_create,sale.order.template.line salesman create,sale_management.model_sale_order_template_line,sales_team.group_sale_salesman,1,1,1,0
+access_sale_order_template_option_salesman_create,sale.order.template.option salesman create,sale_management.model_sale_order_template_option,sales_team.group_sale_salesman,1,1,1,0
+access_sale_order_create_template,sale.order.create.template,model_sale_order_create_template,group_template_from_order,1,1,1,0

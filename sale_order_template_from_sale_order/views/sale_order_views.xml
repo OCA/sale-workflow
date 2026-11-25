@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_view_form" model="ir.ui.view">
+        <field name="name">sale.order.form.quotation.template</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <button name="action_cancel" position="after">
+                <span groups="sale_management.group_sale_order_template">
+                    <button
+                        name="%(sale_order_create_template_action)d"
+                        type="action"
+                        string="Create Template"
+                        class="btn-secondary"
+                        invisible="not id"
+                        groups="sale_order_template_from_sale_order.group_template_from_order"
+                    />
+                </span>
+            </button>
+            <xpath expr="//field[@name='order_line']/form" position="inside">
+                <field name="quotation_template_fixed_price" invisible="1" />
+                <field name="quotation_template_keep_name" invisible="1" />
+                <field name="quotation_template_product_id" invisible="1" />
+                <field name="quotation_template_uom_id" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='order_line']/list" position="inside">
+                <field name="quotation_template_fixed_price" column_invisible="True" />
+                <field name="quotation_template_keep_name" column_invisible="True" />
+                <field name="quotation_template_product_id" column_invisible="True" />
+                <field name="quotation_template_uom_id" column_invisible="True" />
+            </xpath>
+            <xpath expr="//field[@name='order_line']/kanban" position="inside">
+                <field name="quotation_template_fixed_price" invisible="1" />
+                <field name="quotation_template_keep_name" invisible="1" />
+                <field name="quotation_template_product_id" invisible="1" />
+                <field name="quotation_template_uom_id" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_order_view_form_optional_product" model="ir.ui.view">
+        <field name="name">sale.order.form.optional.product.quotation.template</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_management.sale_order_form_quote" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sale_order_option_ids']/form" position="inside">
+                <field name="quotation_template_fixed_price" invisible="1" />
+                <field name="quotation_template_keep_name" invisible="1" />
+                <field name="quotation_template_product_id" invisible="1" />
+                <field name="quotation_template_uom_id" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='sale_order_option_ids']/list" position="inside">
+                <field name="quotation_template_fixed_price" column_invisible="True" />
+                <field name="quotation_template_keep_name" column_invisible="True" />
+                <field name="quotation_template_product_id" column_invisible="True" />
+                <field name="quotation_template_uom_id" column_invisible="True" />
+            </xpath>
+            <xpath
+                expr="//field[@name='sale_order_option_ids']/kanban"
+                position="inside"
+            >
+                <field name="quotation_template_fixed_price" invisible="1" />
+                <field name="quotation_template_keep_name" invisible="1" />
+                <field name="quotation_template_product_id" invisible="1" />
+                <field name="quotation_template_uom_id" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
