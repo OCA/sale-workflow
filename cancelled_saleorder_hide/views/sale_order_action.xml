@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 M. Salman
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html) -->
+<odoo>
+    <!-- Hide cancelled records from the Sales > Orders > Quotations list.
+         This action's own definition carries no domain by default, so it
+         is safe to set one here without losing any existing filtering. -->
+    <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
+        <field name="domain">[('state', '!=', 'cancel')]</field>
+    </record>
+</odoo>
