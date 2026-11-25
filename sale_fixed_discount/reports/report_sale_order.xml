@@ -42,6 +42,11 @@
             <t t-if="display_discount_fixed and line.discount_fixed"><span
                     class="text-nowrap"
                 > %)</span></t>
+            <!-- Under the "Discount Amount (%)" header, keep percentages of
+                 lines without fixed discount distinguishable from amounts -->
+            <t t-elif="display_discount_fixed and line.discount > 0"><span
+                    class="text-nowrap"
+                > %</span></t>
         </xpath>
     </template>
 </odoo>

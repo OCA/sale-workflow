@@ -2,8 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import Command
-from odoo.tests import TransactionCase
-from odoo.tests.common import Form
+from odoo.tests import Form, TransactionCase
 
 
 class TestSaleOrder(TransactionCase):
@@ -38,21 +37,57 @@ class TestSaleOrder(TransactionCase):
                 line.discount_fixed = 0.0
         self.assertFalse(sale.show_discount_warning_label)
 
-    def test_02_get_lines_to_compute_discount(self):
+    def test_02_fixed_discount_takes_priority(self):
         sale = self._create_sale(discount1=10.00, discount2=10.00)
-        self.assertAlmostEqual(sale.order_line[0].discount, 19)
-        lines = sale.order_line._get_lines_to_compute_discount()
-        self.assertEqual(lines, sale.order_line)
+        line = sale.order_line
+        self.assertAlmostEqual(line.discount, 19)
+        self.assertAlmostEqual(line.price_subtotal, 162)
         with Form(sale) as sale_form:
-            with sale_form.order_line.edit(0) as line:
-                line.discount_fixed = 10.0
-        lines = sale.order_line._get_lines_to_compute_discount()
-        self.assertEqual(lines, sale.order_line - sale.order_line[0])
+            with sale_form.order_line.edit(0) as line_form:
+                line_form.discount_fixed = 10.0
+        self.assertAlmostEqual(line.discount, 5)
+        self.assertAlmostEqual(line.price_subtotal, 190)
+        with Form(sale) as sale_form:
+            with sale_form.order_line.edit(0) as line_form:
+                line_form.discount_fixed = 0.0
+        self.assertAlmostEqual(line.discount, 19)
+
+    def test_02b_report_shows_both_discounts(self):
+        # Both lines on the same order: the discount columns are shown per order
+        sale = self._create_sale(discount1=7.5)
+        sale.order_line = [
+            Command.create(
+                {
+                    "product_id": self.product.id,
+                    "product_uom_qty": 1.0,
+                    "name": "Line 2",
+                    "price_unit": 200.00,
+                    "discount_fixed": 12.34,
+                }
+            )
+        ]
+        html = (
+            self.env["ir.actions.report"]
+            ._render_qweb_html("sale.action_report_saleorder", sale.ids)[0]
+            .decode()
+        )
+        # discount1 cell of sale_triple_discount on the product line
+        self.assertIn("7.50", html)
+        # fixed discount cell of sale_fixed_discount on the product line
+        self.assertIn("12.34", html)
+        # percentage of the line without fixed discount keeps its % suffix
+        self.assertRegex(html, r"7\.50</span>\s*<span[^>]*> %</span>")
+        # fixed discount line shows the amount and the equivalent percentage
+        self.assertRegex(
+            html, r"(?s)12\.34</span>.*?\(or</span>.*?6\.17</span>\s*<span[^>]*> %\)"
+        )
 
     def test_03_should_copy_discount_to_discount1(self):
         sale = self._create_sale(discount=10.00)
         self.assertAlmostEqual(sale.order_line[0].discount1, 10)
         self.assertAlmostEqual(sale.order_line[0].discount, 10)
         sale_2 = self._create_sale(discount=10.00, discount_fixed=10.00)
-        self.assertAlmostEqual(sale_2.order_line[0].discount1, 10)
+        # The fixed discount takes priority: discount is computed from it
+        self.assertAlmostEqual(sale_2.order_line[0].discount1, 0)
         self.assertAlmostEqual(sale_2.order_line[0].discount_fixed, 10)
+        self.assertAlmostEqual(sale_2.order_line[0].discount, 5)
