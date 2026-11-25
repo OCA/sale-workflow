@@ -1,0 +1,50 @@
+<odoo>
+    <record id="view_order_form_forecast_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.forecast</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="before">
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    invisible="sale_forecast_available or state not in ['draft', 'sent', 'sale']"
+                >
+                    <strong
+                >Warning:</strong> Some products may not be available on time.
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_order_tree_forecast_inherit" model="ir.ui.view">
+        <field name="name">sale.order.tree.forecast</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_total']" position="after">
+                <field
+                    name="sale_forecast_available"
+                    optional="hide"
+                    decoration-danger="not sale_forecast_available"
+                    decoration-success="sale_forecast_available"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_sales_order_filter_forecast" model="ir.ui.view">
+        <field name="name">sale.order.search.forecast</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <filter name="my_sale_orders_filter" position="after">
+                <separator />
+                <filter
+                    string="Forecast Availability Issues"
+                    name="forecast_issue"
+                    domain="[('sale_forecast_available','=',False)]"
+                    help="Orders with stock availability issues"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
