@@ -64,6 +64,21 @@ class TestSaleOrder(BaseCommon):
         )
         self.assertEqual(self.order.order_line.secondary_uom_qty, 7.0)
 
+    def test_packaging_qty_updates_quantities(self):
+        # Regression: changing the number of packages must propagate to both
+        # product_uom_qty and secondary_uom_qty, also on a programmatic write.
+        # The secondary unit sync used to run inside a _compute_product_uom_qty
+        # override that created a recursive dependency and silently discarded
+        # the packaging change (e.g. combined with sale_packaging_default).
+        packaging = self.env["product.packaging"].create(
+            {"name": "box-10", "product_id": self.product.id, "qty": 10.0}
+        )
+        line = self.order.order_line
+        line.secondary_uom_id = self.secondary_unit.id
+        line.write({"product_packaging_id": packaging.id, "product_packaging_qty": 2})
+        self.assertEqual(line.product_uom_qty, 20.0)
+        self.assertEqual(line.secondary_uom_qty, 40.0)
+
     def test_default_secondary_unit(self):
         self.order.order_line._onchange_product_id_warning()
         self.assertEqual(self.order.order_line.secondary_uom_id, self.secondary_unit)
