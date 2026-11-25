@@ -35,6 +35,14 @@ class ManualDeliveryLine(models.TransientModel):
     )
     qty_procured = fields.Float(related="order_line_id.qty_procured")
     quantity = fields.Float()
+    allowed_uom_ids = fields.Many2many(related="order_line_id.allowed_uom_ids")
+    packaging_uom_id = fields.Many2one(
+        "uom.uom",
+        string="Packaging",
+        domain="[('id', 'in', allowed_uom_ids)]",
+        help="Packaging of the delivery, used to choose its route. "
+        "Leave it blank to use the unit of measure of the sale order line",
+    )
 
     @api.constrains("quantity")
     def _check_quantity(self):
