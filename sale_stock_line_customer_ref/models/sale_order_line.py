@@ -9,7 +9,7 @@ class SaleOrderLine(models.Model):
 
     customer_ref = fields.Char(string="Customer Ref.")
 
-    def _prepare_procurement_values(self, group_id=False):
-        values = super()._prepare_procurement_values(group_id)
+    def _prepare_procurement_values(self):
+        values = super()._prepare_procurement_values()
         values["customer_ref"] = self.customer_ref
         return values

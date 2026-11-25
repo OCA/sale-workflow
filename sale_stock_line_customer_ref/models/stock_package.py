@@ -4,8 +4,8 @@
 from odoo import fields, models
 
 
-class StockQuantPackage(models.Model):
-    _inherit = "stock.quant.package"
+class StockPackage(models.Model):
+    _inherit = "stock.package"
 
     customer_ref = fields.Char(
         string="Customer Ref.",

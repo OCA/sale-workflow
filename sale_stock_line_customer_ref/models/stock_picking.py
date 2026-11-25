@@ -17,11 +17,7 @@ class StockPicking(models.Model):
         for picking in self:
             # Break on the first move having a customer ref
             picking.has_customer_ref = next(
-                (
-                    move
-                    for move in picking.move_ids_without_package
-                    if move.customer_ref
-                ),
+                (move for move in picking.move_ids if move.customer_ref),
                 False,
             )
 

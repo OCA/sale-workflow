@@ -12,7 +12,11 @@ class TestSaleLineCustomerRef(BaseCommon):
         super().setUpClass()
         cls.wh = cls.env.ref("stock.warehouse0")
         cls.wh.delivery_steps = "pick_pack_ship"
-        cls.product = cls.env.ref("product.consu_delivery_01")
+        # No demo data: since 19.0 databases are created without demo by default
+        cls.product = cls.env["product.product"].create(
+            {"name": "Test Product", "type": "consu", "is_storable": True}
+        )
+        cls.partner = cls.env["res.partner"].create({"name": "Test Partner"})
         delivery_route = cls.wh.delivery_route_id
         rule_id1 = delivery_route.rule_ids[1]
         delivery_route.rule_ids[0].location_dest_id = rule_id1.location_src_id.id
@@ -20,19 +24,18 @@ class TestSaleLineCustomerRef(BaseCommon):
         cls.stock_loc = cls.wh.lot_stock_id
         cls.order = cls._create_order()
         cls.order.action_confirm()
-        cls.pkg_model = cls.env["stock.quant.package"]
+        cls.pkg_model = cls.env["stock.package"]
 
     @classmethod
     def _create_order(cls):
         # Create a SO with 4 lines sharing the same product but with 2 different
         # customer references.
         with Form(cls.env["sale.order"]) as form:
-            form.partner_id = cls.env.ref("base.res_partner_1")
+            form.partner_id = cls.partner
             for i in range(4):
                 with form.order_line.new() as line:
                     line.product_id = cls.product
                     line.customer_ref = f"TEST_{i % 2}"
-                    line.product_uom = cls.product.uom_id
                     line.product_uom_qty = 1
             order = form.save()
             return order
@@ -63,7 +66,10 @@ class TestSaleLineCustomerRef(BaseCommon):
         # different SO lines, but chained moves not linked directly to
         # the SO lines can still be merged based on the customer reference.
         self.assertEqual(len(self.order.order_line), 4)
-        self.assertEqual(len(self.order.order_line.move_ids), 4)
+        # Since 19.0, sale_stock propagates sale_line_id to the chained moves
+        # (stock.move._prepare_procurement_values), so each SO line is linked to
+        # its pick, pack and ship moves: 4 lines x 3 steps.
+        self.assertEqual(len(self.order.order_line.move_ids), 12)
         self._test_customer_ref()
 
     def _test_customer_ref(self):
@@ -76,20 +82,24 @@ class TestSaleLineCustomerRef(BaseCommon):
             )
             self.assertEqual(order_line.customer_ref, expected_ref)
             # Customer reference is propagated on the ship move
-            move_ship = order_line.move_ids
+            move_ship = order_line.move_ids.filtered(lambda m: not m.move_dest_ids)
             self.assertEqual(move_ship.customer_ref_sale_line_id, order_line)
             self.assertEqual(move_ship.customer_ref, expected_ref)
             self.assertEqual(move_ship.product_uom_qty, 1)
-            # And on the pack and pick moves have been merged based on
-            # the propagated customer reference.
+            # And on the pack and pick moves. Since 19.0 they carry their own
+            # sale_line_id (a merge-distinct field in sale_stock), so chained
+            # moves of different SO lines are never merged anymore, even when
+            # they share the same customer reference.
             move_pack = move_ship.move_orig_ids
             self.assertIn(move_pack.customer_ref_sale_line_id, order_lines_same_ref)
+            self.assertEqual(move_pack.customer_ref_sale_line_id, order_line)
             self.assertEqual(move_pack.customer_ref, expected_ref)
-            self.assertEqual(move_pack.product_uom_qty, 2)
+            self.assertEqual(move_pack.product_uom_qty, 1)
             move_pick = move_pack.move_orig_ids
             self.assertIn(move_pick.customer_ref_sale_line_id, order_lines_same_ref)
+            self.assertEqual(move_pick.customer_ref_sale_line_id, order_line)
             self.assertEqual(move_pick.customer_ref, expected_ref)
-            self.assertEqual(move_pick.product_uom_qty, 2)
+            self.assertEqual(move_pick.product_uom_qty, 1)
 
     def test_has_customer_ref(self):
         for picking in self.order.picking_ids:
@@ -99,7 +109,8 @@ class TestSaleLineCustomerRef(BaseCommon):
         self._update_qty_in_location(self.stock_loc, self.product, 10)
         picking = self._get_pick(self.order)
         picking.action_assign()
-        expected = ["TEST_0", "TEST_1"]
+        # One move line per SO line since 19.0 (pick moves are not merged).
+        expected = ["TEST_0", "TEST_1", "TEST_0", "TEST_1"]
         self.assertEqual(picking.move_line_ids.mapped("customer_ref"), expected)
         pkg1 = self.pkg_model.create({"name": "TEST-REF-1"})
         pkg2 = self.pkg_model.create({"name": "TEST-REF-2"})
@@ -119,7 +130,8 @@ class TestSaleLineCustomerRef(BaseCommon):
         self._update_qty_in_location(self.stock_loc, self.product, 10)
         picking = self._get_pick(self.order)
         picking.action_assign()
-        expected = ["TEST_0", "TEST_1"]
+        # One move line per SO line since 19.0 (pick moves are not merged).
+        expected = ["TEST_0", "TEST_1", "TEST_0", "TEST_1"]
         self.assertEqual(picking.move_line_ids.mapped("customer_ref"), expected)
         pkg1 = self.pkg_model.create({"name": "TEST-REF-1"})
         self.pkg_model.create({"name": "TEST-REF-2"})

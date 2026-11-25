@@ -6,7 +6,7 @@
         "Allow you to add a customer reference on order lines "
         "propagaged to move operations."
     ),
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "maintainers": ["sebalix"],
     "website": "https://github.com/OCA/sale-workflow",
@@ -17,8 +17,7 @@
         "views/stock_picking.xml",
         "views/stock_move.xml",
         "views/stock_move_line.xml",
-        "views/stock_package_level.xml",
-        "views/stock_quant_package.xml",
+        "views/stock_package.xml",
     ],
     "license": "AGPL-3",
     "installable": True,
