@@ -1,0 +1,10 @@
+- [Tecnativa](https://www.tecnativa.com):
+  - Ernesto Tejeda
+  - Pedro M. Baeza
+  - César A. Sánchez
+  - Luis D. Lafaurie
+  - Carlos Lopez
+- [Pesol](https://www.pesol.es):
+  - Jonathan Oscategui Taza \<<info@pesol.es>\>
+- [Sodexis](https://www.sodexis.com):
+  - SodexisTeam \<<dev@sodexis.com>\>
