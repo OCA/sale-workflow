@@ -15,18 +15,26 @@ class AutomaticWorkflowJob(models.Model):
         vals = super()._prepare_dict_account_payment(invoice)
         if invoice.payment_mode_id:
             payment_mode = invoice.payment_mode_id
+            journal = payment_mode.fixed_journal_id
+            method_line = journal.inbound_payment_method_line_ids.filtered(
+                lambda l: l.payment_method_id == payment_mode.payment_method_id
+            )[:1]
             vals["payment_type"] = payment_mode.payment_type
-            vals["payment_method_id"] = payment_mode.payment_method_id.id
-            vals["journal_id"] = payment_mode.fixed_journal_id.id
-        return vals
+            vals["journal_id"] = journal.id
+            vals.pop("payment_method_id", None)
+        if method_line:
+            vals["payment_method_line_id"] = method_line.id
 
-    def _register_payment_invoice(self, invoice):
-        if not invoice.payment_mode_id.fixed_journal_id:
-            _logger.debug(
-                "Unable to Register Payment for invoice %s: "
-                "Payment mode %s must have fixed journal",
-                invoice.id,
-                invoice.payment_mode_id.id,
-            )
-            return
-        return super()._register_payment_invoice(invoice)
+            return vals
+
+
+def _register_payment_invoice(self, invoice):
+    if not invoice.payment_mode_id.fixed_journal_id:
+        _logger.debug(
+            "Unable to Register Payment for invoice %s: "
+            "Payment mode %s must have fixed journal",
+            invoice.id,
+            invoice.payment_mode_id.id,
+        )
+        return
+    return super()._register_payment_invoice(invoice)
