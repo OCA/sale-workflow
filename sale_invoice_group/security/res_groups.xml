@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2026 ForgeFlow S.L. (https://www.forgeflow.com)
+  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
+-->
+<odoo>
+    <record id="group_sale_invoice" model="res.groups">
+        <field name="name">Invoice Sales Orders</field>
+        <field name="category_id" ref="base.module_category_sales_sales" />
+        <field
+            name="comment"
+        >Members of this group can create invoices from sales orders.</field>
+    </record>
+
+    <!-- Sales managers and invoicing users keep the capability by default. -->
+    <record id="sales_team.group_sale_manager" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('group_sale_invoice'))]" />
+    </record>
+
+    <record id="account.group_account_invoice" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('group_sale_invoice'))]" />
+    </record>
+</odoo>
