@@ -12,5 +12,6 @@
     "application": False,
     "installable": True,
     "depends": ["sale_order_secondary_unit", "stock_secondary_unit"],
+    "data": ["views/product_product_views.xml"],
     "auto_install": True,
 }
