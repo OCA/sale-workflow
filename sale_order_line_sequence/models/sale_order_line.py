@@ -21,7 +21,10 @@ class SaleOrderLine(models.Model):
         store=True,
     )
 
-    @api.depends("sequence", "order_id.order_line")
+    # Do not depend on "sequence": the web client would send one onchange per
+    # line when lines are reordered by drag and drop, flooding the server on
+    # large orders. The line numbers are recomputed in write() instead.
+    @api.depends("order_id.order_line")
     def _compute_visible_sequence(self):
         for so in self.mapped("order_id"):
             sequence = 1
@@ -31,3 +34,11 @@ class SaleOrderLine(models.Model):
             for line in sorted(order_lines, key=lambda order_line: order_line.sequence):
                 line.visible_sequence = sequence
                 sequence += 1
+
+    def write(self, vals):
+        res = super().write(vals)
+        if "sequence" in vals:
+            self.env.add_to_compute(
+                self._fields["visible_sequence"], self.order_id.order_line
+            )
+        return res
