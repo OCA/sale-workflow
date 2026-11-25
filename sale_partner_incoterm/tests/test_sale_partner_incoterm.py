@@ -19,3 +19,15 @@ class TestSalePartnerIncoterm(TransactionCase):
         sale_order.partner_id = customer
         self.assertEqual(sale_order.incoterm, incoterm)
         self.assertEqual(sale_order.incoterm_address_id, address)
+
+    def test_sale_partner_without_incoterm(self):
+        """
+        Check that a customer without a default incoterm keeps the incoterm
+        already set on the sales order
+        """
+        customer = self.env["res.partner"].create({"name": "Test Customer"})
+        incoterm = self.env["account.incoterms"].search([], limit=1)
+        sale_order = Form(self.env["sale.order"])
+        sale_order.incoterm = incoterm
+        sale_order.partner_id = customer
+        self.assertEqual(sale_order.incoterm, incoterm)
