@@ -20,6 +20,12 @@ msgstr ""
 "X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_order_lot_selection
+#. odoo-python
+#: code:addons/sale_order_lot_selection/models/sale_order_line.py:0
+msgid "A lot with serial number tracking can only have a quantity of 1."
+msgstr "Un lote con trazabilidad por número de serie único solo puede tener una cantidad de 1."
+
+#. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_res_company
 msgid "Companies"
 msgstr "Compañías"

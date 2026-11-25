@@ -515,3 +515,23 @@ class TestSaleOrderLotSelection(BaseCommon):
         self._update_stock_quantity(self.prd_cable, lot_cable_extra, 1)
         sale.action_confirm()
         self.assertEqual(sale.state, "sale")
+
+    def test_06_sale_order_lot_serial_qty(self):
+        self.prd_cable.tracking = "serial"
+        sale = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.prd_cable.id,
+                            "product_uom_qty": 1.0,
+                            "lot_id": self.lot_cable.id,
+                        }
+                    ),
+                ],
+            }
+        )
+        msg = "A lot with serial number tracking can only have a quantity of 1."
+        with self.assertRaisesRegex(ValidationError, msg):
+            sale.order_line.write({"product_uom_qty": 2})

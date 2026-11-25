@@ -28,6 +28,26 @@ class SaleOrderLine(models.Model):
         precompute=True,
     )
 
+    @api.constrains("product_id", "lot_id", "product_uom_qty")
+    def _check_product_tracking_serial_qty(self):
+        for line in self.filtered(
+            lambda x: x.lot_id and x.product_tracking == "serial"
+        ):
+            if (
+                float_compare(
+                    line.product_uom_qty,
+                    1,
+                    precision_rounding=line.product_uom.rounding,
+                )
+                > 0
+            ):
+                raise ValidationError(
+                    self.env._(
+                        "A lot with serial number tracking can only have "
+                        "a quantity of 1."
+                    )
+                )
+
     def _prepare_procurement_values(self, group_id=False):
         vals = super()._prepare_procurement_values(group_id=group_id)
         if self.lot_id:
