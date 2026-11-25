@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    # Copyright 2026 - TODAY, Escodoo
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo noupdate="1">
+    <!--
+        Blanket Order 1: Using base.res_partner_1 - IT Equipment
+        This blanket order has products and an order plan with quarterly installments
+    -->
+    <record id="blanket_order_1" model="sale.blanket.order">
+        <field name="partner_id" ref="base.res_partner_1" />
+        <field name="pricelist_id" ref="product.list0" />
+        <field
+            name="validity_date"
+            eval="(datetime.now() + relativedelta(months=12)).strftime('%Y-%m-%d')"
+        />
+        <field name="state">done</field>
+        <field
+            name="note"
+        >Quarterly equipment delivery for IT infrastructure upgrade.</field>
+    </record>
+
+    <!-- Blanket Order Lines for Order 1 -->
+    <record id="blanket_line_1_laptop" model="sale.blanket.order.line">
+        <field name="order_id" ref="blanket_order_1" />
+        <field name="product_id" ref="product.product_product_3" />
+        <field name="product_uom" ref="uom.product_uom_unit" />
+        <field name="original_uom_qty">20</field>
+        <field name="price_unit">1200.00</field>
+        <field
+            name="date_schedule"
+            eval="(datetime.now() + relativedelta(months=3)).strftime('%Y-%m-%d')"
+        />
+    </record>
+
+    <record id="blanket_line_1_monitor" model="sale.blanket.order.line">
+        <field name="order_id" ref="blanket_order_1" />
+        <field name="product_id" ref="product.product_delivery_02" />
+        <field name="product_uom" ref="uom.product_uom_unit" />
+        <field name="original_uom_qty">20</field>
+        <field name="price_unit">450.00</field>
+        <field
+            name="date_schedule"
+            eval="(datetime.now() + relativedelta(months=3)).strftime('%Y-%m-%d')"
+        />
+    </record>
+
+    <!-- Order Plan for Order 1 - Quarterly (4 installments) -->
+    <record id="order_plan_1" model="blanket.order.plan">
+        <field name="sale_id" ref="blanket_order_1" />
+        <field name="installment">1</field>
+        <field name="plan_date" eval="datetime.now().strftime('%Y-%m-%d')" />
+        <field name="percent">25</field>
+    </record>
+
+    <!--
+        Blanket Order 2: Using base.res_partner_2 - Office Equipment
+        Products only, monthly plan
+    -->
+    <record id="blanket_order_2" model="sale.blanket.order">
+        <field name="partner_id" ref="base.res_partner_2" />
+        <field name="pricelist_id" ref="product.list0" />
+        <field
+            name="validity_date"
+            eval="(datetime.now() + relativedelta(months=6)).strftime('%Y-%m-%d')"
+        />
+        <field name="state">done</field>
+        <field name="note">Office equipment for new headquarters.</field>
+    </record>
+
+    <!-- Blanket Order Lines for Order 2 -->
+    <record id="blanket_line_2_laptop" model="sale.blanket.order.line">
+        <field name="order_id" ref="blanket_order_2" />
+        <field name="product_id" ref="product.product_product_3" />
+        <field name="product_uom" ref="uom.product_uom_unit" />
+        <field name="original_uom_qty">50</field>
+        <field name="price_unit">1150.00</field>
+        <field
+            name="date_schedule"
+            eval="(datetime.now() + relativedelta(months=1)).strftime('%Y-%m-%d')"
+        />
+    </record>
+
+    <!-- Order Plan for Order 2 - Monthly -->
+    <record id="order_plan_2" model="blanket.order.plan">
+        <field name="sale_id" ref="blanket_order_2" />
+        <field name="installment">1</field>
+        <field name="plan_date" eval="datetime.now().strftime('%Y-%m-%d')" />
+        <field name="percent">100</field>
+    </record>
+
+    <!--
+        Blanket Order 3: Using base.res_partner_3 - Services Contract
+        Services only
+    -->
+    <record id="blanket_order_3" model="sale.blanket.order">
+        <field name="partner_id" ref="base.res_partner_3" />
+        <field name="pricelist_id" ref="product.list0" />
+        <field
+            name="validity_date"
+            eval="(datetime.now() + relativedelta(months=12)).strftime('%Y-%m-%d')"
+        />
+        <field name="state">done</field>
+        <field name="note">Annual support and maintenance contract.</field>
+    </record>
+
+    <!-- Blanket Order Lines for Order 3 - Services Only -->
+    <record id="blanket_line_3_support" model="sale.blanket.order.line">
+        <field name="order_id" ref="blanket_order_3" />
+        <field name="product_id" ref="product.product_delivery_01" />
+        <field name="product_uom" ref="uom.product_uom_unit" />
+        <field name="original_uom_qty">100</field>
+        <field name="price_unit">150.00</field>
+        <field name="date_schedule" eval="datetime.now().strftime('%Y-%m-%d')" />
+    </record>
+
+    <!-- Order Plan for Order 3 - Yearly -->
+    <record id="order_plan_3" model="blanket.order.plan">
+        <field name="sale_id" ref="blanket_order_3" />
+        <field name="installment">1</field>
+        <field name="plan_date" eval="datetime.now().strftime('%Y-%m-%d')" />
+        <field name="percent">100</field>
+    </record>
+</odoo>

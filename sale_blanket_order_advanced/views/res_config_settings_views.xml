@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2026 - TODAY, Kaynnan Lemes <kaynnan.lemes@escodoo.com.br>
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field
+            name="name"
+        >res.config.settings.view.form (in sale_blanket_order_advanced)</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//div[hasclass('row','mt16','o_settings_container')][position() = 3]"
+                position="after"
+            >
+                <h2>Blanket Order Advanced</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="enable_version_control" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="enable_version_control" />
+                            <div class="text-muted">
+                                Enable version control for Blanket Orders
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="use_sale_order_plan" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="use_sale_order_plan" />
+                            <div class="text-muted">
+                                Enable Sale Order Plan
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="enable_product_costs" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="enable_product_costs" />
+                            <div class="text-muted">
+                                Enable Product Costs tracking
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="enable_service_costs" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="enable_service_costs" />
+                            <div class="text-muted">
+                                Enable Service Costs tracking
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
