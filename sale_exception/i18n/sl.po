@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-16 11:37+0000\n"
-"PO-Revision-Date: 2026-06-09 05:53+0000\n"
+"PO-Revision-Date: 2026-11-25 13:46+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 2026.11.2\n"
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
@@ -269,7 +269,7 @@ msgstr "Stranka ima na svojem obrazcu prodajno opozorilo"
 #. odoo-python
 #: code:addons/sale_exception/models/sale_order.py:0
 msgid "The order was not confirmed because of these exceptions:"
-msgstr ""
+msgstr "Naročilo ni bilo potrjeno zaradi naslednjih izjem:"
 
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.exception_product_sale_warning
