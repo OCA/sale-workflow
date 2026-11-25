@@ -217,6 +217,104 @@ class TestSaleOrderComponentSync(tests.TransactionCase):
             "Quantity should be the sum of all MOs consumption",
         )
 
+    def test_multilevel_subassembly_component_added(self):
+        """A sellable component consumed only by a *sub*-MO (multi-level BoM)
+        is synced back to the sale order via the parent MO."""
+        Product = self.env["product.product"]
+        MrpBom = self.env["mrp.bom"]
+        MrpProduction = self.env["mrp.production"]
+        SaleOrder = self.env["sale.order"]
+
+        top = Product.create(
+            {"name": "Top assembly", "type": "consu", "sale_ok": True}
+        )
+        mid = Product.create(
+            {"name": "Sub assembly", "type": "consu", "sale_ok": True}
+        )
+        handling = Product.create(
+            {"name": "Unloading service", "type": "consu", "sale_ok": True}
+        )
+        MrpBom.create(
+            {
+                "product_tmpl_id": top.product_tmpl_id.id,
+                "type": "normal",
+                "bom_line_ids": [(0, 0, {"product_id": mid.id, "product_qty": 1.0})],
+            }
+        )
+        mid_bom = MrpBom.create(
+            {
+                "product_tmpl_id": mid.product_tmpl_id.id,
+                "type": "normal",
+                "bom_line_ids": [
+                    (0, 0, {"product_id": handling.id, "product_qty": 1.0})
+                ],
+            }
+        )
+
+        sale_order = SaleOrder.create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": top.id,
+                            "product_uom_qty": 1.0,
+                            "price_unit": 100.0,
+                        },
+                    )
+                ],
+            }
+        )
+        sale_order.action_confirm()
+
+        # Sub-MO: makes the intermediate, consumes the handling service.
+        # Its origin points at the parent MO (not the SO), as real sub-MOs do.
+        sub_mo = MrpProduction.create(
+            {
+                "product_id": mid.id,
+                "product_qty": 1.0,
+                "bom_id": mid_bom.id,
+                "origin": "MO/PARENT",
+            }
+        )
+        sub_mo.action_confirm()
+        for move in sub_mo.move_raw_ids.filtered(
+            lambda m: m.product_id == handling
+        ):
+            move.quantity = 3.0
+
+        # Parent MO: makes the top product, consumes the intermediate.
+        top_mo = MrpProduction.create(
+            {
+                "product_id": top.id,
+                "product_qty": 1.0,
+                "origin": sale_order.name,
+            }
+        )
+        top_mo.action_confirm()
+        mid_move = top_mo.move_raw_ids.filtered(lambda m: m.product_id == mid)
+        mid_move.quantity = 1.0
+        # Link the sub-MO as the supplier of the intermediate (what MTO
+        # procurement does), so the tree-walk can reach it.
+        mid_move.move_orig_ids = [(6, 0, sub_mo.move_finished_ids.ids)]
+
+        top_mo.action_add_consumed_components_to_sale()
+
+        handling_lines = sale_order.order_line.filtered(
+            lambda li: li.product_id == handling and li.is_mrp_component_line
+        )
+        self.assertTrue(
+            handling_lines,
+            "A sellable component consumed in the sub-MO must be synced to the SO",
+        )
+        self.assertEqual(
+            handling_lines.product_uom_qty,
+            3.0,
+            "Quantity should match the sub-MO consumption",
+        )
+
     def test_mo_confirmation_with_sale_only_component(self):
         # This component is sellable, but has no stock/routing setup
         product = self.env["product.product"].create(
