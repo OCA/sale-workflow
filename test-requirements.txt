@@ -1,1 +1,2 @@
 odoo-test-helper
+odoo-addon-sequence_regex @ git+https://github.com/OCA/server-tools.git@refs/pull/3672/head#subdirectory=sequence_regex
