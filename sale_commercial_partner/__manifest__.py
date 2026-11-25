@@ -14,6 +14,10 @@
     "license": "AGPL-3",
     "contributors": ["Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>"],
     "depends": ["sale"],
-    "data": ["views/sale_order.xml", "views/sale_report.xml"],
+    "data": [
+        "views/sale_order.xml",
+        "views/sale_report.xml",
+        "views/res_config_settings_views.xml",
+    ],
     "installable": True,
 }

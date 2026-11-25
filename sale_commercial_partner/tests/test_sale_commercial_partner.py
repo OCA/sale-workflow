@@ -35,3 +35,16 @@ class TestSaleCommercialPartner(TransactionCase):
 
         self.assertEqual(order_01.partner_id, self.partner)
         self.assertEqual(order_01.commercial_partner_id, self.commercial_partner)
+
+    def test_02_partner_domain_filters(self):
+        with Form(self.env["sale.order"]) as order_form:
+            order_form.partner_id = self.partner
+        order = order_form.save()
+        self.assertEqual(order.partner_invoice_domain, [])
+        self.assertEqual(order.partner_shipping_domain, [])
+        self.env.company.use_invoice_commercial_partner_filter = True
+        self.env.company.use_shipping_commercial_partner_filter = True
+        order._compute_partner_domains()
+        expected_domain = [("commercial_partner_id", "=", self.commercial_partner.id)]
+        self.assertEqual(order.partner_invoice_domain, expected_domain)
+        self.assertEqual(order.partner_shipping_domain, expected_domain)
