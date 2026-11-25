@@ -1,5 +1,6 @@
 # Copyright 2018-2020 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+from odoo import Command
 from odoo.tests import Form, tagged
 
 from odoo.addons.base.tests.common import BaseCommon
@@ -108,3 +109,25 @@ class TestSaleOrder(BaseCommon):
         self.assertEqual(self.order.order_line.secondary_uom_qty, 16)
         self.assertEqual(self.order.order_line.secondary_uom_unit_price, 500)
         self.assertEqual(self.order.order_line.price_subtotal, 8000)
+
+    def test_create_keeps_given_price_in_amounts(self):
+        """Values given in create are used for the precomputed amounts"""
+        order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.product.id,
+                            "product_uom_qty": 1,
+                            "price_unit": 200,
+                            "discount": 10,
+                        }
+                    )
+                ],
+            }
+        )
+        line = order.order_line
+        self.assertEqual(line.price_unit, 200)
+        self.assertEqual(line.price_subtotal, 180)
+        self.assertEqual(order.amount_untaxed, 180)
