@@ -170,7 +170,6 @@ class AutomaticWorkflowJob(models.Model):
                 self._do_register_payment(
                     invoice.with_company(invoice.company_id), payment_filter
                 )
-        return
 
     def _register_payment_invoice(self, invoice):
         # Never create a payment that settles nothing. Such a payment leaves
