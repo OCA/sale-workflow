@@ -7,47 +7,74 @@ from odoo import api, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.onchange("partner_id", "partner_shipping_id")
-    def _add_delivery_carrier_on_partner_change(self):
-        partner = self.partner_shipping_id or self.partner_id
-        if not partner:
-            return
-        if self.company_id.carrier_on_create:
-            self._set_delivery_carrier(
-                set_delivery_line=False,
-                preserve_order_carrier=False,
-            )
-
     def _is_auto_set_carrier_on_create(self):
         self.ensure_one()
         return (
-            self.state in ("draft", "sent")
+            not self.carrier_id
+            and self.state in ("draft", "sent")
             and self.company_id.carrier_on_create
             and not self.is_all_service
         )
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        ctx_carrier_on_create = self.env.context.get("carrier_on_create")
-        orders = super(SaleOrder, self.with_context(carrier_on_create=True)).create(
-            vals_list
-        )
-        orders = orders.with_context(carrier_on_create=ctx_carrier_on_create)
-        orders._set_carrier_on_create()
-        return orders
-
-    def _set_carrier_on_create(self):
+    def _auto_set_carrier_on_create(self):
         if self.env.context.get("carrier_on_create"):
             return
-        for order in self:
-            if not order.carrier_id and order._is_auto_set_carrier_on_create():
-                order.with_context(carrier_on_create=True)._set_delivery_carrier()
+        for rec in self:
+            if rec._is_auto_set_carrier_on_create():
+                rec.with_context(carrier_on_create=True)._set_delivery_carrier()
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        # Set the carrier once, when the order and all its lines exist
+        ctx_carrier_on_create = self.env.context.get("carrier_on_create")
+        recs = super(SaleOrder, self.with_context(carrier_on_create=True)).create(
+            vals_list
+        )
+        recs = recs.with_context(carrier_on_create=ctx_carrier_on_create)
+        recs._auto_set_carrier_on_create()
+        return recs
 
     def write(self, vals):
-        # When product lines are added, set the carrier
+        if self.env.context.get("carrier_on_create"):
+            return super().write(vals)
+        shipping_before = {}
+        if "partner_id" in vals or "partner_shipping_id" in vals:
+            shipping_before = {rec.id: rec.partner_shipping_id for rec in self}
+        # Lines added or changed while writing can make the carrier applicable
+        products_before = {
+            rec.id: rec.order_line.product_id for rec in self if not rec.carrier_id
+        }
+        # Set the carrier once, when everything is written
         res = super(SaleOrder, self.with_context(carrier_on_create=True)).write(vals)
-        self._set_carrier_on_create()
+        for rec in self:
+            if rec.id in shipping_before and rec._is_auto_set_carrier_on_write(
+                vals, shipping_before[rec.id]
+            ):
+                rec.with_context(carrier_on_create=True)._set_delivery_carrier(
+                    preserve_order_carrier=False
+                )
+            elif (
+                rec.id in products_before
+                and rec.order_line.product_id != products_before[rec.id]
+            ):
+                rec._auto_set_carrier_on_create()
         return res
+
+    def _is_auto_set_carrier_on_write(self, vals, shipping_before):
+        """Tell if the carrier must be reassigned after a write.
+
+        Only an effective change of the shipping partner counts:
+        rewriting the same partner must not drop the chosen carrier.
+        Like on creation, this is driven by `carrier_on_create`:
+        `carrier_auto_assign` only acts on confirmation.
+        """
+        self.ensure_one()
+        return (
+            self.company_id.carrier_on_create
+            and self.state in ("draft", "sent")
+            and not vals.get("carrier_id")
+            and self.partner_shipping_id != shipping_before
+        )
 
     def _is_auto_set_carrier_on_confirm(self):
         self.ensure_one()
@@ -71,7 +98,8 @@ class SaleOrder(models.Model):
         :param preserve_order_carrier: It will respect the carrier set on the order
         """
         for order in self:
-            if not order.order_line:
+            # Only real orders: the carrier is not computed in onchanges anymore
+            if not order.order_line or isinstance(order.id, models.NewId):
                 continue
             # Preserve the carrier only if explicitly set on the attribute
             if preserve_order_carrier and order.delivery_set:
@@ -80,16 +108,13 @@ class SaleOrder(models.Model):
             delivery_wiz_context = delivery_wiz_action.get("context", {})
             if not delivery_wiz_context.get("default_carrier_id"):
                 continue
-            # Use the real order because can be an onchange
-            if isinstance(delivery_wiz_context.get("default_order_id"), models.NewId):
-                delivery_wiz_context["default_order_id"] = order._origin.id or order.id
+
             delivery_wiz_model = self.env[
                 delivery_wiz_action.get("res_model")
             ].with_context(**delivery_wiz_context)
-            if order._origin:
-                delivery_wiz = delivery_wiz_model.create({})
-            else:
-                delivery_wiz = delivery_wiz_model.new({})
+
+            delivery_wiz = delivery_wiz_model.new({"order_id": order.id})
+
             # Do not override carrier
             if preserve_order_carrier and order.carrier_id:
                 delivery_wiz.carrier_id = order.carrier_id
