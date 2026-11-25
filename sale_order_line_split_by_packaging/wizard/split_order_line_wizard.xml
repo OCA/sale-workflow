@@ -1,0 +1,28 @@
+<odoo>
+    <record id="view_split_order_line_wizard_form" model="ir.ui.view">
+        <field name="model">split.order.line.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="line_ids" nolabel="1">
+                        <list>
+                            <field name="product_id" />
+                            <field name="product_uom_qty" />
+                            <field name="packaging_id" />
+                            <field name="price_unit" column_invisible="1" />
+                        </list>
+                    </field>
+                </group>
+                <footer>
+                    <button
+                        string="Confirm"
+                        type="object"
+                        name="action_confirm"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
