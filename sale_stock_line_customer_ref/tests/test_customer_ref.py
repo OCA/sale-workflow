@@ -1,0 +1,145 @@
+# Copyright 2022 Camptocamp SA
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
+
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
+
+
+class TestSaleLineCustomerRef(BaseCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.wh = cls.env.ref("stock.warehouse0")
+        cls.wh.delivery_steps = "pick_pack_ship"
+        # No demo data: since 19.0 databases are created without demo by default
+        cls.product = cls.env["product.product"].create(
+            {"name": "Test Product", "type": "consu", "is_storable": True}
+        )
+        cls.partner = cls.env["res.partner"].create({"name": "Test Partner"})
+        delivery_route = cls.wh.delivery_route_id
+        rule_id1 = delivery_route.rule_ids[1]
+        delivery_route.rule_ids[0].location_dest_id = rule_id1.location_src_id.id
+        delivery_route.rule_ids.write({"action": "pull"})
+        cls.stock_loc = cls.wh.lot_stock_id
+        cls.order = cls._create_order()
+        cls.order.action_confirm()
+        cls.pkg_model = cls.env["stock.package"]
+
+    @classmethod
+    def _create_order(cls):
+        # Create a SO with 4 lines sharing the same product but with 2 different
+        # customer references.
+        with Form(cls.env["sale.order"]) as form:
+            form.partner_id = cls.partner
+            for i in range(4):
+                with form.order_line.new() as line:
+                    line.product_id = cls.product
+                    line.customer_ref = f"TEST_{i % 2}"
+                    line.product_uom_qty = 1
+            order = form.save()
+            return order
+
+    @classmethod
+    def _update_qty_in_location(
+        cls, location, product, quantity, package=None, lot=None
+    ):
+        quants = cls.env["stock.quant"]._gather(
+            product, location, lot_id=lot, package_id=package, strict=True
+        )
+        # this method adds the quantity to the current quantity, so remove it
+        quantity -= sum(quants.mapped("quantity"))
+        cls.env["stock.quant"]._update_available_quantity(
+            product, location, quantity, package_id=package, lot_id=lot
+        )
+
+    @classmethod
+    def _get_pick(cls, order):
+        return order.picking_ids.filtered(lambda x: not x.move_ids.move_orig_ids)
+
+    @classmethod
+    def _get_pack(cls, order):
+        return cls._get_pick(order).move_ids.move_dest_ids.picking_id
+
+    def test_customer_ref(self):
+        # Ship moves can't be merged anyway in std Odoo as they belong to
+        # different SO lines, but chained moves not linked directly to
+        # the SO lines can still be merged based on the customer reference.
+        self.assertEqual(len(self.order.order_line), 4)
+        # Since 19.0, sale_stock propagates sale_line_id to the chained moves
+        # (stock.move._prepare_procurement_values), so each SO line is linked to
+        # its pick, pack and ship moves: 4 lines x 3 steps.
+        self.assertEqual(len(self.order.order_line.move_ids), 12)
+        self._test_customer_ref()
+
+    def _test_customer_ref(self):
+        # Check customer ref. among chained moves of all SO lines
+        for i in range(4):
+            expected_ref = f"TEST_{i % 2}"
+            order_line = self.order.order_line[i]
+            order_lines_same_ref = self.order.order_line.filtered_domain(
+                [("customer_ref", "=", expected_ref)]
+            )
+            self.assertEqual(order_line.customer_ref, expected_ref)
+            # Customer reference is propagated on the ship move
+            move_ship = order_line.move_ids.filtered(lambda m: not m.move_dest_ids)
+            self.assertEqual(move_ship.customer_ref_sale_line_id, order_line)
+            self.assertEqual(move_ship.customer_ref, expected_ref)
+            self.assertEqual(move_ship.product_uom_qty, 1)
+            # And on the pack and pick moves. Since 19.0 they carry their own
+            # sale_line_id (a merge-distinct field in sale_stock), so chained
+            # moves of different SO lines are never merged anymore, even when
+            # they share the same customer reference.
+            move_pack = move_ship.move_orig_ids
+            self.assertIn(move_pack.customer_ref_sale_line_id, order_lines_same_ref)
+            self.assertEqual(move_pack.customer_ref_sale_line_id, order_line)
+            self.assertEqual(move_pack.customer_ref, expected_ref)
+            self.assertEqual(move_pack.product_uom_qty, 1)
+            move_pick = move_pack.move_orig_ids
+            self.assertIn(move_pick.customer_ref_sale_line_id, order_lines_same_ref)
+            self.assertEqual(move_pick.customer_ref_sale_line_id, order_line)
+            self.assertEqual(move_pick.customer_ref, expected_ref)
+            self.assertEqual(move_pick.product_uom_qty, 1)
+
+    def test_has_customer_ref(self):
+        for picking in self.order.picking_ids:
+            self.assertTrue(picking.has_customer_ref)
+
+    def test_package_ref(self):
+        self._update_qty_in_location(self.stock_loc, self.product, 10)
+        picking = self._get_pick(self.order)
+        picking.action_assign()
+        # One move line per SO line since 19.0 (pick moves are not merged).
+        expected = ["TEST_0", "TEST_1", "TEST_0", "TEST_1"]
+        self.assertEqual(picking.move_line_ids.mapped("customer_ref"), expected)
+        pkg1 = self.pkg_model.create({"name": "TEST-REF-1"})
+        pkg2 = self.pkg_model.create({"name": "TEST-REF-2"})
+        picking.move_line_ids[0].result_package_id = pkg1
+        picking.move_line_ids[1].result_package_id = pkg2
+        packages = picking.move_line_ids.result_package_id.sorted("name")
+        packages.invalidate_recordset()
+
+        self.assertEqual(packages.mapped("customer_ref"), ["TEST_0", "TEST_1"])
+        picking.move_line_ids.filtered(
+            lambda x: x.result_package_id == pkg2
+        ).result_package_id = False
+        packages.invalidate_recordset()
+        self.assertEqual(packages.mapped("customer_ref"), ["TEST_0", False])
+
+    def test_package_ref_concat(self):
+        self._update_qty_in_location(self.stock_loc, self.product, 10)
+        picking = self._get_pick(self.order)
+        picking.action_assign()
+        # One move line per SO line since 19.0 (pick moves are not merged).
+        expected = ["TEST_0", "TEST_1", "TEST_0", "TEST_1"]
+        self.assertEqual(picking.move_line_ids.mapped("customer_ref"), expected)
+        pkg1 = self.pkg_model.create({"name": "TEST-REF-1"})
+        self.pkg_model.create({"name": "TEST-REF-2"})
+        picking.move_line_ids.result_package_id = pkg1
+        packages = picking.move_line_ids.result_package_id.sorted("name")
+        packages.invalidate_recordset()
+
+        self.assertEqual(packages.mapped("customer_ref"), ["TEST_0, TEST_1"])
+        picking.move_line_ids.result_package_id = False
+        packages.invalidate_recordset()
+        self.assertEqual(packages.mapped("customer_ref"), [False])

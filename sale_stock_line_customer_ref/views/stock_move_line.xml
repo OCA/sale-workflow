@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_move_line_form" model="ir.ui.view">
+        <field name="name">stock.move.line.form.inherit</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_form" />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="customer_ref" invisible="not customer_ref" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_stock_move_line_detailed_operation_tree" model="ir.ui.view">
+        <field name="name">stock.move.line.operations.list.inherit</field>
+        <field name="model">stock.move.line</field>
+        <field
+            name="inherit_id"
+            ref="stock.view_stock_move_line_detailed_operation_tree"
+        />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field
+                    name="customer_ref"
+                    column_invisible="not context.get('has_customer_ref')"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

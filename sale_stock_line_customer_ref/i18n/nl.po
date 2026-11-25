@@ -1,0 +1,86 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_stock_line_customer_ref
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-04-13 12:24+0000\n"
+"Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
+"Language-Team: none\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: sale_stock_line_customer_ref
+#: model:ir.model.fields,field_description:sale_stock_line_customer_ref.field_stock_move__customer_ref
+#: model:ir.model.fields,field_description:sale_stock_line_customer_ref.field_stock_move_line__customer_ref
+msgid "Customer Ref"
+msgstr "Klantreferentie"
+
+#. module: sale_stock_line_customer_ref
+#: model:ir.model.fields,field_description:sale_stock_line_customer_ref.field_sale_order_line__customer_ref
+#: model:ir.model.fields,field_description:sale_stock_line_customer_ref.field_stock_quant_package__customer_ref
+msgid "Customer Ref."
+msgstr "Klantref."
+
+#. module: sale_stock_line_customer_ref
+#: model:ir.model.fields,help:sale_stock_line_customer_ref.field_stock_quant_package__customer_ref
+msgid "Customer reference coming from the sale order line."
+msgstr "Klantreferentie afkomstig van de verkooporderregel."
+
+#. module: sale_stock_line_customer_ref
+#: model:ir.model.fields,field_description:sale_stock_line_customer_ref.field_stock_package_level__has_customer_ref
+#: model:ir.model.fields,field_description:sale_stock_line_customer_ref.field_stock_picking__has_customer_ref
+msgid "Has Customer Ref"
+msgstr "Heeft Klantref"
+
+#. module: sale_stock_line_customer_ref
+#: model:ir.model,name:sale_stock_line_customer_ref.model_stock_quant_package
+msgid "Packages"
+msgstr "Pakketten"
+
+#. module: sale_stock_line_customer_ref
+#: model:ir.model,name:sale_stock_line_customer_ref.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "Productbewegingen (Voorraadmutatieregel)"
+
+#. module: sale_stock_line_customer_ref
+#: model:ir.model.fields,field_description:sale_stock_line_customer_ref.field_stock_move__customer_ref_sale_line_id
+msgid "Sale Line With Customer Ref."
+msgstr "Verkoopregel met Klantref."
+
+#. module: sale_stock_line_customer_ref
+#: model:ir.model,name:sale_stock_line_customer_ref.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Verkooporderregel"
+
+#. module: sale_stock_line_customer_ref
+#: model:ir.model,name:sale_stock_line_customer_ref.model_stock_move
+msgid "Stock Move"
+msgstr "Voorraadmutatie"
+
+#. module: sale_stock_line_customer_ref
+#: model:ir.model,name:sale_stock_line_customer_ref.model_stock_package_level
+msgid "Stock Package Level"
+msgstr "Voorraadpakketniveau"
+
+#. module: sale_stock_line_customer_ref
+#: model:ir.model.fields,help:sale_stock_line_customer_ref.field_stock_package_level__has_customer_ref
+msgid "Technical field to display 'Customer Ref' column in a package level."
+msgstr ""
+"Technisch veld om de kolom 'Klantref' weer te geven op een pakketniveau."
+
+#. module: sale_stock_line_customer_ref
+#: model:ir.model.fields,help:sale_stock_line_customer_ref.field_stock_picking__has_customer_ref
+msgid "Technical field to display 'Customer Ref' column on moves."
+msgstr "Technisch veld om de kolom 'Klantref' weer te geven bij mutaties."
+
+#. module: sale_stock_line_customer_ref
+#: model:ir.model,name:sale_stock_line_customer_ref.model_stock_picking
+msgid "Transfer"
+msgstr "Overdracht"
