@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_label_layout_form" model="ir.ui.view">
+        <field name="model">product.label.layout</field>
+        <field name="inherit_id" ref="product.product_label_layout_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='pricelist_id']" position="attributes">
+                <attribute name="readonly">label_track_ids</attribute>
+            </xpath>
+            <xpath expr="//form/group" position="after">
+                <field
+                    name="label_track_ids"
+                    invisible="not label_track_ids"
+                    options="{'no_create': True}"
+                >
+                    <list create="0">
+                        <field name="product_id" />
+                        <field name="location_id" optional="show" />
+                        <field name="currency_id" column_invisible="1" />
+                        <field name="previous_price" />
+                        <field name="price" />
+                        <field name="state" widget="badge" />
+                    </list>
+                </field>
+            </xpath>
+        </field>
+    </record>
+</odoo>

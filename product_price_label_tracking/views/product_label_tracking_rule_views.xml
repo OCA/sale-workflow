@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_label_tracking_rule_view_list" model="ir.ui.view">
+        <field name="model">product.label.tracking.rule</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="location_id" optional="show" />
+                <field
+                    name="pricelist_id"
+                    optional="show"
+                    groups="product.group_product_pricelist"
+                />
+                <field name="user_id" widget="many2one_avatar_user" />
+                <field
+                    name="company_id"
+                    optional="show"
+                    groups="base.group_multi_company"
+                />
+                <field name="last_scan_date" optional="show" />
+                <field name="next_scan_date" optional="show" />
+            </list>
+        </field>
+    </record>
+
+    <record id="product_label_tracking_rule_view_form" model="ir.ui.view">
+        <field name="model">product.label.tracking.rule</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="action_scan"
+                        type="object"
+                        string="Scan Now"
+                        class="btn-primary"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="action_view_tracks"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-tags"
+                        >
+                            <field
+                                name="track_count"
+                                widget="statinfo"
+                                string="Tracks"
+                            />
+                        </button>
+                    </div>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="text-bg-danger"
+                        invisible="active"
+                    />
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="e.g. Main shop" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="active" invisible="1" />
+                            <field name="user_id" widget="many2one_avatar_user" />
+                            <field name="location_id" />
+                            <field
+                                name="include_non_storable"
+                                invisible="not location_id"
+                            />
+                            <field
+                                name="pricelist_id"
+                                groups="product.group_product_pricelist"
+                            />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                        <group>
+                            <label for="interval_number" string="Scan Every" />
+                            <div class="o_row">
+                                <field name="interval_number" />
+                                <field name="interval_type" />
+                            </div>
+                            <field name="last_scan_date" />
+                            <field name="next_scan_date" />
+                        </group>
+                    </group>
+                    <group string="Products">
+                        <field
+                            name="product_domain"
+                            widget="domain"
+                            options="{'model': 'product.product'}"
+                            nolabel="1"
+                            colspan="2"
+                        />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="product_label_tracking_rule_view_search" model="ir.ui.view">
+        <field name="model">product.label.tracking.rule</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="location_id" />
+                <field name="pricelist_id" />
+                <field name="user_id" />
+                <filter
+                    name="inactive"
+                    string="Archived"
+                    domain="[('active', '=', False)]"
+                />
+            </search>
+        </field>
+    </record>
+
+    <record id="product_label_tracking_rule_action" model="ir.actions.act_window">
+        <field name="name">Label Tracking Rules</field>
+        <field name="res_model">product.label.tracking.rule</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a label tracking rule
+            </p>
+            <p>
+                Choose a location, products and a pricelist to follow. Each price
+                change creates a label track for the responsible user.
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="product_label_tracking_rule_menu"
+        action="product_label_tracking_rule_action"
+        parent="sale.prod_config_main"
+        sequence="40"
+    />
+</odoo>
