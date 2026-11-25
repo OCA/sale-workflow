@@ -7,6 +7,10 @@ from odoo.tools import config
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
+    # when sale_order_general_discount_triple is installed we want to handle
+    # the general discount in that module instead
+    _set_general_discount_in_compute_discount = True
+
     discount = fields.Float(
         compute="_compute_discount",
         store=True,
@@ -23,6 +27,8 @@ class SaleOrderLine(models.Model):
         if not test_condition:
             return res
         for line in self:
+            if not line._set_general_discount_in_compute_discount:
+                continue
             # We check the value of general_discount on origin too to cover
             # the case where a discount was set to a value != 0 and then
             # set again to 0 to remove the discount on all the lines at the same
