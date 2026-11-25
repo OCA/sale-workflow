@@ -22,6 +22,8 @@ class SaleOrderLine(models.Model):
         """Return a key with priority to be used to regroup lines in multiple
         procurement groups
         """
+        if not self.order_id.company_id.sale_delivery_split_date:
+            return super()._get_procurement_group_key()
         priority = 24
         key = super()._get_procurement_group_key()
         # Check priority

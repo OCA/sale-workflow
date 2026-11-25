@@ -1,2 +1,3 @@
-- Incompatible with
-  [sale_procurement_group_by_commitment_date](https://github.com/OCA/sale-workflow/tree/12.0/sale_procurement_group_by_commitment_date)
+- When the option of `sale_procurement_group_by_commitment_date` is also
+  enabled on the company, this module takes precedence: deliveries are
+  split by commitment date minus the security lead time.
