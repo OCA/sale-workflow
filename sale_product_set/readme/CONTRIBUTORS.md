@@ -9,3 +9,4 @@
 - [Tecnativa](https://www.tecnativa.com):
   - Pilar Vargas
 - Nils Coenen \<<nils.coenen@nico-solutions.de>\>
+- Will Keesler \<<wkeesler@xes-inc.com>\>
