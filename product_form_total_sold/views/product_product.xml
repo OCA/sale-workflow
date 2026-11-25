@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 INVITU (<https://www.invitu.com>)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="product_product_form_view">
+        <field name="name">product.product.form (in product_form_total_sold)</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="sale.product_form_view_sale_order_button" />
+        <field name="arch" type="xml">
+            <button name="action_view_sales" position="after">
+                <button
+                    class="oe_stat_button"
+                    name="action_view_sales_total"
+                    type="object"
+                    icon="fa-line-chart"
+                    help="Sold since the beginning"
+                    groups="sales_team.group_sale_salesman"
+                    invisible="not sale_ok"
+                >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value d-flex gap-1">
+                            <field
+                                name="sales_total_count"
+                                widget="statinfo"
+                                nolabel="1"
+                                class="oe_inline"
+                            />
+                            <field
+                                name="uom_name"
+                                class="oe_inline"
+                                groups="uom.group_uom"
+                            />
+                        </span>
+                        <span class="o_stat_text">Total Sold</span>
+                    </div>
+                </button>
+            </button>
+        </field>
+    </record>
+</odoo>
