@@ -97,6 +97,7 @@ Contributors
   - Juan Carlos Oñate
 
 - Nils Coenen <nils.coenen@nico-solutions.de>
+- Will Keesler <wkeesler@xes-inc.com>
 
 Other credits
 -------------
