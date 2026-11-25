@@ -18,10 +18,14 @@ msgstr ""
 "X-Generator: Poedit 3.4.2\n"
 
 #. module: sale_stock_qty_by_warehouse
-#: model:ir.model.fields,field_description:sale_stock_qty_by_warehouse.field_sale_order_line__display_name
-#: model:ir.model.fields,field_description:sale_stock_qty_by_warehouse.field_stock_warehouse__display_name
-msgid "Display Name"
-msgstr "Nom d'affichage"
+#: model:ir.model,name:sale_stock_qty_by_warehouse.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_stock_qty_by_warehouse
+#: model:ir.model.fields,field_description:sale_stock_qty_by_warehouse.field_sale_order_line__display_qty_by_warehouse_widget
+msgid "Display Qty By Warehouse Widget"
+msgstr ""
 
 #. module: sale_stock_qty_by_warehouse
 #: model:ir.model.fields,field_description:sale_stock_qty_by_warehouse.field_stock_warehouse__display_stock_on_sol
@@ -39,17 +43,11 @@ msgid "Free To Use"
 msgstr "Disponible"
 
 #. module: sale_stock_qty_by_warehouse
-#: model:ir.model.fields,field_description:sale_stock_qty_by_warehouse.field_res_config_settings__id
-#: model:ir.model.fields,field_description:sale_stock_qty_by_warehouse.field_sale_order_line__id
-#: model:ir.model.fields,field_description:sale_stock_qty_by_warehouse.field_stock_warehouse__id
-msgid "ID"
-msgstr "ID"
-
-#. module: sale_stock_qty_by_warehouse
-#: model:ir.model.fields,field_description:sale_stock_qty_by_warehouse.field_sale_order_line____last_update
-#: model:ir.model.fields,field_description:sale_stock_qty_by_warehouse.field_stock_warehouse____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
+#: model:ir.model.fields,help:sale_stock_qty_by_warehouse.field_stock_warehouse__display_stock_location_ids
+msgid ""
+"Locations to use when computing the stock quantity shown on sale order lines "
+"for this warehouse. If empty, the whole warehouse is used."
+msgstr ""
 
 #. module: sale_stock_qty_by_warehouse
 #: model:ir.model.fields.selection,name:sale_stock_qty_by_warehouse.selection__res_config_settings__stock_field_on_sol__qty_available
@@ -57,14 +55,26 @@ msgid "On Hand"
 msgstr "En stock"
 
 #. module: sale_stock_qty_by_warehouse
-#: model:ir.model,name:sale_stock_qty_by_warehouse.model_sale_order_line
-msgid "Sales Order Line"
+#: model:ir.model.fields,field_description:sale_stock_qty_by_warehouse.field_sale_order_line__qty_by_warehouse_widget_data
+msgid "Qty By Warehouse Widget Data"
+msgstr ""
+
+#. module: sale_stock_qty_by_warehouse
+#. odoo-javascript
+#: code:addons/sale_stock_qty_by_warehouse/static/src/widgets/qty_by_warehouse_widget.xml:0
+msgid "Quantity"
+msgstr ""
+
+#. module: sale_stock_qty_by_warehouse
+#: model:ir.model.fields,field_description:sale_stock_qty_by_warehouse.field_stock_warehouse__display_stock_location_ids
+#, fuzzy
+msgid "Sale Order Line Stock Locations"
 msgstr "Ligne de commande client"
 
 #. module: sale_stock_qty_by_warehouse
-#: model:ir.model.fields,field_description:sale_stock_qty_by_warehouse.field_sale_order_line__stock_per_warehouse_info
-msgid "Stock / Warehouse"
-msgstr "Stock / Entrepôt"
+#: model:ir.model,name:sale_stock_qty_by_warehouse.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de commande client"
 
 #. module: sale_stock_qty_by_warehouse
 #: model:ir.model.fields,field_description:sale_stock_qty_by_warehouse.field_res_config_settings__stock_field_on_sol
@@ -77,6 +87,20 @@ msgid "Stock quantity field displayed per warehouse on sale order lines"
 msgstr "Quantité de stock affichée par entrepôt sur les lignes de commande"
 
 #. module: sale_stock_qty_by_warehouse
+#. odoo-javascript
+#: code:addons/sale_stock_qty_by_warehouse/static/src/widgets/qty_by_warehouse_widget.xml:0
 #: model:ir.model,name:sale_stock_qty_by_warehouse.model_stock_warehouse
 msgid "Warehouse"
 msgstr "Entrepôt"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom d'affichage"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "Stock / Warehouse"
+#~ msgstr "Stock / Entrepôt"
