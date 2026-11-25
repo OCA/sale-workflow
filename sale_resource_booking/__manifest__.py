@@ -13,6 +13,7 @@
     "license": "AGPL-3",
     "depends": ["sale", "resource_booking", "web_ir_actions_act_multi"],
     "data": [
+        "views/product_product_views.xml",
         "views/product_template_views.xml",
         "views/resource_booking_type_views.xml",
         "views/resource_booking_views.xml",
