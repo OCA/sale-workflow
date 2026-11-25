@@ -1,0 +1,38 @@
+<odoo>
+    <record
+        id="res_config_settings_view_form_sale_order_team_from_product"
+        model="ir.ui.view"
+    >
+        <field name="name">
+            res.config.settings.view.form.sale.order.team.from.product
+        </field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//app[@name='sale_management']//block[@name='quotation_order_setting_container']"
+                position="inside"
+            >
+                <setting
+                    id="sale_order_team_from_product"
+                    title="Set Sales Team from Products"
+                    help="Set the Sales Team on quotations from the Sales Team defined on products."
+                >
+                    <field name="set_sales_team_from_products" />
+                    <div
+                        class="content-group mt-2"
+                        invisible="not set_sales_team_from_products"
+                    >
+                        <div class="mt16 d-flex align-items-center">
+                            <field name="skip_sales_team_if_set" class="me-2" />
+                            <span class="text-muted">
+                                Do not override an already set Sales Team
+                                on the quotation.
+                            </span>
+                        </div>
+                    </div>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
