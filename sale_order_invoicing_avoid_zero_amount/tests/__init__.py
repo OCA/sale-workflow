@@ -1,0 +1,1 @@
+from . import test_sale_order_invoicing_avoid_zero_amount
