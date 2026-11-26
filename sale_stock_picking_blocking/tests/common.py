@@ -8,8 +8,8 @@ from odoo.orm.types import ValuesType
 from odoo.tests import TransactionCase, new_test_user
 
 # NB: we don't import ``odoo.addons.base.tests.common.BaseCommon`` because we don't
-# need its overhead, just the disabled-mail context values
-from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+# need its overhead, just the disabled-mail-create context values
+from odoo.addons.base.tests.common import DISABLED_MAIL_CREATE_CONTEXT
 
 
 class TestSaleDeliveryBlockSetup(TransactionCase):
@@ -27,7 +27,7 @@ class TestSaleDeliveryBlockSetup(TransactionCase):
     @classmethod
     def _prepare_env_values(cls) -> dict[str, Any]:
         """Prepares the test environment"""
-        return {"context": dict(cls.env.context, **DISABLED_MAIL_CONTEXT)}
+        return {"context": dict(cls.env.context, **DISABLED_MAIL_CREATE_CONTEXT)}
 
     @classmethod
     def setUpRecords(cls):
