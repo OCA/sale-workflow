@@ -1,6 +1,7 @@
 # Copyright (C) 2024 Cetmix OÜ
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo import Command
 from odoo.tests.common import TransactionCase
 
 
@@ -264,3 +265,62 @@ class TestSaleForceInvoicedQTY(TransactionCase):
         self.assertEqual(
             so.invoice_status, "to invoice", "The invoice status should be To Invoice"
         )
+
+    def test_combo_product_to_invoice(self):
+        """A combo line is only to invoice once one of its items is"""
+        combo_1, combo_2 = self.env["product.combo"].create(
+            [
+                {
+                    "name": "Combo 1",
+                    "combo_item_ids": [
+                        Command.create({"product_id": self.product_1.id})
+                    ],
+                },
+                {
+                    "name": "Combo 2",
+                    "combo_item_ids": [
+                        Command.create({"product_id": self.product_2.id})
+                    ],
+                },
+            ]
+        )
+        combo_product = self.env["product.product"].create(
+            {
+                "name": "Combo product",
+                "type": "combo",
+                "combo_ids": [Command.set((combo_1 | combo_2).ids)],
+            }
+        )
+        so = self.sale_order_obj.create(
+            {
+                "partner_id": self.customer.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": combo_product.id,
+                            "product_uom_qty": 3,
+                            "price_unit": 0,
+                        }
+                    )
+                ],
+            }
+        )
+        combo_line = so.order_line
+        so.order_line = [
+            Command.create(
+                {
+                    "product_id": combo.combo_item_ids.product_id.id,
+                    "product_uom_qty": 3,
+                    "price_unit": 5,
+                    "combo_item_id": combo.combo_item_ids.id,
+                    "linked_line_id": combo_line.id,
+                }
+            )
+            for combo in combo_1 | combo_2
+        ]
+        so.action_confirm()
+        self.assertEqual(so.order_line.mapped("qty_to_invoice"), [0.0, 0.0, 0.0])
+        self.assertEqual(so.invoice_status, "no")
+        item_lines = so.order_line - combo_line
+        item_lines.qty_delivered = 3
+        self.assertEqual(so.order_line.mapped("qty_to_invoice"), [3.0, 3.0, 3.0])
