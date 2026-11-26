@@ -51,9 +51,18 @@ class AccountMove(models.Model):
             move.invoice_payment_term_id = move.sale_type_id.payment_term_id
         return res
 
-    @api.depends("sale_type_id")
     def _compute_journal_id(self):
+        # No dependency on sale_type_id: it is computed from the partner, and a
+        # dependency would make any partner change recompute the journal, the
+        # company and then the accounting date, losing the date entered by the
+        # user (e.g. on vendor bills). The onchange below covers a change of
+        # sale type made on the form.
         res = super()._compute_journal_id()
         for move in self.filtered("sale_type_id.journal_id"):
             move.journal_id = move.sale_type_id.journal_id
         return res
+
+    @api.onchange("sale_type_id")
+    def _onchange_sale_type_id_journal(self):
+        for move in self.filtered("sale_type_id.journal_id"):
+            move.journal_id = move.sale_type_id.journal_id
