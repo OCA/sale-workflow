@@ -1,7 +1,7 @@
 In Odoo, products have their own invoicing policy that can be:
 
 - Invoicing on ordered quantities
-- Invoicing on ordered quantities
+- Invoicing on delivered quantities
 
 Following that configuration, when trying to create invoices from sale
 orders, each line of product will apply its invoicing policy.

@@ -30,8 +30,8 @@ class SaleOrder(models.Model):
         """
         Get default sale order invoice policy
         """
-        for company, sale_orders in self.partition("company_id").items():
-            sale_orders.invoice_policy = company.sale_default_invoice_policy
+        for order in self:
+            order.invoice_policy = order.company_id.sale_default_invoice_policy
 
     def _force_lines_to_invoice_policy_order(self):
         # When a SO is fully paid by a payment transaction and the automatic
