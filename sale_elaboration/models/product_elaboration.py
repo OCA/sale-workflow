@@ -2,6 +2,7 @@
 # Copyright 2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import api, fields, models
+from odoo.fields import Domain
 
 
 class Elaboration(models.Model):
@@ -44,14 +45,14 @@ class Elaboration(models.Model):
     )
 
     @api.model
-    def name_search(self, name, args=None, operator="ilike", limit=100):
+    def name_search(self, name, domain=None, operator="ilike", limit=100):
         """Give preference to codes on name search, appending
         the rest of the results after.
         """
-        args = args or []
+        domain = Domain(domain or Domain.TRUE)
         recs = self.browse()
         if name:
-            recs = self.search([("code", "=ilike", name)] + args, limit=limit)
+            recs = self.search(domain & Domain("code", "=ilike", name), limit=limit)
         if not recs:
-            recs = self.search([("name", operator, name)] + args, limit=limit)
+            recs = self.search(domain & Domain("name", operator, name), limit=limit)
         return [(record.id, record.display_name) for record in recs.sudo()]
