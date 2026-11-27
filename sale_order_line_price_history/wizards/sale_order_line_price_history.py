@@ -74,7 +74,7 @@ class SaleOrderLinePriceHistory(models.TransientModel):
         sol_limit = (
             self.env["ir.config_parameter"]
             .sudo()
-            .get_param("sale_order_line_price_history.order_line_limit", default="20")
+            .get_int("sale_order_line_price_history.order_line_limit", default=20)
         )
         order_lines = self.env["sale.order.line"].search(domain, limit=int(sol_limit))
         order_lines -= self.sale_order_line_id

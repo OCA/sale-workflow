@@ -10,7 +10,7 @@
         <field name="priority" eval="999" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='order_line']/list/field[@name='price_unit']"
+                expr="//field[@name='order_line']/list/column[@name='price_unit']"
                 position="after"
             >
                 <field name="order_partner_id" column_invisible="1" />
@@ -23,7 +23,7 @@
                 />
             </xpath>
             <xpath
-                expr="//field[@name='order_line']/kanban//field[@name='price_unit']/.."
+                expr="//field[@name='order_line']/kanban//field[@name='product_uom_qty']/.."
                 position="inside"
             >
                 <field name="order_partner_id" invisible="1" />

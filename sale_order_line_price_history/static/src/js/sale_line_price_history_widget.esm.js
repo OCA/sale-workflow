@@ -1,9 +1,15 @@
-import {Component} from "@odoo/owl";
+import {Component, t, useProps} from "@odoo/owl";
 import {registry} from "@web/core/registry";
 import {standardWidgetProps} from "@web/views/widgets/standard_widget_props";
 import {useService} from "@web/core/utils/hooks";
 
 export class PriceHistoryWidget extends Component {
+    props = useProps({
+        ...standardWidgetProps,
+        // Onchange decorator returns an undefined value for the id instead of false
+        value: t.any().optional(),
+    });
+
     setup() {
         super.setup();
         this.actionService = useService("action");
@@ -30,11 +36,6 @@ export class PriceHistoryWidget extends Component {
 }
 
 PriceHistoryWidget.template = "sale_order_line_price_history.price_history_widget";
-PriceHistoryWidget.props = {
-    ...standardWidgetProps,
-    // Onchange decorator returns an undefined value for the id instead of false
-    value: {optional: true},
-};
 
 registry
     .category("view_widgets")

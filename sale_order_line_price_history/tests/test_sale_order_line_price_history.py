@@ -98,7 +98,7 @@ class TestSaleOrderLinePriceHistory(TransactionCase):
         self.assertEqual(len(wizard.line_ids), 2)
         self.assertEqual(
             set(wizard.line_ids.mapped("sale_order_line_id.price_unit")),
-            set(list([10.0, 20.0])),
+            {10.0, 20.0},
         )
 
     def test_onchange_partner_id_include_quotations(self):
