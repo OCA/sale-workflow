@@ -79,6 +79,18 @@ class SaleOrderLine(models.Model):
                 new_cr, lines_to_remove_exception | lines_to_add_exception
             ):
                 test_mode = True
+                self._write_after_rollback(
+                    [
+                        (
+                            lines_to_remove_exception,
+                            {"exception_ids": [Command.unlink(rule.id)]},
+                        ),
+                        (
+                            lines_to_add_exception,
+                            {"exception_ids": [Command.link(rule.id)]},
+                        ),
+                    ]
+                )
             new_env = (
                 Environment(new_cr, self.env.uid, self.env.context)
                 if not test_mode

@@ -34,6 +34,8 @@ class TestSaleExceptionLockedLines(TransactionCase):
 
     def test_locked_lines_current_transaction(self):
         lines = self.order.order_line
+        postrollback = self.env.cr.postrollback._funcs
+        nb_callbacks = len(postrollback)
         rule_info = self.env["exception.rule"]._get_rules_info_for_domain(
             [("id", "=", self.rule.id)]
         )[0]
@@ -46,3 +48,6 @@ class TestSaleExceptionLockedLines(TransactionCase):
             self.assertEqual(lines._detect_exceptions(rule_info), self.order)
             mocked_env.assert_not_called()
         self.assertEqual(lines.exception_ids, self.rule)
+        # Written again if the transaction is rolled back.
+        self.assertEqual(len(postrollback), nb_callbacks + 1)
+        postrollback.pop()
