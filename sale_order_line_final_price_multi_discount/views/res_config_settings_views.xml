@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Innovyou
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.form.final.price.multi.discount</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//setting[@id='discount_sale_order_lines']" position="after">
+                <setting
+                    id="final_price_distribution_policy"
+                    string="Final price discounts"
+                    help="What the final price of a sale order line does with its discounts"
+                    invisible="not group_discount_per_so_line"
+                >
+                    <div class="content-group">
+                        <div class="mt8">
+                            <field
+                                name="final_price_distribution_policy"
+                                widget="radio"
+                            />
+                        </div>
+                    </div>
+                </setting>
+                <setting
+                    id="final_price_unlock_prices"
+                    help="Let every salesperson edit the unit price and the discounts, not only the Sales Administrators"
+                    invisible="not group_discount_per_so_line"
+                >
+                    <field name="final_price_unlock_prices" />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
