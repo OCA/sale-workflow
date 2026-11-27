@@ -3,6 +3,8 @@
 # Copyright 2019 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from markupsafe import Markup
+
 from odoo import api, models
 
 
@@ -47,12 +49,32 @@ class SaleOrder(models.Model):
         if orders:
             orders._check_exception()
 
+    def _must_popup_exception(self):
+        return self.env.company.sale_exception_show_popup
+
     def action_confirm(self):
-        if self.detect_exceptions():
-            if not self.env.company.sale_exception_show_popup:
-                return
-            return self._popup_exceptions()
+        self.detect_exceptions()
         return super().action_confirm()
+
+    def _validate_order(self):
+        # Callers wrote on the order before confirming it and have no handler
+        # for the exception: leave the blocked orders unconfirmed instead.
+        orders = self.with_context(base_exception_no_rollback={self._name: self.ids})
+        orders.detect_exceptions()
+        blocked = orders.filtered(lambda o: o._must_raise_exception_after_detection())
+        for order in blocked:
+            order.message_post(
+                body=Markup("{}{}").format(
+                    self.env._(
+                        "The order was not confirmed because of these exceptions:"
+                    ),
+                    Markup(order.exceptions_summary or ""),
+                ),
+                subtype_xmlid="mail.mt_note",
+            )
+        to_confirm = orders - blocked
+        if to_confirm:
+            return super(SaleOrder, to_confirm)._validate_order()
 
     def action_draft(self):
         res = super().action_draft()
