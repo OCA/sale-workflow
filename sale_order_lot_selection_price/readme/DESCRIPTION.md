@@ -1,0 +1,1 @@
+This module allows you to define a sales price for lots in order to use that price in sales order lines.
