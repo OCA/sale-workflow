@@ -1,0 +1,50 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_finish_service
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_finish_service
+#: model_terms:ir.ui.view,arch_db:sale_order_finish_service.view_sales_order_filter
+msgid "Finished"
+msgstr ""
+
+#. module: sale_order_finish_service
+#: model:ir.model.fields,field_description:sale_order_finish_service.field_sale_order__finished_sale_order
+#: model:ir.model.fields,field_description:sale_order_finish_service.field_sale_order_line__finished_sale_order
+msgid "Finished Sale Order"
+msgstr ""
+
+#. module: sale_order_finish_service
+#: model_terms:ir.ui.view,arch_db:sale_order_finish_service.view_order_form
+msgid "Mark as Finished"
+msgstr ""
+
+#. module: sale_order_finish_service
+#: model:ir.model,name:sale_order_finish_service.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_finish_service
+#: model:ir.model,name:sale_order_finish_service.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_finish_service
+#: model_terms:ir.ui.view,arch_db:sale_order_finish_service.view_sales_order_filter
+msgid "Unfinished"
+msgstr ""
+
+#. module: sale_order_finish_service
+#: model_terms:ir.ui.view,arch_db:sale_order_finish_service.view_order_form
+msgid "Unmark as Finished"
+msgstr ""
