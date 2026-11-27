@@ -6,7 +6,7 @@ from unittest import mock
 
 from freezegun import freeze_time
 
-from odoo import fields
+from odoo import Command, fields
 from odoo.tests import tagged
 
 from .common import TestAutomaticWorkflowMixin, TestCommon
@@ -253,20 +253,31 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         self.assertEqual(payment.journal_id, payment_journal)
 
     def _create_zero_amount_invoice(self, workflow):
-        """Return a posted invoice whose residual amount is zero.
+        """Return the partner and a posted invoice whose residual amount is zero.
 
         A free order (100% discount, replacement shipment, loyalty item...)
         produces an invoice with a zero total and therefore a zero residual
-        amount.
+        amount. The invoice is created directly: depending on the installed
+        modules, a zero amount order is not invoiced by the workflow, and this
+        is not what these tests are about.
         """
-        sale = self.create_sale_order(
-            workflow, extra_product_values={"list_price": 0.0}
+        partner = self.env["res.partner"].create({"name": "Zero amount customer"})
+        invoice = self.env["account.move"].create(
+            {
+                "move_type": "out_invoice",
+                "partner_id": partner.id,
+                "workflow_process_id": workflow.id,
+                "invoice_line_ids": [
+                    Command.create(
+                        {"name": "Free item", "price_unit": 0, "quantity": 1}
+                    )
+                ],
+            }
         )
-        self.run_job()
-        invoice = sale.invoice_ids
+        invoice.action_post()
         self.assertEqual(invoice.state, "posted")
         self.assertTrue(invoice.currency_id.is_zero(invoice.amount_residual))
-        return sale, invoice
+        return partner, invoice
 
     def test_register_payment_skips_zero_residual_invoice(self):
         """No payment is created when there is nothing left to pay."""
@@ -288,10 +299,10 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         """
         workflow = self.create_full_automatic()
         workflow.register_payment = True
-        sale, dummy = self._create_zero_amount_invoice(workflow)
-        # The partner is created by create_sale_order, so it is only used by
-        # this order and we can count its payments safely.
-        domain = [("partner_id", "=", sale.partner_id.id)]
+        partner, dummy = self._create_zero_amount_invoice(workflow)
+        # The partner is only used by this invoice, so we can count its
+        # payments safely.
+        domain = [("partner_id", "=", partner.id)]
         payment_obj = self.env["account.payment"]
         self.assertEqual(payment_obj.search_count(domain), 0)
         for _run in range(3):
