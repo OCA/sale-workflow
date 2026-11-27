@@ -11,3 +11,4 @@
   - Juan Carlos Oñate
 - Nils Coenen \<<nils.coenen@nico-solutions.de>\>
 - Christopher Rogos \<<crogos@gmail.com>\>
+- Will Keesler \<<wkeesler@xes-inc.com>\>
