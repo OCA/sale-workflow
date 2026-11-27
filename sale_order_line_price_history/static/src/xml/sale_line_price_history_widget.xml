@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2021 Tecnativa - David Vidal
      Copyright 2024 Moduon Team S.L. <info@moduon.team>
      License AGLP-3.0 or later (https://www.gnu.org/licenses/agpl.html). -->
@@ -6,9 +6,9 @@
     <t t-name="sale_order_line_price_history.price_history_widget">
         <a
             t-if="props.record.data.qty_invoiced === 0"
+            class="fa fa-history"
             tabindex="0"
             t-on-click="viewPriceHistory"
-            class="fa fa-history"
             title="Price History"
         />
     </t>
