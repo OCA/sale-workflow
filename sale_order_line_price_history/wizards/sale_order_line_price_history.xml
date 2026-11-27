@@ -73,6 +73,7 @@
                                     string=" "
                                     widget="set_price_to_line_widget"
                                     help="Price History"
+                                    column_invisible="context.get('price_history_readonly', False)"
                                 />
                             </list>
                         </field>
