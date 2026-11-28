@@ -4,6 +4,7 @@
 # Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
+from unittest.mock import patch
 
 from odoo import SUPERUSER_ID, Command
 from odoo.api import Environment
@@ -262,6 +263,38 @@ class TestSaleException(TransactionCase):
             so_except_confirm.action_confirm()
         self.assertFalse(sale_order.ignore_exception)
         self.assertTrue(sale_order.state == "draft")
+
+    def test_line_exception_keeps_sudo(self):
+        exception = self.env.ref("sale_exception.excep_no_dumping").sudo()
+        exception.active = True
+        partner = self.env.ref("base.res_partner_1")
+        product = self.env.ref("product.product_product_6")
+        product.standard_price = 10.0
+        sale_order = self._create_sale_order(partner=partner, product=product)
+        sale_order.order_line.price_unit = 5.0
+        user = self.env["res.users"].create(
+            {
+                "name": "No access to sale orders",
+                "login": "sale_exception_no_access",
+                "groups_id": [Command.set([self.env.ref("base.group_user").id])],
+            }
+        )
+
+        def same_cursor_env(cr, uid, context, su=False):
+            env = Environment(self.env.cr, uid, context, su=su)
+            # a new cursor starts with an empty cache, so reads check access
+            env.invalidate_all()
+            return env
+
+        with (
+            mock_base_exception_method_env(self),
+            patch(
+                "odoo.addons.sale_exception.models.sale_order_line.Environment",
+                side_effect=same_cursor_env,
+            ),
+            self.assertRaises(BaseExceptionError),
+        ):
+            sale_order.with_user(user).sudo().action_confirm()
 
     def test_sale_order_line_exception_stored(self):
         exception = self.env.ref("sale_exception.excep_no_dumping").sudo()
