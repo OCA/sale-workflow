@@ -6,7 +6,7 @@
 from freezegun import freeze_time
 
 from odoo.exceptions import UserError
-from odoo.tests import Form
+from odoo.tests import Form, new_test_user
 
 from .test_recommendation_common import RecommendationCase
 
@@ -374,3 +374,21 @@ class RecommendationCaseTests(RecommendationCase):
         self.new_so.partner_id = new_partner
         with self.assertRaisesRegex(UserError, "Nothing found!"):
             self.wizard()
+
+    def _is_favorite_readonly(self, user):
+        fields_info = (
+            self.env["sale.order.recommendation.line"]
+            .with_user(user)
+            .fields_get(["product_is_favorite"], ["readonly"])
+        )
+        return fields_info["product_is_favorite"]["readonly"]
+
+    def test_favorite_readonly_without_product_write_access(self):
+        # Salesmen can't write products, so they can't toggle favorites
+        self.assertTrue(self._is_favorite_readonly(self.user_salesman))
+        user_manager = new_test_user(
+            self.env(su=True),
+            "test_recommendation_manager",
+            "sales_team.group_sale_manager",
+        )
+        self.assertFalse(self._is_favorite_readonly(user_manager))

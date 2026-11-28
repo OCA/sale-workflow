@@ -274,6 +274,21 @@ class SaleOrderRecommendationLine(models.TransientModel):
         domain="[('category_id', '=', product_uom_category_id)]",
     )
 
+    @api.model
+    def fields_get(self, allfields=None, attributes=None):
+        # The boolean_favorite widget doesn't detect that the user can't write
+        # the related product, so it lets them toggle the flag and the write
+        # fails with an access error. Make the field readonly for them.
+        res = super().fields_get(allfields=allfields, attributes=attributes)
+        favorite = res.get("product_is_favorite")
+        if (
+            favorite
+            and "readonly" in favorite
+            and not self.env["product.product"].has_access("write")
+        ):
+            favorite["readonly"] = True
+        return res
+
     @api.depends("sale_line_id", "product_id")
     def _compute_sale_uom_id(self):
         for line in self:
